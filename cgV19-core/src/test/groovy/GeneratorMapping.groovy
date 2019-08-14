@@ -1,0 +1,2 @@
+
+map 'Entity', 'EntityTemplate.groovy'
