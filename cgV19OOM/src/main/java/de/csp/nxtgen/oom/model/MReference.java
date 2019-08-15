@@ -1,4 +1,4 @@
-package de.csp.codegen.model.oom;
+package de.csp.nxtgen.oom.model;
 
 import de.csp.nxtgen.model.ModelElement;
 import de.csp.nxtgen.model.impl.ModelElementImpl;

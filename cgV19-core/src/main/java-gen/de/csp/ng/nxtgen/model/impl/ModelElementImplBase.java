@@ -1,8 +1,6 @@
 // THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
 package de.csp.ng.nxtgen.model.impl;
 
-import java.util.*;
-
 public abstract class ModelElementImplBase implements de.csp.ng.nxtgen.model.ModelElement {
     private List<de.csp.ng.nxtgen.model.Stereotype> stereotypes = new java.util.ArrayList<>();
     private String name;

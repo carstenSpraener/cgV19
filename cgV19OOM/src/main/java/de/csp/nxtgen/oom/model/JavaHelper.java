@@ -1,4 +1,4 @@
-package de.csp.codegen.model.oom;
+package de.csp.nxtgen.oom.model;
 
 public class JavaHelper {
 

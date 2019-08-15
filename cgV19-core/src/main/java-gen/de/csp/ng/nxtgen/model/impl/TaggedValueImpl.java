@@ -1,8 +1,6 @@
 // THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
 package de.csp.ng.nxtgen.model.impl;
 
-import java.util.*;
-
 public class TaggedValueImpl implements de.csp.ng.nxtgen.model.TaggedValue {
     private String name;
     private String value;

@@ -1,9 +1,8 @@
-package de.csp.codegen.model.oom;
+package de.csp.nxtgen.oom.model;
 
 import de.csp.nxtgen.ModelLoader;
 import de.csp.nxtgen.NxtGenRuntimeException;
 import de.csp.nxtgen.model.Model;
-import de.csp.nxtgen.groovy.ModelDSL;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 

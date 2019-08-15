@@ -1,6 +1,6 @@
-package de.csp.codgen.oom.cartridge;
+package de.csp.nxtgen.oom.cartridge;
 
-import de.csp.codegen.model.oom.MAttribute;
+import de.csp.nxtgen.oom.model.MAttribute;
 import de.csp.nxtgen.model.ModelElement;
 import de.csp.nxtgen.model.Relation;
 

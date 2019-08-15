@@ -1,4 +1,4 @@
-package de.csp.codgen.oom.cartridge;
+package de.csp.nxtgen.oom.cartridge;
 
 import de.csp.nxtgen.Cartridge;
 import de.csp.nxtgen.CodeGeneratorMapping;

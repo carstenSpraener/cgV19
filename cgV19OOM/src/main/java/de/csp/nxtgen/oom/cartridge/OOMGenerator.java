@@ -1,11 +1,10 @@
-package de.csp.codgen.oom.cartridge;
+package de.csp.nxtgen.oom.cartridge;
 
-import de.csp.codegen.model.oom.MClass;
+import de.csp.nxtgen.oom.model.MClass;
 import de.csp.nxtgen.CodeBlock;
 import de.csp.nxtgen.CodeGenerator;
 import de.csp.nxtgen.java.JavaCodeBlock;
 import de.csp.nxtgen.model.ModelElement;
-import de.csp.nxtgen.model.Relation;
 
 public class OOMGenerator implements CodeGenerator {
     @Override

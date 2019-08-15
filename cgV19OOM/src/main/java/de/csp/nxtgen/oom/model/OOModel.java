@@ -1,13 +1,8 @@
-package de.csp.codegen.model.oom;
+package de.csp.nxtgen.oom.model;
 
 import de.csp.nxtgen.model.Model;
 import de.csp.nxtgen.model.ModelElement;
-import de.csp.nxtgen.model.Relation;
-import de.csp.nxtgen.model.Stereotype;
-import de.csp.nxtgen.model.impl.ModelElementImpl;
 import de.csp.nxtgen.model.impl.ModelImpl;
-import de.csp.nxtgen.model.impl.RelationImpl;
-import de.csp.nxtgen.model.impl.StereotypeImpl;
 
 import java.util.ArrayList;
 import java.util.List;

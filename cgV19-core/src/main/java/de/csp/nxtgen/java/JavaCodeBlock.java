@@ -3,7 +3,9 @@ package de.csp.nxtgen.java;
 import de.csp.nxtgen.CodeBlockImpl;
 import de.csp.nxtgen.NxtGenRuntimeException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class JavaCodeBlock extends CodeBlockImpl {
     String srcDir;

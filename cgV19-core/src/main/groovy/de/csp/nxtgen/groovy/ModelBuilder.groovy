@@ -2,11 +2,11 @@ package de.csp.nxtgen.groovy
 
 import de.csp.nxtgen.model.Model
 import de.csp.nxtgen.model.ModelElement
-import de.csp.nxtgen.model.Stereotype
 import de.csp.nxtgen.model.Relation
+import de.csp.nxtgen.model.Stereotype
 import de.csp.nxtgen.model.impl.ModelElementImpl
 import de.csp.nxtgen.model.impl.ModelImpl
-import groovy.transform.*
+import groovy.transform.Canonical
 
 @Canonical
 class GroovyModel extends ModelImpl {
