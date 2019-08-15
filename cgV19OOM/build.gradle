@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+    id 'maven'
+}
+
+group='de.csp.nxtgen'
+version='19.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation project(':cgV19-core')
+
+    testImplementation 'junit:junit:4.12'
+}
+
+repositories {
+    jcenter();
+}
