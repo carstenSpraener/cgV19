@@ -1,5 +1,5 @@
-# cgV19 Core
-This is the core of the CodeGen V19 (nextGen)
+# Tutorial to cgV19
+This is the core of the NextGen V19
 
 ## A brief history
 In 2002 i started to work on a project for an insurance company in germany. The goal was to build 
@@ -25,12 +25,6 @@ and defining DSLs.
 While the old CodeGen had a very special model type (xml), __cgV19__ 
 has a java meta model, that can be extended and created from nearly
 every type of data.
-
-With __cgV19__ comes a new plugin for MagicDraw. This plugin provides
-the UML-Model from inside MagicDraw in a DSL form supported by the cgV19-oom
-module. You can install the plugin inside of MagicDraw. It provides a REST-Service
-on Port 7000 and serves the model. The ModelLoader from the cgV19-oom-Module
-can read this model while MagicDraw is running.
 
 __cgV19__ comes with a plugin for gradle. You can add it to your build.gradle and
 the generator will run before the compile task starts. 
@@ -261,3 +255,6 @@ the file is empty, it will generate the code.
 
 So: If you edited a generated file just remove this line and __cgV9__ 
 will never touch it again.
+
+#How does it work
+
