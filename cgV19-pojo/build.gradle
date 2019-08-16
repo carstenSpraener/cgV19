@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+group='de.csp.nxtgen'
+version='19.0.0-SNAPSHOT'
+
+dependencies {
+    implementation group:'de.csp.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
+    implementation group:'de.csp.nxtgen', name: 'cgV19-oom', version: '19.0.0-SNAPSHOT'
+
+    testImplementation 'junit:junit:4.12'
+}

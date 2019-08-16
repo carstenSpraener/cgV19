@@ -1,0 +1,4 @@
+rootProject.name = 'cgV19-pojo'
+
+includeBuild('../cgV19-core')
+includeBuild('../cgV19-oom')
