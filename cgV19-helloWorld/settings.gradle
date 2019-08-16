@@ -10,5 +10,6 @@
 rootProject.name = 'cgV19-helloWorld'
 
 includeBuild('../cgV19-core')
+includeBuild('../cgV19-gradle')
 includeBuild('../cgV19-oom')
 includeBuild('../cgV19-pojo')
