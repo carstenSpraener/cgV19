@@ -32,27 +32,33 @@ the generator will run before the compile task starts.
 ## What are all these modules?
 
 ###cgV19-core
+
 This is the very hard of cgV19. If you want to use cgV19, this is the module you 
 really allways have to use. All other modules dependending on this.
 
 ###cgV19-oom
+
 This modules adds some basic object oriented mode features to cgV19. It impelements
 a model that containes packages, classes, attribute and relations between the
 classes. If you want to generate some object oriented language like, let's say java,
 you can use this module to read your model into the generator.
 
 ###cgV19-pojo
+
 This is an example of a very basic __cartridge__. It can take a OOM-Model and will
 generate PoJos on classes marked as PoJos in the model.
 
 ###cgV19-gradle
+
 This module implements a gradle plugin to enable gradle projects to use cgV19.
 
 ###cgV19-helloWorld
+
 A very very basic project to demonstrate how you can use cgV19 in your projects.
 The truth of how to use cgV19 is here!
 
 ## Want to start?
+
 If you want to have a brief "how does it feel" follow the steps in this chapter. but
 be warned: Model driven development is powerfull and fun. But you should know that 
 writing templates and transformations for a real productive application is as
