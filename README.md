@@ -35,6 +35,29 @@ can read this model while MagicDraw is running.
 __cgV19__ comes with a plugin for gradle. You can add it to your build.gradle and
 the generator will run before the compile task starts. 
 
+## What are all these modules?
+
+###cgV19-core
+This is the very hard of cgV19. If you want to use cgV19, this is the module you 
+really allways have to use. All other modules dependending on this.
+
+###cgV19-oom
+This modules adds some basic object oriented mode features to cgV19. It impelements
+a model that containes packages, classes, attribute and relations between the
+classes. If you want to generate some object oriented language like, let's say java,
+you can use this module to read your model into the generator.
+
+###cgV19-pojo
+This is an example of a very basic __cartridge__. It can take a OOM-Model and will
+generate PoJos on classes marked as PoJos in the model.
+
+###cgV19-gradle
+This module implements a gradle plugin to enable gradle projects to use cgV19.
+
+###cgV19-helloWorld
+A very very basic project to demonstrate how you can use cgV19 in your projects.
+The truth of how to use cgV19 is here!
+
 ## Want to start?
 If you want to have a brief "how does it feel" follow the steps in this chapter. but
 be warned: Model driven development is powerfull and fun. But you should know that 
@@ -52,17 +75,61 @@ __Stil want to start?__ OK! You are the right kind of developer.
 This example requires gradle in version 5.1 or higher.
 
 ### Set up the base environment
+Since cgV19 is not yet available on mvnrepository (yes it is on my list) you
+first need to clone the project to you computer. For this you do need git!
+
+Make a directory where you want to start, go into that directory an type:
+```
+git clone https://github.com/carstenSpraener/cgV19.git
+```
+
+This will create a copy of the project in your workspace.
+
+Next step is to build all these modules. For that change into the oom, pojo and
+gradle Module and call `gradle jar`.
+
+```
+cd cgV19-oom
+gradle jar
+cd ../cgV19-pojo
+gradle jar
+cd ../cgV19-gradle
+gradle jar
+cd ..
+```
+
+Now everything you need is set up.
+
+### Building a helloWorld-Application
+
+_This chapter descriibes how to create a simple PoJo with cgC19 . The result is
+in the cgV19-helloWorld module. But of course you want to build it on your own._
+
 Make a new directory, lets say "helloWorldNxtGen" and run
- `gradle init --type application` to initialize a new Application-Project.
+ ```
+ gradle init --type java-application
+```
+
+to initialize a new Application-Project.
 
 When finished open your build.gradle in your editor and add the following
 plugin to the build-script:
 
 ```
-plugin {
-  ...
-  add 'cgV19', version:'19.0'
+buildscript {
+    dependencies {
+        classpath files('../cgV19-core/build/libs/cgV19-core-19.0.0-SNAPSHOT.jar')
+        classpath files('../cgV19-gradle/build/libs/cgV19-gradle-19.0.0-SNAPSHOT.jar')
+    }
 }
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+apply plugin: 'de.csp.nxtgen.cgV19'
+
 ```
 
 This will add __cgV19__ to your build process. Also add a new dependency to your
@@ -71,18 +138,53 @@ project:
 ```
 dependencies {
   ...
-  cartridge group:'', name: '', version: ''
+    cartridge group: 'de.csp.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.csp.nxtgen', name: 'cgV19-oom', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.csp.nxtgen', name: 'cgV19-pojo', version: '19.0.0-SNAPSHOT'
 }
 ```
-Now you added a example cartridge for generating simple java PoJos to __cgV19__.
+Now you added cgV19 itself to the gcgV19-gradle plugin, the oom model loader
+and an example cartridge for generating simple java PoJos to __cgV19__.
+
 The last step is to tell the generator where the model is located. This can be 
 done by adding:
 ``` 
-cgv19 {
-   model='./helloWorld.oom'
+cgV19 {
+   model='./src/main/helloWorld.oom'
 }
 ```
 to the build script.
+
+The generator will generate the java-code inside src/main/java-gen. To tell gradle
+that it has another src directors add the following:
+
+```
+sourceSets {
+    src{
+        main {
+            java {
+                srcDir('src/main/java')
+                srcDir('src/main/java-gen')
+            }
+        }
+    }
+}
+```
+
+
+#### Sidestep
+As long a cgV19 is not available from jcenter you need to add the
+following code to a settings.gradle in you project:
+
+```
+includeBuild('../cgV19-core')
+includeBuild('../cgV19-gradle')
+includeBuild('../cgV19-oom')
+includeBuild('../cgV19-pojo')
+```
+
+Of course this requires the modules of cgV19 are in the same parent
+directory as your hello world.
 
 That's it. Your project is ready for model driven development with __cgV19__.
 
@@ -93,25 +195,26 @@ we using the pojo-cartridge, which comes with an OOM-ModelLoader we have to
 describe the model in an OOM-File. OOM stands for ObjectOrientedModel and is 
 a groovy implemented DSL.
 
-So, create a file helloWorld.oom and open it in your editor:
+So, create a file helloWorld.oom in src/main and open it in your editor.
+Copy this code into your editor and safe the file.
 ```
-import de.csp.ng.nxtgen.model.Model
+import de.csp.nxtgen.model.Model
 import de.csp.nxtgen.groovy.ModelDSL
 
 Model model = ModelDSL.make {
     mPackage {
-        name 'example.nxtgen'
+        name 'de.csp.nxtgen.hello'
         mPackage {
-            name = 'hello'
+            name = 'model'
             mClass {
-                name 'PersonBase'
+                name 'Person'
                 stereotype 'PoJo'
                 mAttribute {
-                    name 'name'
+                    name 'firstName'
                     type 'String'
                 }
                 mAttribute {
-                    name 'firstName'
+                    name 'name'
                     type 'String'
                 }
             }
@@ -119,8 +222,12 @@ Model model = ModelDSL.make {
     }
 }
 ```
-As you can see the model defines a package `example.nxtgen` inside
-the package is another package `hello` that contains a Class 
+
+This is the model described in a domain specific laguange (DSL) 
+as it comes with the oom-Module.
+
+As you can see the model defines a package `de.csp.nxtgen.hello`
+that contains a Class  
 `Person` with two attributes `name` and `firstName`. All this
 is straight forward.
 
@@ -154,59 +261,3 @@ the file is empty, it will generate the code.
 
 So: If you edited a generated file just remove this line and __cgV9__ 
 will never touch it again.
-
-## Model, MetaModel, MetaMetaModel....
-* Model describes your domain for example in UML
-* UML is a meta model that has Classes, Packages, Relations, Attributes ...
-* The model to describe UML is the meta meta model
-* MetaMetalModel of cgV19 is
-    * _ModelElement_ which contains other ModelElements
-        * a Parent model Element
-        * a name
-        * e Key/Value store for properties
-        * a list of assigned _Stereotypes_
-    * Stereotypes have
-        * a name unique in the list of stereotypes assigned to a 
-          ModelElement
-        * a set of key/value pairs as _TaggedValues_
-                 
-## CodeGen V19
-
-### Base Engine
-
-* Searches for Modelloader
-* Locates Catridges
-* For each Cartridge: 
-    * LoadModel
-    * run Transformations from Cartridge
-    * map model Elements to generators
-    * start Generators for each mapped model element
-
-#### Model Loader
-* implements interface
-* located over ServiceLoader-Machanism of java
-* canHandle(ModelFile)? 
-* if yes, laod the model an give it to the generator
-
-#### Cartridges
-
-* typically responsible for the generation of a certain functionality. For example
-    * Entity with Mappings and DDL-Statement
-    * REST-Controllers 
-    * Processes from a activity diagram
-    
-* Container for Transformations and CodeGenerator
-* maps model elements to code generators
-* starts the generation
-
-#### Transformations
-
-* Key to abstraction
-* creating new model elements from the given model elements
-* adding new tagged values
-
-#### CodeGenerator
-
-#### CodeBlock
-
-### Groovy
