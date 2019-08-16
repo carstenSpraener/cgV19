@@ -4,7 +4,7 @@ plugins {
     id 'maven'
 }
 
-group 'de.csp.nxtgen'
+group 'de.spraener.nxtgen'
 version '19.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

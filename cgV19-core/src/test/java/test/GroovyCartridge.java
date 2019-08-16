@@ -1,10 +1,10 @@
 package test;
 
-import de.csp.nxtgen.Cartridge;
-import de.csp.nxtgen.CodeGeneratorMapping;
-import de.csp.nxtgen.Transformation;
-import de.csp.nxtgen.model.Model;
-import de.csp.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.Cartridge;
+import de.spraener.nxtgen.CodeGeneratorMapping;
+import de.spraener.nxtgen.Transformation;
+import de.spraener.nxtgen.model.Model;
+import de.spraener.nxtgen.model.ModelElement;
 import transformations.EntityToTableTransformation;
 
 import java.util.ArrayList;

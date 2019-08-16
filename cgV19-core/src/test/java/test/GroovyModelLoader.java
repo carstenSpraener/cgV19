@@ -1,8 +1,8 @@
 package test;
 
-import de.csp.nxtgen.ModelLoader;
-import de.csp.nxtgen.NxtGenRuntimeException;
-import de.csp.nxtgen.model.Model;
+import de.spraener.nxtgen.ModelLoader;
+import de.spraener.nxtgen.NxtGenRuntimeException;
+import de.spraener.nxtgen.model.Model;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 

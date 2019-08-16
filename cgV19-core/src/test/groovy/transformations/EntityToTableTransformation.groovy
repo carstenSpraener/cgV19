@@ -1,7 +1,7 @@
 package transformations
 
-import de.csp.nxtgen.Transformation
-import de.csp.nxtgen.model.ModelElement
+import de.spraener.nxtgen.Transformation
+import de.spraener.nxtgen.model.ModelElement
 
 class EntityToTableTransformation implements Transformation{
 
