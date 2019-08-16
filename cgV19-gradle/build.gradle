@@ -7,7 +7,7 @@ repositories {
     jcenter()
 }
 
-group='de.csp.nxtgen'
+group='de.spraener.nxtgen'
 version='19.0.0-SNAPSHOT'
 
 dependencies {
@@ -21,8 +21,8 @@ dependencies {
 gradlePlugin {
     plugins {
         cgV19Plugin {
-            id = "de.csp.nxtgen.cgV19"
-            implementationClass='de.csp.nxtgen.gradle.CGV19'
+            id = "de.spraener.nxtgen.cgV19"
+            implementationClass='de.spraener.nxtgen.gradle.CGV19'
         }
     }
 }
