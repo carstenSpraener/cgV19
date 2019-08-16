@@ -3,13 +3,13 @@ plugins {
     id 'maven'
 }
 
-group='de.csp.nxtgen'
+group='de.spraener.nxtgen'
 version='19.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
 dependencies {
-    implementation group: 'de.csp.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
+    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
     // implementation project(':cgV19-core')
 
     testImplementation 'junit:junit:4.12'
