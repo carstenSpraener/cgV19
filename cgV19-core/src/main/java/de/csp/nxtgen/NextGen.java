@@ -87,7 +87,14 @@ public class NextGen implements Runnable {
         final List<Cartridge> result = new ArrayList<>();
         ServiceLoader<Cartridge> loaderServices = ServiceLoader.load(Cartridge.class);
         loaderServices.forEach(result::add);
-        LOGGER.info(() -> "found " + result.size() + " cartridges as service.");
+        StringBuilder sb = new StringBuilder();
+        for( Cartridge c : result ) {
+            if( sb.length()>0) {
+                sb.append(", ");
+            }
+            sb.append(c.getName());
+        }
+        LOGGER.info(() -> "found " + result.size() + " cartridges ["+sb+"] as service.");
         return result;
     }
 

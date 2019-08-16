@@ -9,7 +9,8 @@ version='19.0.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 dependencies {
-    implementation project(':cgV19-core')
+    implementation group: 'de.csp.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
+    // implementation project(':cgV19-core')
 
     testImplementation 'junit:junit:4.12'
 }
