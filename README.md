@@ -27,9 +27,9 @@ has a java meta model, that can be extended and created from nearly
 every type of data.
 
 With __cgV19__ comes a new plugin for MagicDraw. This plugin provides
-the UML-Model from inside MagicDraw in a DSL form supported by the cgV19OOM
+the UML-Model from inside MagicDraw in a DSL form supported by the cgV19-oom
 module. You can install the plugin inside of MagicDraw. It provides a REST-Service
-on Port 7000 and serves the model. The ModelLoader from the cgV19OOM-Module
+on Port 7000 and serves the model. The ModelLoader from the cgV19-oom-Module
 can read this model while MagicDraw is running.
 
 __cgV19__ comes with a plugin for gradle. You can add it to your build.gradle and

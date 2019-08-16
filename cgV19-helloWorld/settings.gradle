@@ -10,5 +10,5 @@
 rootProject.name = 'cgV19-helloWorld'
 
 includeBuild('../cgV19-core')
-includeBuild('../cgV19OOM')
+includeBuild('../cgV19-oom')
 includeBuild('../cgV19-pojo')
