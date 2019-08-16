@@ -128,7 +128,7 @@ plugins {
     id 'application'
 }
 
-apply plugin: 'de.csp.nxtgen.cgV19'
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 ```
 
@@ -138,9 +138,9 @@ project:
 ```
 dependencies {
   ...
-    cartridge group: 'de.csp.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
-    cartridge group: 'de.csp.nxtgen', name: 'cgV19-oom', version: '19.0.0-SNAPSHOT'
-    cartridge group: 'de.csp.nxtgen', name: 'cgV19-pojo', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo', version: '19.0.0-SNAPSHOT'
 }
 ```
 Now you added cgV19 itself to the gcgV19-gradle plugin, the oom model loader
@@ -198,12 +198,12 @@ a groovy implemented DSL.
 So, create a file helloWorld.oom in src/main and open it in your editor.
 Copy this code into your editor and safe the file.
 ```
-import de.csp.nxtgen.model.Model
-import de.csp.nxtgen.groovy.ModelDSL
+import de.spraener.nxtgen.model.Model
+import de.spraener.nxtgen.groovy.ModelDSL
 
 Model model = ModelDSL.make {
     mPackage {
-        name 'de.csp.nxtgen.hello'
+        name 'de.spraener.nxtgen.hello'
         mPackage {
             name = 'model'
             mClass {
@@ -226,7 +226,7 @@ Model model = ModelDSL.make {
 This is the model described in a domain specific laguange (DSL) 
 as it comes with the oom-Module.
 
-As you can see the model defines a package `de.csp.nxtgen.hello`
+As you can see the model defines a package `de.spraener.nxtgen.hello`
 that contains a Class  
 `Person` with two attributes `name` and `firstName`. All this
 is straight forward.
