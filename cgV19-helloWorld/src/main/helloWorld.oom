@@ -1,9 +1,9 @@
-import de.csp.nxtgen.model.Model
-import de.csp.nxtgen.groovy.ModelDSL
+import de.spraener.nxtgen.model.Model
+import de.spraener.nxtgen.groovy.ModelDSL
 
 Model model = ModelDSL.make {
     mPackage {
-        name 'de.csp.nxtgen.hello'
+        name 'de.spraener.nxtgen.hello'
         mPackage {
             name = 'model'
             mClass {
