@@ -1,7 +1,10 @@
 buildscript {
+    repositories {
+        mavenCentral()
+    }
     dependencies {
-        classpath files('../cgV19-core/build/libs/cgV19-core-19.0.0-SNAPSHOT.jar')
-        classpath files('../cgV19-gradle/build/libs/cgV19-gradle-19.0.0-SNAPSHOT.jar')
+        classpath group:'de.spraener.nxtgen', name: 'cgV19-core', version:'19.0.0-RC1'
+        classpath group:'de.spreaner.nxtgen', name: 'cgV19-gradle', version:'19.0.0-RC1'
     }
 }
 
@@ -13,7 +16,10 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
-    jcenter()
+    mavenCentral()
+    maven {
+        url='https://oss.sonatype.org/content/groups/public'
+    }
 }
 
 cgV19 {
