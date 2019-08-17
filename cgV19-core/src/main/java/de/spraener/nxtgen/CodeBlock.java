@@ -12,24 +12,26 @@ import de.spraener.nxtgen.filestrategies.ToFileStrategy;
 public interface CodeBlock {
     /**
      * Transform the CodeBlock to source code.
-     * @return
+     * @return Source of the code block
      */
     String toCode();
 
     /**
      * Add a single line to the code block
-     * @param txt
+     * @param txt Some text to print into the codeblock
      */
     void println(String txt);
 
     /**
      * add a CodeBlock to this code block.
+     *
+     * @param subBlock a code block can contain other codeblocks. it is inserted at the current postion/line
      */
     void addCodeBlock(CodeBlock subBlock);
 
     /**
      * get the Name of this code block
-     * @return
+     * @return the unique name of the code block inside the generation context
      */
     String getName();
 
