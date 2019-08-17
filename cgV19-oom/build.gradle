@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0'
+    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-RC1'
 
     testImplementation 'junit:junit:4.12'
 }

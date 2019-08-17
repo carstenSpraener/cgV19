@@ -7,8 +7,8 @@
 
     <groupId>de.spraener.nxtgen</groupId>
     <artifactId>cgV19-oom</artifactId>
-    <version>19.0.0</version>
-    <packaging>pom</packaging>
+    <version>19.0.0-RC1</version>
+    <packaging>jar</packaging>
 
     <distributionManagement>
         <snapshotRepository>
@@ -23,9 +23,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>de.spraener.nxtgen</groupId>
             <artifactId>cgV19-core</artifactId>
-            <version>19.0.0</version>
+            <version>19.0.0-RC1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -69,6 +75,19 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
