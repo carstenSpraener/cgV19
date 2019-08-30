@@ -1,0 +1,110 @@
+// Refactoring the build especially the upload according to
+// this article: https://central.sonatype.org/pages/gradle.html
+plugins {
+    id 'io.codearte.nexus-staging' version '0.21.0'
+}
+
+allprojects {
+    project.ext.repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    project.ext.snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            // 'file:/Users/casi/Projekte/GitHub/cgV19/repo'
+            // 'https://oss.sonatype.org/content/repositolries/snapshots/'
+    project.ext.group = 'de.spraener.nxtgen'
+    project.ext.version = '19.0.1-SNAPSHOT'
+    project.ext.tmpRepoDir = "/Users/casi/Projekte/GitHub/cgV19/repo"
+
+    repositories {
+        mavenCentral()
+        maven {
+            url = "$project.ext.snapshotRepositoryUrl"
+        }
+        flatDir {
+            name "TempRepo"
+            dirs "${project.ext.tmpRepoDir}"
+        }
+    }
+}
+
+subprojects {
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath group: "io.codearte.gradle.nexus", name:"gradle-nexus-staging-plugin", version:"0.21.0"
+        }
+    }
+
+    apply plugin: 'java-library'
+    apply plugin: 'maven'
+    apply plugin: 'signing'
+
+    version = "${project.ext.version}"
+    group = "${project.ext.group}"
+
+    sourceCompatibility = 1.8
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    artifacts {
+        archives javadocJar, sourcesJar
+    }
+
+    signing {
+        sign configurations.archives
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "${project.ext.repositoryUrl}") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                snapshotRepository(url: "${project.ext.snapshotRepositoryUrl}") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                pom.project {
+                    name 'cgV19'
+                    description 'An easy to use, production proofed code generation framework.'
+                    url 'https://github.com/carstenSpraener/cgV19'
+                    packaging 'jar'
+
+                    scm {
+                        url 'https://github.com/carstenSpraener/cgV19'
+                        connection 'scm:git:git://github.com/carstenSpraener/cgV19.git'
+                        developerConnection 'scm:git:ssh://git@github.com/carstenSpraener/cgV19.git'
+                    }
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'https://github.com/carstenSpraener/cgV19/blob/master/LICENSE'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'carsten'
+                            name 'Carsten Spräner'
+                            email 'carsten@spraener.de'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+nexusStaging {
+    packageGroup = "${project.ext.group}"
+}
