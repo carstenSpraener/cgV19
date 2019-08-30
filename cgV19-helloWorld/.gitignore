@@ -5,3 +5,4 @@ gradle
 # Ignore Gradle build output directory
 build
 target
+src/main/java-gen

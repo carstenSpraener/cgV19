@@ -1,4 +1,4 @@
-package de.spraener.nxtgen.nxtgen.groovy
+package de.spraener.nxtgen.groovy
 
 import de.spraener.nxtgen.model.Model
 import de.spraener.nxtgen.model.ModelElement

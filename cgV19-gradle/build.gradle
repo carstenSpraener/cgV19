@@ -1,19 +1,9 @@
-plugins {
-    id 'java-gradle-plugin'
-    id 'groovy'
-}
-
-repositories {
-    jcenter()
-}
-
-group='de.spraener.nxtgen'
-version='19.0.0-SNAPSHOT'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'groovy'
 
 dependencies {
-    implementation gradleApi()
-    implementation localGroovy()
-    implementation files('../cgV19-core/build/libs/cgV19-core-19.0.0-SNAPSHOT.jar')
+    compile gradleApi()
+    compile localGroovy()
 
     testImplementation 'junit:junit:4.12'
 }
@@ -21,8 +11,8 @@ dependencies {
 gradlePlugin {
     plugins {
         cgV19Plugin {
-            id = "de.spraener.nxtgen.cgV19"
-            implementationClass='de.spraener.nxtgen.gradle.CGV19'
+            id = "${project.ext.group}.cgV19"
+            implementationClass="${project.ext.group}.gradle.CGV19"
         }
     }
 }

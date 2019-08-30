@@ -1,19 +1,9 @@
 plugins {
     id 'java-library'
-    id 'maven'
-}
-
-group='de.spraener.nxtgen'
-version='19.0.0'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral();
 }
 
 dependencies {
-    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-RC1'
+    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: "$project.ext.version"
 
     testImplementation 'junit:junit:4.12'
 }

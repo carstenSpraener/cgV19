@@ -1,10 +1,15 @@
 buildscript {
+    project.ext.version="19.0.1-SNAPSHOT"
+    project.ext.group="de.spraener.nxtgen"
     repositories {
-        mavenCentral()
+        maven {
+            url = "file:/Users/casi/Projekte/GitHub/cgV19/repo";
+        }
+        jcenter();
     }
     dependencies {
-        classpath group:'de.spraener.nxtgen', name: 'cgV19-core', version:'19.0.0-RC1'
-        classpath group:'de.spraener.nxtgen', name: 'cgV19-gradle', version:'19.0.0-RC1'
+        classpath group:"${project.ext.group}", name: 'cgV19-gradle', version: "$project.ext.version"
+        classpath group:"${project.ext.group}", name: 'cgV19-core', version: "$project.ext.version"
     }
 }
 
@@ -16,10 +21,10 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
-    mavenCentral()
     maven {
-        url='https://oss.sonatype.org/content/groups/public'
+        url = "file:/Users/casi/Projekte/GitHub/cgV19/repo";
     }
+    jcenter();
 }
 
 cgV19 {
@@ -36,12 +41,15 @@ sourceSets {
         }
     }
 }
+
 dependencies {
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: '19.0.0-SNAPSHOT'
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: "$project.ext.version"
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: "$project.ext.version"
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo',  version: "$project.ext.version"
 
     testImplementation 'junit:junit:4.12'
 }
+
+compileJava.dependsOn generate
 
 mainClassName = 'de.spraener.nxtgen.hello.App'
