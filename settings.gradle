@@ -1,0 +1,4 @@
+include ':cgV19-core'
+include ':cgV19-gradle'
+include ':cgV19-oom'
+include ':cgV19-pojo'

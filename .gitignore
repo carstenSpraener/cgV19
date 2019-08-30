@@ -1,7 +1,6 @@
 .gradle
 .idea
 build
-settings.gradle
 gradle.properties
 target
 repo
