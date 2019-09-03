@@ -5,12 +5,10 @@ plugins {
 }
 
 allprojects {
-    project.ext.repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    project.ext.snapshotRepositoryUrl = 'file:/Users/casi/Projekte/GitHub/cgV19/repo'
-            // 'file:/Users/casi/Projekte/GitHub/cgV19/repo'
-            // 'https://oss.sonatype.org/content/repositolries/snapshots/'
+    project.ext.repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+    project.ext.snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '19.0.1-SNAPSHOT'
+    project.ext.version = '19.0.0-RC2'
     project.ext.tmpRepoDir = "/Users/casi/Projekte/GitHub/cgV19/repo"
 
     repositories {
@@ -18,8 +16,11 @@ allprojects {
         maven {
             url = "$project.ext.snapshotRepositoryUrl"
         }
+        maven {
+            url = "https://oss.sonatype.org/content/groups/staging"
+        }
         flatDir {
-            name "TempRepo"
+            name 'TempRepo'
             dirs "${project.ext.tmpRepoDir}"
         }
     }
