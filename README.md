@@ -75,8 +75,8 @@ __Stil want to start?__ OK! You are the right kind of developer.
 This example requires gradle in version 5.1 or higher.
 
 ### Set up the base environment
-Since cgV19 is not yet available on mvnrepository (yes it is on my list) you
-first need to clone the project to you computer. For this you do need git!
+If you want to compile cgV19 on your own and using the most recent version, you can 
+pull it directly from here. There for: 
 
 Make a directory where you want to start, go into that directory an type:
 ```
