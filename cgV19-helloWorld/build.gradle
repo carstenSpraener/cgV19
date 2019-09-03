@@ -1,9 +1,9 @@
 buildscript {
-    project.ext.version="19.0.1-SNAPSHOT"
+    project.ext.version="19.0.0-RC2"
     project.ext.group="de.spraener.nxtgen"
     repositories {
         maven {
-            url = "file:/Users/casi/Projekte/GitHub/cgV19/repo";
+            url = "https://oss.sonatype.org/content/repositories/snapshots";
         }
         jcenter();
     }
@@ -22,7 +22,7 @@ apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     maven {
-        url = "file:/Users/casi/Projekte/GitHub/cgV19/repo";
+        url = "https://oss.sonatype.org/content/repositories/snapshots";
     }
     jcenter();
 }
