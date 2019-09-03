@@ -146,7 +146,7 @@ dependencies {
     cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo', version: '19.0.0-RC2'
 }
 ```
-Now you added cgV19 itself to the gcgV19-gradle plugin, the oom model loader
+Now you added cgV19 itself to the cgV19-gradle plugin, the oom model loader
 and an example cartridge for generating simple java PoJos to __cgV19__.
 
 The last step is to tell the generator where the model is located. This can be 
@@ -248,5 +248,46 @@ the file is empty, it will generate the code.
 So: If you edited a generated file just remove this line and __cgV9__ 
 will never touch it again.
 
-#How does it work
+# How does it work
+cgV19 uses the java service loader mechanism to find it's components. The first
+component is an implementation of the ModelLoader interface. 
+
+One implementation is located in the cgV19-oom jar and in can handle oom-Files
+with the syntax as seen in the helloWorld.oom. 
+
+## Cartridges
+
+Once a model is loaded the next step is to find one or more implementations of
+the Cartridge interface. The cgV19-pojo jar has a Cartridge implementation. A 
+cartridge implements the following methods:
+
+### getName
+
+Just a simple name for logging output. No other requeirements to this method.
+
+### List&lt;Transformation&gt; getTranscormations()
+
+Delivers a list of Transformations to run on the loaded model. A Transformation is
+the key concept to high level abstraction. It enhances the model with more model
+imformation. For example it adds interfaces to the model, adds subclasses or 
+refines the definitions. 
+
+With a set of Transformations you keep you model clean from boiler plate model 
+information.
+
+### List%lt;CodeGeneratorMapping&gt; mapGenerators(Model m)
+
+This method walks to the whole model an tells cgV19 how to handle each model 
+element. For example the PoJo cartridge looke for Classes in the oom model 
+and maps them to its PoJoGenerator.
+
+The mapping is done __after__ the transformations. So your mapping can
+map classes not in the oom file but created in some transdfrmation.
+
+### More cartridges
+
+If you have more cartridges on your classpath each cartridge is called
+with an new loaded model. So side effects can not occure. 
+
+
 
