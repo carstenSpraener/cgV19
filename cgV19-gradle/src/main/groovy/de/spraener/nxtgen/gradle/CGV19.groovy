@@ -12,10 +12,8 @@ class CGV19 implements Plugin<Project> {
         p.configurations.create('cartridge')
         p.task('generate').doLast {
             println 'Generating with cgV19 and model: '+extension.model;
-            println '   using cartridges:'
             String cgClasspath = "";
             p.configurations.cartridge.resolve()forEach( {
-                println "        ${it.toPath()}";
                 if( !cgClasspath.empty ) {
                     cgClasspath += ";"
                 }
