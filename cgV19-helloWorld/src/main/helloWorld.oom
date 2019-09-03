@@ -1,7 +1,6 @@
-import de.spraener.nxtgen.model.Model
 import de.spraener.nxtgen.groovy.ModelDSL
 
-Model model = ModelDSL.make {
+ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.hello'
         mPackage {
