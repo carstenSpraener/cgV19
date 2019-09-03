@@ -2,10 +2,7 @@ buildscript {
     project.ext.version="19.0.0-RC2"
     project.ext.group="de.spraener.nxtgen"
     repositories {
-        maven {
-            url = "https://oss.sonatype.org/content/repositories/snapshots";
-        }
-        jcenter();
+        mavenCentral();
     }
     dependencies {
         classpath group:"${project.ext.group}", name: 'cgV19-gradle', version: "$project.ext.version"
@@ -21,10 +18,7 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
-    maven {
-        url = "https://oss.sonatype.org/content/repositories/snapshots";
-    }
-    jcenter();
+    mavenCentral();
 }
 
 cgV19 {
