@@ -258,7 +258,13 @@ with the syntax as seen in the helloWorld.oom.
 ## Cartridges
 
 Once a model is loaded the next step is to find one or more implementations of
-the Cartridge interface. The cgV19-pojo jar has a Cartridge implementation. A 
+the Cartridge interface. Cartridges building a set of Transformations and 
+Generators that belongs together. For example a JPA-Cartridge can contain all
+classes to generate a JPA backend. Another cartridge can generate logic, controllers
+and JSON-Wrapper classes. Maybe a third cartrdige generates the TypeScript 
+frontend to call this controllers. And whatever more...
+
+The cgV19-pojo jar has a Cartridge implementation. A 
 cartridge implements the following methods:
 
 ### getName
@@ -275,19 +281,23 @@ refines the definitions.
 With a set of Transformations you keep you model clean from boiler plate model 
 information.
 
-### List%lt;CodeGeneratorMapping&gt; mapGenerators(Model m)
+### List&lt;CodeGeneratorMapping&gt; mapGenerators(Model m)
 
 This method walks to the whole model an tells cgV19 how to handle each model 
-element. For example the PoJo cartridge looke for Classes in the oom model 
+element. For example the PoJo cartridge looks for Classes in the oom model 
 and maps them to its PoJoGenerator.
 
 The mapping is done __after__ the transformations. So your mapping can
-map classes not in the oom file but created in some transdfrmation.
+map classes not in the oom file but created in some transformation.
 
 ### More cartridges
 
 If you have more cartridges on your classpath each cartridge is called
-with an new loaded model. So side effects can not occure. 
+with an new loaded model. So side effects can not occure. Of course they
+can share Transformations. But each cartridge has to apply them on it's
+own.
+
+
 
 
 
