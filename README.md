@@ -31,28 +31,28 @@ the generator will run before the compile task starts.
 
 ## What are all these modules?
 
-###cgV19-core
+### cgV19-core
 
 This is the very hard of cgV19. If you want to use cgV19, this is the module you 
 really allways have to use. All other modules dependending on this.
 
-###cgV19-oom
+### cgV19-oom
 
 This modules adds some basic object oriented mode features to cgV19. It impelements
 a model that containes packages, classes, attribute and relations between the
 classes. If you want to generate some object oriented language like, let's say java,
 you can use this module to read your model into the generator.
 
-###cgV19-pojo
+### cgV19-pojo
 
 This is an example of a very basic __cartridge__. It can take a OOM-Model and will
 generate PoJos on classes marked as PoJos in the model.
 
-###cgV19-gradle
+### cgV19-gradle
 
 This module implements a gradle plugin to enable gradle projects to use cgV19.
 
-###cgV19-helloWorld
+### cgV19-helloWorld
 
 A very very basic project to demonstrate how you can use cgV19 in your projects.
 The truth of how to use cgV19 is here!
@@ -107,7 +107,7 @@ in the cgV19-helloWorld module. But of course you want to build it on your own._
 
 Make a new directory, lets say "helloWorldNxtGen" and run
  ```
- gradle init --type java-application
+ gradle init --type java-library
 ```
 
 to initialize a new Application-Project.
@@ -117,18 +117,21 @@ plugin to the build-script:
 
 ```
 buildscript {
+    repositories {
+        mavenCentral();
+    }
     dependencies {
-        classpath files('../cgV19-core/build/libs/cgV19-core-19.0.0-SNAPSHOT.jar')
-        classpath files('../cgV19-gradle/build/libs/cgV19-gradle-19.0.0-SNAPSHOT.jar')
+        classpath group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-RC2'
+        classpath group: 'de.spraener.nxtgen', name: 'cgV19-gradle', version: '19.0.0-RC2'
     }
 }
 
 plugins {
     id 'java'
-    id 'application'
 }
 
 apply plugin: 'de.spraener.nxtgen.cgV19'
+
 
 ```
 
@@ -138,9 +141,9 @@ project:
 ```
 dependencies {
   ...
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-SNAPSHOT'
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: '19.0.0-SNAPSHOT'
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo', version: '19.0.0-SNAPSHOT'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-RC2'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: '19.0.0-RC2'
+    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo', version: '19.0.0-RC2'
 }
 ```
 Now you added cgV19 itself to the gcgV19-gradle plugin, the oom model loader
@@ -156,7 +159,7 @@ cgV19 {
 to the build script.
 
 The generator will generate the java-code inside src/main/java-gen. To tell gradle
-that it has another src directors add the following:
+that it has another src directory add the following:
 
 ```
 sourceSets {
@@ -172,20 +175,6 @@ sourceSets {
 ```
 
 
-#### Sidestep
-As long a cgV19 is not available from jcenter you need to add the
-following code to a settings.gradle in you project:
-
-```
-includeBuild('../cgV19-core')
-includeBuild('../cgV19-gradle')
-includeBuild('../cgV19-oom')
-includeBuild('../cgV19-pojo')
-```
-
-Of course this requires the modules of cgV19 are in the same parent
-directory as your hello world.
-
 That's it. Your project is ready for model driven development with __cgV19__.
 
 ### Defining a model
@@ -198,10 +187,7 @@ a groovy implemented DSL.
 So, create a file helloWorld.oom in src/main and open it in your editor.
 Copy this code into your editor and safe the file.
 ```
-import de.spraener.nxtgen.model.Model
-import de.spraener.nxtgen.groovy.ModelDSL
-
-Model model = ModelDSL.make {
+ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.hello'
         mPackage {
