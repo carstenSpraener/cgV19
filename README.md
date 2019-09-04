@@ -257,6 +257,8 @@ with the syntax as seen in the helloWorld.oom.
 
 ## Cartridges
 
+[You can find a detailed descritption of a cartidge here](./Cartridges.md)
+
 Once a model is loaded the next step is to find one or more implementations of
 the Cartridge interface. Cartridges building a set of Transformations and 
 Generators that belongs together. For example a JPA-Cartridge can contain all
