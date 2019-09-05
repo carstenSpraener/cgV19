@@ -93,6 +93,10 @@ where it comes to real generating.
 
 ## The PoJoGenerator
 
+> This example uses java itself as language for the templates.
+> You have the option to write Templates in Groovy as 
+> [described here](doc/GroovyAsTemplateLanguage.md)
+
 cgV19 offers several ways to implement CodeGenerators. For this first
 example we will use a standard java _CodeBlock_ to do our generation.
 But first we need a _CodeGenerator_ class.
