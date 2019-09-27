@@ -27,21 +27,21 @@ class GroovyElement extends ModelElementImpl {
 
     def toXML(prefix) {
         String propsDef = ""
-        if( properties.size()>0 ) {
+        if (properties.size() > 0) {
             properties.entrySet().forEach({
-                propsDef+=" ${it.key}='${it.value}'"
+                propsDef += " ${it.key}='${it.value}'"
             })
         }
-        if( this.childs.size()==0 && taggedValues.size()==0) {
+        if (this.childs.size() == 0 && taggedValues.size() == 0) {
             println("${prefix}<${metaType} name='${name}' stereotype='${stereotype}'${propsDef}/>")
         } else {
             println("${prefix}<${metaType} name='${name}' stereotype='${stereotype}'${propsDef}>")
-            taggedValues.entrySet().forEach( {
+            taggedValues.entrySet().forEach({
                 println("${prefix}  <taggedValue name='${it.key}' value='${it.value}'/>")
             })
             def myChilds = childs.clone()
-            if( myChilds.size()>0 ){
-                myChilds.forEach( {it.toXML(${prefix}+'  ')})
+            if (myChilds.size() > 0) {
+                myChilds.forEach({ it.toXML($ { prefix } + '  ') })
             }
             println("${prefix}</${metaType}>")
         }
@@ -57,16 +57,16 @@ class GroovyElement extends ModelElementImpl {
 
     def stereotype(String name, Closure closure) {
         Stereotype stereotype = GroovyModel.instance.createStereotype(name);
-        closure.delegate=stereotype;
+        closure.delegate = stereotype;
         closure.resolveStrategy = Closure.DELEGATE_ONLY;
         stereotype.metaClass.taggedValue { String key, String val ->
-            delegate.setTaggedValue(key,val);
+            delegate.setTaggedValue(key, val);
         }
         closure();
         this.addStereotypes(stereotype);
     }
 
-    def relation( Closure closure ) {
+    def relation(Closure closure) {
         Relation rel = GroovyModel.instance.createRelation();
         closure.delegate = rel;
         closure.resolveStrategy = Closure.DELEGATE_ONLY;
@@ -85,7 +85,7 @@ class GroovyElement extends ModelElementImpl {
 
     def methodMissing(String methodName, args) {
         def value = args[0];
-        if( value instanceof Closure) {
+        if (value instanceof Closure) {
             def ge = new GroovyElement();
             ge.metaType = methodName;
             this.childs.add(ge);
@@ -93,24 +93,24 @@ class GroovyElement extends ModelElementImpl {
             value.delegate = ge;
             value.resolveStrategy = Closure.DELEGATE_FIRST;
             value();
-        } else if( value instanceof String ) {
+        } else if (value instanceof String) {
             propertyMissing(methodName, value);
         }
     }
 
-    def propertyMissing( name, value ) {
-        super.setProperty(name.toString(),value);
+    def propertyMissing(name, value) {
+        super.setProperty(name.toString(), value);
     }
 
-    def propertyMissing( name ) {
+    def propertyMissing(name) {
         super.getProperty(name);
     }
 
-    def isAbstract( value ) {
+    def isAbstract(value) {
         super.setProperty("isAbstract", value.toString());
     }
 
-    def metaType( value ) {
+    def metaType(value) {
         super.setProperty("metaType", value);
     }
 }
@@ -124,17 +124,29 @@ class ModelDSL {
         closure();
 
         def model = new ModelImpl();
-        root.getChilds().forEach( {
+        root.getChilds().forEach({
             model.addModelElement(it);
         })
-        return (Model)model;
+        return (Model) model;
     }
 }
 
-ModelDSL.make {
+println(ModelDSL.make {
     mClass {
-        mAttribute{
+        mAttribute {
             name 'Name'
         }
+        mOperation {
+            name 'helloWorld'
+            type 'String'
+            mParameter {
+                name 'name'
+                type 'String'
+            }
+            mParameter {
+                name 'firstName'
+                type 'String'
+            }
+        }
     }
-}
+})

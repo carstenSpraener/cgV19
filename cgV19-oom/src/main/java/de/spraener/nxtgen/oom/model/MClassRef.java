@@ -12,4 +12,15 @@ public class MClassRef {
     public MClass getMClass(Model m) {
         return ((OOModel)m).findClassByName(this.fullQualifiedClassName);
     }
+
+    public MClassRef cloneTo(MClass target) {
+        MClassRef tRef = new MClassRef(this.fullQualifiedClassName);
+
+        return tRef;
+    }
+
+    public String getFullQualifiedClassName() {
+        return fullQualifiedClassName;
+    }
+
 }

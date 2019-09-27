@@ -6,9 +6,9 @@ plugins {
 
 allprojects {
     project.ext.repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
-    project.ext.snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+    project.ext.snapshotRepositoryUrl = 'file:/Users/casi/Projekte/GitHub/cgV19/repo' //'https://oss.sonatype.org/content/repositories/snapshots'
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '19.0.0-RC2'
+    project.ext.version = '19.0.0-RC3-SNAPSHOT'
     project.ext.tmpRepoDir = "/Users/casi/Projekte/GitHub/cgV19/repo"
 
     repositories {

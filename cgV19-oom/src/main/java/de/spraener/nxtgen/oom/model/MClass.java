@@ -3,6 +3,8 @@ package de.spraener.nxtgen.oom.model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
+import de.spraener.nxtgen.oom.ModelHelper;
+import de.spraener.nxtgen.oom.StereotypeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,9 @@ import java.util.stream.Collectors;
 public class MClass extends ModelElementImpl {
     private List<MAttribute> attributes = null;
     private List<MReference> references = null;
+    private List<MOperation> operations = null;
     private MPackage parent = null;
+
     private MClassRef inheritsFrom = null;
 
     public MClass() {
@@ -39,6 +43,15 @@ public class MClass extends ModelElementImpl {
             ref.setParent(mc);
             return ref;
         }).collect(Collectors.toList());
+
+        mc.operations = ((ModelElementImpl)me).filterChilds( child -> {
+            return child.getMetaType().equals("mOperation");
+        }).map(child -> {
+            MOperation op = new MOperation(child);
+            op.setParent(mc);
+            return op;
+        }).collect(Collectors.toList());
+
         mc.inheritsFrom = new MClassRef(me.getProperty("inheritsFrom"));
         mc.setMetaType(me.getMetaType());
         mc.setStereotypes(me.getStereotypes());
@@ -96,4 +109,46 @@ public class MClass extends ModelElementImpl {
         return attr;
     }
 
+    public MOperation createOperation(String name) {
+        MOperation op = new MOperation(this, name);
+        getOperations().add(op);
+        return op;
+    }
+    public MClass cloneTo(MPackage targetPkg, String className) {
+        MClass target = targetPkg.createMClass(className);
+        List<MAttribute> attrList = target.getAttributes();
+
+        StereotypeHelper.cloneStereotypes(this, target);
+        ModelHelper.cloneProperties(this,target);
+
+        for( MAttribute myAttr : getAttributes() ) {
+            myAttr.cloneTo(target);
+        }
+        for( MReference ref : this.getReferences() ) {
+            ref.cloneTo(target);
+        }
+        if( this.inheritsFrom != null ) {
+            target.inheritsFrom = new MClassRef(this.inheritsFrom.getFullQualifiedClassName());
+        }
+        return target;
+    }
+
+    public MClassRef getInheritsFrom() {
+        return inheritsFrom;
+    }
+
+    public void setInheritsFrom(MClassRef inheritsFrom) {
+        this.inheritsFrom = inheritsFrom;
+    }
+
+    public List<MOperation> getOperations() {
+        if( this.operations == null ) {
+            this.operations = new ArrayList<>();
+        }
+        return operations;
+    }
+
+    public void setOperations(List<MOperation> operations) {
+        this.operations = operations;
+    }
 }
