@@ -148,5 +148,11 @@ println(ModelDSL.make {
                 type 'String'
             }
         }
+        mActivity {
+            name 'validate'
+            mControlFlow {
+                targetId '0815'
+            }
+        }
     }
 })

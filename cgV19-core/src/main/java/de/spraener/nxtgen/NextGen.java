@@ -35,7 +35,7 @@ import java.util.logging.Logger;
  * Each CodeBlock is than given to the Cartridge to write the content into your project.
  */
 public class NextGen implements Runnable {
-    private static final Logger LOGGER = Logger.getLogger("NextGen");
+    public static final Logger LOGGER = Logger.getLogger("NextGen");
     private static ProtectionStrategie protectionStrategie = null;
     private String modelURI;
     private final String workingDir;
@@ -100,7 +100,7 @@ public class NextGen implements Runnable {
 
     public void run() {
         try {
-            LOGGER.info(() -> "starting codegen in working dir "+getWorkingDir()+" on mode file " + modelURI);
+            LOGGER.info(() -> "starting codegen in working dir "+getWorkingDir()+" on model file " + modelURI);
             for (Cartridge c : loadCartridges()) {
                 List<Model> models = loadModels(this.modelURI);
                 for (Model m : models) {
@@ -125,6 +125,9 @@ public class NextGen implements Runnable {
             if( loader.canHandle(modelURI) ) {
                 LOGGER.info(() -> "loading model with loader " + loader.getClass().getName());
                 Model m = loader.loadModel(modelURI);
+                for( ModelElement e : m.getModelElements() ) {
+                    e.setModel(m);
+                }
                 models.add(m);
             }
         }

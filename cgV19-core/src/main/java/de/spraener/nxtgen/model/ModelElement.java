@@ -13,4 +13,6 @@ public interface ModelElement {
     Map<String,String> getProperties();
     List<Stereotype> getStereotypes();
     List<Relation> getRelations();
+    Model getModel();
+    void setModel(Model m);
 }

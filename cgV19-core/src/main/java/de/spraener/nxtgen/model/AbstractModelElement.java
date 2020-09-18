@@ -14,6 +14,7 @@ public abstract class AbstractModelElement implements ModelElement {
     private List<Stereotype> stereotypes = null;
     private List<Relation> relations = new ArrayList<>();
     private Map<String,String> properties = new HashMap<>();
+    private Model model = null;
 
     public AbstractModelElement() {}
 
@@ -81,5 +82,13 @@ public abstract class AbstractModelElement implements ModelElement {
 
     public List<Relation> getRelations() {
         return this.relations;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 }

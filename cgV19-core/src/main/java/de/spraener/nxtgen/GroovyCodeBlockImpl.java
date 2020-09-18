@@ -15,14 +15,15 @@ import java.net.URL;
 public class GroovyCodeBlockImpl extends CodeBlockImpl {
     private ModelElement me = null;
     private String templateScript;
+    private String templateScriptURL;
 
     public GroovyCodeBlockImpl(String name, ModelElement me, String templateScriptURL) {
         super(name);
         this.me = me;
+        this.templateScriptURL = templateScriptURL;
         try {
-            InputStreamReader reader = toInputStreamReader(templateScriptURL);
+            InputStreamReader reader = toInputStreamReader(this.templateScriptURL);
             BufferedReader templateReader = new BufferedReader(reader);
-            this.templateScript = templateScriptURL;
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = templateReader.readLine()) != null) {
@@ -37,7 +38,7 @@ public class GroovyCodeBlockImpl extends CodeBlockImpl {
     private InputStreamReader toInputStreamReader(String templateScriptURL) throws IOException {
         try {
             return new InputStreamReader(new URL(templateScriptURL).openStream());
-        } catch( MalformedURLException mfuExc ) {
+        } catch (MalformedURLException mfuExc) {
             return new InputStreamReader(GroovyCodeBlockImpl.class.getResourceAsStream(templateScriptURL));
         }
     }
@@ -52,7 +53,12 @@ public class GroovyCodeBlockImpl extends CodeBlockImpl {
         b.setProperty("codeBlock", this);
         GroovyShell shell = new GroovyShell(b);
         Script scr = shell.parse(templateScript);
-        Object value = scr.run();
-        return value.toString();
+        try {
+            Object value = scr.run();
+            return value.toString();
+        } catch (Exception e) {
+            NextGen.LOGGER.severe(() -> "Error while exeucting script " + this.templateScriptURL + ": "+e.getMessage());
+            throw new NxtGenRuntimeException(e);
+        }
     }
 }

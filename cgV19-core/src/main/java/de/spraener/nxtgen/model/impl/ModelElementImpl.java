@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.model.impl;
 
+import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 
 import java.util.HashMap;
@@ -7,6 +8,8 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class ModelElementImpl extends ModelElementImplBase {
+
+    private Model model;
 
     public ModelElementImpl() {
         super.setProperties(new HashMap<>());
@@ -36,4 +39,13 @@ public class ModelElementImpl extends ModelElementImplBase {
                 .orElse(null);
     }
 
+    @Override
+    public Model getModel() {
+        return model;
+    }
+
+    @Override
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }
