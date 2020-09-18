@@ -76,46 +76,6 @@ subprojects {
 
     uploadArchives {
         repositories {
-            /*
-            mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-                repository(url: "${project.ext.repositoryUrl}") {
-                    authentication(userName: ossrhUsername, password: ossrhPassword)
-                }
-
-                snapshotRepository(url: "${project.ext.snapshotRepositoryUrl}") {
-                    authentication(userName: ossrhUsername, password: ossrhPassword)
-                }
-
-                pom.project {
-                    name 'cgV19'
-                    description 'An easy to use, production proofed code generation framework.'
-                    url 'https://github.com/carstenSpraener/cgV19'
-                    packaging 'jar'
-
-                    scm {
-                        url 'https://github.com/carstenSpraener/cgV19'
-                        connection 'scm:git:git://github.com/carstenSpraener/cgV19.git'
-                        developerConnection 'scm:git:ssh://git@github.com/carstenSpraener/cgV19.git'
-                    }
-                    licenses {
-                        license {
-                            name 'The Apache Software License, Version 2.0'
-                            url 'https://github.com/carstenSpraener/cgV19/blob/master/LICENSE'
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id 'carsten'
-                            name 'Carsten Spräner'
-                            email 'carsten@spraener.de'
-                        }
-                    }
-                }
-            }
-            */
             mavenDeployer {
                 repository(url: "$nexusURL/repository/maven-snapshots") {
                     authentication(userName: nexusUser, password: nexusPwd)
