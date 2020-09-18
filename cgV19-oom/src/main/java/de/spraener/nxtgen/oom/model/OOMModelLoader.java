@@ -3,6 +3,7 @@ package de.spraener.nxtgen.oom.model;
 import de.spraener.nxtgen.ModelLoader;
 import de.spraener.nxtgen.NxtGenRuntimeException;
 import de.spraener.nxtgen.model.Model;
+import de.spraener.nxtgen.model.ModelElement;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
@@ -23,11 +24,15 @@ public class OOMModelLoader implements ModelLoader {
     public Model loadModel(String modelURI) {
         try {
             Binding binding = new Binding();
-            GroovyShell shell = new GroovyShell(binding);
+            GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), binding);
             InputStreamReader modelReader = openModel(modelURI);
             Object value = shell.evaluate(modelReader);
             Model metaModel = (Model) value;
-            return new OOModel(metaModel);
+            OOModel oom =  new OOModel(metaModel);
+            for( ModelElement e : oom.getModelElements() ) {
+                e.setModel(oom);
+            }
+            return oom;
         } catch( Exception e ) {
             e.printStackTrace();
             throw new NxtGenRuntimeException(e);

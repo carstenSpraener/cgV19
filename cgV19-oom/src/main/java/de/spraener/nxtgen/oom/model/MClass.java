@@ -12,8 +12,10 @@ import java.util.stream.Collectors;
 
 public class MClass extends ModelElementImpl {
     private List<MAttribute> attributes = null;
+    private List<MAssociation> associations = null;
     private List<MReference> references = null;
     private List<MOperation> operations = null;
+    private List<MActivity> activities = null;
     private MPackage parent = null;
 
     private MClassRef inheritsFrom = null;
@@ -36,6 +38,14 @@ public class MClass extends ModelElementImpl {
             return attr;
         }).collect(Collectors.toList());
 
+        mc.associations = ((ModelElementImpl) me).filterChilds(child -> {
+            return child.getMetaType().equals("mAssociation");
+        }).map(child -> {
+            MAssociation assoc = new MAssociation(child);
+            assoc.setParent(mc);
+            return assoc;
+        }).collect(Collectors.toList());
+
         mc.references = ((ModelElementImpl) me).filterChilds(child -> {
             return child.getMetaType().equals("mReference");
         }).map(child -> {
@@ -50,6 +60,14 @@ public class MClass extends ModelElementImpl {
             MOperation op = new MOperation(child);
             op.setParent(mc);
             return op;
+        }).collect(Collectors.toList());
+
+        mc.activities = ((ModelElementImpl)me).filterChilds( child -> {
+            return child.getMetaType().equals("mActivity");
+        }).map(childAcitvity-> {
+            MActivity activity = new MActivity(childAcitvity);
+            activity.setParent(mc);
+            return activity;
         }).collect(Collectors.toList());
 
         mc.inheritsFrom = new MClassRef(me.getProperty("inheritsFrom"));
@@ -150,5 +168,24 @@ public class MClass extends ModelElementImpl {
 
     public void setOperations(List<MOperation> operations) {
         this.operations = operations;
+    }
+
+    public List<MActivity> getActivities() {
+        if( this.activities == null ) {
+            this.activities = new ArrayList<>();
+        }
+        return activities;
+    }
+
+    public List<MAssociation> getAssociations() {
+        if( this.associations == null ) {
+            this.associations = new ArrayList<>();
+        }
+        return associations;
+    }
+
+    @Override
+    public MPackage getParent() {
+        return parent;
     }
 }
