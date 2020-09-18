@@ -273,7 +273,7 @@ cartridge implements the following methods:
 
 Just a simple name for logging output. No other requeirements to this method.
 
-### List&lt;Transformation&gt; getTranscormations()
+### List&lt;Transformation&gt; getTransformations()
 
 Delivers a list of Transformations to run on the loaded model. A Transformation is
 the key concept to high level abstraction. It enhances the model with more model

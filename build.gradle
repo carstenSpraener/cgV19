@@ -11,8 +11,15 @@ allprojects {
     project.ext.version = '19.0.0-RC3-SNAPSHOT'
     project.ext.tmpRepoDir = "/Users/casi/Projekte/GitHub/cgV19/repo"
 
+
+    def nexusURL=System.getenv("NEXUS_URL");
+    def nexusUser=System.getenv("NEXUS_USER");
+    def nexusPwd=System.getenv("NEXUS_PWD");
+
     repositories {
-        mavenCentral()
+        maven {
+            url = "$nexusURL/repository/maven-public/"
+        }
         maven {
             url = "$project.ext.snapshotRepositoryUrl"
         }
@@ -40,6 +47,10 @@ subprojects {
     apply plugin: 'maven'
     apply plugin: 'signing'
 
+    def nexusURL=System.getenv("NEXUS_URL");
+    def nexusUser=System.getenv("NEXUS_USER");
+    def nexusPwd=System.getenv("NEXUS_PWD");
+
     version = "${project.ext.version}"
     group = "${project.ext.group}"
 
@@ -65,6 +76,7 @@ subprojects {
 
     uploadArchives {
         repositories {
+            /*
             mavenDeployer {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
@@ -101,6 +113,12 @@ subprojects {
                             email 'carsten@spraener.de'
                         }
                     }
+                }
+            }
+            */
+            mavenDeployer {
+                repository(url: "$nexusURL/repository/maven-snapshots") {
+                    authentication(userName: nexusUser, password: nexusPwd)
                 }
             }
         }

@@ -1,0 +1,203 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.csp.demo.rest'
+
+        mClass {
+            name 'Person'
+            xmiID '_18_5_3_40201a1_1598192894951_110135_4796'
+            stereotype 'Ressource', {
+            }
+            mAttribute {
+                name 'name'
+                type 'String'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'vorname'
+                type 'String'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'isMale'
+                type 'Boolean'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'gebDat'
+                type 'java.util.Date'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'selary'
+                type 'java.lang.Double'
+                visibility 'private'
+            }
+            mActiviy {
+                id: '_18_5_3_40201a1_1598540767507_48555_4995'
+                name: validate
+                mControlFlow {
+                    source: ''
+                    sourceID: '_18_5_3_40201a1_1598540779985_502891_5030'
+                    target: 'doThis'
+                    targetID: '_18_5_3_40201a1_1598540797236_724482_5044'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598540818319_58611_5074'
+                }
+                mControlFlow {
+                    source: 'doThis'
+                    sourceID: '_18_5_3_40201a1_1598540797236_724482_5044'
+                    target: ''
+                    targetID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598540821590_232441_5079'
+                }
+                mControlFlow {
+                    source: 'doThat'
+                    sourceID: '_18_5_3_40201a1_1598540805121_962415_5058'
+                    target: 'Boolean.TRUE'
+                    targetID: '_18_5_3_40201a1_1598540788349_164322_5036'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598540827199_553187_5084'
+                }
+                mControlFlow {
+                    source: ''
+                    sourceID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                    target: 'doThat'
+                    targetID: '_18_5_3_40201a1_1598540805121_962415_5058'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598542385752_425792_5211'
+                    guard: 'TRUE'
+                }
+                mControlFlow {
+                    source: ''
+                    sourceID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                    target: 'Boolean.FASLE'
+                    targetID: '_18_5_3_40201a1_1598602564034_308900_5211'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598542393943_260656_5218'
+                    guard: 'FASLE'
+                }
+                mControlFlow {
+                    source: 'reCalculate'
+                    sourceID: '_18_5_3_40201a1_1598602620614_462563_5223'
+                    target: 'doThis'
+                    targetID: '_18_5_3_40201a1_1598540797236_724482_5044'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598602634807_973422_5238'
+                }
+                mControlFlow {
+                    source: ''
+                    sourceID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                    target: 'reCalculate'
+                    targetID: '_18_5_3_40201a1_1598602620614_462563_5223'
+                    name: ''
+                    id: '_18_5_3_40201a1_1598602645624_988825_5259'
+                    guard: 'NULL'
+                }
+                initNode {
+                    id: '_18_5_3_40201a1_1598540779985_502891_5030'
+                }
+                finalNode {
+                    id: '_18_5_3_40201a1_1598540788349_164322_5036'
+                    value: 'Boolean.TRUE'
+                }
+                mAction {
+                    id: '_18_5_3_40201a1_1598540797236_724482_5044'
+                    name: 'doThis'
+                }
+                mAction {
+                    id: '_18_5_3_40201a1_1598540805121_962415_5058'
+                    name: 'doThat'
+                }
+                mDecision {
+                    id: '_18_5_3_40201a1_1598542382475_787780_5207'
+                    incoming {
+                        mControlFlow {
+                            source: 'doThis'
+                            sourceID: '_18_5_3_40201a1_1598540797236_724482_5044'
+                            target: ''
+                            target: '_18_5_3_40201a1_1598542382475_787780_5207'
+                            name: ''
+                            id: '_18_5_3_40201a1_1598540821590_232441_5079'
+                            guard: ''
+                        }
+                    }
+                    outgoing {
+                        mControlFlow {
+                            source: ''
+                            sourceID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                            target: 'doThat'
+                            target: '_18_5_3_40201a1_1598540805121_962415_5058'
+                            name: ''
+                            id: '_18_5_3_40201a1_1598542385752_425792_5211'
+                            guard: 'TRUE'
+                        }
+                        mControlFlow {
+                            source: ''
+                            sourceID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                            target: 'Boolean.FASLE'
+                            target: '_18_5_3_40201a1_1598602564034_308900_5211'
+                            name: ''
+                            id: '_18_5_3_40201a1_1598542393943_260656_5218'
+                            guard: 'FASLE'
+                        }
+                        mControlFlow {
+                            source: ''
+                            sourceID: '_18_5_3_40201a1_1598542382475_787780_5207'
+                            target: 'reCalculate'
+                            target: '_18_5_3_40201a1_1598602620614_462563_5223'
+                            name: ''
+                            id: '_18_5_3_40201a1_1598602645624_988825_5259'
+                            guard: 'NULL'
+                        }
+                    }
+                }
+                finalNode {
+                    id: '_18_5_3_40201a1_1598602564034_308900_5211'
+                    value: 'Boolean.FASLE'
+                }
+                mAction {
+                    id: '_18_5_3_40201a1_1598602620614_462563_5223'
+                    name: 'reCalculate'
+                }
+            }
+        }
+        mClass {
+            name 'SpringBootApp'
+            xmiID '_18_5_3_40201a1_1598192828859_847532_4757'
+            stereotype 'SpringBootApp', {
+            }
+        }
+        mPackage {
+            name 'model'
+            mClass {
+                name 'Adresse'
+                xmiID '_18_5_3_40201a1_1598193824609_803334_4863'
+                stereotype 'Entity', {
+                }
+                mAttribute {
+                    name 'strasse'
+                    type 'String'
+                    visibility 'private'
+                }
+                mAttribute {
+                    name 'hausnr'
+                    type 'String'
+                    visibility 'private'
+                }
+                mAttribute {
+                    name 'plz'
+                    type 'String'
+                    visibility 'private'
+                }
+                mAttribute {
+                    name 'ort'
+                    type 'String'
+                    visibility 'private'
+                }
+            }
+        }
+    }
+}
