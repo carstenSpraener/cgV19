@@ -52,5 +52,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'de.csp.cgv19.restexample.App'
+    mainClass = 'de.csp.demo.rest.SpringBootApp'
 }
