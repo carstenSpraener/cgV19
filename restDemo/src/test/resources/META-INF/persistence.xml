@@ -13,6 +13,7 @@
         <class>de.csp.demo.rest.model.Customer</class>
         <class>de.csp.demo.rest.model.Adresse</class>
         <class>de.csp.demo.rest.model.Group</class>
+        <class>de.csp.demo.rest.model.BankAccount</class>
 
         <properties>
             <!-- Configuring H2 JDBC properties -->

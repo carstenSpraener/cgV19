@@ -28,7 +28,7 @@ String attributeDefinition() {
             dbFieldType=sType.getTaggedValue('dbType')
             if( "true".equals(sType.getTaggedValue("isKey")) ) {
                 columnDef+="    @Id\n";
-                columnDef+="    @GeneratedValue(strategy=GenerationType.TABLE)\n"
+                columnDef+="    @GeneratedValue(strategy=GenerationType.SEQUENCE)\n"
 
             }
             columnDef += "    @Column(name=\"${dbFieldName}\", columnDefinition=\"${dbFieldType}\")\n";

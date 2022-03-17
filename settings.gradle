@@ -7,5 +7,5 @@ include ':cgV19-pojo'
 // include ':cgV19-MDPlugin'
 include ':cgV19-RESTCartridge'
 
-//include ':restDemo'
+include ':restDemo'
 //include ':cgV19-helloWorld'
