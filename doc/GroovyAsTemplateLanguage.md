@@ -20,7 +20,7 @@ To use Groovy as a template language you can add a __GroovyCodeBlockImpl__
 to this _JavaCodeBlock_ and give the groovy code block the script that it
 should run.
 
-The script hat to return a string. The _JavaCodeBlock_ will add
+The script has to return a string. The _JavaCodeBlock_ will add
 this string from the _GroovyCodeBlockImpl_ to the output.
 
 Here is a concrete example:

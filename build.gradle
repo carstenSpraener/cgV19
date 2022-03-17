@@ -11,25 +11,8 @@ allprojects {
     project.ext.version = '19.0.0-RC3-SNAPSHOT'
     project.ext.tmpRepoDir = "/Users/casi/Projekte/GitHub/cgV19/repo"
 
-
-    def nexusURL=System.getenv("NEXUS_URL");
-    def nexusUser=System.getenv("NEXUS_USER");
-    def nexusPwd=System.getenv("NEXUS_PWD");
-
     repositories {
-        maven {
-            url = "$nexusURL/repository/maven-public/"
-        }
-        maven {
-            url = "$project.ext.snapshotRepositoryUrl"
-        }
-        maven {
-            url = "https://oss.sonatype.org/content/groups/staging"
-        }
-        flatDir {
-            name 'TempRepo'
-            dirs "${project.ext.tmpRepoDir}"
-        }
+        mavenCentral();
     }
 }
 
@@ -44,7 +27,6 @@ subprojects {
     }
 
     apply plugin: 'java-library'
-    apply plugin: 'maven'
     apply plugin: 'signing'
 
     def nexusURL=System.getenv("NEXUS_URL");
@@ -74,15 +56,6 @@ subprojects {
         sign configurations.archives
     }
 
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "$nexusURL/repository/maven-snapshots") {
-                    authentication(userName: nexusUser, password: nexusPwd)
-                }
-            }
-        }
-    }
 }
 nexusStaging {
     packageGroup = "${project.ext.group}"

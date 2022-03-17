@@ -13,5 +13,5 @@ dependencies {
     implementation project(':cgV19-core');
     implementation project(':cgV19-oom');
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
 }
