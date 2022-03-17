@@ -1,7 +1,8 @@
-#The target of this module
+#The goal of this module
 
-The puropse of this project is to ensure that cgV19
-is useable and the vgV19-RESTCardtridge can generate real running code.
+The goal of this module is to ensure that cgV19
+is useable and the vgV19-RESTCardtridge can generate real running code [^model]. 
+
 
 The example application "restDemo" has (in the moment) the following layers.
 
@@ -56,3 +57,7 @@ From the model above the restDemo get's the following layers and Components:
 * From the << SpringBootApp >> a SpringBootApp class with main method under java in RootPackage
 
 
+[^model]: The model restDemo.oomwas created with MagicDraw 18.5 and 
+    the cgV19-MDPlugin installed. If you do not have MagicDraw available, 
+    you can edit the restDemo.oom with any text editor. It is basically 
+    a Groovy-DSL for defining OOM-Models.
