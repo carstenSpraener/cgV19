@@ -1,0 +1,22 @@
+server:
+  port: 8008
+
+spring:
+  application:
+    name: restDemo
+  jpa:
+    hibernate:
+      ddl-auto: update
+      database: mysql
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/restdemo?serverTimezone=Europe/Berlin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: restdemo
+    password: restdemo
+  thymeleaf:
+    cache: false
+

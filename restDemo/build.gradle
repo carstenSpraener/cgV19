@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral();
+    }
+    dependencies {
+        classpath project(':cgV19-core')
+        classpath project(':cgV19-gradle')
+    }
+}
+
+plugins {
+    id 'application'
+}
+apply plugin: 'de.spraener.nxtgen.cgV19'
+
+repositories {
+    mavenCentral()
+}
+cgV19 {
+    model='http://localhost:7000/de.csp.demo.rest'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+            srcDirs 'src/main/java-gen'
+        }
+    }
+}
+dependencies {
+    cartridge project(':cgV19-core')
+    cartridge project(':cgV19-oom')
+    cartridge project(':cgV19-RESTCartridge')
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.0.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.0.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.0.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '2.3.0.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.0.RELEASE'
+
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.47'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    implementation 'com.google.guava:guava:29.0-jre'
+
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'com.h2database:h2:2.1.210'
+
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'de.csp.cgv19.restexample.App'
+}
