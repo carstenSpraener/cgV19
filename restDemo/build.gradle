@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 cgV19 {
-    model='http://localhost:7000/de.csp.demo.rest'
+    model='./restDemo.oom'
 }
 
 sourceSets {
