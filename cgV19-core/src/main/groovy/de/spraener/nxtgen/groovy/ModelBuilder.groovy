@@ -115,6 +115,9 @@ class GroovyElement extends ModelElementImpl {
     }
 }
 
+/**
+ * A base implementation of an Model-DSL
+ */
 class ModelDSL {
     def static Model make(closure) {
         GroovyElement root = new GroovyElement();

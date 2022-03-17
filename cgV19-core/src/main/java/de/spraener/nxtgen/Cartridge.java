@@ -15,7 +15,34 @@ import java.util.List;
  * @see CodeGenerator
  */
 public interface Cartridge {
+    /**
+     * The nane of the cartridge. For logging purpose.
+     *
+     * @return The name of this cartridge
+     */
     String getName();
+
+    /**
+     * <p>
+     * Returns a list of Transformations to be executed before the generators are mapped. NextGen
+     * will execute all Transformations of this cartridge on the same instance of a model. But each
+     * cartridge will start with a brand new model instance.
+     * </p>
+     * <p>
+     *     The Transformations are executed in exact the order they are listed here.
+     * </p>
+     * @see Transformation
+     *
+     * @return a (maybe empty) list of Transformations to be executed.
+     */
     List<Transformation> getTransformations();
+
+    /**
+     * Do a Mapping of ModelElements inside the Model to CodeGeneratos. This method is called
+     * after all transformations have been executed.
+     *
+     * @param m
+     * @return
+     */
     List<CodeGeneratorMapping> mapGenerators(Model m);
 }
