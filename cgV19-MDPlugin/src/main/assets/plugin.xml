@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin
+        id="cgV19.MDPlugin" name="Plugin for the cgV19 Code Generator"
+        version="1.0"
+        provider-name="cgV19-Team"
+        class="de.csp.cgv19.mdplugin.CgV19Plugin">
+    <requires>
+        <api version="1.0"/>
+    </requires>\"
+    <runtime>
+        <library name="annotations-13.0.jar" />
+        <library name="ant-1.9.13.jar" />
+        <library name="ant-antlr-1.9.13.jar" />
+        <library name="ant-junit-1.9.13.jar" />
+        <library name="ant-launcher-1.9.13.jar" />
+        <library name="apiguardian-api-1.0.0.jar" />
+        <library name="cgV19-core-19.0.0-RC3-20210818.161905-11.jar" />
+        <library name="cgV19-oom-19.0.0-RC3-20210818.161908-6.jar" />
+        <library name="cgV19MDPlugin.jar" />
+        <library name="commons-cli-1.4.jar" />
+        <library name="groovy-all-2.0.1.jar" />
+        <library name="gson-2.8.5.jar" />
+        <library name="hamcrest-core-1.3.jar" />
+        <library name="javalin-3.1.0.jar" />
+        <library name="javax.servlet-api-3.1.0.jar" />
+        <library name="jcommander-1.72.jar" />
+        \<library name="jetty-client-9.4.19.v20190610.jar" />
+        <library name="jetty-http-9.4.19.v20190610.jar" />
+        <library name="jetty-io-9.4.19.v20190610.jar" />
+        <library name="jetty-security-9.4.19.v20190610.jar" />
+        <library name="jetty-server-9.4.19.v20190610.jar" />
+        <library name="jetty-servlet-9.4.19.v20190610.jar" />
+        <library name="jetty-util-9.4.19.v20190610.jar" />
+        <library name="jetty-webapp-9.4.19.v20190610.jar" />
+        <library name="jetty-xml-9.4.19.v20190610.jar" />
+        <library name="jline-2.14.6.jar" />
+        <library name="junit-4.12.jar" />
+        <library name="junit-jupiter-api-5.3.1.jar" />
+        <library name="junit-jupiter-engine-5.3.1.jar" />
+        <library name="junit-platform-commons-1.3.1.jar" />
+        <library name="junit-platform-engine-1.3.1.jar" />
+        <library name="junit-platform-launcher-1.3.1.jar" />
+        <library name="kotlin-stdlib-1.3.31.jar" />
+        <library name="kotlin-stdlib-common-1.3.31.jar" />
+        <library name="kotlin-stdlib-jdk7-1.3.31.jar" />
+        <library name="kotlin-stdlib-jdk8-1.3.31.jar" />
+        <library name="opentest4j-1.1.1.jar" />
+        <library name="picocli-3.6.0.jar" />
+        <library name="qdox-1.12.1.jar" />
+        <library name="slf4j-api-1.7.26.jar" />
+        <library name="testng-6.13.1.jar" />
+        <library name="websocket-api-9.4.19.v20190610.jar" />
+        <library name="websocket-client-9.4.19.v20190610.jar" />
+        <library name="websocket-common-9.4.19.v20190610.jar" />
+        <library name="websocket-server-9.4.19.v20190610.jar" />
+        <library name="websocket-servlet-9.4.19.v20190610.jar" />
+    </runtime>
+</plugin>
