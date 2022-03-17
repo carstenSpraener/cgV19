@@ -8,7 +8,7 @@ The example application "restDemo" has (in the moment) the following layers.
 
 ## Backend and Data-Model Layer
 
-![data model](doc/img/datamodel.png?raw=true Data Model)
+![Data Layer](doc/img/datamodel.png?raw=true)
 
 It uses the following definitions and relations:
 * Resources are marked as << Resources >>
