@@ -3,13 +3,14 @@ package de.spraener.nxtgen.model.impl;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 
+import java.beans.Transient;
 import java.util.HashMap;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class ModelElementImpl extends ModelElementImplBase {
 
-    private Model model;
+    private transient Model model;
 
     public ModelElementImpl() {
         super.setProperties(new HashMap<>());

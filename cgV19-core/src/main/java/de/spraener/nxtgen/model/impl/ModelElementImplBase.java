@@ -13,7 +13,7 @@ public abstract class ModelElementImplBase implements ModelElement {
     private List<Stereotype> stereotypes = new ArrayList<>();
     private String name;
     private List<ModelElement> childs = new ArrayList<>();
-    private ModelElement parent;
+    private transient ModelElement parent;
     private String metaType;
     private Map<String,String> properties;
     private String xmiID;

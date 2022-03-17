@@ -1,9 +1,10 @@
 package de.spraener.nxtgen.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface ModelElement {
+public interface ModelElement extends Serializable {
     List<ModelElement> getChilds();
     ModelElement getParent();
     String getName();

@@ -124,14 +124,24 @@ class ModelDSL {
         closure();
 
         def model = new ModelImpl();
-        root.getChilds().forEach({
-            model.addModelElement(it);
-        })
+        try {
+            root.getChilds().forEach({
+                model.addModelElement(it);
+            });
+        }catch( Throwable e ) {
+            e.printStackTrace();
+            // Backward compatibility to groovy 2.0.1 as used in magic draw
+            for( Object it : root.getChilds()){
+                model.addModelElement(it);
+            }
+        }
         return (Model) model;
     }
 }
 
 println(ModelDSL.make {
+    mPackage {
+        name 'de.spraener.test'
     mClass {
         mAttribute {
             name 'Name'
@@ -154,5 +164,6 @@ println(ModelDSL.make {
                 targetId '0815'
             }
         }
+    }
     }
 })

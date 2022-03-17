@@ -12,6 +12,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
+/**
+ * This CodeBlock implements a bridge to groovy generator templates. It takes a name,
+ * a ModelElement and a URL to the graoovy script that generates the output.
+ *
+ */
 public class GroovyCodeBlockImpl extends CodeBlockImpl {
     private ModelElement me = null;
     private String templateScript;
