@@ -2,7 +2,9 @@ package de.spraener.nxtgen.oom.model;
 
 import de.spraener.nxtgen.model.Model;
 
-public class MClassRef {
+import java.io.Serializable;
+
+public class MClassRef implements Serializable {
     private String fullQualifiedClassName;
 
     public MClassRef(String fullQualifiedClassName) {

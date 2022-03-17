@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.oom.model;
 
+import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
@@ -82,15 +83,24 @@ public class MPackage extends ModelElementImpl {
         return null;
     }
 
-    public MPackage createPackage(String name) {
-        MPackage child = new MPackage();
-        child.setName(getName()+"."+name);
-        getChilds().add(child);
-        child.setParent(this);
-
+    public MPackage findOrCreatePackage(String name) {
+        MPackage child = findSubPackageByName(name);
+        if( child == null ) {
+            child = new MPackage();
+            child.setName(getName() + "." + name);
+            getChilds().add(child);
+            child.setParent(this);
+        }
         return child;
     }
 
+    public String getFQName() {
+        if( this.getParent() instanceof Package ) {
+            return ((MPackage)getParent()).getFQName()+ "."+ getName();
+        } else {
+            return getName();
+        }
+    }
     public MClass createMClass(String s) {
         MClass child = new MClass();
         child.setName(s);

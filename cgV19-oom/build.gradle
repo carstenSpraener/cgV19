@@ -3,7 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: "$project.ext.version"
+    implementation project(':cgV19-core')
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.3'
 
     testImplementation 'junit:junit:4.12'
+    testImplementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
 }

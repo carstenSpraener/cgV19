@@ -7,10 +7,7 @@ import de.spraener.nxtgen.model.ModelElement;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 
 public class OOMModelLoader implements ModelLoader {
@@ -23,20 +20,35 @@ public class OOMModelLoader implements ModelLoader {
     @Override
     public Model loadModel(String modelURI) {
         try {
-            Binding binding = new Binding();
-            GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), binding);
             InputStreamReader modelReader = openModel(modelURI);
-            Object value = shell.evaluate(modelReader);
-            Model metaModel = (Model) value;
-            OOModel oom =  new OOModel(metaModel);
-            for( ModelElement e : oom.getModelElements() ) {
-                e.setModel(oom);
-            }
-            return oom;
+            return parseModel(modelReader);
         } catch( Exception e ) {
             e.printStackTrace();
             throw new NxtGenRuntimeException(e);
         }
+    }
+
+    public Model loadFromString(String modelScript) {
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(modelScript.getBytes());
+            InputStreamReader modelReader = new InputStreamReader(bais);
+            return parseModel(modelReader);
+        } catch( Exception e ) {
+            e.printStackTrace();
+            throw new NxtGenRuntimeException(e);
+        }
+    }
+
+    private OOModel parseModel(InputStreamReader modelReader) {
+        Binding binding = new Binding();
+        GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), binding);
+        Object value = shell.evaluate(modelReader);
+        Model metaModel = (Model) value;
+        OOModel oom =  new OOModel(metaModel);
+        for( ModelElement e : oom.getModelElements() ) {
+            e.setModel(oom);
+        }
+        return oom;
     }
 
     private InputStreamReader openModel(String modelURI) throws IOException {

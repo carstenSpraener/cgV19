@@ -16,7 +16,7 @@ public class MClass extends ModelElementImpl {
     private List<MReference> references = null;
     private List<MOperation> operations = null;
     private List<MActivity> activities = null;
-    private MPackage parent = null;
+    private transient MPackage parent = null;
 
     private MClassRef inheritsFrom = null;
 
@@ -70,7 +70,15 @@ public class MClass extends ModelElementImpl {
             return activity;
         }).collect(Collectors.toList());
 
-        mc.inheritsFrom = new MClassRef(me.getProperty("inheritsFrom"));
+        String extendsFQClassName = ((ModelElementImpl)me).getRelations().stream()
+                .filter(r -> "extends".equals(r.getType()))
+                        .map(r->r.getTargetType())
+                .findFirst().orElse(null);
+        if( extendsFQClassName!=null ) {
+            mc.inheritsFrom = new MClassRef(extendsFQClassName);
+        } else {
+            mc.inheritsFrom = null;
+        }
         mc.setMetaType(me.getMetaType());
         mc.setStereotypes(me.getStereotypes());
         mc.setRelations(me.getRelations());
