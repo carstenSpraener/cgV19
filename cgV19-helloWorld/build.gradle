@@ -5,8 +5,8 @@ buildscript {
         mavenCentral();
     }
     dependencies {
-        classpath group:"${project.ext.group}", name: 'cgV19-gradle', version: "$project.ext.version"
-        classpath group:"${project.ext.group}", name: 'cgV19-core', version: "$project.ext.version"
+        classpath project(':cgV19-gradle')
+        classpath project(':cgV19-core');
     }
 }
 
@@ -37,12 +37,12 @@ sourceSets {
 }
 
 dependencies {
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: "$project.ext.version"
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: "$project.ext.version"
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo',  version: "$project.ext.version"
+    cartridge project(':cgV19-core');
+    cartridge project(':cgV19-oom');
+    cartridge project(':cgV19-pojo');
 
-    implementation group: 'de.spraener.nxtgen', name: 'cgV19-core', version: "$project.ext.version"
-    implementation group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: "$project.ext.version"
+    implementation project(':cgV19-core');
+    implementation project(':cgV19-oom');
     testImplementation 'junit:junit:4.12'
 }
 
