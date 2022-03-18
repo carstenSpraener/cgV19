@@ -1,4 +1,6 @@
-#Assiciations
+#Associations
+
+![Data Model from project restDEMO](../../restDemo/doc/img/class__model__DataModel.png)
 
 ## OneToMany
 
@@ -8,9 +10,9 @@ Class A      #------------------------   Class B
              1                   0..*
 ```
 
-### Identifikation
+### Identification
 
-### Ergebnis
+### Result
 ```java
 class A  {
     @OneToMany(
@@ -37,3 +39,11 @@ class B {
     private A nameB;
 }
 ```
+
+### Example
+
+## ManyToMany 
+
+### Identification
+
+### Result
