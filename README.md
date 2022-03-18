@@ -1,4 +1,6 @@
 # Tutorial to cgV19
+_Last Update on: March the 17th 2022._
+
 This is the core of the NextGen V19
 
 ## A brief history
@@ -105,82 +107,113 @@ gradle Module and call `gradle jar`.
 
 ```
 cd cgV19
-gradle jar
+gradle publish
 ```
 
+Now everything you need is set up. The required artifacts are now
+in a local maven repository directors _rep_ under the cgV19 projec
+directory.
+
+__Attention__
 This compiles all the modules in cgV19 except the cgV19-helloWorld and the restDemo project. This projects
 are not included in the settings.gradle of the root project. This is because they have a chicken egg problem. 
-They need the cgV19-gradle plugin but that is what need to be compiled first. So after you compiled all other
+They need the cgV19-gradle plugin but that is what need to be published first. So after you publihed all other
 cgV19 modules you can now uncomment the two projects and do a second turn:
 
 ```
 gradle jar
 ```
 
-Now everything you need is set up.
+### Building a helloWorld-Application
 
+_This chapter describes how to create a simple PoJo with cgV19. The result is
+in the cgV19-helloWorld module. But of course you want to build it on your own._
 ### Building a helloWorld-Application
 
 _This chapter describes how to create a simple PoJo with cgC19 . The result is
 in the cgV19-helloWorld module. But of course you want to build it on your own._
 
-Make a new directory, lets say "helloWorldNxtGen" and run
- ```
-gradle init --type java-librarys
-```
+#### Setup the basic gradle build
 
-to initialize a new Application-Project.
-
-When finished open your build.gradle in your editor and add the following
-plugin to the build-script:
-
-```
+Make a new directory, lets say "helloWorldNxtGen" and copy the following build script into a new build.gradle
+ ```groovy
+// Make the cgV19 Gradle plugin available to the build.
 buildscript {
     repositories {
-        mavenCentral();
+        maven {
+            url "file:/<INSERT_PATH_TO_YOUR_CGV19-DIR_HERE!>/repo"
+        }
+        mavenCentral()
     }
     dependencies {
-        classpath group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-RC2'
-        classpath group: 'de.spraener.nxtgen', name: 'cgV19-gradle', version: '19.0.0-RC2'
+        classpath 'de.spraener.nxtgen:cgV19-core:21.0.0-SNAPSHOT'
+        classpath 'de.spraener.nxtgen:cgV19-gradle:21.0.0-SNAPSHOT'
     }
 }
 
 plugins {
+    // Apply the java-library plugin for API and implementation separation.
     id 'java'
 }
-
+// apply the plugin to the build script
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
+repositories {
+    // Use JCenter for resolving dependencies.
+    mavenCentral()
+    maven {
+        url 'file:/<INSERT_PATH_TO_YOUR_CGV19-DIR_HERE!>/repo'
+    }
+}
+
+dependencies {
+}
 
 ```
+__Attention__ Please replace the string ```<INSERT_PATH_TO_YOUR_CGV19-DIR_HERE!>``` with the real directory
+where you build your cgV19 instance (occurs two times). There should be the _repo_ directory.
 
-This will add __cgV19__ to your build process. Also add a new dependency to your
-project:
+Also create a new file settings.gradle and insert the following text:
 
+```groovy
+rootProject.name = 'helloWorldNxtGen'
 ```
+
+Now you have initialized a new Application-Project ready to use cgV19.
+
+#### Configure cgV19 for your project
+
+Next you need to tell cgV19 where it can find the model (oom-File) to generate from. MagicDraw-Users can use a
+URL like http://localhost:7000/<root-package-name> to diretcly build from a MagicDraw-Model while modeling.
+But for now we will use an ordinary file. So insert the following line to the ```build.gradle```:
+
+```groovy
+cgV19 {
+    model = './src/main/helloWorld.oom'
+}
+```
+
+This tells the cgV19-Plugin that your model is described in the given file.
+
+Now you have to tell what cartridges you want to use. This is done via the dependencies block of the 
+build.gradle file. The cgV19-Plugin defines a new dependency-group __cartridge__. Add all required 
+cartridges, the cgV19-oom module and the cgV19-core module to this dependency group like follows:
+
+```groovy
 dependencies {
   ...
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-core', version: '19.0.0-RC2'
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-oom', version: '19.0.0-RC2'
-    cartridge group: 'de.spraener.nxtgen', name: 'cgV19-pojo', version: '19.0.0-RC2'
+    cartridge 'de.spraener.nxtgen:cgV19-core:21.0.0-SNAPSHOT'
+    cartridge 'de.spraener.nxtgen:cgV19-oom:21.0.0-SNAPSHOT'
+    cartridge 'de.spraener.nxtgen:cgV19-pojo:21.0.0-SNAPSHOT'
 }
 ```
-Now you added cgV19 itself to the cgV19-gradle plugin, the oom model loader
-and an example cartridge for generating simple java PoJos to __cgV19__.
 
-The last step is to tell the generator where the model is located. This can be 
-done by adding:
-``` 
-cgV19 {
-   model='./src/main/helloWorld.oom'
-}
-```
-to the build script.
+The first two cartridge dependencies are always needed. (Core for shure and you will mostly use a oom-Model)
 
 The generator will generate the java-code inside src/main/java-gen. To tell gradle
 that it has another src directory add the following:
 
-```
+```groovy
 sourceSets {
     src{
         main {
@@ -193,7 +226,6 @@ sourceSets {
 }
 ```
 
-
 That's it. Your project is ready for model driven development with __cgV19__.
 
 ### Defining a model
@@ -201,11 +233,11 @@ That's it. Your project is ready for model driven development with __cgV19__.
 The generator of course needs some sort of model to tell him what to generate. As 
 we using the pojo-cartridge, which comes with an OOM-ModelLoader we have to
 describe the model in an OOM-File. OOM stands for ObjectOrientedModel and is 
-a groovy implemented DSL.
+a groovy implemented DSL to describe thinks like Classes, Attributes, Extends, Operations and so on.
 
 So, create a file helloWorld.oom in src/main and open it in your editor.
 Copy this code into your editor and safe the file.
-```
+```groovy
 ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.hello'
@@ -239,14 +271,14 @@ is straight forward.
 The one thing, that makes it special is the _stereotype_ definition
 on the Class. This marks the class as a PoJo.
 
-Stereotypes telling __cgV19__ what kind a generator is to use. The
+Stereotypes telling __cgV19__ what kind of generator is to use. The
 PoJo-Cartridge used in the build script maps this stereotyped classes
 to the PoJo-Generator which will create a PoJo Java-Class.
 
 ### Running the generator
 To transform you model in a java class,  start `gradle generate`. This
 will create a new source directory `src/main/java-gen` and inside
-that directory a package `example.nxtgen.hello` wich contains...
+that directory a package `de.spraener.nxtgen.hello` wich contains...
 I think you can emagine.
 
 Now you can use the generated Person-Class inside your code.
