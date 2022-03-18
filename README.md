@@ -57,6 +57,21 @@ This module implements a gradle plugin to enable gradle projects to use cgV19.
 A very very basic project to demonstrate how you can use cgV19 in your projects.
 The truth of how to use cgV19 is here!
 
+### cgV19-MDPlugin
+
+A plugin for MagicDraw to provide the model in MagicDraw to 
+cgV19 via port 7000. Only useable if you have MagicDraw installed.
+
+### cgV19-RESTCartridge
+
+A (under construction) cartridge that generates a full runnable Spring Boot
+application from the a model. It also provides a PHP-Symfony Backend to
+demonstrate multiple language generation.
+
+### restDemo
+
+A demonstration project of how to use the cgV19-RESTCartridge.
+
 ## Want to start?
 
 If you want to have a brief "how does it feel" follow the steps in this chapter. but
@@ -89,25 +104,29 @@ Next step is to build all these modules. For that change into the oom, pojo and
 gradle Module and call `gradle jar`.
 
 ```
-cd cgV19-oom
+cd cgV19
 gradle jar
-cd ../cgV19-pojo
+```
+
+This compiles all the modules in cgV19 except the cgV19-helloWorld and the restDemo project. This projects
+are not included in the settings.gradle of the root project. This is because they have a chicken egg problem. 
+They need the cgV19-gradle plugin but that is what need to be compiled first. So after you compiled all other
+cgV19 modules you can now uncomment the two projects and do a second turn:
+
+```
 gradle jar
-cd ../cgV19-gradle
-gradle jar
-cd ..
 ```
 
 Now everything you need is set up.
 
 ### Building a helloWorld-Application
 
-_This chapter descriibes how to create a simple PoJo with cgC19 . The result is
+_This chapter describes how to create a simple PoJo with cgC19 . The result is
 in the cgV19-helloWorld module. But of course you want to build it on your own._
 
 Make a new directory, lets say "helloWorldNxtGen" and run
  ```
- gradle init --type java-library
+gradle init --type java-librarys
 ```
 
 to initialize a new Application-Project.

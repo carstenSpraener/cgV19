@@ -5,19 +5,39 @@ plugins {
 
 allprojects {
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '19.0.0-RC3-SNAPSHOT'
+    project.ext.version = '21.0.0-SNAPSHOT'
 
     repositories {
-        mavenCentral();
+        mavenCentral()
     }
 }
 
 subprojects {
     buildscript {
+        apply plugin: 'maven-publish'
+        apply plugin: 'java'
+
         repositories {
             mavenCentral()
         }
     }
+
     version = "${project.ext.version}"
     group = "${project.ext.group}"
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = "${project.ext.group}"
+                artifactId = "${project.name}"
+                version = "${project.ext.version}"
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                url = ("${project.rootDir}/repo")
+            }
+        }
+    }
 }
