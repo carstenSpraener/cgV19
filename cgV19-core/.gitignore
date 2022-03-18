@@ -4,3 +4,4 @@ gradle
 build
 target
 *.bak
+/doc/arc42-template-EN.md

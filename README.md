@@ -33,7 +33,7 @@ the generator will run before the compile task starts.
 
 ## What are all these modules?
 
-### cgV19-core
+### [cgV19-core](cgV19-core/doc/CoreArchitecture.md)
 
 This is the very hard of cgV19. If you want to use cgV19, this is the module you 
 really allways have to use. All other modules dependending on this.
