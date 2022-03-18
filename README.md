@@ -126,10 +126,6 @@ gradle jar
 
 ### Building a helloWorld-Application
 
-_This chapter describes how to create a simple PoJo with cgV19. The result is
-in the cgV19-helloWorld module. But of course you want to build it on your own._
-### Building a helloWorld-Application
-
 _This chapter describes how to create a simple PoJo with cgC19 . The result is
 in the cgV19-helloWorld module. But of course you want to build it on your own._
 
@@ -238,6 +234,8 @@ a groovy implemented DSL to describe thinks like Classes, Attributes, Extends, O
 So, create a file helloWorld.oom in src/main and open it in your editor.
 Copy this code into your editor and safe the file.
 ```groovy
+import de.spraener.nxtgen.groovy.ModelDSL
+
 ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.hello'
