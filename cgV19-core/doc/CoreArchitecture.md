@@ -80,3 +80,7 @@ with a root CodeBlockGenerator.
 
 These roots will each produce a generated artifact. That can be a Java-File, HTML, JavaScript, PDF
 SVG, PHP what ever you want.
+
+## The sequence of a generator run
+
+![Sequence diagramm for a generator run](img/sd__GeneratorRun__GeneratorRun.png)
