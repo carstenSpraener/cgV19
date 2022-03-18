@@ -64,13 +64,13 @@ The truth of how to use cgV19 is here!
 A plugin for MagicDraw to provide the model in MagicDraw to 
 cgV19 via port 7000. Only useable if you have MagicDraw installed.
 
-### cgV19-RESTCartridge
+### [cgV19-RESTCartridge](./cgV19-RESTCartridge/Readme.md)
 
 A (under construction) cartridge that generates a full runnable Spring Boot
 application from the a model. It also provides a PHP-Symfony Backend to
 demonstrate multiple language generation.
 
-### restDemo
+### [restDemo](./restDemo/Readme.md)
 
 A demonstration project of how to use the cgV19-RESTCartridge.
 
