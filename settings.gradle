@@ -5,7 +5,8 @@ include ':cgV19-gradle'
 include ':cgV19-oom'
 include ':cgV19-pojo'
 // this module is only compilable if you have MagicDraw available.
-//include ':cgV19-MDPlugin'
+include ':cgV19-MDPlugin'
+include ':cgV19-MetaCartridge'
 include ':cgV19-RESTCartridge'
 
 // These project need a cgV19 installation, so you can only
