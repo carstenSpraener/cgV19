@@ -1,0 +1,208 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'DSL'
+
+        mClass {
+          name 'cgV19Project'
+          xmiID '_18_5_3_40201a1_1598192630698_485999_4712'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1598192654775_643514_4718'
+              opositeAttribute 'extension_cgV19Project'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Package'
+              name 'base_Package'
+              multiplicity ''
+              composite 'false'
+          }
+        }
+        mClass {
+          name 'SpringBootApp'
+          xmiID '_18_5_3_40201a1_1598192846496_175466_4783'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1598192873578_788616_4789'
+              opositeAttribute 'extension_SpringBootApp'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Class'
+              name 'base_Class'
+              multiplicity ''
+              composite 'false'
+          }
+        }
+        mClass {
+          name 'Ressource'
+          xmiID '_18_5_3_40201a1_1598192902993_263791_4822'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1598192902997_507301_4823'
+              opositeAttribute 'extension_SpringBootApp'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Class'
+              name 'base_Class'
+              multiplicity ''
+              composite 'false'
+          }
+          mAttribute {
+              name 'dbTable'
+              visibility 'private'
+          }
+        }
+        mClass {
+          name 'Entity'
+          xmiID '_18_5_3_40201a1_1598193837213_922000_4889'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1598193837214_726218_4890'
+              opositeAttribute 'extension_Ressource'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Class'
+              name 'base_Class'
+              multiplicity ''
+              composite 'false'
+          }
+          mAttribute {
+              name 'dbTableName'
+              visibility 'private'
+          }
+        }
+        mClass {
+          name 'ControlledOperation'
+          xmiID '_18_5_3_40201a1_1598604191334_706006_5287'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1598604266862_810664_5293'
+              opositeAttribute 'extension_ControlledOperation'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Activity'
+              name 'base_Activity'
+              multiplicity ''
+              composite 'false'
+          }
+        }
+        mClass {
+          name 'Interactive'
+          xmiID '_18_5_3_40201a1_1599159601345_291183_5094'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1599159657573_324885_5105'
+              opositeAttribute 'extension_Interactive'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Action'
+              name 'base_Action'
+              multiplicity ''
+              composite 'false'
+          }
+          mAttribute {
+              name 'redirectTo'
+              type 'String'
+              visibility 'private'
+          }
+        }
+        mClass {
+          name 'Flow'
+          xmiID '_18_5_3_40201a1_1599469074497_803005_5325'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1599469074507_946725_5326'
+              opositeAttribute 'extension_ControlledOperation'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Activity'
+              name 'base_Activity'
+              multiplicity ''
+              composite 'false'
+          }
+        }
+        mClass {
+          name 'PersistentField'
+          xmiID '_18_5_3_40201a1_1600092175750_708539_5138'
+            documentation 'A Property marked with this stereotype will end up in a new Field in the database\ntable. \n\nThe details of the database field can be specified in the associated tagged values.'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1600092206141_791718_5144'
+              opositeAttribute 'extension_EntityField'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Property'
+              name 'base_Property'
+              multiplicity ''
+              composite 'false'
+          }
+          mAttribute {
+              name 'nullable'
+              documentation 'Is a null value for this persistent field allowed or not. \nDefault is true.'
+              type 'UML Standard Profile.MagicDraw Profile.datatypes.boolean'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'unique'
+              documentation 'Is the value of this Field unique in the table of the containing Entity or not.\n\nDefault is __false__. \n\nIf  true it will result in the creation of an unique index on the \ntable. So be careful to prevent to much indexes on a table. This could slow down \ninserts dramatically. '
+              type 'UML Standard Profile.MagicDraw Profile.datatypes.boolean'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'type'
+              documentation 'This could be any type as specified in the PersistenfFieldType enumeration.'
+              type 'DSL.PersistentFieldType'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'precision'
+              documentation 'If the type is a numeric type, this number can specify the precision of that field. For example in a DECIMAL(15,2) field this is the 15.'
+              type 'UML Standard Profile.MagicDraw Profile.datatypes.int'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'scale'
+              documentation 'If the type is a numeric type, this number can specify the fraction of that field. For example in a DECIMAL(15,2) field this is the 2.'
+              type 'UML Standard Profile.MagicDraw Profile.datatypes.int'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'length'
+              documentation 'Gives the length of the underlying database field. This can be used in validations from the UI down to the Entity-Bean.'
+              type 'UML Standard Profile.MagicDraw Profile.datatypes.int'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'label'
+              documentation 'Gives  a text for this field, that could be displayed to the user in a label. The value is needed to support generic UIs.'
+              type 'String'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'detailOnly'
+              documentation 'A boolean value that says it this field should be displayed only in a detail view and not in a list of instances view. The value is needed to support generic UIs. \n\nDefault is __false__'
+              type 'UML Standard Profile.MagicDraw Profile.datatypes.boolean'
+              visibility 'private'
+          }
+        }
+        mClass {
+          name 'PhpSymfonyApplication'
+          xmiID '_18_5_3_40201a1_1600095969842_918021_5376'
+          mAssociation {
+              assocId '_18_5_3_40201a1_1600095997213_408288_5382'
+              opositeAttribute 'extension_PhpSymfonyApplication'
+              opositeMultiplicity '0..1'
+              associationType 'ManyToMany'
+              type 'UML Standard Profile.UML2 Metamodel.Class'
+              name 'base_Class'
+              multiplicity ''
+              composite 'false'
+          }
+          mAttribute {
+              name 'dbname'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'dbuser'
+              visibility 'private'
+          }
+          mAttribute {
+              name 'dbpassword'
+              visibility 'private'
+          }
+        }
+    }
+}
