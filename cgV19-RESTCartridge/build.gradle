@@ -20,8 +20,19 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    src{
+        main {
+            java {
+                srcDir('src/main/java')
+                srcDir('src/main/java-gen')
+            }
+        }
+    }
+}
+
 cgV19 {
-    model='./DSL.oom'
+    model='http://localhost:7000/DSL'
 }
 
 dependencies {

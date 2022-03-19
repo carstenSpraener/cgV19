@@ -125,7 +125,7 @@ public class MClass extends ModelElementImpl {
     }
 
     public String getFQName() {
-        return getPackage().getName()+"."+getName();
+        return getPackage().getFQName()+"."+getName();
     }
 
     public MAttribute createAttribute(String name, String type) {

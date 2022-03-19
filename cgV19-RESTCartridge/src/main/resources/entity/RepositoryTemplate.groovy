@@ -2,9 +2,10 @@ package entity
 
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.ProtectionStrategie
+import de.spraener.nxtgen.oom.model.MClass
 
 
-def pkgName = modelElement.package.name;
+def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 def keyType = modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'keyType');
 def dataType = modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'dataType');

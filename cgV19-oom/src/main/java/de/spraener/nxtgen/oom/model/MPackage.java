@@ -32,7 +32,7 @@ public class MPackage extends ModelElementImpl {
         }).map( child -> {
             MPackage result = new MPackage(child);
             result.setParent(this);
-            result.setName(this.getName()+"."+result.getName());
+            //result.setName(this.getName()+"."+result.getName());
             return result;
         }).collect(Collectors.toList());
         getChilds().addAll(packages);
@@ -67,9 +67,6 @@ public class MPackage extends ModelElementImpl {
         if( this.getName().equals(pkgName) ) {
             return this;
         }
-        if( !pkgName.startsWith(this.getName()) ) {
-            return null;
-        }
         for( MPackage subP : getPackages() ) {
             if( subP.getName().equals(pkgName) ) {
                 return subP;
@@ -88,7 +85,7 @@ public class MPackage extends ModelElementImpl {
         MPackage child = findSubPackageByName(name);
         if( child == null ) {
             child = new MPackage();
-            child.setName(getName() + "." + name);
+            child.setName(name);
             getChilds().add(child);
             child.setParent(this);
         }
@@ -96,7 +93,7 @@ public class MPackage extends ModelElementImpl {
     }
 
     public String getFQName() {
-        if( this.getParent() instanceof Package ) {
+        if( this.getParent() instanceof MPackage ) {
             return ((MPackage)getParent()).getFQName()+ "."+ getName();
         } else {
             return getName();

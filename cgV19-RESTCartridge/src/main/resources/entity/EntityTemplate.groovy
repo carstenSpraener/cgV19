@@ -202,7 +202,7 @@ String getExtendsRelation() {
     return "";
 }
 
-def pkgName = RESTJavaHelper.toPkgName(modelElement.getPackage());
+def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 def dbTable = findStereotype(RESTStereotypes.ENTITY).getTaggedValue("dbTable")
 def extendsStr = getExtendsRelation();

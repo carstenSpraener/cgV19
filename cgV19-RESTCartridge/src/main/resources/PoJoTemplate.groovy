@@ -8,7 +8,7 @@ import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
 
-def pkgName = RESTJavaHelper.toPkgName(modelElement.getPackage());
+def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 
 def toLogicName(me) {

@@ -3,7 +3,6 @@ import de.spraener.nxtgen.groovy.ModelDSL
 ModelDSL.make {
     mPackage {
         name 'DSL'
-
         mClass {
           name 'cgV19Project'
           xmiID '_18_5_3_40201a1_1598192630698_485999_4712'
@@ -202,6 +201,27 @@ ModelDSL.make {
           mAttribute {
               name 'dbpassword'
               visibility 'private'
+          }
+        }
+        mPackage {
+          name 'de'
+          mPackage {
+            name 'spraener'
+            mPackage {
+              name 'nextgen'
+              mPackage {
+                name 'cartridge'
+                mPackage {
+                  name 'rest'
+                  mClass {
+                    name 'RESTStereotypes'
+                    xmiID '_18_5_3_40201a1_1647716863929_149917_5376'
+                      stereotype 'StereotypeEnum', {
+                      }
+                  }
+                }
+              }
+            }
           }
         }
     }

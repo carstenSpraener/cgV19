@@ -42,7 +42,7 @@ def requestMethods(MClass c) {
     return sb.toString();
 }
 
-def pkgName = RESTJavaHelper.toPkgName(modelElement.getPackage());
+def pkgName = ((MClass)modelElement).getPackage().getFQName();
 def cName = modelElement.name;
 def repoName = toRepoName(modelElement);
 def entityName = toEntityName(modelElement);

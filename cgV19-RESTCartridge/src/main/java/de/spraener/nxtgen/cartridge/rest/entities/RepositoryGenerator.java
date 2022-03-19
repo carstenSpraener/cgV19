@@ -12,7 +12,7 @@ public class RepositoryGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         MClass mc = (MClass) element;
-        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java", RESTJavaHelper.toPkgName(mc.getPackage()), mc.getName());
+        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java", mc.getPackage().getFQName(), mc.getName());
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("repository", element, "/entity/RepositoryTemplate.groovy");
         jCB.addCodeBlock(gcb);
         return jCB;

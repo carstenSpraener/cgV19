@@ -1,7 +1,5 @@
 package de.spraener.nxtgen.cartridge.rest;
 
-import de.spraener.nxtgen.model.Stereotype;
-
 public enum RESTStereotypes {
     RESSOURCE("Ressource"),
     ENTITY("Entity"),

@@ -21,16 +21,13 @@ public class ResourceToLogic implements Transformation {
     }
 
     public MClass create(MClass mClass) {
-        MPackage pkgLogic = mClass.getPackage().findSubPackageByName("logic");
-        if( pkgLogic==null ) {
-            pkgLogic = mClass.getPackage().findOrCreatePackage("logic");
-        }
-        MClass logic = pkgLogic.createMClass(mClass.getName()+"LogicBase");
+        MPackage pkgLogic = mClass.getPackage().findOrCreatePackage("logic");
+        MClass logicBase = pkgLogic.createMClass(mClass.getName()+"LogicBase");
         Stereotype stType = new StereotypeImpl(RESTStereotypes.LOGIC.getName());
-        logic.getStereotypes().add(stType);
+        logicBase.getStereotypes().add(stType);
         stType.setTaggedValue("dataType", mClass.getFQName()+"Entity");
         for(MOperation op : mClass.getOperations() ) {
-            MOperation opClone = op.cloneTo(logic);
+            MOperation opClone = op.cloneTo(logicBase);
             String type = toLogicReturnType(opClone.getType());
             opClone.setType(type);
         }
@@ -38,7 +35,7 @@ public class ResourceToLogic implements Transformation {
         MClass logicImpl = pkgLogic.createMClass(mClass.getName()+"Logic");
         Stereotype stTypeLogic = new StereotypeImpl(RESTStereotypes.IMPL.getName());
         logicImpl.getStereotypes().add(stTypeLogic);
-        logicImpl.setProperty("extends", logic.getFQName());
+        logicImpl.setProperty("extends", logicBase.getFQName());
         logicImpl.setProperty("constructorArgs", mClass.getPackage().getName()+".model."+mClass.getName()+"Repository repository, Gson gson");
         logicImpl.setProperty("superCallArgs","repository, gson");
         logicImpl.setProperty("importList", "import org.springframework.stereotype.Component;\nimport com.google.gson.Gson;\n");
@@ -51,7 +48,7 @@ public class ResourceToLogic implements Transformation {
             op.setProperty("returnStatement", "return null;");
         }
 
-        return logic;
+        return logicBase;
     }
 
     // FIXME: Transform return types of <<Resource>> to <<Entity>>
