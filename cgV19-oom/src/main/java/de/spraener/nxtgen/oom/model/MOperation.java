@@ -28,6 +28,7 @@ public class MOperation extends ModelElementImpl {
         this.setStereotypes(me.getStereotypes());
         this.setRelations( me.getRelations() );
         this.setProperties( me.getProperties() );
+        OOModelHelper.mapProperties(this, getClass(), me);
     }
 
     private MOperation() {}

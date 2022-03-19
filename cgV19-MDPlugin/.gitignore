@@ -4,6 +4,7 @@ gradle
 gradlew
 gradlew.bat
 MagicDraw
+lib
 
 # Ignore Gradle build output directory
 build

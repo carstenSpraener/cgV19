@@ -36,6 +36,7 @@ public class MPackage extends ModelElementImpl {
             return result;
         }).collect(Collectors.toList());
         getChilds().addAll(packages);
+        OOModelHelper.mapProperties(this, getClass(), me);
     }
 
     public List<MClass> getClasses() {

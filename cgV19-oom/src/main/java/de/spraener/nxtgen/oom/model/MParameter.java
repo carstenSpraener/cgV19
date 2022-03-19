@@ -11,6 +11,7 @@ public class MParameter extends ModelElementImpl {
     public MParameter(ModelElement me) {
         setName(me.getName());
         setType(me.getProperty("type"));
+        OOModelHelper.mapProperties(this, getClass(), me);
     }
 
     protected MParameter(MOperation parent, String name, String type) {

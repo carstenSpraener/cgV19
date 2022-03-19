@@ -63,6 +63,7 @@ public class MActivity extends ModelElementImpl {
             return cf;
         }).collect(Collectors.toList());
         super.getChilds().addAll(this.decisions);
+        OOModelHelper.mapProperties(this, getClass(), meActivity);
     }
 
     public List<MActivityControlFlow> getControlFlows() {

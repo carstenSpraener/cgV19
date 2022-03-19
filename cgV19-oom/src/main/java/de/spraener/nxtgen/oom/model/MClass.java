@@ -82,6 +82,7 @@ public class MClass extends ModelElementImpl {
         mc.setMetaType(me.getMetaType());
         mc.setStereotypes(me.getStereotypes());
         mc.setRelations(me.getRelations());
+        mc.setProperties(me.getProperties());
         return mc;
     }
 

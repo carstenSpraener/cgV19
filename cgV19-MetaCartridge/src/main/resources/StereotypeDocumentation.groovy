@@ -1,0 +1,83 @@
+import de.spraener.nxtgen.NextGen
+import de.spraener.nxtgen.ProtectionStrategieDefaultImpl
+import de.spraener.nxtgen.model.ModelElement
+import de.spraener.nxtgen.oom.model.MAssociation
+import de.spraener.nxtgen.oom.model.MAttribute
+import de.spraener.nxtgen.oom.model.MClass
+
+def cName = modelElement.name;
+MClass mClass = (MClass)getProperty("modelElement");
+
+NextGen.LOGGER.info("GroovyTemplate StereotypeGeneratoion.groovy is running");
+
+String baseClass(mClass) {
+    String baseClassList = "";
+    for(MAssociation assoc : mClass.getAssociations() ) {
+        if( "base_Class".equals(assoc.name) ) {
+            baseClass = assoc.getProperty("type");
+            if( baseClass.startsWith("UML Standard Profile.UML2 Metamodel.")) {
+                baseClass = baseClass.substring("UML Standard Profile.UML2 Metamodel.".length())
+            }
+            baseClassList += baseClassList+"\n* "+baseClass;
+        }
+    }
+    if( baseClassList.equals("") ) {
+        return "\n* Element"
+    }
+    return baseClassList;
+}
+
+void listProperties(ModelElement me ) {
+    NextGen.LOGGER.info("      >>>>>> Properties of Element "+me.getName());
+    for( String name : me.getProperties().keySet() ) {
+        NextGen.LOGGER.info("              >>>>>> Property "+name+"= '"+me.getProperty(name)+"'");
+    }
+}
+String documentation(ModelElement mElement) {
+    String doc = mElement.getProperty('documentation');
+    if( null == doc ) {
+        listProperties(mElement);
+        doc = "There is no documentation yet."
+    }
+    return doc;
+}
+
+String documentTaggedValue( MAttribute attr ) {
+    String documentation = documentation(attr);
+    String type = attr.type;
+    if( type==null ) {
+        type = "Any"
+    }
+    if( type.startsWith("UML Standard Profile.MagicDraw Profile.datatypes.")) {
+        type = type.substring("UML Standard Profile.MagicDraw Profile.datatypes.".length());
+    }
+    return """|__${attr.name}__| ${type} | ${documentation.replaceAll("\\n","<br/>")} |
+"""
+}
+
+String listTagedValues( MClass mClass ) {
+    String result  = "";
+    for(MAttribute attr: mClass.getAttributes() ) {
+        result += documentTaggedValue(attr);
+    }
+    if( "".equals(result)) {
+        return "This Stereotype has no associated tagged vales.";
+    }
+    return result;
+}
+"""
+[comment]: <> (${ProtectionStrategieDefaultImpl.GENERATED_LINE})
+
+# Stereotype \"${cName}\"
+
+${documentation(mClass)}
+
+## BaseClass(es)
+This stereotype is applicable to the following UML-ELements:
+${baseClass(mClass)}
+
+## Associated Tagged Values
+| Name | Type | Documentation |
+|------|-------|----------------------------------------|
+${listTagedValues(mClass)}
+"""

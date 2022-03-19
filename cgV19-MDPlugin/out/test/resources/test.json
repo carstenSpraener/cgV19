@@ -1,0 +1,12 @@
+{
+    "modelElements" : [
+        {
+            "metaType" : "package",
+            "name": "de.shoptools.model",
+            "childs" : {
+                "metaType" : "class",
+                "name" : "HelloWorld"
+            }
+        }
+    ]
+}

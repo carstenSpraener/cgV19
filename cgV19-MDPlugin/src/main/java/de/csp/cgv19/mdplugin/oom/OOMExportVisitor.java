@@ -74,6 +74,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         println("mClass {");
         println("  name '" + clazz.getName() + "'");
         println("  xmiID '" + clazz.getID() + "'");
+        OOMExportSupport.printStandardAttributes(clazz, this::println);
         if (clazz.isAbstract()) {
             println("  isAbstract true");
         }
@@ -102,6 +103,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         // log("Visiting package "+pkg.getHumanName());
         println("mPackage {\n" +
                 "  name '" + pkg.getName() + "'");
+        OOMExportSupport.printStandardAttributes(pkg, this::println);
         visitOwnedElements(pkg, e -> e instanceof Package || e instanceof Class);
         println("}");
     }
@@ -116,8 +118,12 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         } else {
             println("mAttribute {");
             println("    name '" + property.getName() + "'");
+            OOMExportSupport.printStandardAttributes(property, this::println);
             printStereotypes("    ", property);
-            println("    type '" + toTypeName(property.getType().getQualifiedName()) + "'");
+            Type type = property.getType();
+            if( type != null ) {
+                println("    type '" + toTypeName(type.getQualifiedName()) + "'");
+            }
             println("    visibility '" + property.getVisibility() + "'");
             if (property.getAssociation() != null) {
                 String multiplicity = ModelHelper.getMultiplicity(property);
@@ -177,6 +183,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         Property p = assoc.getMemberEnd().get(0);
         String multiplicity = ModelHelper.getMultiplicity(p);
         println("mReference {");
+        OOMExportSupport.printStandardAttributes(assoc, this::println);
         printStereotypes("    ", p);
         println("    name '" + p.getName() + "'");
         println("    multiplicity '" + multiplicity + "'");
@@ -195,6 +202,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         println("mOperation {");
         println("    name '" + op.getName() + "'");
         println("    type '" + toTypeName(op.getType().getQualifiedName()) + "'");
+        OOMExportSupport.printStandardAttributes(op, this::println);
         printStereotypes("    ", op);
         for (Parameter p : op.getOwnedParameter()) {
             visitParameter(p, context);
@@ -211,6 +219,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         println("            name '" + p.getName() + "'");
         println("            type '" + toTypeName(p.getType().getQualifiedName()) + "'");
         printStereotypes("            ", p);
+        OOMExportSupport.printStandardAttributes(p, this::println);
         println("        }");
     }
 
@@ -220,6 +229,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         printStereotypes("  ", activity);
         println("  id '" + activity.getID() + "'");
         println("  name '" + activity.getName()+ "'");
+        OOMExportSupport.printStandardAttributes(activity, this::println);
         //super.visitActivity(activity,context);
         visitOwnedElements(activity);
         println("}");
@@ -231,6 +241,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         printStereotypes("  ", element);
         println("  id '" + element.getID() + "'");
         println("  name '" + element.getName() + "'");
+        OOMExportSupport.printStandardAttributes(element, this::println);
         super.visitAction(element, context);
         println("}");
     }
@@ -239,6 +250,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
     public void visitControlFlow(ControlFlow cf, VisitorContext context) {
         println("mControlFlow {");
         printStereotypes("  ", cf);
+        OOMExportSupport.printStandardAttributes(cf, this::println);
         println("   source '" + cf.getSource().getName() + "'");
         println("   sourceID '" + cf.getSource().getID() + "'");
         println("   target '" + cf.getTarget().getName() + "'");
@@ -256,6 +268,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
     @Override
     public void visitDecisionNode(DecisionNode dn, VisitorContext context) {
         println("mDecision {");
+        OOMExportSupport.printStandardAttributes(dn, this::println);
         printStereotypes("  ", dn);
         println("  id '" + dn.getID() + "'");
         println("  incoming {");
@@ -289,6 +302,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
     @Override
     public void visitInitialNode(InitialNode element, VisitorContext context) {
         println("initNode {");
+        OOMExportSupport.printStandardAttributes(element, this::println);
         printStereotypes("  ", element);
         println("  id: '" + element.getID() + "'");
         super.visitInitialNode(element, context);
@@ -298,6 +312,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
     @Override
     public void visitActivityFinalNode(ActivityFinalNode element, VisitorContext context) {
         println("finalNode {");
+        OOMExportSupport.printStandardAttributes(element, this::println);
         printStereotypes("  ", element);
         println("  id: '" + element.getID() + "'");
         println("  value: '" + element.getName() + "'");

@@ -4,6 +4,7 @@ import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.*;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.impl.LiteralIntegerImpl;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class OOMExportSupport {
 
@@ -44,6 +45,17 @@ public class OOMExportSupport {
             }
         } else {
             return tv.toString();
+        }
+    }
+
+    public static void printStandardAttributes(Element e, Consumer<String> strConsumer) {
+        if( !e.getOwnedComment().isEmpty() ) {
+            StringBuffer sb = new StringBuffer();
+            for( Comment c : e.getOwnedComment() ) {
+                sb.append(c.getBody());
+            }
+            String doc= sb.toString().replaceAll("\n", "\\\\n");
+            strConsumer.accept("    documentation '"+doc+"'");
         }
     }
 

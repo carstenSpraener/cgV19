@@ -1,6 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral();
+    }
+    dependencies {
+        classpath project(':cgV19-core')
+        classpath project(':cgV19-gradle')
+    }
+}
+
 plugins {
     id 'java-library'
 }
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 group='de.spraener.nxtgen.cartidge'
 version='19.0.0-RC3-SNAPSHOT'
@@ -9,7 +20,15 @@ repositories {
     mavenCentral()
 }
 
+cgV19 {
+    model='./DSL.oom'
+}
+
 dependencies {
+    cartridge project(':cgV19-core')
+    cartridge project(':cgV19-oom')
+    cartridge project('::cgV19-MetaCartridge')
+
     implementation project(':cgV19-core');
     implementation project(':cgV19-oom');
 
