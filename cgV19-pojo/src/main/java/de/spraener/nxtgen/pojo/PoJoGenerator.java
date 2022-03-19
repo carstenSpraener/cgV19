@@ -13,14 +13,14 @@ public class PoJoGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         MClass mc = (MClass)element;
-        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", mc.getPackage().getName(), mc.getName() );
+        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", mc.getPackage().getFQName(), mc.getName() );
         generatePoJo(jCB,mc);
         return jCB;
     }
 
     private void generatePoJo(CodeBlock cb, MClass mc) {
         cb.println("// "+ ProtectionStrategie.GENERATED_LINE);
-        cb.println("package "+mc.getPackage().getName()+";");
+        cb.println("package "+mc.getPackage().getFQName()+";");
         cb.println("");
         cb.println("public class "+mc.getName()+" {");
         cb.println("");
