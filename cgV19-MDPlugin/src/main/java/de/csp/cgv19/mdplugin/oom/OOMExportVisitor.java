@@ -103,6 +103,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         // log("Visiting package "+pkg.getHumanName());
         println("mPackage {\n" +
                 "  name '" + pkg.getName() + "'");
+        printStereotypes("  ", pkg);
         OOMExportSupport.printStandardAttributes(pkg, this::println);
         visitOwnedElements(pkg, e -> e instanceof Package || e instanceof Class);
         println("}");

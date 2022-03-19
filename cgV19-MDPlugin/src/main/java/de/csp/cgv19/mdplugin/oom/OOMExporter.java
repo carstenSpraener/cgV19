@@ -51,23 +51,17 @@ public class OOMExporter implements Runnable {
         pw.println(
                 "import de.spraener.nxtgen.groovy.ModelDSL\n" +
                 "\n" +
-                "ModelDSL.make {\n"+
-                "    mPackage {\n"+
-                "        name '"+rootPackageName+"'\n"
+                "ModelDSL.make {\n"
         );
         OOMExportVisitor visitor = new OOMExportVisitor(pw);
         ArrayList<Element> all = new ArrayList<>();
         all.add(root);
         try {
-            for( Element child: root.getOwnedElement() ) {
-                if( child instanceof  Package ||child instanceof Class) {
-                    child.accept(visitor);
-                }
-            }
+            root.accept(visitor);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        pw.println("    }\n}");
+        pw.println("}");
         pw.flush();
         pw.close();
         this.exportedModel = baos.toString();
