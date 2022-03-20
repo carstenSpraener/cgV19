@@ -38,7 +38,7 @@ cgV19 {
 dependencies {
     cartridge project(':cgV19-core')
     cartridge project(':cgV19-oom')
-    cartridge project('::cgV19-MetaCartridge')
+    cartridge project(':cgV19-MetaCartridge')
 
     implementation project(':cgV19-core');
     implementation project(':cgV19-oom');
