@@ -45,7 +45,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
         if( outputPath==null ) {
             outputPath = System.getenv("php_project_dir");
             if (outputPath == null || "".equals(outputPath)) {
-                outputPath = ".";
+                outputPath = "./php";
             }
             LOGGER.info("Writing PHP_Files to "+outputPath);
         }

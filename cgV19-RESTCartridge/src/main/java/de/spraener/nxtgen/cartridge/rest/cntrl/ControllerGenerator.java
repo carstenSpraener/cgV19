@@ -12,7 +12,7 @@ public class ControllerGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         MClass mc = (MClass) element;
-        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", RESTJavaHelper.toPkgName(mc.getPackage()), mc.getName());
+        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", mc.getPackage().getFQName(), mc.getName());
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("cntrl", element, "/cntrl/CntrlTemplate.groovy");
         jCB.addCodeBlock(gcb);
         return jCB;

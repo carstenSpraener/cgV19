@@ -1,7 +1,8 @@
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.cartridge.rest.RESTJavaHelper
+import de.spraener.nxtgen.oom.model.MClass
 
-def pkgName = RESTJavaHelper.toPkgName(modelElement.getPackage());
+def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 
 return """//${ProtectionStrategie.GENERATED_LINE}

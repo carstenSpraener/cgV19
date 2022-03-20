@@ -73,16 +73,6 @@ ModelDSL.make {
           mClass {
             name 'ControlledOperation'
             xmiID '_18_5_3_40201a1_1598604191334_706006_5287'
-            mAssociation {
-                assocId '_18_5_3_40201a1_1598604266862_810664_5293'
-                opositeAttribute 'extension_ControlledOperation'
-                opositeMultiplicity '0..1'
-                associationType 'ManyToMany'
-                type 'UML Standard Profile.UML2 Metamodel.Activity'
-                name 'base_Activity'
-                multiplicity ''
-                composite 'false'
-            }
           }
           mClass {
             name 'Interactive'
@@ -226,6 +216,108 @@ ModelDSL.make {
                 }
               }
             }
+          }
+          mClass {
+            name 'Link'
+            xmiID '_18_5_3_40201a1_1647736236320_901651_5332'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647736236323_431300_5333'
+                opositeAttribute 'extension_unnamed1'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Element'
+                name 'base_Element'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'RsrcLink'
+            xmiID '_18_5_3_40201a1_1647736273800_153732_5338'
+          }
+          mClass {
+            name 'DDL'
+            xmiID '_18_5_3_40201a1_1647736286850_385582_5344'
+          }
+          mClass {
+            name 'Repository'
+            xmiID '_18_5_3_40201a1_1647736300318_289633_5350'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647736318868_212913_5356'
+                opositeAttribute 'extension_Repository'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Classifier'
+                name 'base_Classifier'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'RESTController'
+            xmiID '_18_5_3_40201a1_1647736328684_662117_5361'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647737044709_998776_5421'
+                opositeAttribute 'extension_RESTController'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Class'
+                name 'base_Class'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'Logic'
+            xmiID '_18_5_3_40201a1_1647736361285_871543_5367'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647736361286_763809_5368'
+                opositeAttribute 'extension_unnamed1'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Element'
+                name 'base_Element'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'Request'
+            xmiID '_18_5_3_40201a1_1647736370053_879686_5373'
+          }
+          mClass {
+            name 'JSONType'
+            xmiID '_18_5_3_40201a1_1647736383702_414306_5379'
+          }
+          mClass {
+            name 'TSType'
+            xmiID '_18_5_3_40201a1_1647736398469_492148_5385'
+          }
+          mClass {
+            name 'AngularService'
+            xmiID '_18_5_3_40201a1_1647736416501_347211_5391'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647737074441_666962_5426'
+                opositeAttribute 'extension_AngularService'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Class'
+                name 'base_Class'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'DbField'
+            xmiID '_18_5_3_40201a1_1647736433252_989943_5397'
+          }
+          mClass {
+            name 'Impl'
+            xmiID '_18_5_3_40201a1_1647736447002_302010_5403'
+          }
+          mClass {
+            name 'ControlledOperationNode'
+            xmiID '_18_5_3_40201a1_1647736488035_769264_5415'
           }
         }
 }

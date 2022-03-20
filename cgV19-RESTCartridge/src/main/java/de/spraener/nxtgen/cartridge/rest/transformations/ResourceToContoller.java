@@ -37,7 +37,7 @@ public class ResourceToContoller implements Transformation {
         Stereotype stTypeImpl = new StereotypeImpl(RESTStereotypes.IMPL.getName());
         cntrlImpl.getStereotypes().add(stTypeImpl);
         cntrlImpl.setProperty("extends", cntrl.getFQName());
-        cntrlImpl.setProperty("constructorArgs", mClass.getPackage().getName()+".logic."+mClass.getName()+"Logic logic");
+        cntrlImpl.setProperty("constructorArgs", mClass.getPackage().getFQName()+".logic."+mClass.getName()+"Logic logic");
         cntrlImpl.setProperty("superCallArgs","logic");
         cntrlImpl.setProperty("annotations",
                 "@CrossOrigin(origins = \"*\")\n"+

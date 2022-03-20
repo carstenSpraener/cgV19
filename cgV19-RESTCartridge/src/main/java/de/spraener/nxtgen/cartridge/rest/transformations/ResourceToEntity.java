@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.cartridge.rest.transformations;
 
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
 import de.spraener.nxtgen.model.ModelElement;
@@ -40,6 +41,10 @@ public class ResourceToEntity implements Transformation {
     private static void ensureSuperClassIsEntity(MClass mClass) {
         if( mClass.getInheritsFrom()!=null ) {
             MClass superClass = mClass.getInheritsFrom().getMClass(mClass.getModel());
+            if( superClass==null ) {
+                NextGen.LOGGER.severe("InheritsFrom in Clas "+mClass.getName()+" points to "+mClass.getInheritsFrom().getFullQualifiedClassName()+
+                " and is not resolveable");
+            }
             if( !superClass.hasStereotype(RESTStereotypes.ENTITY.getName()) ) {
                 String entitySuperClasName = superClass.getParent().getFQName()+".model."+superClass.getName();
                 mClass.setInheritsFrom(new MClassRef(entitySuperClasName));

@@ -11,7 +11,7 @@ public class SpringBootAppGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         MClass mc = (MClass) element;
-        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java", RESTJavaHelper.toPkgName(mc.getPackage()), mc.getName());
+        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java", mc.getPackage().getFQName(), mc.getName());
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("springBootApp", element, "/SpringBootApp.groovy");
         jCB.addCodeBlock(gcb);
         return jCB;

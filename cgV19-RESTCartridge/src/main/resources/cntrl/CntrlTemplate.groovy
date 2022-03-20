@@ -9,7 +9,7 @@ import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
 
 def toLogicName(me) {
-    return me.name.replace("Controller", "Logic");
+    return me.name.replace("Controller", "Logic").replace("Base", "");
 }
 
 def getDataType(me) {
@@ -52,7 +52,7 @@ def requestMethodsDelegate(MClass mc) {
 
 }
 
-def pkgName = RESTJavaHelper.toPkgName(modelElement.getPackage());
+def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 def logicName = toLogicName(modelElement);
 def dataType = getDataType(modelElement);

@@ -77,7 +77,7 @@ String attributeDefinition() {
 
 String readDbFieldTaggedValue( em, value ) {
     try {
-        return ((ModelElementImpl) em).getTaggedValue(RESTStereotypes.PERSISTENT_FIELD.getName(), value);
+        return ((ModelElementImpl) em).getTaggedValue(RESTStereotypes.PERSISTENTFIELD.getName(), value);
     } catch( Exception e ) {
         return null;
     }
@@ -136,7 +136,7 @@ String attrMetaInf() {
         def listed = "true";
         def type = "string";
         def label = it.name;
-        if (StereotypeHelper.hasStereotye(it, RESTStereotypes.PERSISTENT_FIELD.getName()) ){
+        if (StereotypeHelper.hasStereotye(it, RESTStereotypes.PERSISTENTFIELD.getName()) ){
             label = readDbFieldTaggedValue(it, "label")
             if (label == null) {
                 label = it.name;

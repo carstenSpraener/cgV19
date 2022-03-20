@@ -36,7 +36,7 @@ public class ResourceToLogic implements Transformation {
         Stereotype stTypeLogic = new StereotypeImpl(RESTStereotypes.IMPL.getName());
         logicImpl.getStereotypes().add(stTypeLogic);
         logicImpl.setProperty("extends", logicBase.getFQName());
-        logicImpl.setProperty("constructorArgs", mClass.getPackage().getName()+".model."+mClass.getName()+"Repository repository, Gson gson");
+        logicImpl.setProperty("constructorArgs", mClass.getPackage().getFQName()+".model."+mClass.getName()+"Repository repository, Gson gson");
         logicImpl.setProperty("superCallArgs","repository, gson");
         logicImpl.setProperty("importList", "import org.springframework.stereotype.Component;\nimport com.google.gson.Gson;\n");
         logicImpl.setProperty("annotations", "@Component\n");
