@@ -36,7 +36,7 @@ String getRequiredStereotype(MClass mClass) {
 
 String getPhpRootPackage(MClass mClass) {
     String sType = getRequiredStereotype(mClass);
-    if( sType.equals("Controller") ) {
+    if( sType.contains("Controller") ) {
         return "Controller";
     } else if (sType.equals("Entity") ) {
         return "Entity"

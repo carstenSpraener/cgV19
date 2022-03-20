@@ -10,7 +10,7 @@ public class TSTypeGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("typscript", element, "/ts/TSType.groovy");
-        gcb.setToFileStrategy(new TypeScriptFileStrategy("src/main/frontend/src/app/model", element.getName()));
+        gcb.setToFileStrategy(new TypeScriptFileStrategy("angular/src/app/model", element.getName()));
         return gcb;
     }
 }
