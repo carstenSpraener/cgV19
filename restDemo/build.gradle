@@ -20,6 +20,10 @@ cgV19 {
     model='./restDemo.oom'
 }
 
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn generate
+}
+
 sourceSets {
     main {
         java {
