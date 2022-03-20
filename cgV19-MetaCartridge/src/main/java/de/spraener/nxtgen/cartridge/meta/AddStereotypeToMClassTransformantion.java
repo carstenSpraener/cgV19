@@ -13,7 +13,7 @@ public class AddStereotypeToMClassTransformantion implements Transformation {
     public void doTransformation(ModelElement element) {
         if( element instanceof MClass ) {
             MClass mC = (MClass)element;
-            if(!StereotypeHelper.hasStereotye(mC, MetaCartridge.STEREOTYPE_NAME ) ) {
+            if(mC.getStereotypes().isEmpty()) {
                 StereotypeImpl sType = new StereotypeImpl(MetaCartridge.STEREOTYPE_NAME);
                 mC.addStereotypes(sType);
             }

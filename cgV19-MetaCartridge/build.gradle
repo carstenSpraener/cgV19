@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+}
+
+group='de.spraener.nxtgen.cartidge'
+version='19.0.0-RC3-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':cgV19-core');
+    implementation project(':cgV19-oom');
+
+    testImplementation 'junit:junit:4.13.1'
+}
