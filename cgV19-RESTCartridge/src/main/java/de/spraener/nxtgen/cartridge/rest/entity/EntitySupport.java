@@ -1,4 +1,4 @@
-package de.spraener.nxtgen.cartridge.rest.entities;
+package de.spraener.nxtgen.cartridge.rest.entity;
 
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
 import de.spraener.nxtgen.model.Model;

@@ -212,6 +212,36 @@ ModelDSL.make {
                         stereotype 'StereotypeEnum', {
                         }
                     }
+                    mPackage {
+                      name 'transformations'
+                      mClass {
+                        name 'ResourceToEntity'
+                        xmiID '_18_5_3_40201a1_1647801768007_809669_5658'
+                          stereotype 'Transformation', {
+                              taggedValue 'requiredStereotype', 'Ressource'
+                              taggedValue 'transformedMetaType', 'MClass'
+                          }
+                      }
+                    }
+                    mPackage {
+                      name 'entities'
+                      mClass {
+                        name 'EntityGenerator'
+                        xmiID '_18_5_3_40201a1_1647803555222_92615_6078'
+                          stereotype 'CodeGenerator', {
+                              taggedValue 'generatesOn', 'MClass'
+                              taggedValue 'outputType', 'Java'
+                              taggedValue 'requiredStereotype', 'Entity'
+                              taggedValue 'outputTo', 'src-gen'
+                          }
+                      }
+                    }
+                    mClass {
+                      name 'RESTCartridge'
+                      xmiID '_18_5_3_40201a1_1647805905530_324704_6168'
+                        stereotype 'cgV19Cartridge', {
+                        }
+                    }
                   }
                 }
               }

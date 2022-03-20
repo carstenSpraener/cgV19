@@ -1,6 +1,5 @@
-package de.spraener.nxtgen.cartridge.rest.entities;
+package de.spraener.nxtgen.cartridge.rest.entity;
 
-import de.spraener.nxtgen.cartridge.rest.RESTJavaHelper;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.CodeBlock;
 import de.spraener.nxtgen.CodeGenerator;
