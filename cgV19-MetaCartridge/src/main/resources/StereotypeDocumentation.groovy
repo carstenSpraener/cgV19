@@ -8,8 +8,6 @@ import de.spraener.nxtgen.oom.model.MClass
 def cName = modelElement.name;
 MClass mClass = (MClass)getProperty("modelElement");
 
-NextGen.LOGGER.info("GroovyTemplate StereotypeGeneratoion.groovy is running");
-
 String baseClass(mClass) {
     String baseClassList = "";
     for(MAssociation assoc : mClass.getAssociations() ) {
@@ -27,16 +25,9 @@ String baseClass(mClass) {
     return baseClassList;
 }
 
-void listProperties(ModelElement me ) {
-    NextGen.LOGGER.info("      >>>>>> Properties of Element "+me.getName());
-    for( String name : me.getProperties().keySet() ) {
-        NextGen.LOGGER.info("              >>>>>> Property "+name+"= '"+me.getProperty(name)+"'");
-    }
-}
 String documentation(ModelElement mElement) {
     String doc = mElement.getProperty('documentation');
     if( null == doc ) {
-        listProperties(mElement);
         doc = "There is no documentation yet."
     }
     return doc;
