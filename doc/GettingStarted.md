@@ -33,7 +33,7 @@ gradle publish
 ```
 
 Now everything you need is set up. The required artifacts are now
-in a local maven repository directors _rep_ under the cgV19 projec
+in a local maven repository directors _repo_ under the cgV19 projec
 directory.
 
 __Attention__
@@ -198,6 +198,52 @@ I think you can emagine.
 Now you can use the generated Person-Class inside your code.
 
 # Some notices for real projects
+
+This is a very very tiny usage of a model driven development stragegie
+and it is definitivle not worth the overhead. But in real projects
+when the complexity is growing you will benefit from the leel of 
+abstraction that MDD can reach.
+
+## Defining OOM-Files
+The creation of the oom-File by hand is also not very handy. If your
+IDE supports groovy-script you will have some kind of syntax highlighting.
+
+But i prefere the use of a UML-Modeling tool like MagicDraw and 
+install the MDPlugin there. That will give you the power of describing
+your model in UML. And that model will (no MUST) be synchron with your
+code. On the long run this will give you a high quality and trustable
+documentation.
+
+## What to model and what not to model
+
+Well... that's a good question and a kind of taste. I feel nothing
+bad in reading an __if__ statement. But 20 if statements cand be
+hard to understand. If you have such complex situations it's maybe
+better to define a activity diagram and abstract to sub activities.
+
+Also the model is and abstraction and that is an absolut MUST! It 
+does not make sense to model all decisions and let the code be 
+100% generated. That will lead to a model that is hard tu understand
+and not debugable.
+
+To find the right way is a question of experience. 
+
+## The Generatror Gap Pattern
+
+With cgV19 you could definitfle write Cartridges that mix hand 
+writte (manifested) code and generated Code in one file. But i 
+prefere a strict seperation of files that are generated and files
+taht are manifested.
+
+That can easily be achieved with the use of the 
+__Generator Gap Pattern__. This means you devide a class into two
+classes. An abstract 100% generated _*Base_ Class and a manifested
+_*Impl_ class that extends the base class. In that way you can put
+the Base-classes into the java-gen directory and generate the 
+templates for the *Impl-Classes into the java directory. 
+
+But what could the generator do to not override classes that are 
+in the java directory and you enhancced them by hand?
 
 ## Protecting from regeneration
 Sometimes your generated code is just a template, that the developer
