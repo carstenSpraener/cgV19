@@ -210,7 +210,11 @@ IDE supports groovy-script you will have some kind of syntax highlighting.
 
 But i prefere the use of a UML-Modeling tool like MagicDraw and 
 install the MDPlugin there. That will give you the power of describing
-your model in UML. And that model will (no MUST) be synchron with your
+your model in UML. 
+
+![Example of an UML-Model for a simple data model](../restDemo/doc/img/class__model__DataModel.png)
+
+And that model will (no MUST) be synchron with your
 code. On the long run this will give you a high quality and trustable
 documentation.
 
