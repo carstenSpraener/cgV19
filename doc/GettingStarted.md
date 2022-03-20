@@ -104,9 +104,15 @@ But for now we will use an ordinary file. So insert the following line to the ``
 cgV19 {
     model = './src/main/helloWorld.oom'
 }
+ 
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn generate
+}
 ```
 
-This tells the cgV19-Plugin that your model is described in the given file.
+This tells the cgV19-Plugin that your model is described in the given file. The second block is to
+tell gradle, that all compile task depending on the generate task. So the generate will be executed
+before generation starts.
 
 Now you have to tell what cartridges you want to use. This is done via the dependencies block of the
 build.gradle file. The cgV19-Plugin defines a new dependency-group __cartridge__. Add all required
