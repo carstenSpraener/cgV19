@@ -18,7 +18,7 @@ public class MActivity extends ModelElementImpl {
         setName(meActivity.getName());
         setXmiID(meActivity.getProperty("id"));
         OOModelRepository.getInstance().put(this.getXmiID(),  this);
-
+        this.setStereotypes(meActivity.getStereotypes());
         this.controlFlows = ((ModelElementImpl)meActivity).filterChilds( child -> {
             return child.getMetaType().equals("mControlFlow");
         }).map(meCF-> {
