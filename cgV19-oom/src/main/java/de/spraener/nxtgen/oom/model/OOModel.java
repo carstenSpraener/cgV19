@@ -55,9 +55,9 @@ public class OOModel extends ModelImpl {
     }
 
     private MPackage findPackageByName(String pkgName) {
-        MPackage resultPkg = (MPackage)this.getChilds().stream()
+        MPackage resultPkg = (MPackage)this.getModelElements().stream()
                 .filter(me -> me instanceof MPackage )
-                .filter(pkg -> pkg.getName().equals(pkgName))
+                .filter(pkg -> ((MPackage) pkg).getFQName().equals(pkgName))
                 .findFirst()
                 .orElse(null);
         if(resultPkg==null) {

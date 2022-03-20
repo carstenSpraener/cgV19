@@ -18,7 +18,7 @@ public class MPackage extends ModelElementImpl {
         if( me.getParent()!=null ) {
             setName(me.getParent().getName() + "." + me.getName());
         }
-
+        setStereotypes(me.getStereotypes());
         List<MClass> classes = ((ModelElementImpl)me).filterChilds( child -> {
             return child.getMetaType().equals("mClass");
         }).map( child -> {
