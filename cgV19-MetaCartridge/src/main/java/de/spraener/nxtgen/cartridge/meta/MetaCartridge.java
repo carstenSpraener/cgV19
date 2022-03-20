@@ -12,6 +12,12 @@ public class MetaCartridge implements Cartridge {
     public static final String STEREOTYPE_NAME="Stereotype";
     public static final String STEREOTYPE_MODEL_ROOT="ModelRoot";
     public static final String STEREOTYPE_ENUM="StereotypeEnum";
+    public static final String STEREOTYPE_CODE_GENERATOR = "CodeGenerator";
+    public static final String STEREOTYPE_TRANSFORMATION = "Transformation";
+    public static final String STYPE_GROOVY_SCRIPT = "GroovyScript";
+    public static final String TV_TEMPLATE_SCRIPT = "templateScript";
+    public static final String TV_SCRIPT_FILE = "scriptFile";
+    public static final String TV_GENERATOR_CLASS = "generatorClass";
 
     @Override
     public String getName() {
@@ -23,6 +29,7 @@ public class MetaCartridge implements Cartridge {
         List<Transformation> result = new ArrayList<>();
         result.add(new AddStereotypeToMClassTransformantion());
         result.add(new RemoveModelRootPackage());
+        result.add(new EnsureGeneratorDefinitionsTransformation());
         return result;
     }
 
@@ -35,6 +42,16 @@ public class MetaCartridge implements Cartridge {
             }
             if( me instanceof MClass && ((MClass) me).hasStereotype(STEREOTYPE_ENUM) ) {
                 result.add(CodeGeneratorMapping.create(me, new StereotypeEnumGenerator()));
+            }
+            if( me instanceof MClass && ((MClass)me).hasStereotype(STEREOTYPE_TRANSFORMATION) ) {
+                result.add(CodeGeneratorMapping.create(me ,new TransformationBaseGenerator()));
+                result.add(CodeGeneratorMapping.create(me ,new TransformationGenerator()));
+            }
+            if( me instanceof MClass && ((MClass)me).hasStereotype(STEREOTYPE_CODE_GENERATOR) ) {
+                result.add(CodeGeneratorMapping.create(me ,new CodeGeneratorGenerator()));
+            }
+            if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_GROOVY_SCRIPT) ) {
+                result.add(CodeGeneratorMapping.create(me, new GroovyScriptGenerator()));
             }
         }
         return result;
