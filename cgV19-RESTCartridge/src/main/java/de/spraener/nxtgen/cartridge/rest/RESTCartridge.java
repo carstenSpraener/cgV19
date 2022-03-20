@@ -62,7 +62,7 @@ public class RESTCartridge implements Cartridge {
             } else if( isRepository(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new RepositoryGenerator()));
                 result.add(CodeGeneratorMapping.create(me, new PhpRepositoryGenerator()));
-            } else if( hasStereotype(RESTStereotypes.CONTROLLER.getName(), me) ) {
+            } else if( hasStereotype(RESTStereotypes.RESTCONTROLLER.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new ControllerGenerator()));
                 result.add(CodeGeneratorMapping.create(me, new PhpControllerBaseGenerator()));
                 result.add(CodeGeneratorMapping.create(me, new PhpControllerGenerator()));
@@ -80,7 +80,7 @@ public class RESTCartridge implements Cartridge {
     }
 
     private boolean isSprintBootApplication(ModelElement me) {
-        return StereotypeHelper.hasStereotye(me, RESTStereotypes.SPRING_BOOT_APP.getName());
+        return StereotypeHelper.hasStereotye(me, RESTStereotypes.SPRINGBOOTAPP.getName());
     }
 
     private boolean isLogic(ModelElement me) {

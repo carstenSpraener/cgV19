@@ -7,15 +7,13 @@ import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID
-
 
 def toLogicName(me) {
     return me.name.replace("Controller", "Logic");
 }
 
 def getDataType(me) {
-    def fqName= me.getTaggedValue(RESTStereotypes.CONTROLLER.name, "dataType");
+    def fqName= me.getTaggedValue(RESTStereotypes.RESTCONTROLLER.name, "dataType");
     return fqName.substring(fqName.lastIndexOf('.')+1);
 }
 

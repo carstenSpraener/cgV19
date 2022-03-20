@@ -23,7 +23,7 @@ public class ResourceToContoller implements Transformation {
 
     public MClass create(MClass mClass) {
         MClass cntrl = mClass.getPackage().createMClass(mClass.getName()+"ControllerBase");
-        Stereotype stType = new StereotypeImpl(RESTStereotypes.CONTROLLER.getName());
+        Stereotype stType = new StereotypeImpl(RESTStereotypes.RESTCONTROLLER.getName());
         cntrl.getStereotypes().add(stType);
         stType.setTaggedValue("dataType", mClass.getFQName());
         for(MOperation op : mClass.getOperations() ) {

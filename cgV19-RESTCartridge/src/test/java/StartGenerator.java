@@ -5,6 +5,6 @@ public class StartGenerator {
 
     @Test
     public void testRestModel() {
-        NextGen.main(new String[]{"../restDemo/restDemo.oom"});
+        NextGen.main(new String[]{"./DSL.oom"});
     }
 }

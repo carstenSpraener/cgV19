@@ -2,7 +2,7 @@ import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 
 def getDataType(me) {
-    def fqName= me.getTaggedValue(RESTStereotypes.CONTROLLER.name, "dataType");
+    def fqName= me.getTaggedValue(RESTStereotypes.RESTCONTROLLER.name, "dataType");
     return fqName.substring(fqName.lastIndexOf('.')+1);
 }
 

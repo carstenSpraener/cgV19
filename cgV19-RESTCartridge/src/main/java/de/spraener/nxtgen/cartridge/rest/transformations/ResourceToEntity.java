@@ -140,7 +140,7 @@ public class ResourceToEntity implements Transformation {
 
     private ModelElement createLinkRelation(MAttribute attr) {
         ModelElement e = new ModelElementImpl();
-        Stereotype st = new StereotypeImpl(RESTStereotypes.RSRC_LINK.getName());
+        Stereotype st = new StereotypeImpl(RESTStereotypes.RSRCLINK.getName());
         e.getStereotypes().add(st);
         st.setTaggedValue("target", attr.getType());
         st.setTaggedValue("cardinality", attr.isToN() ? "*" : "1");

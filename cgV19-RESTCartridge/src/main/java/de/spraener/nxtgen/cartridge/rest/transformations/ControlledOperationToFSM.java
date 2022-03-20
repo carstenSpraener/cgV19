@@ -20,7 +20,7 @@ public class ControlledOperationToFSM implements Transformation {
         MClass c = (MClass) element;
         if( c.getActivities()!=null) {
             for (MActivity activity : c.getActivities()) {
-                if( StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLED_OPERATION.getName())) {
+                if( StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLEDOPERATION.getName())) {
                     createFinalStateMachine(activity);
                 }
             }
@@ -34,7 +34,7 @@ public class ControlledOperationToFSM implements Transformation {
         MClass fsmClass = pkg.createMClass(mClass.getName() + firstToUpperCaser(activity.getName()));
         fsmClass.addStereotypes(new StereotypeImpl(RESTStereotypes.IMPL.getName()));
         fsmHelper.setFSMClass(fsmClass);
-        Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLED_OPERATION.getName());
+        Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLEDOPERATION.getName());
         fsmClass.addStereotypes(sType);
         for (MActivityAction action : activity.getActions()) {
             addOperation(fsmHelper, action);
@@ -46,7 +46,7 @@ public class ControlledOperationToFSM implements Transformation {
         MOperation op = fsmClass.createOperation(action.getName());
         op.setName(action.getName());
         MParameter p = op.createParameter("context", "java.util.Map<String,String>");
-        Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLED_OPERATION_NODE.getName());
+        Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLEDOPERATIONNODE.getName());
         StringBuffer annotations = new StringBuffer();
         for (ModelElement outgoing : fsmHelper.findOutgoings(action)) {
             String targetName = outgoing.getProperty("target");
