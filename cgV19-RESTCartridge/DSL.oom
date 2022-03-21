@@ -217,8 +217,59 @@ ModelDSL.make {
                       mClass {
                         name 'ResourceToEntity'
                         xmiID '_18_5_3_40201a1_1647801768007_809669_5658'
+                          documentation 'Creates an Entity for each resource so that it\ncan be stored in the database'
                           stereotype 'Transformation', {
                               taggedValue 'requiredStereotype', 'Ressource'
+                              taggedValue 'transformedMetaType', 'MClass'
+                              taggedValue 'priority', '4'
+                          }
+                      }
+                      mClass {
+                        name 'ResourceToContoller'
+                        xmiID '_18_5_3_40201a1_1647821903317_271525_6496'
+                          documentation 'Creates an Controller-Class for each resource. The Controller has CRUD-Operations in POST, PUT, GET and DELETE requests and a META-INF resource to request informations about the underlying data class. That is needed for an generic frontend.\n'
+                          stereotype 'Transformation', {
+                              taggedValue 'requiredStereotype', 'Ressource'
+                              taggedValue 'transformedMetaType', 'MClass'
+                              taggedValue 'priority', '1'
+                          }
+                      }
+                      mClass {
+                        name 'ControlledOperationToFSM'
+                        xmiID '_18_5_3_40201a1_1647821982601_931103_6528'
+                          documentation 'Creates an FSM (Final State Machine) for each\nActivity with "ControlledOperation" Stereotype.\n\nThe FSM is needed to implement the Activity-Diagram'
+                          stereotype 'Transformation', {
+                              taggedValue 'transformedMetaType', 'MActivity'
+                              taggedValue 'requiredStereotype', 'ControlledOperation'
+                              taggedValue 'priority', '2'
+                          }
+                      }
+                      mClass {
+                        name 'ResourceToLogic'
+                        xmiID '_18_5_3_40201a1_1647822144496_131440_6564'
+                          documentation 'Creates a  __logic__ class for each resource. The logic implements code conversion or other stuff that\nshould not be placed in the controller.\n\nThe controller will get an instance of logic injected on creation.\n'
+                          stereotype 'Transformation', {
+                              taggedValue 'requiredStereotype', 'Ressource'
+                              taggedValue 'transformedMetaType', 'MClass'
+                              taggedValue 'priority', '3'
+                          }
+                      }
+                      mClass {
+                        name 'ResourceToTSType'
+                        xmiID '_18_5_3_40201a1_1647822199911_267047_6596'
+                          documentation 'Creates a TypeSctipt Type for every Resource so \nit can be handled in an angualr frontend.'
+                          stereotype 'Transformation', {
+                              taggedValue 'requiredStereotype', 'Ressource'
+                              taggedValue 'transformedMetaType', 'MClass'
+                              taggedValue 'priority', '5'
+                          }
+                      }
+                      mClass {
+                        name 'EnsureEntityDefeinitionsTransformation'
+                        xmiID '_18_5_3_40201a1_1647890280045_591070_6718'
+                          documentation 'This transformation should run at the very last and ensures that all entities in the model will\nhave all necessary definitions.'
+                          stereotype 'Transformation', {
+                              taggedValue 'requiredStereotype', 'Entity'
                               taggedValue 'transformedMetaType', 'MClass'
                           }
                       }
@@ -243,6 +294,26 @@ ModelDSL.make {
                               taggedValue 'outputTo', 'src'
                               taggedValue 'outputType', 'PHP'
                               taggedValue 'requiredStereotype', 'Entity'
+                          }
+                      }
+                      mClass {
+                        name 'PhpRepositoryGenerator'
+                        xmiID '_18_5_3_40201a1_1647820383851_515354_6373'
+                          stereotype 'CodeGenerator', {
+                              taggedValue 'generatesOn', 'MClass'
+                              taggedValue 'outputTo', 'src-gen'
+                              taggedValue 'outputType', 'PHP'
+                              taggedValue 'requiredStereotype', 'Repository'
+                          }
+                      }
+                      mClass {
+                        name 'RepositoryGenerator'
+                        xmiID '_18_5_3_40201a1_1647821630991_84058_6460'
+                          stereotype 'CodeGenerator', {
+                              taggedValue 'generatesOn', 'MClass'
+                              taggedValue 'outputTo', 'src-gen'
+                              taggedValue 'outputType', 'Java'
+                              taggedValue 'requiredStereotype', 'Repository'
                           }
                       }
                     }
@@ -284,6 +355,42 @@ ModelDSL.make {
                               taggedValue 'requiredStereotype', 'PhpControllerGenerator'
                           }
                       }
+                    }
+                    mPackage {
+                      name 'angular'
+                      mClass {
+                        name 'TSTypeGenerator'
+                        xmiID '_18_5_3_40201a1_1647821258995_26719_6422'
+                          stereotype 'CodeGenerator', {
+                              taggedValue 'generatesOn', 'MClass'
+                              taggedValue 'outputTo', 'other'
+                              taggedValue 'outputType', 'TypeScript'
+                              taggedValue 'requiredStereotype', 'TSType'
+                              taggedValue 'templateScript', '/ts/TSType.groovy'
+                          }
+                      }
+                    }
+                    mClass {
+                      name 'PoJoGenerator'
+                      xmiID '_18_5_3_40201a1_1647822606538_954345_6628'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'outputTo', 'src'
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'requiredStereotype', 'Impl'
+                            taggedValue 'templateScript', '/PoJoTemplate.groovy'
+                        }
+                    }
+                    mClass {
+                      name 'SpringBootAppGenerator'
+                      xmiID '_18_5_3_40201a1_1647826373077_552540_6666'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'outputTo', 'src'
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'requiredStereotype', 'SpringBootApp'
+                            taggedValue 'templateScript', '/SpringBootApp.groovy'
+                        }
                     }
                   }
                 }
