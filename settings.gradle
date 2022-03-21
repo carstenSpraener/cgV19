@@ -6,11 +6,11 @@ include ':cgV19-oom'
 include ':cgV19-pojo'
 // this module is only compilable if you have MagicDraw available.
 //include ':cgV19-MDPlugin'
-// MetaCatridge is under construction
+// MetaCatridge for generating generators
 include ':cgV19-MetaCartridge'
-include ':cgV19-RESTCartridge'
+//include ':cgV19-RESTCartridge'
 
 // These project need a cgV19 installation, so you can only
 // include them after running gradle publish without these projects.
-include ':restDemo'
+//include ':restDemo'
 //include ':cgV19-helloWorld'
