@@ -17,6 +17,7 @@ public class CartridgeGeneratorHelper {
                 .collect(Collectors.toSet());
         List<MClass> result = new ArrayList<>();
         result.addAll(set);
+        Collections.sort(result, (a,b) -> readTransformationsPriority(a) - readTransformationsPriority(b));
         return result;
     }
 
@@ -41,5 +42,10 @@ public class CartridgeGeneratorHelper {
 
     private static String getRequiredStereotype(MClass codeGenerator) {
         return codeGenerator.getTaggedValue(MetaCartridge.STEREOTYPE_CODE_GENERATOR, MetaCartridge.TV_REQUIRED_STEREOTYPE);
+    }
+
+    public static int readTransformationsPriority(MClass transformationMClass ) {
+        String priority = transformationMClass.getTaggedValue(MetaCartridge.STEREOTYPE_TRANSFORMATION, MetaCartridge.TV_PRIORITY);
+        return Integer.parseInt(priority);
     }
 }

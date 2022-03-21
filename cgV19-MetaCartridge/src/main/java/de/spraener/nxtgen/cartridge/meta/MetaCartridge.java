@@ -3,6 +3,7 @@ package de.spraener.nxtgen.cartridge.meta;
 import de.spraener.nxtgen.*;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.oom.model.MClass;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class MetaCartridge implements Cartridge {
     public static final String TV_REQUIRED_STEREOTYPE = "requiredStereotype";
     public static final String STYPE_CGV19CARTRIDGE = "cgV19Cartridge";
     public static final String STYPE_CGV19CARTRIDGE_BASE = "cgV19CartridgeBase";
+    public static final String TV_PRIORITY = "priority";
+    public static final String STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION = "cgV19CartridgeServiceDefinition";
+    public static final String TV_CARTRIDGE_CLASS = "cartridgeClass";
 
     @Override
     public String getName() {
@@ -33,7 +37,9 @@ public class MetaCartridge implements Cartridge {
         result.add(new AddStereotypeToMClassTransformantion());
         result.add(new RemoveModelRootPackage());
         result.add(new EnsureGeneratorDefinitionsTransformation());
+        result.add(new EnsureTransformationDefinitionsTransformation());
         result.add(new CartridgeBaseForCartridgeTransformation());
+        result.add(new CartridgeServicesLocatorTransformation());
         return result;
     }
 
@@ -59,6 +65,9 @@ public class MetaCartridge implements Cartridge {
             }
             if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_CGV19CARTRIDGE_BASE) ) {
                 result.add(CodeGeneratorMapping.create(me, new CartridgeBaseGenerator()));
+            }
+            if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION) ) {
+                result.add(CodeGeneratorMapping.create(me, new CartridgeServiceLocaterGenerator()));
             }
         }
         return result;

@@ -23,7 +23,7 @@ package ${mClass.getPackage().getFQName()};
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 
-public abstract class ${mClass.getName()} extends ${mClass.getName()}Base {
+public class ${mClass.getName()} extends ${mClass.getName()}Base {
 
     @Override
     public void doTransformationIntern(${metaType} me) {
