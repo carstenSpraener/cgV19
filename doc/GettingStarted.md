@@ -24,27 +24,43 @@ git clone https://github.com/carstenSpraener/cgV19.git
 
 This will create a copy of the project in your workspace.
 
-Next step is to build all these modules. For that change into the oom, pojo and
-gradle Module and call `gradle jar`.
+Next step is to build all these modules. But in the moment you will have
+a chicken egg problem. Thus is because the the project cgV19-RESTCartridge depends
+on cgV19-MetaCartridge to be generated. And this project is not available in the
+moment. (Yes i know. This must  be solved and is part of the next git branch) 
 
-```
+To solve the problem the settings.gradle that comes with the cloning of cgV19 has 
+the project commented out. So they are not part of the first build.
+
+Now let's start the firt build. Go into the cgV19 directory and type
+
+```bash
 cd cgV19
 gradle publish
 ```
 
+Now you have the core project core, oom and MetaCartridge published. Next you can
+build the REST-Cartridge. Open the settings.gradle with your text editor and 
+remove the slashes before cgV19-RESTCartridge. Than again start
+
+```bash
+gradle publish
+```
+
+You will have the RESTCartridge available and can now start for the last step. 
+Remove the slashes before restDemo and run the command
+
+```bash
+gradle :restDemo:run
+```
+
+This will generate and start a while spring boot application. Test the url
+[My first generated SpringBoot application](http://localhost:8080/users/ping)
+It should response with a simple __Pong__
+
 Now everything you need is set up. The required artifacts are now
 in a local maven repository directors _repo_ under the cgV19 projec
 directory.
-
-__Attention__
-This compiles all the modules in cgV19 except the cgV19-helloWorld and the restDemo project. This projects
-are not included in the settings.gradle of the root project. This is because they have a chicken egg problem.
-They need the cgV19-gradle plugin but that is what need to be published first. So after you publihed all other
-cgV19 modules you can now uncomment the two projects and do a second turn:
-
-```
-gradle jar
-```
 
 ## Setup the basic gradle porject
 
@@ -101,10 +117,14 @@ URL like http://localhost:7000/<root-package-name> to diretcly build from a Magi
 But for now we will use an ordinary file. So insert the following line to the ```build.gradle```:
 
 ```groovy
+// Tell cgV19 where it can find the oom-Model. 
+// Note: If you have MagicDraw up and running and installed the cgV19-MDPlugin in MagicDraw than you 
+// can use a url like http://localhost:7000/<FQ_NAME_OF_YOUR_MODEL_ROOT_PACKAGE>
+// for example http://localhost:7000/de.spreaner.nxtgen.hello.world
 cgV19 {
     model = './src/main/helloWorld.oom'
 }
- 
+// Tell gradle that a compile task needs a generation first
 tasks.withType(JavaCompile) {
     compileTask -> compileTask.dependsOn generate
 }
