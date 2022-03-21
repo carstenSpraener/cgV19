@@ -2,6 +2,7 @@ package de.spraener.nxtgen.model.impl;
 
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Stereotype;
 
 import java.beans.Transient;
 import java.util.HashMap;
@@ -33,11 +34,12 @@ public class ModelElementImpl extends ModelElementImplBase {
     }
 
     public String getTaggedValue( String stereotypeName, String valueName) {
-        return getStereotypes().stream()
-                .filter(st -> st.getName().equals(stereotypeName))
-                .map(st -> st.getTaggedValue(valueName))
-                .findFirst()
-                .orElse(null);
+        Stereotype sType =  getStereotypes().stream()
+                .filter(st -> st.getName().equals(stereotypeName)).findFirst().orElse(null);
+        if( sType == null ) {
+            return null;
+        }
+        return sType.getTaggedValue(valueName);
     }
 
     @Override

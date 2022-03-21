@@ -13,7 +13,7 @@ import de.spraener.nxtgen.oom.model.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ResourceToEntity implements Transformation {
+public class ResourceToEntity extends ResourceToEntityBase {
     private static final Set<String> TABLENAME_KEYWORDS = new HashSet<>();
 
     static {
@@ -62,13 +62,7 @@ public class ResourceToEntity implements Transformation {
     }
 
     @Override
-    public void doTransformation(ModelElement element) {
-        if( !(element instanceof MClass) ) {
-            return;
-        }
-        if( !((MClass) element).hasStereotype(RESTStereotypes.RESSOURCE.getName()) ) {
-            return;
-        }
+    public void doTransformationIntern(MClass element) {
         create((MClass)element);
     }
 

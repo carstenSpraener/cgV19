@@ -12,11 +12,11 @@ import de.spraener.nxtgen.cartridge.rest.cntrl.ControllerGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.LogicGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.PhpControllerBaseGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.PhpControllerGenerator;
-import de.spraener.nxtgen.cartridge.rest.entities.DDLGenerator;
-import de.spraener.nxtgen.cartridge.rest.entities.EntityGenerator;
-import de.spraener.nxtgen.cartridge.rest.entities.PhpEntityGenerator;
-import de.spraener.nxtgen.cartridge.rest.entities.RepositoryGenerator;
-import de.spraener.nxtgen.cartridge.rest.entities.PhpRepositoryGenerator;
+import de.spraener.nxtgen.cartridge.rest.entity.DDLGenerator;
+import de.spraener.nxtgen.cartridge.rest.entity.EntityGenerator;
+import de.spraener.nxtgen.cartridge.rest.entity.PhpEntityGenerator;
+import de.spraener.nxtgen.cartridge.rest.entity.RepositoryGenerator;
+import de.spraener.nxtgen.cartridge.rest.entity.PhpRepositoryGenerator;
 import de.spraener.nxtgen.cartridge.rest.transformations.*;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
@@ -27,23 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class RESTCartridge implements Cartridge {
+public class RESTCartridge extends  RESTCartridgeBase {
     @Override
     public String getName() {
         return "REST-Cartridge";
-    }
-
-    @Override
-    public List<Transformation> getTransformations() {
-        ArrayList<Transformation> result = new ArrayList<>();
-        result.add(new ResourceToContoller());
-        result.add(new ControlledOperationToFSM());
-        result.add(new ResourceToLogic());
-        result.add(new ResourceToEntity());
-        result.add(new ResourceToTSType());
-        // result.add(new EntityToDDL());
-
-        return result;
     }
 
     @Override
@@ -52,7 +39,6 @@ public class RESTCartridge implements Cartridge {
         for( ModelElement me : model.getModelElements() ) {
             NextGen.LOGGER.info("handling model element "+me.getName());
             if( isEntity(me) ) {
-                ResourceToEntity.ensureEntityDefinition((MClass) me);
                 result.add(CodeGeneratorMapping.create(me, new EntityGenerator()));
                 result.add(CodeGeneratorMapping.create(me, new PhpEntityGenerator()));
             } else if( isDDL(me) ) {

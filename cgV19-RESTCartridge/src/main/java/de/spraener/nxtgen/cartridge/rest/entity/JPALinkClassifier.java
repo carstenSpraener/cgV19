@@ -1,4 +1,4 @@
-package de.spraener.nxtgen.cartridge.rest.entities;
+package de.spraener.nxtgen.cartridge.rest.entity;
 
 public enum JPALinkClassifier {
     MANY_TO_MANY("@ManyToMany"),

@@ -4,3 +4,5 @@ gradle
 build
 out
 src/main/java-gen
+doc/stereotypes
+src/main/resources/META-INF/services/*

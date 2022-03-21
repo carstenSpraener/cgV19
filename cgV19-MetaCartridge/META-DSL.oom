@@ -1,0 +1,317 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+
+        mPackage {
+          name 'META-DSL'
+          stereotype 'ModelRoot', {
+          }
+          mClass {
+            name 'StereotypeEnum'
+            xmiID '_18_5_3_40201a1_1647716909938_135666_5403'
+              documentation 'A class marked with this stereotype will hold a constant for all your Stereotype in the root of your DSL-Model.'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647716930658_827459_5409'
+                opositeAttribute 'extension_StereotypeHelper'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Class'
+                name 'base_Class'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'ModelRoot'
+            xmiID '_18_5_3_40201a1_1647733567771_692894_5418'
+              documentation 'A Package marked with this stereotype, tells the\ngenerator, that this is the root of a namespace.'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647733585773_847212_5424'
+                opositeAttribute 'extension_ModelRoot'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Package'
+                name 'base_Package'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mClass {
+            name 'Transformation'
+            xmiID '_18_5_3_40201a1_1647801809432_97843_5684'
+              documentation 'A Transformation runs on an input Model M and enhances this model to a M\'.\n\nTransformations can act an any kind of model\nelements. But mostly they do transformations on\na special kind of model elements. \n\nYou can specify this elements with the tagged\nvalues metaType and requiredStereotype. The generated code will run only on model elements\nthat matches this criteria.'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647801821265_929651_5690'
+                opositeAttribute 'extension_Transformation'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Classifier'
+                name 'base_Classifier'
+                multiplicity ''
+                composite 'false'
+            }
+            mAttribute {
+                name 'transformedMetaType'
+                documentation 'if specified this transformation will only run on\nmodel elements of this type. The metaType can\nbe one of the enumeration literals in MetaTypes.\n\nIf you do not specify this value, there will\nbe no filtering on meta type at all.\n'
+                type 'META-DSL.MetaTypes'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'requiredStereotype'
+                documentation 'The transformation will only run on model \nelements with the stereotype set.\n\nThis could be any kind of model element. If you\nneed a special meta model type, you can combine\nthis value with the transformationMetaType value. '
+                type 'String'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'priority'
+                documentation 'The executiopn of all Transformations in a cartridge is ordered by this priority. \n\nif it is not defined it will be Integer.MAX_VALUE'
+                type 'Integer'
+                visibility 'private'
+            }
+          }
+          mClass {
+            name 'CodeGenerator'
+            xmiID '_18_5_3_40201a1_1647802194815_854431_5923'
+              documentation 'This Stereotype marks classes that are used \nto generate code.\n\nThe marked class will be generated as a CodeGenerator and added to the cartridges \ncodeBlockMapping.\n\nIf you specify a outputType like Java, PHP or DOC, the generated code will set the appropriate output file strategy. If you do not specify the value you have to set the strategy on you own.'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647802310339_518705_5940'
+                opositeAttribute 'extension_CodeGenerator'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Classifier'
+                name 'base_Classifier'
+                multiplicity ''
+                composite 'false'
+            }
+            mAttribute {
+                name 'generatesOn'
+                documentation 'Specifies the Stereotype that this generator is responsible for.\n\nIf you do not specify a value, the generator will never be called.'
+                type 'META-DSL.MetaTypes'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'outputType'
+                documentation 'The kind of output. It can be Java, PHP, TypeScript\nDOC or other.\nIch you specify other, you have to provide a \nOutputFileStrategy by yourself.'
+                type 'META-DSL.OutputTypeEnum'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'requiredStereotype'
+                documentation 'The name of the Stereotype that this generator\nwill act on.\n'
+                type 'String'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'outputTo'
+                documentation 'Defines if the code should be generated to src ore src-gen or any other directory.\n\nIf you choose src or src-gen the real output depends on the outputType (Java, PHP, DOC etc)'
+                type 'META-DSL.OutputToEnum'
+                visibility 'private'
+            }
+            mAttribute {
+                name 'templateScript'
+                documentation 'Gives the name of the underlying Groovy Script\nfor generation. \nIf not specified, the Script will be generated in a Groovy-Script that names as the class name. '
+                visibility 'private'
+            }
+          }
+          mClass {
+            name 'GroovyTemplate'
+            xmiID '_18_5_3_40201a1_1647802278549_596786_5929'
+              documentation 'A property marked with this stereotype inside of \na CodeGenerator defines the Groovy Script, that is used by the containing CodeGenerator.\n\nThe meta cartridge will generate a GroovyTemplate as a template for implementation. If you specified the outputType, the generated groovy script could be enhanced.'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647802300946_58265_5935'
+                opositeAttribute 'extension_GroovyTemplate'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Property'
+                name 'base_Property'
+                multiplicity ''
+                composite 'false'
+            }
+            mAttribute {
+                name 'filePathURI'
+                documentation 'Defines where the groovy script will be. The path is relativ to the resources-Directory.'
+                type 'String'
+                visibility 'private'
+            }
+          }
+          mClass {
+            name 'cgV19Cartridge'
+            xmiID '_18_5_3_40201a1_1647805881307_480560_6156'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647805903033_246555_6162'
+                opositeAttribute 'extension_cgV19Cartridge'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Class'
+                name 'base_Class'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+          mPackage {
+            name 'de'
+            mPackage {
+              name 'spraener'
+              mPackage {
+                name 'nxtgen'
+                mPackage {
+                  name 'cartridge'
+                  mPackage {
+                    name 'meta'
+                    mClass {
+                      name 'AddStereotypeToMClassTransformantion'
+                      xmiID '_18_5_3_40201a1_1647893513351_749251_6839'
+                        stereotype 'Transformation', {
+                            taggedValue 'transformedMetaType', 'MClass'
+                            taggedValue 'priority', '1'
+                        }
+                    }
+                    mClass {
+                      name 'RemoveModelRootPackage'
+                      xmiID '_18_5_3_40201a1_1647893521891_249357_6867'
+                        stereotype 'Transformation', {
+                            taggedValue 'priority', '1'
+                            taggedValue 'requiredStereotype', 'ModelRoot'
+                            taggedValue 'transformedMetaType', 'MPackage'
+                        }
+                    }
+                    mClass {
+                      name 'EnsureGeneratorDefinitionsTransformation'
+                      xmiID '_18_5_3_40201a1_1647893529974_521362_6894'
+                        stereotype 'Transformation', {
+                            taggedValue 'requiredStereotype', 'CodeGenerator'
+                            taggedValue 'transformedMetaType', 'MClass'
+                        }
+                    }
+                    mClass {
+                      name 'EnsureTransformationDefinitionsTransformation'
+                      xmiID '_18_5_3_40201a1_1647893541193_680473_6922'
+                        stereotype 'Transformation', {
+                            taggedValue 'requiredStereotype', 'Transformation'
+                            taggedValue 'transformedMetaType', 'MClass'
+                        }
+                    }
+                    mClass {
+                      name 'CartridgeBaseForCartridgeTransformation'
+                      xmiID '_18_5_3_40201a1_1647893551093_834229_6949'
+                        stereotype 'Transformation', {
+                            taggedValue 'requiredStereotype', 'cgV19Cartridge'
+                            taggedValue 'transformedMetaType', 'MClass'
+                        }
+                    }
+                    mClass {
+                      name 'CartridgeServicesLocatorTransformation'
+                      xmiID '_18_5_3_40201a1_1647893560080_44722_6976'
+                        stereotype 'Transformation', {
+                            taggedValue 'requiredStereotype', 'cgV19Cartridge'
+                            taggedValue 'transformedMetaType', 'MClass'
+                        }
+                    }
+                    mClass {
+                      name 'StereotypeDocGenerator'
+                      xmiID '_18_5_3_40201a1_1647893617937_199426_7010'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'outputType', 'MarkDown'
+                            taggedValue 'templateScript', '/StereotypeDocumentation.groovy'
+                            taggedValue 'requiredStereotype', 'Stereotype'
+                            taggedValue 'outputTo', 'other'
+                        }
+                    }
+                    mClass {
+                      name 'StereotypeEnumGenerator'
+                      xmiID '_18_5_3_40201a1_1647893631121_823686_7037'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'templateScript', '/StereotypeEnumGenerator.groovy'
+                            taggedValue 'requiredStereotype', 'StereotypeEnum'
+                            taggedValue 'outputTo', 'src-gen'
+                        }
+                    }
+                    mClass {
+                      name 'TransformationBaseGenerator'
+                      xmiID '_18_5_3_40201a1_1647893641926_30182_7064'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'templateScript', '/TransformationBase.groovy'
+                            taggedValue 'outputTo', 'src-gen'
+                            taggedValue 'requiredStereotype', 'Transformation'
+                        }
+                    }
+                    mClass {
+                      name 'TransformationGenerator'
+                      xmiID '_18_5_3_40201a1_1647893650753_613372_7091'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'outputTo', 'src'
+                            taggedValue 'requiredStereotype', 'Transformation'
+                            taggedValue 'templateScript', '/Transformation.groovy'
+                        }
+                    }
+                    mClass {
+                      name 'CodeGeneratorGenerator'
+                      xmiID '_18_5_3_40201a1_1647893658130_99744_7118'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'outputTo', 'src-gen'
+                            taggedValue 'requiredStereotype', 'CodeGenerator'
+                            taggedValue 'templateScript', '/CodeGenerator.groovy'
+                        }
+                    }
+                    mClass {
+                      name 'GroovyScriptGenerator'
+                      xmiID '_18_5_3_40201a1_1647893665828_743598_7145'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'requiredStereotype', 'GroovyScript'
+                            taggedValue 'templateScript', '/GroovyScriptTemplate.groovy'
+                            taggedValue 'outputTo', 'other'
+                        }
+                    }
+                    mClass {
+                      name 'CartridgeBaseGenerator'
+                      xmiID '_18_5_3_40201a1_1647893674363_470060_7172'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'templateScript', '/CartridgeBase.groovy'
+                            taggedValue 'requiredStereotype', 'cgV19CartridgeBase'
+                            taggedValue 'outputTo', 'src-gen'
+                        }
+                    }
+                    mClass {
+                      name 'CartridgeServiceLocaterGenerator'
+                      xmiID '_18_5_3_40201a1_1647893682351_558920_7199'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'requiredStereotype', 'cgV19CartridgeServiceDefinition'
+                            taggedValue 'outputTo', 'other'
+                        }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          mClass {
+            name 'Stereotype'
+            xmiID '_18_5_3_40201a1_1647895010932_881931_7616'
+            mAssociation {
+                assocId '_18_5_3_40201a1_1647895010933_355788_7617'
+                opositeAttribute 'extension_unnamed1'
+                opositeMultiplicity '0..1'
+                associationType 'ManyToMany'
+                type 'UML Standard Profile.UML2 Metamodel.Element'
+                name 'base_Element'
+                multiplicity ''
+                composite 'false'
+            }
+          }
+        }
+}
