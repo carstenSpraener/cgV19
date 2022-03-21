@@ -18,6 +18,9 @@ public class MetaCartridge implements Cartridge {
     public static final String TV_TEMPLATE_SCRIPT = "templateScript";
     public static final String TV_SCRIPT_FILE = "scriptFile";
     public static final String TV_GENERATOR_CLASS = "generatorClass";
+    public static final String TV_REQUIRED_STEREOTYPE = "requiredStereotype";
+    public static final String STYPE_CGV19CARTRIDGE = "cgV19Cartridge";
+    public static final String STYPE_CGV19CARTRIDGE_BASE = "cgV19CartridgeBase";
 
     @Override
     public String getName() {
@@ -30,6 +33,7 @@ public class MetaCartridge implements Cartridge {
         result.add(new AddStereotypeToMClassTransformantion());
         result.add(new RemoveModelRootPackage());
         result.add(new EnsureGeneratorDefinitionsTransformation());
+        result.add(new CartridgeBaseForCartridgeTransformation());
         return result;
     }
 
@@ -52,6 +56,9 @@ public class MetaCartridge implements Cartridge {
             }
             if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_GROOVY_SCRIPT) ) {
                 result.add(CodeGeneratorMapping.create(me, new GroovyScriptGenerator()));
+            }
+            if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_CGV19CARTRIDGE_BASE) ) {
+                result.add(CodeGeneratorMapping.create(me, new CartridgeBaseGenerator()));
             }
         }
         return result;

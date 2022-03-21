@@ -66,6 +66,12 @@ String getCodeBlockDefinition(MClass mClass, String outputType) {
         return phpCB;
 """
             break;
+        case "TypeScript":
+            return """GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("typscript", element, "${getTemplateFileName(mClass)}");
+        gcb.setToFileStrategy(new de.spraener.nxtgen.filestrategies.TypeScriptFileStrategy("angular/src/app/model", element.getName()));
+        return gcb;
+"""
+            break;
         default:
             return """#
         // TODO: Implement the creation of a CodeBlock"
