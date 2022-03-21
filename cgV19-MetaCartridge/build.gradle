@@ -1,3 +1,18 @@
+/**
+ * The generation is not part of this build file. Otherwise you would have a
+ * Chicken Egg Problem. If you want to start the generation of this project
+ * you should execute the "JUnit"-Test MetaCartridgeStartGenerator.testMetaCartridgeSelfGenerator()
+ * after you build the MetaCartridge.
+ *
+ * Please also notice that this project is (as far as i know) the only exception of the golden rule:
+ *
+ * DON'T CHECK IN GENERATED CODE
+ *
+ * This is, becouse otherwise you will not be able to build the Meta Cartridge.
+ *
+ * (If someone tells you to check in generated code ask him if he would check in .class-Files)
+ *
+ */
 plugins {
     id 'java-library'
 }

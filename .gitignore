@@ -6,3 +6,4 @@ target
 repo
 helloWorldNxtGen
 ./**/*.DS_Store
+/cgV19-MetaCartridge/src/main/resources/meta/
