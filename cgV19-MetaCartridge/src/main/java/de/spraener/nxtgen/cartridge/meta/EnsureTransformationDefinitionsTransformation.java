@@ -6,17 +6,10 @@ import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
 
-public class EnsureTransformationDefinitionsTransformation implements Transformation {
+public class EnsureTransformationDefinitionsTransformation extends EnsureTransformationDefinitionsTransformationBase {
 
     @Override
-    public void doTransformation(ModelElement element) {
-        if (!(element instanceof MClass)) {
-            return;
-        }
-        MClass mc = (MClass) element;
-        if (!mc.hasStereotype(MetaCartridge.STEREOTYPE_TRANSFORMATION)) {
-            return;
-        }
+    public void doTransformationIntern(MClass mc) {
         String priority = mc.getTaggedValue(MetaCartridge.STEREOTYPE_TRANSFORMATION, MetaCartridge.TV_PRIORITY);
         if (priority == null || "".equals(priority)) {
             priority = "" + Integer.MAX_VALUE;

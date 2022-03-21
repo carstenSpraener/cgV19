@@ -48,14 +48,18 @@ String documentTaggedValue( MAttribute attr ) {
 
 String listTagedValues( MClass mClass ) {
     String result  = "";
+
     for(MAttribute attr: mClass.getAttributes() ) {
         result += documentTaggedValue(attr);
     }
     if( "".equals(result)) {
         return "This Stereotype has no associated tagged vales.";
     }
-    return result;
+    return """| Name | Type | Documentation |
+|------|-------|----------------------------------------|
+${result}"""
 }
+
 """
 [comment]: <> (${ProtectionStrategieDefaultImpl.GENERATED_LINE})
 
@@ -68,7 +72,5 @@ This stereotype is applicable to the following UML-ELements:
 ${baseClass(mClass)}
 
 ## Associated Tagged Values
-| Name | Type | Documentation |
-|------|-------|----------------------------------------|
 ${listTagedValues(mClass)}
 """

@@ -73,8 +73,7 @@ String getCodeBlockDefinition(MClass mClass, String outputType) {
 """
             break;
         default:
-            return """#
-        // TODO: Implement the creation of a CodeBlock"
+            return """// TODO: Implement the creation of a CodeBlock"
         return null;
 """
 

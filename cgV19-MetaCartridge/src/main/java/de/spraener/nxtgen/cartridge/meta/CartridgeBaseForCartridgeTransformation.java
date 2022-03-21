@@ -7,16 +7,9 @@ import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MClassRef;
 
-public class CartridgeBaseForCartridgeTransformation implements Transformation {
+public class CartridgeBaseForCartridgeTransformation extends CartridgeBaseForCartridgeTransformationBase {
     @Override
-    public void doTransformation(ModelElement element) {
-        if( !(element instanceof MClass) ) {
-            return;
-        }
-        MClass mClass = (MClass)element;
-        if( !mClass.hasStereotype(MetaCartridge.STYPE_CGV19CARTRIDGE)) {
-            return;
-        }
+    public void doTransformationIntern(MClass mClass) {
         createBaseClass(mClass);
     }
 

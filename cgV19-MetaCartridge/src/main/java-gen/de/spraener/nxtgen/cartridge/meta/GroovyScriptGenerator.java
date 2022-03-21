@@ -11,7 +11,7 @@ import java.io.File;
 public class GroovyScriptGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
-        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("GroocyScript", element, "/GroovyScriptTemplate.groovy");
+        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("GroovyScript", element, "/GroovyScriptTemplate.groovy");
         final MClass mc = (MClass) element;
         gcb.setToFileStrategy( () -> {
             String groovyScriptName = mc.getTaggedValue(MetaCartridge.STYPE_GROOVY_SCRIPT, MetaCartridge.TV_SCRIPT_FILE);

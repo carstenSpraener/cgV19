@@ -2,11 +2,19 @@ plugins {
     id 'java-library'
 }
 
-group='de.spraener.nxtgen.cartidge'
-version='19.0.0-RC3-SNAPSHOT'
-
 repositories {
     mavenCentral()
+}
+
+sourceSets {
+    src{
+        main {
+            java {
+                srcDir('src/main/java')
+                srcDir('src/main/java-gen')
+            }
+        }
+    }
 }
 
 dependencies {

@@ -7,4 +7,14 @@ public class MetaCartridgeStartGenerator {
     public void testRESTCartridgeDSLModel() {
         NextGen.main(new String[]{"../cgV19-RESTCartridge/DSL.oom"});
     }
+
+    @Test
+    public void testMetaCartridgeSelfGenerator() {
+        NextGen.main(new String[]{"./META-DSL.oom"});
+    }
+
+    @Test
+    public void testMetaCartridgeSelfGeneratorOnline() {
+        NextGen.main(new String[]{"http://localhost:7000/META-DSL"});
+    }
 }
