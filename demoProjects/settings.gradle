@@ -1,3 +1,4 @@
-rootProject.name = 'cgV19-Cartridges'
+rootProject.name = 'cgV19-DemoProjects'
 
-include ':cgV19-RESTCartridge'
+include ':cgV19-helloWorld'
+include ':restDemo'

@@ -1,12 +1,13 @@
 buildscript {
-    project.ext.version="19.0.0-RC2"
-    project.ext.group="de.spraener.nxtgen"
     repositories {
         mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
     }
     dependencies {
-        classpath project(':cgV19-gradle')
-        classpath project(':cgV19-core');
+        classpath "${project.ext.group}:cgV19-core:${project.ext.version}"
+        classpath "${project.ext.group}:cgV19-gradle:${project.ext.version}"
     }
 }
 
@@ -19,10 +20,17 @@ apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     mavenCentral();
+    maven {
+        url="${project.rootDir}/../repo"
+    }
 }
 
 cgV19 {
     model = './src/main/helloWorld.oom'
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn generate
 }
 
 sourceSets {
@@ -37,12 +45,12 @@ sourceSets {
 }
 
 dependencies {
-    cartridge project(':cgV19-core');
-    cartridge project(':cgV19-oom');
-    cartridge project(':cgV19-pojo');
+    cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-pojo:${project.ext.version}"
 
-    implementation project(':cgV19-core');
-    implementation project(':cgV19-oom');
+    implementation "${project.ext.group}:cgV19-core:${project.ext.version}"
+    implementation "${project.ext.group}:cgV19-oom:${project.ext.version}"
     testImplementation 'junit:junit:4.13.1'
 }
 

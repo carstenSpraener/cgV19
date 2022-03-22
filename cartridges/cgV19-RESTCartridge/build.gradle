@@ -1,10 +1,13 @@
 buildscript {
     repositories {
         mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
     }
     dependencies {
-        classpath project(':cgV19-core')
-        classpath project(':cgV19-gradle')
+        classpath "${project.ext.group}:cgV19-core:${project.ext.version}"
+        classpath "${project.ext.group}:cgV19-gradle:${project.ext.version}"
     }
 }
 
@@ -12,10 +15,6 @@ plugins {
     id 'java-library'
 }
 apply plugin: 'de.spraener.nxtgen.cgV19'
-
-repositories {
-    mavenCentral()
-}
 
 sourceSets {
     src{
@@ -37,12 +36,12 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    cartridge project(':cgV19-core')
-    cartridge project(':cgV19-oom')
-    cartridge project(':cgV19-MetaCartridge')
+    cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-MetaCartridge:${project.ext.version}"
 
-    implementation project(':cgV19-core');
-    implementation project(':cgV19-oom');
+    implementation "${project.ext.group}:cgV19-core:${project.ext.version}"
+    implementation "${project.ext.group}:cgV19-oom:${project.ext.version}"
 
     testImplementation 'junit:junit:4.13.1'
 }
