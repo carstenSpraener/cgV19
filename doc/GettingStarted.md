@@ -24,29 +24,15 @@ git clone https://github.com/carstenSpraener/cgV19.git
 
 This will create a copy of the project in your workspace.
 
-<<<<<<< HEAD
+
 Next step is to build all these projects. To do that change into the directory
 core and publish all modules.
 
-=======
-Next step is to build all these modules. But in the moment you will have
-a chicken egg problem. Thus is because the the project cgV19-RESTCartridge depends
-on cgV19-MetaCartridge to be generated. And this project is not available in the
-moment. (Yes i know. This must  be solved and is part of the next git branch) 
-
-To solve the problem the settings.gradle that comes with the cloning of cgV19 has 
-the project commented out. So they are not part of the first build.
-
-Now let's start the firt build. Go into the cgV19 directory and type
-
->>>>>>> master
 ```bash
 cd cgV19
 cd core
 gradle publish
 ```
-
-<<<<<<< HEAD
 That will build all core modules and publish them to a local repository in the directory
 cV19/repo. Now that the core is published you can build the cartridges. They depend on the
 core so you had ti build the core fist. Do the following:
@@ -70,29 +56,6 @@ If that answers with a __Pong__ you are up and running.
 
 Now everything you need is set up. The required artifacts are now
 in a local maven repository directory _repo_ under the cgV19 project
-=======
-Now you have the core project core, oom and MetaCartridge published. Next you can
-build the REST-Cartridge. Open the settings.gradle with your text editor and 
-remove the slashes before cgV19-RESTCartridge. Than again start
-
-```bash
-gradle publish
-```
-
-You will have the RESTCartridge available and can now start for the last step. 
-Remove the slashes before restDemo and run the command
-
-```bash
-gradle :restDemo:run
-```
-
-This will generate and start a while spring boot application. Test the url
-[My first generated SpringBoot application](http://localhost:8080/users/ping)
-It should response with a simple __Pong__
-
-Now everything you need is set up. The required artifacts are now
-in a local maven repository directors _repo_ under the cgV19 projec
->>>>>>> master
 directory.
 
 ## Setup the basic gradle porject
