@@ -1,0 +1,10 @@
+rootProject.name = 'cgV19-Generator'
+
+include ':cgV19-core'
+include ':cgV19-gradle'
+include ':cgV19-oom'
+include ':cgV19-pojo'
+// this module is only compilable if you have MagicDraw available.
+//include ':cgV19-MDPlugin'
+// MetaCatridge is under construction
+include ':cgV19-MetaCartridge'

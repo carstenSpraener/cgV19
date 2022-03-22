@@ -1,4 +1,4 @@
-rootProject.name = 'cgV19'
+rootProject.name = 'cgV19-Generator'
 
 include ':cgV19-core'
 include ':cgV19-gradle'
@@ -8,9 +8,3 @@ include ':cgV19-pojo'
 //include ':cgV19-MDPlugin'
 // MetaCatridge is under construction
 include ':cgV19-MetaCartridge'
-include ':cgV19-RESTCartridge'
-
-// These project need a cgV19 installation, so you can only
-// include them after running gradle publish without these projects.
-include ':restDemo'
-//include ':cgV19-helloWorld'
