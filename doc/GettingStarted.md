@@ -24,6 +24,11 @@ git clone https://github.com/carstenSpraener/cgV19.git
 
 This will create a copy of the project in your workspace.
 
+<<<<<<< HEAD
+Next step is to build all these projects. To do that change into the directory
+core and publish all modules.
+
+=======
 Next step is to build all these modules. But in the moment you will have
 a chicken egg problem. Thus is because the the project cgV19-RESTCartridge depends
 on cgV19-MetaCartridge to be generated. And this project is not available in the
@@ -34,11 +39,38 @@ the project commented out. So they are not part of the first build.
 
 Now let's start the firt build. Go into the cgV19 directory and type
 
+>>>>>>> master
 ```bash
 cd cgV19
+cd core
 gradle publish
 ```
 
+<<<<<<< HEAD
+That will build all core modules and publish them to a local repository in the directory
+cV19/repo. Now that the core is published you can build the cartridges. They depend on the
+core so you had ti build the core fist. Do the following:
+
+```bash
+cd ../cartridges
+gradle publish
+```
+
+You now have the cgV19-RESTCartridge installed in your local repository and now you can run the final 
+build of the demo projects.
+
+```bash
+cd ../demoProjects
+gradle :restDemo:run
+```
+
+That should generate the restDemo application and start it as a Spring Boot application on port 8080. You can
+test it in you Browser under the URL [http://localhost:8080/users/ping](http://localhost:8080/users/ping)
+If that answers with a __Pong__ you are up and running.
+
+Now everything you need is set up. The required artifacts are now
+in a local maven repository directory _repo_ under the cgV19 project
+=======
 Now you have the core project core, oom and MetaCartridge published. Next you can
 build the REST-Cartridge. Open the settings.gradle with your text editor and 
 remove the slashes before cgV19-RESTCartridge. Than again start
@@ -60,6 +92,7 @@ It should response with a simple __Pong__
 
 Now everything you need is set up. The required artifacts are now
 in a local maven repository directors _repo_ under the cgV19 projec
+>>>>>>> master
 directory.
 
 ## Setup the basic gradle porject
@@ -227,8 +260,9 @@ Now you can use the generated Person-Class inside your code.
 
 This is a very very tiny usage of a model driven development stragegie
 and it is definitivle not worth the overhead. But in real projects
-when the complexity is growing you will benefit from the leel of 
-abstraction that MDD can reach.
+when the complexity is growing you will benefit from the level of 
+abstraction that MDD can reach. Especialy when you make exhausted use
+of transformations.
 
 ## Defining OOM-Files
 The creation of the oom-File by hand is also not very handy. If your
@@ -238,7 +272,7 @@ But i prefere the use of a UML-Modeling tool like MagicDraw and
 install the MDPlugin there. That will give you the power of describing
 your model in UML. 
 
-![Example of an UML-Model for a simple data model](../restDemo/doc/img/class__model__DataModel.png)
+![Example of an UML-Model for a simple data model](../demoProjects/restDemo/doc/img/class__model__DataModel.png)
 
 And that model will (no MUST) be synchron with your
 code. On the long run this will give you a high quality and trustable
@@ -247,7 +281,7 @@ documentation.
 ## What to model and what not to model
 
 Well... that's a good question and a kind of taste. I feel nothing
-bad in reading an __if__ statement. But 20 if statements cand be
+bad in reading an __if__ statement. But 20 if statements can be
 hard to understand. If you have such complex situations it's maybe
 better to define a activity diagram and abstract to sub activities.
 
@@ -260,25 +294,26 @@ To find the right way is a question of experience.
 
 ## The Generatror Gap Pattern
 
-With cgV19 you could definitfle write Cartridges that mix hand 
-writte (manifested) code and generated Code in one file. But i 
-prefere a strict seperation of files that are generated and files
+With cgV19 you could definitiv write cartridges that mix hand 
+writte (manifested) code and generated code in one file. But i 
+prefere a strict separation of files that are generated and files
 taht are manifested.
 
 That can easily be achieved with the use of the 
-__Generator Gap Pattern__. This means you devide a class into two
+__Generator Gap Pattern__. This means you divide a class into two
 classes. An abstract 100% generated _*Base_ Class and a manifested
 _*Impl_ class that extends the base class. In that way you can put
 the Base-classes into the java-gen directory and generate the 
 templates for the *Impl-Classes into the java directory. 
 
 But what could the generator do to not override classes that are 
-in the java directory and you enhancced them by hand?
+in the java directory and you enhanced them by hand?
 
 ## Protecting from regeneration
 Sometimes your generated code is just a template, that the developer
 namely you, have to fill in with real code. This code must be protected
-from overwriting some how.
+from overwriting somehow.
+
 __cgV19__ has a very simple __ProtectionStrategy__. This strategie
 looks in the file to be overwritten for a line containing the
 string
@@ -289,4 +324,5 @@ If it finds this text in the first 5 lines of the file or if
 the file is empty, it will generate the code.
 
 So: If you edited a generated file just remove this line and __cgV9__
-will never touch it again.
+will never touch it again. You will shurely forget this several times. But i hope
+you have a good IDE with a nice UNDO function.

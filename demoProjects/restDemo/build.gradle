@@ -1,10 +1,13 @@
 buildscript {
     repositories {
         mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
     }
     dependencies {
-        classpath project(':cgV19-core')
-        classpath project(':cgV19-gradle')
+        classpath "${project.ext.group}:cgV19-core:${project.ext.version}"
+        classpath "${project.ext.group}:cgV19-gradle:${project.ext.version}"
     }
 }
 
@@ -34,9 +37,9 @@ sourceSets {
 }
 
 dependencies {
-    cartridge project(':cgV19-core')
-    cartridge project(':cgV19-oom')
-    cartridge project(':cgV19-RESTCartridge')
+    cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-RESTCartridge:${project.ext.version}"
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.0.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.0.RELEASE'
