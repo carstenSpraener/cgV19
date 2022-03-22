@@ -1,7 +1,40 @@
-# Tutorial to cgV19
+# Welcome to cgV19
 _Last Update on: March the 17th 2022._
 
-This is the core of the NextGen V19
+If you are looking for a Low Code platform development envirnonemnt you may consider in trying out
+cgV19. With cgV19 you can build your own LowCode to NoCode development environment. It provides:
+
+__Model driven development (MDD)__ 
+
+With cgV19 your development will be driven from a Model described in some
+Language or in UML. The model is a high level ob abstraction and with cgV19 you define the rules that brings
+this abstraction to live. In the demoProjects you will find a project __restDemo__ that generates a complete
+Spring Boot application from a single Class markes as << Resource >>.
+
+__Reusable__ 
+
+With cgV19 you can build cartridges that defines a DSL and can be used in many projects. Cartridges
+will interpret a Model and build the Code, the documentation and all configuration that you may need. A 
+concrete project can plug in the cartridges that it will need.
+
+The __restDemo__ project makes use of the __cgV19-RESTCartridge__ that generates a Spring Boot application as 
+well as a runnable PHP Symfony application. The projecdt can decide which backend to use. PHP/Symfona or 
+Java/SpringBoot.
+
+__Supports the whole development life circle__ 
+
+With cgV19 you can build not onle templates that are generated once and will act as a start point for manual 
+development. This is what tools like spring initializer of ng CLI-Platform do. cgV19 can generate code that
+is never touched and always generated to 100%. And the development cycle depends mainly on the model. So for
+many tasks you need to update your model, re-generate your code and start developing. This ensures, that your
+model and you programm are always in sync and you can rely on the model generated documentation.
+
+__Deploy it where ever you want__ 
+
+What you will generate is completely in your hand. cgV19 is not a concrete
+Low Code environment. It is a tool box for building such environments. You can not only generate Your code. 
+It is possible to generate any artifact you need for you deployment. Dockerfiles, StartScripts or even
+generic user interfaces.
 
 ## A brief history
 In 2002 i started to work on a project for an insurance company in germany. The goal was to build 
@@ -19,6 +52,11 @@ concept of so called __cartridges__. Yes think of it as the old hardware
 modules to plug into your game console. It has a self generated
 meta model and the loading of a model can be plugged in from 
 classpath.
+
+```puml
+class HelloWorld
+
+```
 
 Dependencies are very low. The core module only depends on Groovy.
 Groovy is a language on top of java that is predestined for generation
