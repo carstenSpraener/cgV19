@@ -20,7 +20,8 @@ repositories {
     mavenCentral()
 }
 cgV19 {
-    model='./restDemo.oom'
+    //model='./restDemo.oom'
+    model='http://localhost:7000/de'
 }
 
 tasks.withType(JavaCompile) {
@@ -48,6 +49,10 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '2.3.0.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.0.RELEASE'
 
+    implementation 'org.springframework.webflow:spring-webflow:2.5.0.RELEASE'
+    implementation 'org.springframework.webflow:org.springframework.js:2.0.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.3.0.RELEASE'
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
     implementation 'com.h2database:h2:2.1.210'
