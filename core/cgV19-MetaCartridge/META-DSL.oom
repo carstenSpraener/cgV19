@@ -294,6 +294,22 @@ ModelDSL.make {
                             taggedValue 'outputTo', 'other'
                         }
                     }
+                    mClass {
+                      name 'CartridgeImplGenerator'
+                      xmiID '_18_5_3_40201a1_1648040058801_551845_6475'
+                        stereotype 'CodeGenerator', {
+                            taggedValue 'outputType', 'Java'
+                            taggedValue 'generatesOn', 'MClass'
+                            taggedValue 'requiredStereotype', 'cgV19Cartridge'
+                            taggedValue 'outputTo', 'src'
+                        }
+                    }
+                    mClass {
+                      name 'MetaCartridge'
+                      xmiID '_18_5_3_40201a1_1648049579703_345587_6538'
+                        stereotype 'cgV19Cartridge', {
+                        }
+                    }
                   }
                 }
               }

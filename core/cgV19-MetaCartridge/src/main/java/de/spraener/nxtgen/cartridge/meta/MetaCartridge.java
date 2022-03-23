@@ -66,6 +66,9 @@ public class MetaCartridge implements Cartridge {
             if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_CGV19CARTRIDGE_BASE) ) {
                 result.add(CodeGeneratorMapping.create(me, new CartridgeBaseGenerator()));
             }
+            if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_CGV19CARTRIDGE) ) {
+                result.add(CodeGeneratorMapping.create(me, new CartridgeImplGenerator()));
+            }
             if( me instanceof MClass && ((MClass)me).hasStereotype(STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION) ) {
                 result.add(CodeGeneratorMapping.create(me, new CartridgeServiceLocaterGenerator()));
             }

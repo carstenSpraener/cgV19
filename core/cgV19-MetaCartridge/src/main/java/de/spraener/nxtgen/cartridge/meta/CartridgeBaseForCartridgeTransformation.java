@@ -19,5 +19,7 @@ public class CartridgeBaseForCartridgeTransformation extends CartridgeBaseForCar
         baseClass.getStereotypes().add(st);
         mClass.setInheritsFrom(new MClassRef(baseClass.getFQName()));
         baseClass.setModel(mClass.getModel());
+
+        mClass.setInheritsFrom(new MClassRef(baseClass.getFQName()));
     }
 }
