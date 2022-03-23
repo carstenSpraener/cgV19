@@ -40,6 +40,7 @@ dependencies {
     cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
     cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
     cartridge "${project.ext.group}:cgV19-RESTCartridge:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-WebFlowCartridge:${project.ext.version}"
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.0.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.0.RELEASE'

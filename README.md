@@ -18,7 +18,7 @@ will interpret a Model and build the Code, the documentation and all configurati
 concrete project can plug in the cartridges that it will need.
 
 The __restDemo__ project makes use of the __cgV19-RESTCartridge__ that generates a Spring Boot application as 
-well as a runnable PHP Symfony application. The projecdt can decide which backend to use. PHP/Symfona or 
+well as a runnable PHP Symfony application. The projecdt can decide which backend to use. PHP/Symfony or 
 Java/SpringBoot.
 
 __Supports the whole development life circle__ 
