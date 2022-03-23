@@ -36,6 +36,17 @@ public class MPackage extends ModelElementImpl {
             return result;
         }).collect(Collectors.toList());
         getChilds().addAll(packages);
+
+        List<MActivity> activities = ((ModelElementImpl)me).filterChilds( child -> {
+            return child.getMetaType().equals("mActivity");
+        }).map( child -> {
+            MActivity result = new MActivity(child);
+            result.setParent(this);
+            //result.setName(this.getName()+"."+result.getName());
+            return result;
+        }).collect(Collectors.toList());
+        getChilds().addAll(activities);
+
         OOModelHelper.mapProperties(this, getClass(), me);
     }
 

@@ -28,7 +28,7 @@ String listCodeGeneratorMappings(MClass mClass, String me, String resutListName)
 
 String printCodeGEneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
     StringBuffer sb = new StringBuffer();
-    sb.append("            if( ${meName} instanceof MClass && ((MClass)  ${meName}).hasStereotype(\"${sTypeName}\") ) {\n");
+    sb.append("            if( StereotypeHelper.hasStereotye(me, \"${sTypeName}\") ) {\n");
     for( MClass codeGenerator : mClasses ) {
         sb.append("                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));\n")
     }
@@ -44,7 +44,7 @@ import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
-import de.spraener.nxtgen.oom.model.MClass;
+import de.spraener.nxtgen.oom.StereotypeHelper;
 
 import java.util.List;
 import java.util.ArrayList;
