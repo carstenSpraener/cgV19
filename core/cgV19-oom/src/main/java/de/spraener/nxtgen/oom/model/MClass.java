@@ -16,6 +16,8 @@ public class MClass extends ModelElementImpl {
     private List<MReference> references = null;
     private List<MOperation> operations = null;
     private List<MActivity> activities = null;
+    private List<MUsage> usages = null;
+    private List<MDependency> dependencies = null;
     private transient MPackage parent = null;
 
     private MClassRef inheritsFrom = null;
@@ -68,6 +70,22 @@ public class MClass extends ModelElementImpl {
             MActivity activity = new MActivity(childAcitvity);
             activity.setParent(mc);
             return activity;
+        }).collect(Collectors.toList());
+
+        mc.dependencies = ((ModelElementImpl)me).filterChilds( child -> {
+            return child.getMetaType().equals("mDependency");
+        }).map(child-> {
+            MDependency dependency = new MDependency(child);
+            dependency.setParent(mc);
+            return dependency;
+        }).collect(Collectors.toList());
+
+        mc.usages = ((ModelElementImpl)me).filterChilds( child -> {
+            return child.getMetaType().equals("mUsage");
+        }).map(child-> {
+            MUsage usage = new MUsage(child);
+            usage.setParent(mc);
+            return usage;
         }).collect(Collectors.toList());
 
         String extendsFQClassName = ((ModelElementImpl)me).getRelations().stream()
@@ -191,6 +209,20 @@ public class MClass extends ModelElementImpl {
             this.associations = new ArrayList<>();
         }
         return associations;
+    }
+
+    public List<MUsage> getUsages() {
+        if( this.usages == null ) {
+            this.usages = new ArrayList<>();
+        }
+        return usages;
+    }
+
+    public List<MDependency> getDependencies() {
+        if( this.dependencies == null ) {
+            this.dependencies = new ArrayList<>();
+        }
+        return dependencies;
     }
 
     @Override

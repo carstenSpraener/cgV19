@@ -50,7 +50,7 @@ public class NextGen implements Runnable {
         if( protectionStrategie==null) {
             ServiceLoader<ProtectionStrategie> protectionServices = ServiceLoader.load(ProtectionStrategie.class);
             if (!protectionServices.iterator().hasNext()) {
-                LOGGER.info("No ProtectionStrategie found. Using default.");
+                LOGGER.fine("No ProtectionStrategie found. Using default.");
                 protectionStrategie = new ProtectionStrategieDefaultImpl();
             } else {
                 LOGGER.info("Using ProtectionStrategie '" + protectionStrategie.getClass().getName() + "'.");
@@ -69,7 +69,7 @@ public class NextGen implements Runnable {
      */
     private List<ModelLoader> locateModelLoader() {
         List<ModelLoader> result = new ArrayList<>();
-        LOGGER.info("Loading servcices for Interface " + ModelLoader.class.getName());
+        LOGGER.fine("Loading servcices for Interface " + ModelLoader.class.getName());
         ServiceLoader<ModelLoader> loaderServices = ServiceLoader.load(ModelLoader.class);
         if (!loaderServices.iterator().hasNext()) {
             LOGGER.info("No ModelLoader located. Generation finished.");
@@ -123,7 +123,7 @@ public class NextGen implements Runnable {
         List<Model> models = new ArrayList();
         for( ModelLoader loader : locateModelLoader() ) {
             if( loader.canHandle(modelURI) ) {
-                LOGGER.info(() -> "loading model with loader " + loader.getClass().getName());
+                LOGGER.fine(() -> "loading model with loader " + loader.getClass().getName());
                 Model m = loader.loadModel(modelURI);
                 for( ModelElement e : m.getModelElements() ) {
                     e.setModel(m);
@@ -132,7 +132,7 @@ public class NextGen implements Runnable {
             }
         }
         if (models.isEmpty()) {
-            LOGGER.info(() -> "no loader could handel model " + modelURI + ". Terminating");
+            LOGGER.warning(() -> "no loader could handel model " + modelURI + ". Terminating");
             throw new NxtGenRuntimeException("Unable to find a model loader for the given model uri: "+ modelURI + ". Check your classpath");
         }
         return models;
@@ -153,7 +153,7 @@ public class NextGen implements Runnable {
         List<Transformation> transformations = cartridge.getTransformations();
         if (transformations != null) {
             transformations.forEach(t -> {
-                LOGGER.info(()->"Running transformation "+t.getClass().getName());
+                LOGGER.fine(()->"Running transformation "+t.getClass().getName());
 
                 List<ModelElement> allElements = model.getModelElements();
                 for( ModelElement e : allElements ) {

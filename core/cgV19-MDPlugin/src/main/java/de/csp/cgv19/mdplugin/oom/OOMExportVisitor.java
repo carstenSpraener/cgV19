@@ -15,6 +15,7 @@ import com.nomagic.uml2.ext.magicdraw.activities.mdbasicactivities.InitialNode;
 import com.nomagic.uml2.ext.magicdraw.activities.mdfundamentalactivities.Activity;
 import com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.DecisionNode;
 import com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Dependency;
+import com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Usage;
 import com.nomagic.uml2.ext.magicdraw.classes.mdinterfaces.Interface;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Package;
@@ -53,6 +54,16 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
                 }
             } catch (Exception x) {
                 x.printStackTrace();
+            }
+        }
+        if (e instanceof NamedElement) {
+            NamedElement ne = (NamedElement) e;
+            for (Dependency d : ne.getClientDependency()) {
+                try {
+                    d.accept(this);
+                } catch (Exception x) {
+                    x.printStackTrace();
+                }
             }
         }
         prefix = prefix.substring(0, prefix.length() - 2);
@@ -122,7 +133,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
             OOMExportSupport.printStandardAttributes(property, this::println);
             printStereotypes("    ", property);
             Type type = property.getType();
-            if( type != null ) {
+            if (type != null) {
                 println("    type '" + toTypeName(type.getQualifiedName()) + "'");
             }
             println("    visibility '" + property.getVisibility() + "'");
@@ -138,30 +149,30 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
     private void printAssociation(Property property, Association assoc) {
         println("mAssociation {");
         printStereotypes("        ", property.getAssociation());
-        println("    assocId '"+assoc.getID()+"'");
-        Property oposite =  property.getOpposite();
-        if( oposite!=null ) {
-            println( "    opositeAttribute '"+oposite.getName()+"'");
+        println("    assocId '" + assoc.getID() + "'");
+        Property oposite = property.getOpposite();
+        if (oposite != null) {
+            println("    opositeAttribute '" + oposite.getName() + "'");
         }
         String opositeMultiplicity = ModelHelper.getMultiplicity(oposite);
-        println("    opositeMultiplicity '"+opositeMultiplicity+"'");
+        println("    opositeMultiplicity '" + opositeMultiplicity + "'");
         String associationType = "";
-        if( opositeMultiplicity.equals("1") ) {
+        if (opositeMultiplicity.equals("1")) {
             associationType = "OneTo";
         } else {
             associationType = "ManyTo";
         }
         String multiplicity = ModelHelper.getMultiplicity(property);
-        if( multiplicity.equals("1") ) {
+        if (multiplicity.equals("1")) {
             associationType += "One";
         } else {
             associationType += "Many";
         }
-        println("    associationType '"+associationType+"'");
-        println("    type '"+toTypeName(property.getType().getQualifiedName())+"'");
-        println("    name '"+property.getName()+"'");
+        println("    associationType '" + associationType + "'");
+        println("    type '" + toTypeName(property.getType().getQualifiedName()) + "'");
+        println("    name '" + property.getName() + "'");
         println("    multiplicity '" + multiplicity + "'");
-        println("    composite '"+property.isComposite()+"'" );
+        println("    composite '" + property.isComposite() + "'");
         println("}");
     }
 
@@ -195,6 +206,26 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
     @Override
     public void visitDependency(Dependency dependency, VisitorContext context) {
         //log("Visiting dependency "+dependency.getHumanName());
+        NamedElement ne = dependency.getSupplier().iterator().next();
+        String fqName = OOMExportSupport.toTypeName(ne.getQualifiedName());
+        println("mDependency {");
+        println("   target '" + fqName + "'");
+        printStereotypes("  ", dependency);
+        OOMExportSupport.printStandardAttributes(dependency, this::println);
+        println("}");
+        visitOwnedElements(dependency);
+    }
+
+    @Override
+    public void visitUsage(Usage dependency, VisitorContext context) {
+        //log("Visiting dependency "+dependency.getHumanName());
+        NamedElement ne = dependency.getSupplier().iterator().next();
+        String fqName = OOMExportSupport.toTypeName(ne.getQualifiedName());
+        println("mUsage {");
+        println("   target '" + fqName + "'");
+        printStereotypes("  ", dependency);
+        OOMExportSupport.printStandardAttributes(dependency, this::println);
+        println("}");
         visitOwnedElements(dependency);
     }
 
@@ -229,7 +260,7 @@ public class OOMExportVisitor extends ModelHierarchyVisitor {
         println("mActivity {");
         printStereotypes("  ", activity);
         println("  id '" + activity.getID() + "'");
-        println("  name '" + activity.getName()+ "'");
+        println("  name '" + activity.getName() + "'");
         OOMExportSupport.printStandardAttributes(activity, this::println);
         //super.visitActivity(activity,context);
         visitOwnedElements(activity);
