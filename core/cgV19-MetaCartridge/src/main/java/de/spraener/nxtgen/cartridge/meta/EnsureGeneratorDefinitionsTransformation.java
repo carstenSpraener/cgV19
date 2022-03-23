@@ -4,8 +4,10 @@ import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
+import de.spraener.nxtgen.oom.ModelHelper;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
+import de.spraener.nxtgen.oom.model.MUsage;
 import de.spraener.nxtgen.oom.model.OOModel;
 
 public class EnsureGeneratorDefinitionsTransformation extends EnsureGeneratorDefinitionsTransformationBase {
@@ -33,6 +35,22 @@ public class EnsureGeneratorDefinitionsTransformation extends EnsureGeneratorDef
             scrptClass.addStereotypes(sType);
             sType.setTaggedValue(MetaCartridge.TV_SCRIPT_FILE, templateScript);
             sType.setTaggedValue(MetaCartridge.TV_GENERATOR_CLASS, mc.getFQName());
+        }
+
+        String requiredStereotype = StereotypeHelper.getStereotype(mc, MetaCartridge.STEREOTYPE_CODE_GENERATOR).getTaggedValue(MetaCartridge.TV_REQUIRED_STEREOTYPE);
+        if( requiredStereotype==null || "".equals(requiredStereotype) ) {
+            OOModel model = (OOModel)mc.getModel();
+            MClass targetUsage = mc.getUsages().stream()
+                    .filter(usage -> usage.getTarget()!=null)
+                    .map(usage -> usage.getTarget())
+                    .map(cName -> model.findClassByName(cName))
+                    .filter( c -> c.hasStereotype(MetaCartridge.STEREOTYPE_NAME))
+                    .findFirst()
+                    .orElse(null);
+            if( targetUsage != null ) {
+                StereotypeHelper.getStereotype(mc, MetaCartridge.STEREOTYPE_CODE_GENERATOR)
+                        .setTaggedValue(MetaCartridge.TV_REQUIRED_STEREOTYPE, targetUsage.getName());
+            }
         }
     }
 }

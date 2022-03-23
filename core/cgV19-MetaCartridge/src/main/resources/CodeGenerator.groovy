@@ -1,5 +1,6 @@
 import de.spraener.nxtgen.NextGen
 import de.spraener.nxtgen.ProtectionStrategieDefaultImpl
+import de.spraener.nxtgen.cartridge.meta.MetaCartridge
 import de.spraener.nxtgen.model.Stereotype
 import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
@@ -47,6 +48,15 @@ String getPhpRootPackage(MClass mClass) {
     return "Unknonw";
 }
 
+String getOutputDir( MClass mClass) {
+    String rootDir = StereotypeHelper.getStereotype(mClass, MetaCartridge.STEREOTYPE_CODE_GENERATOR).getTaggedValue("outputRootDir");
+    if( rootDir != null ) {
+        return rootDir;
+    } else {
+        return "";
+    }
+}
+
 String getCodeBlockDefinition(MClass mClass, String outputType) {
     String outputTo = "src".equals(getOutputTo(mClass)) ? "src/main/java" : "src/main/java-gen"
     String metaType = getGeneratesOn(mClass)
@@ -71,6 +81,15 @@ String getCodeBlockDefinition(MClass mClass, String outputType) {
         gcb.setToFileStrategy(new de.spraener.nxtgen.filestrategies.TypeScriptFileStrategy("angular/src/app/model", element.getName()));
         return gcb;
 """
+            break;
+        case "xml":
+        case "XML":
+        case "Xml":
+            return """GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("xml", element, "${getTemplateFileName(mClass)}");
+        gcb.setToFileStrategy(new de.spraener.nxtgen.filestrategies.XmlFileStrategy("${getOutputDir(mClass)}", element));
+        return gcb;
+"""
+            return
             break;
         default:
             return """// TODO: Implement the creation of a CodeBlock"
