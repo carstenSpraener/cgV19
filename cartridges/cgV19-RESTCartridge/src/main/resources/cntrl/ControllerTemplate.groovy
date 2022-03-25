@@ -93,7 +93,7 @@ public abstract class ${cName} {
     @GetMapping(path="/{id}", produces = "application/json")
     @ResponseBody
     public ${dataType} get${dataType}(@PathVariable String id) {
-        ${dataType} data = logic.findOrCreate(new Long(id));
+        ${dataType} data = logic.findOrCreate(Long.getLong(id));
 
         if( data == null ) {
             throw new RuntimeException("no ${dataType} with id: "+id+" found");
@@ -128,7 +128,7 @@ public abstract class ${cName} {
     @DeleteMapping(path="/{id}")
     @ResponseBody
     public ${dataType} delete(@PathVariable String id) {
-        return this.logic.delete(new Long(id));
+        return this.logic.delete(Long.getLong(id));
     }
 ${requestMethodsDelegate(modelElement)}
 }

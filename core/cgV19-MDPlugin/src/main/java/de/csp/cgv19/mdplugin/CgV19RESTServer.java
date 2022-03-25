@@ -1,6 +1,5 @@
 package de.csp.cgv19.mdplugin;
 
-import de.csp.cgv19.mdplugin.md.ModelCreator;
 import de.csp.cgv19.mdplugin.oom.OOMExporter;
 import de.csp.cgv19.mdplugin.oom.OOMImport;
 import io.javalin.Javalin;

@@ -37,7 +37,7 @@ public class RESTCartridge extends  RESTCartridgeBase {
     public List<CodeGeneratorMapping> mapGenerators(Model model) {
         List<CodeGeneratorMapping> result = new ArrayList<>();
         for( ModelElement me : model.getModelElements() ) {
-            NextGen.LOGGER.info("handling model element "+me.getName());
+            NextGen.LOGGER.finer("handling model element "+me.getName());
             if( isEntity(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new EntityGenerator()));
                 result.add(CodeGeneratorMapping.create(me, new PhpEntityGenerator()));
@@ -57,8 +57,7 @@ public class RESTCartridge extends  RESTCartridgeBase {
             } else if( isLogic(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new LogicGenerator()));
             } else if( isSprintBootApplication(me) ) {
-                Logger.getGlobal().info(()->"Erzeuge SpringBoot-Application");
-                System.err.println("Erzeuge SpringBoot-Application");
+                Logger.getGlobal().finer(()->"Creating SpringBoot-Application");
                 result.add(CodeGeneratorMapping.create(me, new SpringBootAppGenerator()));
             }
         }

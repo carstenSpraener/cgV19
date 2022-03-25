@@ -5,13 +5,11 @@ import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.core.Project;
 import com.nomagic.magicdraw.openapi.uml.SessionManager;
 import com.nomagic.magicdraw.uml.Finder;
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.*;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Package;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
-import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.oom.model.OOModel;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
@@ -140,16 +138,64 @@ public class OOMImport {
         return me.getMetaType().equals("mClass");
     }
 
+    private boolean isOperation(ModelElement me) {
+        return me.getMetaType().equals("mOperation");
+    }
+
+    private boolean isParameter(ModelElement me) {
+        return me.getMetaType().equals("mParameter");
+    }
+
+    private boolean isAttribute(ModelElement me) {
+        return me.getMetaType().equals("mAttribute");
+    }
 
     private void importClass(ModelElement mClass) {
         ModelElement pkg = mClass.getParent();
         Package mdPkg = findOrCreatePackageByName(pkg.getName());
         Class clazz = findOrCreateClazz(pkg, mClass);
-        for (ModelElement attr : mClass.getChilds()) {
-            Property prop = findOrCreateProperty(clazz, attr.getName());
-            oomPropertyUpdater.update(prop, attr);
+        for (ModelElement child : mClass.getChilds()) {
+            if (isAttribute(child)) {
+                Property prop = findOrCreateProperty(clazz, child.getName());
+                oomPropertyUpdater.update(prop, child);
+            }
+            if( isOperation(child) ) {
+                Operation op = findOrCreateOperationByName(clazz, child.getName());
+                Type returnType = oomPropertyUpdater.findOrCreateType(child.getProperty("type"));
+                updateReturnType(op,returnType);
+                for( ModelElement opChild : child.getChilds() ) {
+                    if( isParameter( opChild) ) {
+                        Parameter p = findOrCreateParameter(op, opChild.getName());
+                        p.setType(oomPropertyUpdater.findOrCreateType(opChild.getProperty("type")));
+                    }
+                }
+            }
         }
         stereotypesUpdater.update(clazz, mClass);
+    }
+
+    void updateReturnType(Operation op, Type returnType) {
+        for( Parameter p : op.getOwnedParameter() ) {
+            if( ParameterDirectionKindEnum.RETURN==p.getDirection()) {
+                p.setType(returnType);
+                return;
+            }
+        }
+        Parameter p = this.project.getElementsFactory().createParameterInstance();
+        p.setDirection(ParameterDirectionKindEnum.RETURN);
+        p.setOwner(op);
+    }
+
+    Parameter findOrCreateParameter(Operation op, String name) {
+        for( Parameter p : op.getOwnedParameter() ) {
+            if( p.getName().equals(name)) {
+                return p;
+            }
+        }
+        Parameter p = this.project.getElementsFactory().createParameterInstance();
+        p.setName(name);
+        p.setOwner(op);
+        return p;
     }
 
     Class findOrCreateClazz(ModelElement pkg, ModelElement mClass) {
@@ -179,6 +225,19 @@ public class OOMImport {
         p.setOwner(clazz);
         return p;
     }
+
+    Operation findOrCreateOperationByName(Class clazz, String name) {
+        for( Operation op : clazz.getOwnedOperation() ) {
+            if(op.getName().equals(name)) {
+                return op;
+            }
+        }
+        Operation op = this.project.getElementsFactory().createOperationInstance();
+        op.setName(name);
+        op.setOwner(clazz);
+        return op;
+    }
+
 
     Package findOrCreatePackageByName(String fqName) {
         Package parent = this.project.getPrimaryModel();

@@ -47,7 +47,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
             if (outputPath == null || "".equals(outputPath)) {
                 outputPath = "./php";
             }
-            LOGGER.info("Writing PHP_Files to "+outputPath);
+            LOGGER.fine("Writing PHP_Files to "+outputPath);
         }
         return outputPath;
     }
@@ -58,7 +58,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
             if (outputPath == null || "".equals(outputPath)) {
                 outputPath = workingDir;
             }
-            LOGGER.info("Writing PHP_Files to "+workingDir);
+            LOGGER.fine("Writing PHP_Files to "+workingDir);
         }
         return outputPath;
     }

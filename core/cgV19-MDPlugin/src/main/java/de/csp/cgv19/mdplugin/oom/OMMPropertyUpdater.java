@@ -36,7 +36,7 @@ public class OMMPropertyUpdater {
         this.importer.stereotypesUpdater.update(prop, attr);
     }
 
-    private Type findOrCreateType(String type) {
+    public Type findOrCreateType(String type) {
         if( type.indexOf('.')==-1 ) {
             type = "java.lang."+type;
         }
