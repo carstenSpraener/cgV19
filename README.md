@@ -1,7 +1,7 @@
 # Welcome to cgV19
 _Last Update on: March the 17th 2022._
 
-If you are looking for a Low Code platform development envirnonemnt you may consider in trying out
+If you are looking for a Low Code platform development envirnonemnt you may consider trying
 cgV19. With cgV19 you can build your own LowCode to NoCode development environment. It provides:
 
 __Model driven development (MDD)__ 
@@ -36,6 +36,11 @@ Low Code environment. It is a tool box for building such environments. You can n
 It is possible to generate any artifact you need for you deployment. Dockerfiles, StartScripts or even
 generic user interfaces.
 
+__cgV19 is tested with__ 
+
+* Java version 8 and 17
+* Build with gradle 6 and gradle 7
+
 ## A brief history
 In 2002 i started to work on a project for an insurance company in germany. The goal was to build 
 an application for insurance estimations. The problem was it has to run in multiple channels
@@ -53,11 +58,6 @@ modules to plug into your game console. It has a self generated
 meta model and the loading of a model can be plugged in from 
 classpath.
 
-```puml
-class HelloWorld
-
-```
-
 Dependencies are very low. The core module only depends on Groovy.
 Groovy is a language on top of java that is predestined for generation
 and defining DSLs. 
@@ -68,6 +68,8 @@ every type of data.
 
 __cgV19__ comes with a plugin for gradle. You can add it to your build.gradle and
 the generator will run before the compile task starts. 
+
+It is not a big monolite but splitted in several modules. 
 
 ## What are all these modules?
 
