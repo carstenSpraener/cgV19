@@ -11,7 +11,17 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 public class MAttribute extends MAbstractModelElement {
     private String type;
 
-    public MAttribute(){}
+    public MAttribute() {
+    }
+
+    public MAttribute(ModelElement me) {
+        setName(me.getName());
+        setMetaType(me.getMetaType());
+        this.type = me.getProperty("type");
+        this.setStereotypes(me.getStereotypes());
+        this.setRelations( me.getRelations() );
+        this.setProperties( me.getProperties() );
+    }
 
     public MAttribute(String name, String type) {
         this.setName(name);

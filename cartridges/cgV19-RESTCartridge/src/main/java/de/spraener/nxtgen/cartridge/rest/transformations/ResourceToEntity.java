@@ -110,7 +110,7 @@ public class ResourceToEntity extends ResourceToEntityBase {
     }
 
     private MAssociation createFrom(MAssociation assoc) {
-        MAssociation result = new MAssociation(assoc);
+        MAssociation result = new MAssociation();
         result.setModel(assoc.getModel());
         result.setAssociationType(assoc.getAssociationType());
         result.setAssocId (assoc.getAssocId());

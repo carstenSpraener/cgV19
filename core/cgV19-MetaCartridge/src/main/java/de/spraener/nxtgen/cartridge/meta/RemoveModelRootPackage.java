@@ -12,7 +12,7 @@ public class RemoveModelRootPackage extends RemoveModelRootPackageBase {
     public void doTransformationIntern(MPackage modelRootPackage) {
         ModelElement parent = modelRootPackage.getParent();
         for (ModelElement child : modelRootPackage.getChilds()) {
-            if (parent == null) {
+            if (parent == null || !(parent instanceof MPackage) ) {
                 ((OOModel) modelRootPackage.getModel()).getChilds().add(child);
                 ((ModelElementImpl) child).setParent(null);
             } else {
