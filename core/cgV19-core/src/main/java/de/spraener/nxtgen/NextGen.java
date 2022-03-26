@@ -39,6 +39,7 @@ public class NextGen implements Runnable {
     private static ProtectionStrategie protectionStrategie = null;
     private String modelURI;
     private final String workingDir;
+    private static ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
 
 
     private NextGen(String modelURI) {
@@ -124,11 +125,16 @@ public class NextGen implements Runnable {
         for( ModelLoader loader : locateModelLoader() ) {
             if( loader.canHandle(modelURI) ) {
                 LOGGER.fine(() -> "loading model with loader " + loader.getClass().getName());
-                Model m = loader.loadModel(modelURI);
-                for( ModelElement e : m.getModelElements() ) {
-                    e.setModel(m);
+                try {
+                    setActiveLoader(loader);
+                    Model m = loader.loadModel(modelURI);
+                    for (ModelElement e : m.getModelElements()) {
+                        e.setModel(m);
+                    }
+                    models.add(m);
+                } finally {
+                    removeActiveLoader();
                 }
-                models.add(m);
             }
         }
         if (models.isEmpty()) {
@@ -136,6 +142,18 @@ public class NextGen implements Runnable {
             throw new NxtGenRuntimeException("Unable to find a model loader for the given model uri: "+ modelURI + ". Check your classpath");
         }
         return models;
+    }
+
+    private static void removeActiveLoader() {
+        activeLoader.set(null);
+    }
+
+    private static void setActiveLoader(ModelLoader loader) {
+        activeLoader.set(loader);
+    }
+
+    public static ModelLoader getActiveLoader() {
+        return activeLoader.get();
     }
 
     private List<CodeBlock> runCodeGenerators(Cartridge cartridge, Model model) {

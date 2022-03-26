@@ -5,12 +5,10 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 
-public class MReference extends ModelElementImpl {
+public class MReference extends MAbstractModelElement {
     private String quantity;
 
-    public MReference(ModelElement me){
-        setName(me.getName());
-        this.quantity = super.getProperty("quantity");
+    public MReference() {
     }
 
     public String getQuantity() {
@@ -18,11 +16,12 @@ public class MReference extends ModelElementImpl {
     }
 
     public MReference cloneTo(ModelElement target) {
-        MReference tRef = new MReference(target);
+        MReference tRef = new MReference();
         tRef.setName(getName());
-        ModelHelper.cloneProperties(this, target);
-        StereotypeHelper.cloneStereotypes(this,target);
+        ModelHelper.cloneProperties(this, tRef);
+        StereotypeHelper.cloneStereotypes(this,tRef);
         tRef.quantity = this.getQuantity();
+        target.getChilds().add(tRef);
 
         return tRef;
     }

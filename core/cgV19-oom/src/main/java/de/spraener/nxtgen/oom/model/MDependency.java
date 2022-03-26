@@ -3,11 +3,15 @@ package de.spraener.nxtgen.oom.model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
-public class MDependency extends ModelElementImpl {
+public class MDependency extends MAbstractModelElement {
     private String target = null;
-    public MDependency(ModelElement me) {
-        super();
-        this.target = me.getProperty("target");
+
+    public MDependency() {
+    }
+
+    public void postDefinition() {
+        super.postDefinition();
+        this.target = getProperty("target");
     }
 
     public String getTarget() {

@@ -26,7 +26,7 @@ public class RelationImpl implements Relation {
     }
 
     @Override
-    public void setTargetXmID(String targetXmID) {
+    public void setTargetXmiID(String targetXmID) {
         this.targetXmID = targetXmID;
     }
 

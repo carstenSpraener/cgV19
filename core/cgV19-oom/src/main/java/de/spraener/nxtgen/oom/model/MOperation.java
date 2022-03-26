@@ -9,26 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MOperation extends ModelElementImpl {
+public class MOperation extends MAbstractModelElement {
     public List<MParameter> parameters = null;
     private String type = "void";
 
-    public MOperation(ModelElement me) {
-        setName(me.getName());
-        setMetaType(me.getMetaType());
-        setType(me.getProperty("type"));
-        this.parameters = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mParameter");
-        }).map(child -> {
-            MParameter param = new MParameter(child);
-            param.setParent(this);
-            return param;
-        }).collect(Collectors.toList());
-
-        this.setStereotypes(me.getStereotypes());
-        this.setRelations( me.getRelations() );
-        this.setProperties( me.getProperties() );
-        OOModelHelper.mapProperties(this, getClass(), me);
+    public void postDefinition() {
+        this.parameters = filterChilds( child -> child instanceof MParameter)
+                .map(child -> (MParameter)child)
+                .collect(Collectors.toList());
+        super.postDefinition();
     }
 
     private MOperation() {}

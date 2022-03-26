@@ -1,5 +1,7 @@
 package de.spraener.nxtgen.groovy
 
+import de.spraener.nxtgen.ModelElementFactory
+import de.spraener.nxtgen.NextGen
 import de.spraener.nxtgen.model.Model
 import de.spraener.nxtgen.model.ModelElement
 import de.spraener.nxtgen.model.Relation
@@ -7,6 +9,7 @@ import de.spraener.nxtgen.model.Stereotype
 import de.spraener.nxtgen.model.impl.ModelElementImpl
 import de.spraener.nxtgen.model.impl.ModelImpl
 import groovy.transform.Canonical
+
 
 @Canonical
 class GroovyModel extends ModelImpl {
@@ -24,35 +27,26 @@ class GroovyModel extends ModelImpl {
 
 @Canonical
 class GroovyElement extends ModelElementImpl {
+    ModelElementFactory elementFactory = NextGen.getActiveLoader().getModelElementFactory();
+    ModelElementImpl myModelElement;
 
-    def toXML(prefix) {
-        String propsDef = ""
-        if (properties.size() > 0) {
-            properties.entrySet().forEach({
-                propsDef += " ${it.key}='${it.value}'"
-            })
-        }
-        if (this.childs.size() == 0 && taggedValues.size() == 0) {
-            println("${prefix}<${metaType} name='${name}' stereotype='${stereotype}'${propsDef}/>")
-        } else {
-            println("${prefix}<${metaType} name='${name}' stereotype='${stereotype}'${propsDef}>")
-            taggedValues.entrySet().forEach({
-                println("${prefix}  <taggedValue name='${it.key}' value='${it.value}'/>")
-            })
-            def myChilds = childs.clone()
-            if (myChilds.size() > 0) {
-                myChilds.forEach({ it.toXML($ { prefix } + '  ') })
-            }
-            println("${prefix}</${metaType}>")
+    GroovyElement() {
+        this.myModelElement = this;
+    }
+
+    GroovyElement(String elementName) {
+        myModelElement = elementFactory.createModelElement(elementName);
+        if( myModelElement==null) {
+            myModelElement = this;
         }
     }
 
     def name(value) {
-        this.setName(value);
+        myModelElement.setName(value);
     }
 
     def stereotype(String name) {
-        this.addStereotypes(GroovyModel.instance.createStereotype(name))
+        myModelElement.addStereotypes(GroovyModel.instance.createStereotype(name))
     }
 
     def stereotype(String name, Closure closure) {
@@ -63,7 +57,7 @@ class GroovyElement extends ModelElementImpl {
             delegate.setTaggedValue(key, val);
         }
         closure();
-        this.addStereotypes(stereotype);
+        myModelElement.addStereotypes(stereotype);
     }
 
     def relation(Closure closure) {
@@ -74,44 +68,46 @@ class GroovyElement extends ModelElementImpl {
             delegate.setType(typeName);
         }
         rel.metaClass.targetXmID { String id ->
-            delegate.setTargetXmID(id);
+            delegate.setTargetXmiID(id);
         }
         rel.metaClass.targetType { String targetType ->
             delegate.setTargetType(targetType);
         }
         closure();
-        this.relations.add(rel);
+        myModelElement.relations.add(rel);
     }
 
     def methodMissing(String methodName, args) {
         def value = args[0];
         if (value instanceof Closure) {
-            def ge = new GroovyElement();
+            ModelElement ge = new GroovyElement(methodName)
             ge.metaType = methodName;
-            this.childs.add(ge);
+            myModelElement.childs.add(ge.myModelElement);
+            ge.myModelElement.setParent(myModelElement);
 
             value.delegate = ge;
             value.resolveStrategy = Closure.DELEGATE_FIRST;
             value();
+            ge.myModelElement.postDefinition();
         } else if (value instanceof String) {
             propertyMissing(methodName, value);
         }
     }
 
     def propertyMissing(name, value) {
-        super.setProperty(name.toString(), value);
+        myModelElement.setProperty(name.toString(), value);
     }
 
     def propertyMissing(name) {
-        super.getProperty(name);
+        myModelElement.getProperty(name);
     }
 
     def isAbstract(value) {
-        super.setProperty("isAbstract", value.toString());
+        myModelElement.setProperty("isAbstract", value.toString());
     }
 
     def metaType(value) {
-        super.setProperty("metaType", value);
+        myModelElement.setProperty("metaType", value);
     }
 }
 
@@ -126,13 +122,15 @@ class ModelDSL {
         closure.resolveStrategy = Closure.DELEGATE_ONLY;
         closure();
 
-        def model = new ModelImpl();
+        def model = NextGen.getActiveLoader().modelElementFactory.createModel();
+        if( model==null) {
+            model = new ModelImpl();
+        }
         try {
             root.getChilds().forEach({
                 model.addModelElement(it);
             });
         }catch( Throwable e ) {
-            e.printStackTrace();
             // Backward compatibility to groovy 2.0.1 as used in magic draw
             for( Object it : root.getChilds()){
                 model.addModelElement(it);

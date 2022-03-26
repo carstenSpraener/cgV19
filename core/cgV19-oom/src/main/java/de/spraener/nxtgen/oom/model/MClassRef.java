@@ -7,6 +7,9 @@ import java.io.Serializable;
 public class MClassRef implements Serializable {
     private String fullQualifiedClassName;
 
+    public MClassRef() {
+    }
+
     public MClassRef(String fullQualifiedClassName) {
         this.fullQualifiedClassName = fullQualifiedClassName;
     }

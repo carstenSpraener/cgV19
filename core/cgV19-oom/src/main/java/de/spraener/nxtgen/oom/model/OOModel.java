@@ -10,21 +10,7 @@ import java.util.stream.Collectors;
 
 public class OOModel extends ModelImpl {
 
-    public OOModel( Model metaModel ) {
-        ModelImpl mmImpl = (ModelImpl)metaModel;
-        mmImpl.getChilds().forEach( me -> {
-            switch( me.getMetaType() ) {
-                case "mClass":
-                    getChilds().add(new MClass(me));
-                    break;
-                case "mPackage":
-                    getChilds().add(new MPackage(me));
-                    break;
-                default:
-                    getChilds().add(me);
-                    break;
-            }
-        });
+    public OOModel() {
     }
 
     public List<MClass> getClassesByStereotype( String stereotype ) {

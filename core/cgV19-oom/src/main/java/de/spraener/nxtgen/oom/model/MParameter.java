@@ -5,13 +5,11 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 
-public class MParameter extends ModelElementImpl {
+public class MParameter extends MAbstractModelElement {
     String type;
 
-    public MParameter(ModelElement me) {
-        setName(me.getName());
-        setType(me.getProperty("type"));
-        OOModelHelper.mapProperties(this, getClass(), me);
+    public MParameter(String type) {
+        this.type = type;
     }
 
     protected MParameter(MOperation parent, String name, String type) {

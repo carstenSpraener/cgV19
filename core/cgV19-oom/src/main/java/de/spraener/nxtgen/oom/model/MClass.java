@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.oom.model;
 
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Relation;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MClass extends ModelElementImpl {
+public class MClass extends MAbstractModelElement {
     private List<MAttribute> attributes = null;
     private List<MAssociation> associations = null;
     private List<MReference> references = null;
@@ -25,97 +26,32 @@ public class MClass extends ModelElementImpl {
     public MClass() {
     }
 
-    public static MClass from(ModelElement parent, ModelElement me) {
-        return from(new MClass(), parent, me);
-    }
-
-    public static MClass from(MClass mc, ModelElement parent, ModelElement me) {
-        mc.setParent(parent);
-        mc.setName(me.getName());
-        mc.attributes = ((ModelElementImpl) me).filterChilds(child -> {
-            return child.getMetaType().equals("mAttribute");
-        }).map(child -> {
-            MAttribute attr = new MAttribute(child);
-            attr.setParent(mc);
-            return attr;
-        }).collect(Collectors.toList());
-
-        mc.associations = ((ModelElementImpl) me).filterChilds(child -> {
-            return child.getMetaType().equals("mAssociation");
-        }).map(child -> {
-            MAssociation assoc = new MAssociation(child);
-            assoc.setParent(mc);
-            return assoc;
-        }).collect(Collectors.toList());
-
-        mc.references = ((ModelElementImpl) me).filterChilds(child -> {
-            return child.getMetaType().equals("mReference");
-        }).map(child -> {
-            MReference ref = new MReference(child);
-            ref.setParent(mc);
-            return ref;
-        }).collect(Collectors.toList());
-
-        mc.operations = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mOperation");
-        }).map(child -> {
-            MOperation op = new MOperation(child);
-            op.setParent(mc);
-            return op;
-        }).collect(Collectors.toList());
-
-        mc.activities = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mActivity");
-        }).map(childAcitvity-> {
-            MActivity activity = new MActivity(childAcitvity);
-            activity.setParent(mc);
-            return activity;
-        }).collect(Collectors.toList());
-
-        mc.dependencies = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mDependency");
-        }).map(child-> {
-            MDependency dependency = new MDependency(child);
-            dependency.setParent(mc);
-            return dependency;
-        }).collect(Collectors.toList());
-
-        mc.usages = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mUsage");
-        }).map(child-> {
-            MUsage usage = new MUsage(child);
-            usage.setParent(mc);
-            return usage;
-        }).collect(Collectors.toList());
-
-        String extendsFQClassName = ((ModelElementImpl)me).getRelations().stream()
-                .filter(r -> "extends".equals(r.getType()))
-                        .map(r->r.getTargetType())
-                .findFirst().orElse(null);
-        if( extendsFQClassName!=null ) {
-            mc.inheritsFrom = new MClassRef(extendsFQClassName);
-        } else {
-            mc.inheritsFrom = null;
+    public void postDefinition() {
+        Relation rExtendsFrom = getRelations().stream()
+                .filter( r -> r.getType().equals("extends"))
+                .findFirst()
+                .orElse(null);
+        if( rExtendsFrom != null ) {
+            this.inheritsFrom = new MClassRef(rExtendsFrom.getTargetType());
         }
-        mc.setMetaType(me.getMetaType());
-        mc.setStereotypes(me.getStereotypes());
-        mc.setRelations(me.getRelations());
-        mc.setProperties(me.getProperties());
-        return mc;
-    }
 
-    public MClass(ModelElement me) {
-        MClass.from(this, null, me);
     }
 
     public List<MAttribute> getAttributes() {
         if( attributes == null ) {
-            attributes = new ArrayList<>();
+            attributes = filterChilds(child -> child instanceof MAttribute)
+                    .map(child -> (MAttribute)child)
+                    .collect(Collectors.toList());
         }
         return attributes;
     }
 
     public List<MReference> getReferences() {
+        if( references == null ) {
+            references = filterChilds(child -> child instanceof MReference)
+                    .map(child -> (MReference)child)
+                    .collect(Collectors.toList());
+        }
         return references;
     }
 
@@ -159,6 +95,7 @@ public class MClass extends ModelElementImpl {
         getOperations().add(op);
         return op;
     }
+
     public MClass cloneTo(MPackage targetPkg, String className) {
         MClass target = targetPkg.createMClass(className);
         List<MAttribute> attrList = target.getAttributes();
@@ -188,7 +125,9 @@ public class MClass extends ModelElementImpl {
 
     public List<MOperation> getOperations() {
         if( this.operations == null ) {
-            this.operations = new ArrayList<>();
+            operations = filterChilds(child -> child instanceof MOperation)
+                    .map(child -> (MOperation)child)
+                    .collect(Collectors.toList());
         }
         return operations;
     }
@@ -199,28 +138,36 @@ public class MClass extends ModelElementImpl {
 
     public List<MActivity> getActivities() {
         if( this.activities == null ) {
-            this.activities = new ArrayList<>();
+            this.activities = filterChilds(child -> child instanceof MActivity)
+                    .map(child -> (MActivity)child)
+                    .collect(Collectors.toList());
         }
         return activities;
     }
 
     public List<MAssociation> getAssociations() {
         if( this.associations == null ) {
-            this.associations = new ArrayList<>();
+            this.associations = filterChilds(child -> child instanceof MAssociation)
+                    .map(child -> (MAssociation)child)
+                    .collect(Collectors.toList());
         }
         return associations;
     }
 
     public List<MUsage> getUsages() {
         if( this.usages == null ) {
-            this.usages = new ArrayList<>();
+            this.usages =  filterChilds(child -> child instanceof MUsage)
+                    .map(child -> (MUsage)child)
+                    .collect(Collectors.toList());
         }
         return usages;
     }
 
     public List<MDependency> getDependencies() {
         if( this.dependencies == null ) {
-            this.dependencies = new ArrayList<>();
+            this.dependencies =  filterChilds(child -> child instanceof MDependency)
+                    .map(child -> (MDependency)child)
+                    .collect(Collectors.toList());
         }
         return dependencies;
     }

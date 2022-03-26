@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.oom.model;
 
+import de.spraener.nxtgen.ModelElementFactory;
 import de.spraener.nxtgen.ModelLoader;
 import de.spraener.nxtgen.NxtGenRuntimeException;
 import de.spraener.nxtgen.model.Model;
@@ -11,6 +12,8 @@ import java.io.*;
 import java.net.URL;
 
 public class OOMModelLoader implements ModelLoader {
+
+    private ModelElementFactory elementFactory = new OOModelElementFactory();
 
     @Override
     public boolean canHandle(String modelURI) {
@@ -28,6 +31,11 @@ public class OOMModelLoader implements ModelLoader {
         }
     }
 
+    @Override
+    public ModelElementFactory getModelElementFactory() {
+        return this.elementFactory;
+    }
+
     public Model loadFromString(String modelScript) {
         try {
             ByteArrayInputStream bais = new ByteArrayInputStream(modelScript.getBytes());
@@ -43,12 +51,7 @@ public class OOMModelLoader implements ModelLoader {
         Binding binding = new Binding();
         GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), binding);
         Object value = shell.evaluate(modelReader);
-        Model metaModel = (Model) value;
-        OOModel oom =  new OOModel(metaModel);
-        for( ModelElement e : oom.getModelElements() ) {
-            e.setModel(oom);
-        }
-        return oom;
+        return (OOModel)value;
     }
 
     private InputStreamReader openModel(String modelURI) throws IOException {

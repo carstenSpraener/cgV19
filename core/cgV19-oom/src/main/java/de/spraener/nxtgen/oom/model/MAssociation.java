@@ -3,7 +3,7 @@ package de.spraener.nxtgen.oom.model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
-public class MAssociation extends ModelElementImpl {
+public class MAssociation extends MAbstractModelElement {
     private String assocId;
     private String opositeAttribute;
     private String opositeMultiplicity;
@@ -12,11 +12,10 @@ public class MAssociation extends ModelElementImpl {
     private String multiplicity;
     private String composite;
 
-    public MAssociation(ModelElement meCF) {
-        this.setName(meCF.getName());
+    public MAssociation(){}
+    public void postDefinition() {
         super.setXmiID(assocId);
-        OOModelHelper.mapProperties( this, getClass(), meCF);
-        OOModelRepository.getInstance().put(this.assocId, this);
+        super.postDefinition();
     }
 
     public String getAssocId() {

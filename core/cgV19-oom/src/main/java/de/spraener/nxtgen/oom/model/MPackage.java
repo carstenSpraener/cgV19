@@ -7,47 +7,9 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MPackage extends ModelElementImpl {
+public class MPackage extends MAbstractModelElement {
 
     public MPackage() {
-    }
-
-    public MPackage(ModelElement me) {
-        setName(me.getName());
-        setMetaType(me.getMetaType());
-        if( me.getParent()!=null ) {
-            setName(me.getParent().getName() + "." + me.getName());
-        }
-        setStereotypes(me.getStereotypes());
-        List<MClass> classes = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mClass");
-        }).map( child -> {
-            MClass result = MClass.from(this, child);
-            return result;
-        }).collect(Collectors.toList());
-        getChilds().addAll(classes);
-
-        List<MPackage> packages = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mPackage");
-        }).map( child -> {
-            MPackage result = new MPackage(child);
-            result.setParent(this);
-            //result.setName(this.getName()+"."+result.getName());
-            return result;
-        }).collect(Collectors.toList());
-        getChilds().addAll(packages);
-
-        List<MActivity> activities = ((ModelElementImpl)me).filterChilds( child -> {
-            return child.getMetaType().equals("mActivity");
-        }).map( child -> {
-            MActivity result = new MActivity(child);
-            result.setParent(this);
-            //result.setName(this.getName()+"."+result.getName());
-            return result;
-        }).collect(Collectors.toList());
-        getChilds().addAll(activities);
-
-        OOModelHelper.mapProperties(this, getClass(), me);
     }
 
     public List<MClass> getClasses() {

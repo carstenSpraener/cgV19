@@ -128,4 +128,5 @@ public abstract class ModelElementImplBase implements ModelElement {
         return this.relations.contains(value);
     }
 
+    public void postDefinition() {}
 }

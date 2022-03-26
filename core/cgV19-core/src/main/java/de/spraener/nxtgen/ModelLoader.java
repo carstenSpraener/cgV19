@@ -1,6 +1,9 @@
 package de.spraener.nxtgen;
 
 import de.spraener.nxtgen.model.Model;
+import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.impl.ModelElementImpl;
+import de.spraener.nxtgen.model.impl.ModelImpl;
 
 /**
  * <p>
@@ -38,4 +41,19 @@ public interface ModelLoader {
      * @return Model
      */
     Model loadModel(String modelURI);
+
+    default ModelElementFactory getModelElementFactory() {
+        return new ModelElementFactory() {
+            @Override
+            public ModelElement createModelElement(String modelElmentName) {
+                ModelElementImpl me = new ModelElementImpl();
+                me.setName(modelElmentName);
+                return me;
+            }
+            @Override
+            public Model createModel() {
+                return new ModelImpl();
+            }
+        };
+    }
 }

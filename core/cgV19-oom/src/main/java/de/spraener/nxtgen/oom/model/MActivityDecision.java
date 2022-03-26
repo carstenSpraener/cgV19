@@ -7,43 +7,28 @@ import de.spraener.nxtgen.oom.ModelHelper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MActivityDecision extends ModelElementImpl {
+public class MActivityDecision extends MAbstractModelElement {
     private String id;
     private List<MActivityControlFlow> incoming;
     private List<MActivityControlFlow> outgoing;
 
-    public MActivityDecision(ModelElement me) {
-        OOModelHelper.mapProperties(this, this.getClass(), me);
+    public MActivityDecision() {
+    }
 
-        ModelElement meIncoming = ModelHelper.findInStream(me.getChilds().stream(), child -> {
+    public void postDefinition() {
+        super.postDefinition();
+        ModelElement meIncoming = ModelHelper.findInStream(getChilds().stream(), child -> {
             return child.getMetaType().equals("incoming");
         });
-        this.incoming =  ((ModelElementImpl)meIncoming).filterChilds( child -> {
-            return child.getMetaType().equals("mControlFlow");
-        }).map(meCF-> {
-            MActivityControlFlow cf = (MActivityControlFlow)OOModelRepository.getInstance().get(meCF.getProperty("id"));
-            if( cf == null ) {
-                cf = new MActivityControlFlow(meCF);
-                cf.setParent(this);
-            }
-            return cf;
-        }).collect(Collectors.toList());
-        super.getChilds().addAll(this.incoming);
+        this.incoming = ((ModelElementImpl)meIncoming).filterChilds( child -> child instanceof MActivityControlFlow)
+                .map(meCF-> (MActivityControlFlow)meCF)
+                .collect(Collectors.toList());
 
-        ModelElement meOutgoing = ModelHelper.findInStream(me.getChilds().stream(), child -> {
+        ModelElement meOutgoing = ModelHelper.findInStream(getChilds().stream(), child -> {
             return child.getMetaType().equals("outgoing");
         });
-        this.outgoing =  ((ModelElementImpl)meOutgoing).filterChilds( child -> {
-            return child.getMetaType().equals("mControlFlow");
-        }).map(meCF-> {
-            MActivityControlFlow cf = (MActivityControlFlow)OOModelRepository.getInstance().get(meCF.getProperty("id"));
-            if( cf == null ) {
-                cf = new MActivityControlFlow(meCF);
-                cf.setParent(this);
-            }
-            return cf;
-        }).collect(Collectors.toList());
-        super.getChilds().addAll(this.outgoing);
-
+        this.outgoing =  ((ModelElementImpl)meIncoming).filterChilds( child -> child instanceof MActivityControlFlow)
+                .map(meCF-> (MActivityControlFlow)meCF)
+                .collect(Collectors.toList());
     }
 }

@@ -1,10 +1,12 @@
 import de.spraener.nxtgen.NextGen;
+import org.junit.Test;
 
 public class TestModelLoader {
 
-    public static void main(String... args) throws Exception {
+    @Test
+    public void testLoader() throws Exception {
         NextGen.main(
-                new String[]{"http://localhost:7000/de.csp.demo.rest"}
+                new String[]{"http://localhost:7000/WebFlow"}
         );
     }
 

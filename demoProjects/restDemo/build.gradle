@@ -20,8 +20,8 @@ repositories {
     mavenCentral()
 }
 cgV19 {
-    //model='./restDemo.oom'
-    model='http://localhost:7000/de'
+    model='./restDemo.oom'
+    //model='http://localhost:7000/de'
 }
 
 tasks.withType(JavaCompile) {

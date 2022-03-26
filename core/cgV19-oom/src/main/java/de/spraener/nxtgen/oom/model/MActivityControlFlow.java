@@ -3,7 +3,7 @@ package de.spraener.nxtgen.oom.model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
-public class MActivityControlFlow extends ModelElementImpl {
+public class MActivityControlFlow extends MAbstractModelElement {
     private String source;
     private String sourceID;
     private String target;
@@ -11,11 +11,12 @@ public class MActivityControlFlow extends ModelElementImpl {
     private String id;
     private String guard;
 
-    public MActivityControlFlow(ModelElement meCF) {
-        this.setName(meCF.getName());
-        this.guard = meCF.getProperty("transitOn");
-        OOModelHelper.mapProperties( this, getClass(), meCF);
-        OOModelRepository.getInstance().put(this.id, this);
+    public MActivityControlFlow() {
+    }
+
+    public void postDefinition() {
+        this.guard = getProperty("transitOn");
+        super.postDefinition();
     }
 
     public String getSource() {

@@ -6,64 +6,39 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MActivity extends ModelElementImpl {
+public class MActivity extends MAbstractModelElement {
     private List<MActivityControlFlow> controlFlows = null;
     private MActivityNode initNode;
     private List<MActivityNode> finalNodes;
     private List<MActivityAction> actions;
     private List<MActivityDecision> decisions;
 
-    public MActivity(ModelElement meActivity) {
-        super();
-        setName(meActivity.getName());
-        setXmiID(meActivity.getProperty("id"));
+    public MActivity() {
+    }
+
+    public void postDefinition() {
+        setXmiID(this.getProperty("id"));
         OOModelRepository.getInstance().put(this.getXmiID(),  this);
-        this.setStereotypes(meActivity.getStereotypes());
-        this.controlFlows = ((ModelElementImpl)meActivity).filterChilds( child -> {
-            return child.getMetaType().equals("mControlFlow");
-        }).map(meCF-> {
-            MActivityControlFlow cf = new MActivityControlFlow(meCF);
-            cf.setParent(this);
-            return cf;
-        }).collect(Collectors.toList());
-        super.getChilds().addAll(this.controlFlows);
+        this.controlFlows = filterChilds( child -> child instanceof MActivityControlFlow )
+                .map(child-> (MActivityControlFlow)child)
+                .collect(Collectors.toList());
 
-        this.initNode =  ((ModelElementImpl)meActivity).filterChilds( child -> {
+        this.initNode = ((ModelElementImpl)this).filterChilds( child -> {
             return child.getMetaType().equals("initNode");
-        }).map(me-> {
-            MActivityNode cf = new MActivityNode(me);
-            cf.setParent(this);
-            return cf;
-        }).findFirst().orElse(null);
-        super.getChilds().add(initNode);
+        }).map(me-> (MActivityNode) me)
+        .findFirst().orElse(null);
 
-        this.finalNodes =  ((ModelElementImpl)meActivity).filterChilds( child -> {
-            return child.getMetaType().equals("finalNode");
-        }).map(me-> {
-            MActivityNode cf = new MActivityNode(me);
-            cf.setParent(this);
-            return cf;
-        }).collect(Collectors.toList());
-        super.getChilds().addAll(this.finalNodes);
+        this.finalNodes =  filterChilds( child -> child.getMetaType().equals("finalNode"))
+                .map(me-> (MActivityNode) me)
+                .collect(Collectors.toList());
 
-        this.actions =  ((ModelElementImpl)meActivity).filterChilds( child -> {
-            return child.getMetaType().equals("mAction");
-        }).map(me-> {
-            MActivityAction cf = new MActivityAction(me);
-            cf.setParent(this);
-            return cf;
-        }).collect(Collectors.toList());
-        super.getChilds().addAll(this.actions);
-
-        this.decisions =  ((ModelElementImpl)meActivity).filterChilds( child -> {
-            return child.getMetaType().equals("mDecision");
-        }).map(me-> {
-            MActivityDecision cf = new MActivityDecision(me);
-            cf.setParent(this);
-            return cf;
-        }).collect(Collectors.toList());
-        super.getChilds().addAll(this.decisions);
-        OOModelHelper.mapProperties(this, getClass(), meActivity);
+        this.actions = filterChilds( child -> child instanceof MActivityAction )
+                .map(child-> (MActivityAction)child)
+                        .collect(Collectors.toList());
+         this.decisions = filterChilds( child -> child instanceof MActivityDecision )
+                 .map(child-> (MActivityDecision)child)
+                 .collect(Collectors.toList());
+        OOModelHelper.mapProperties(this, getClass(), this);
     }
 
     public List<MActivityControlFlow> getControlFlows() {
