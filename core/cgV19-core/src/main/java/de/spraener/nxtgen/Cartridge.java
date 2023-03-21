@@ -2,6 +2,7 @@ package de.spraener.nxtgen;
 
 import de.spraener.nxtgen.model.Model;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,4 +46,8 @@ public interface Cartridge {
      * @return
      */
     List<CodeGeneratorMapping> mapGenerators(Model m);
+
+    default List<String> getAnnotationTypes() {
+        return Collections.emptyList();
+    }
 }

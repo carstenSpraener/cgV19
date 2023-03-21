@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,16 +38,41 @@ import java.util.logging.Logger;
 public class NextGen implements Runnable {
     public static final Logger LOGGER = Logger.getLogger("NextGen");
     private static ProtectionStrategie protectionStrategie = null;
-    private String modelURI;
-    private final String workingDir;
-    private static ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
+    private final String modelURI;
+    private String workingDir;
+    private static final ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
 
+    private Supplier<List<Cartridge>> cartridgeSupllier = this::loadCartridges;
+    private Supplier<List<ModelLoader>> modelloaderSupplier = this::locateModelLoader;
+    private CGV19Runtime cgv19Runtime = new CGV19RuntimeDefaultImpl();
 
     private NextGen(String modelURI) {
         this.modelURI = modelURI;
-        this.workingDir = new File(".").getAbsolutePath();
     }
 
+    public NextGen setCartridgeSupllier(Supplier<List<Cartridge>> cartridgeSupllier ) {
+        this.cartridgeSupllier = cartridgeSupllier;
+        return this;
+    }
+
+    public NextGen setModelloaderSupplier(Supplier<List<ModelLoader>> modelloaderSupplier) {
+        this.modelloaderSupplier = modelloaderSupplier;
+        return this;
+    }
+
+    public NextGen setCgv19Runtime(CGV19Runtime cgv19Runtime) {
+        this.cgv19Runtime = cgv19Runtime;
+        return this;
+    }
+
+    public static NextGen getInstance(String modelURI) {
+        return new NextGen(modelURI);
+    }
+
+    public void init() {
+        loadCartridges();
+
+    }
     public static ProtectionStrategie getProtectionStrategie() {
         if( protectionStrategie==null) {
             ServiceLoader<ProtectionStrategie> protectionServices = ServiceLoader.load(ProtectionStrategie.class);
@@ -101,13 +127,13 @@ public class NextGen implements Runnable {
 
     public void run() {
         try {
-            LOGGER.info(() -> "starting codegen in working dir "+getWorkingDir()+" on model file " + modelURI);
-            for (Cartridge c : loadCartridges()) {
+            LOGGER.info(() -> "starting codegen in working dir "+ this.cgv19Runtime.getWorkingDir()+" on model file " + modelURI);
+            for (Cartridge c : this.cartridgeSupllier.get()) {
                 List<Model> models = loadModels(this.modelURI);
                 for (Model m : models) {
                     runTransformations(m, c);
                     for (CodeBlock cb : runCodeGenerators(c, m)) {
-                        cb.writeOutput(getWorkingDir());
+                        this.cgv19Runtime.writeCodeBlock( this.cgv19Runtime.getWorkingDir(), cb);
                     }
                 }
             }
@@ -116,13 +142,9 @@ public class NextGen implements Runnable {
         }
     }
 
-    private String getWorkingDir() {
-        return this.workingDir;
-    }
-
     private List<Model> loadModels(String modelURI) {
         List<Model> models = new ArrayList();
-        for( ModelLoader loader : locateModelLoader() ) {
+        for( ModelLoader loader : this.modelloaderSupplier.get() ) {
             if( loader.canHandle(modelURI) ) {
                 LOGGER.fine(() -> "loading model with loader " + loader.getClass().getName());
                 try {

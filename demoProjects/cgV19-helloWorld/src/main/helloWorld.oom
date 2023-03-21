@@ -4,19 +4,19 @@ ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.hello'
         mPackage {
-            name = 'model'
-            mClass {
-                name 'Person'
-                stereotype 'PoJo'
-                mAttribute {
-                    name 'firstName'
-                    type 'String'
-                }
-                mAttribute {
-                    name 'name'
-                    type 'String'
-                }
+          name 'model'
+          mClass {
+            name 'Person'
+            stereotype 'PoJo'
+            mAttribute {
+                name 'firstName'
+                type 'String'
             }
+            mAttribute {
+                name 'name'
+                type 'String'
+            }
+          }
         }
     }
 }

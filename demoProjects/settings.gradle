@@ -1,4 +1,4 @@
 rootProject.name = 'cgV19-DemoProjects'
 
-// include ':cgV19-helloWorld'
+include ':cgV19-helloWorld'
 include ':restDemo'

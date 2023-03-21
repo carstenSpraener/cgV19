@@ -35,7 +35,11 @@ public interface CodeBlock {
      */
     String getName();
 
-    public void writeOutput(String workingDir);
+    void writeOutput(String workingDir);
 
     void setToFileStrategy(ToFileStrategy strategy);
+
+    default String getClassName() {
+        return null;
+    }
 }

@@ -5,5 +5,6 @@ include ':cgV19-gradle'
 include ':cgV19-oom'
 include ':cgV19-pojo'
 include ':cgV19-MetaCartridge'
+include ':cgv19-annotationProcessor'
 // this module is only compilable if you have MagicDraw available.
-include ':cgV19-MDPlugin'
+//include ':cgV19-MDPlugin'

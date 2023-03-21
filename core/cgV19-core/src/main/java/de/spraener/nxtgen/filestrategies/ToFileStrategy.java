@@ -8,4 +8,5 @@ import java.io.File;
  */
 public interface ToFileStrategy {
     File open();
+    File open(String workingDir);
 }

@@ -10,7 +10,7 @@ allprojects {
     repositories {
         mavenCentral()
         maven {
-            url="${project.rootDir}/../repo"
+            url "${project.rootDir}/../repo"
         }
     }
 }
@@ -27,6 +27,9 @@ subprojects {
 
     version = "${project.ext.version}"
     group = "${project.ext.group}"
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 
     tasks.getByName("processResources").setProperty("duplicatesStrategy", "exclude")
 

@@ -7,6 +7,7 @@ import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
+import de.spraener.nxtgen.pojo.annotations.Payload;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +28,26 @@ public class PoJoCartridge implements Cartridge {
 
     @Override
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
-        Logger.getAnonymousLogger().info("Initiating cartridge "+getName());
+        Logger.getAnonymousLogger().info("Initiating cartridge " + getName());
         List<CodeGeneratorMapping> mappings = new ArrayList<>();
-        for(ModelElement me : m.getModelElements() ) {
-            if (me instanceof MClass) {
-                Logger.getAnonymousLogger().info("Mapping class "+me.getName());
-                if (StereotypeHelper.hasStereotye(me, ST_POJO)) {
-                    mappings.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
-                }
+        for (ModelElement me : m.getModelElements()) {
+            if (StereotypeHelper.hasStereotye(me, ST_POJO)) {
+                Logger.getAnonymousLogger().info("Mapping class " + me.getName());
+                mappings.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
+            }
+            if (StereotypeHelper.hasStereotye(me, "Payload")) {
+                Logger.getAnonymousLogger().info("Mapping PayLoad " + me.getName());
+                mappings.add(CodeGeneratorMapping.create(me, new PayLoadGenerator()));
+                mappings.add(CodeGeneratorMapping.create(me, new PayLoadBuilderGenerator()));
             }
         }
         return mappings;
+    }
+
+    @Override
+    public List<String> getAnnotationTypes() {
+        return List.of(
+                Payload.class.getName()
+        );
     }
 }

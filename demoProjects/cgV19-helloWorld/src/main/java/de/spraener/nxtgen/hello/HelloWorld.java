@@ -5,6 +5,8 @@ package de.spraener.nxtgen.hello;
 
 import de.spraener.nxtgen.hello.model.Person;
 
+import java.util.Date;
+
 public class HelloWorld {
     public String getGreeting() {
         Person p = new Person();
@@ -15,5 +17,11 @@ public class HelloWorld {
 
     public static void main(String[] args) {
         System.out.println(new HelloWorld().getGreeting());
+        HelloPayload payload = new  HelloPayloadBuilder()
+                .withVorName("Carsten")
+                .withAge(53)
+                .withBirth(new Date())
+                .withName("Spräner")
+                .build();
     }
 }

@@ -21,7 +21,7 @@ class CGV19 implements Plugin<Project> {
             })
             String nextGen = "de.spraener.nxtgen.NextGen";
             p.javaexec {
-                main = nextGen;
+                mainClass = nextGen;
                 classpath = p.configurations.getByName('cartridge')
                 args extension.model
             }

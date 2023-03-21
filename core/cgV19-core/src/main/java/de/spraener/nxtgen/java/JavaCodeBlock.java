@@ -22,7 +22,12 @@ public class JavaCodeBlock extends CodeBlockImpl {
     @Override
     public void writeOutput(String workingDir) {
         try {
-            File outFile = new File(workingDir+"/"+srcDir+"/"+toFilePath()+".java");
+            File outFile = null;
+            if( getToFileStrategy()==null ) {
+                outFile = new File(workingDir+"/"+srcDir+"/"+toFilePath()+".java");
+            } else {
+                outFile = getToFileStrategy().open(workingDir);
+            }
             if( outFile.exists() && checkProtected(outFile) ) {
                 return;
             }
@@ -38,5 +43,9 @@ public class JavaCodeBlock extends CodeBlockImpl {
 
     private String toFilePath() {
         return this.pkgName.replaceAll("\\.", "/")+"/"+this.className;
+    }
+
+    public String getClassName() {
+        return this.className;
     }
 }

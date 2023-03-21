@@ -6,9 +6,9 @@ import de.spraener.nxtgen.model.ModelElement;
 import java.io.File;
 
 public class DocumentationOutputFileStrategy implements ToFileStrategy {
-    private ModelElement element;
-    private String path;
-    private String ending;
+    private final ModelElement element;
+    private final String path;
+    private final String ending;
 
     public DocumentationOutputFileStrategy(ModelElement element, String path, String ending) {
         this.element = element;
@@ -19,5 +19,10 @@ public class DocumentationOutputFileStrategy implements ToFileStrategy {
     @Override
     public File open() {
         return new File( path+"/"+element.getName()+"."+ending);
+    }
+
+    @Override
+    public File open(String workingDir) {
+        return new File( workingDir+"/"+path+"/"+element.getName()+"."+ending);
     }
 }

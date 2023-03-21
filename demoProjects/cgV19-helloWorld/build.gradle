@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        mavenCentral();
+        mavenCentral()
         maven {
             url="${project.rootDir}/../repo"
         }
@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
-    mavenCentral();
+    mavenCentral()
     maven {
         url="${project.rootDir}/../repo"
     }
@@ -49,11 +49,23 @@ dependencies {
     cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
     cartridge "${project.ext.group}:cgV19-pojo:${project.ext.version}"
 
+    annotationProcessor files(
+            '../../core/cgv19-annotationProcessor/build/libs/cgv19-annotationProcessor-21.0.0-SNAPSHOT-all.jar',
+            '../../core/cgV19-core/build/libs/cgV19-core-21.0.0-SNAPSHOT.jar',
+            '../../core/cgV19-oom/build/libs/cgV19-oom-21.0.0-SNAPSHOT.jar',
+            '../../core/cgV19-pojo/build/libs/cgV19-pojo-21.0.0-SNAPSHOT.jar'
+    )
+
     implementation "${project.ext.group}:cgV19-core:${project.ext.version}"
     implementation "${project.ext.group}:cgV19-oom:${project.ext.version}"
+    implementation "${project.ext.group}:cgV19-pojo:${project.ext.version}"
+
     testImplementation 'junit:junit:4.13.1'
 }
 
 compileJava.dependsOn generate
+// POC: This  could come from the CGV-19 Gradle Plugin
+// POC: The configuration is acutaly a property file. It could be some high sophisticated language also
+compileJava.options.compilerArgs = ["-Acgv19.AP.config=${projectDir}/cgv19-ap.conf"]
 
 mainClassName = 'de.spraener.nxtgen.hello.App'
