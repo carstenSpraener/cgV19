@@ -1,0 +1,837 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+
+        mPackage {
+          name 'de'
+          stereotype 'HyperlinkOwner', {
+              taggedValue 'hyperlinkModel', 'de::csp::demo::rest::Application'
+              taggedValue 'hyperlinkModelActive', 'de::csp::demo::rest::Application'
+          }
+          mPackage {
+            name 'csp'
+            mPackage {
+              name 'demo'
+              mPackage {
+                name 'rest'
+                stereotype 'cgV19Project', {
+                }
+                mClass {
+                  name 'User'
+                  xmiID '_18_5_3_40201a1_1598192894951_110135_4796'
+                    stereotype 'Ressource', {
+                        taggedValue 'dbTable', 'USR_TAB'
+                    }
+                  mAttribute {
+                      name 'name'
+                      stereotype 'PersistentField', {
+                          taggedValue 'nullable', 'false'
+                          taggedValue 'unique', 'true'
+                          taggedValue 'type', 'string'
+                          taggedValue 'length', '255'
+                          taggedValue 'label', 'Name'
+                      }
+                      type 'String'
+                      visibility 'private'
+                  }
+                  mAttribute {
+                      name 'vorname'
+                      stereotype 'PersistentField', {
+                          taggedValue 'type', 'string'
+                          taggedValue 'nullable', 'true'
+                          taggedValue 'label', 'Vorname'
+                      }
+                      type 'String'
+                      visibility 'private'
+                  }
+                  mAttribute {
+                      name 'isVeryfied'
+                      stereotype 'PersistentField', {
+                          taggedValue 'type', 'boolean'
+                          taggedValue 'label', 'Verifiziert'
+                          taggedValue 'detailOnly', 'true'
+                      }
+                      type 'Boolean'
+                      visibility 'private'
+                  }
+                  mAttribute {
+                      name 'gebDat'
+                      stereotype 'PersistentField', {
+                          taggedValue 'type', 'date'
+                          taggedValue 'nullable', 'true'
+                          taggedValue 'label', 'Geburtsdatum'
+                          taggedValue 'detailOnly', 'true'
+                      }
+                      type 'java.util.Date'
+                      visibility 'private'
+                  }
+                  mAttribute {
+                      name 'email'
+                      stereotype 'PersistentField', {
+                          taggedValue 'type', 'string'
+                          taggedValue 'nullable', 'false'
+                          taggedValue 'label', 'EMail'
+                          taggedValue 'detailOnly', 'false'
+                      }
+                      type 'String'
+                      visibility 'private'
+                  }
+                  mAssociation {
+                      assocId '_18_5_3_40201a1_1600257802821_486446_5344'
+                      opositeAttribute 'user'
+                      opositeMultiplicity '1'
+                      associationType 'OneToMany'
+                      type 'de.csp.demo.rest.model.Adresse'
+                      name 'adressen'
+                      multiplicity '0..*'
+                      composite 'true'
+                  }
+                  mAssociation {
+                      assocId '_18_5_3_40201a1_1647527861088_782719_5428'
+                      opositeAttribute 'users'
+                      opositeMultiplicity '0..*'
+                      associationType 'ManyToMany'
+                      type 'de.csp.demo.rest.model.Group'
+                      name 'groups'
+                      multiplicity '0..*'
+                      composite 'false'
+                  }
+                  mActivity {
+                    stereotype 'ControlledOperation', {
+                    }
+                    id '_18_5_3_40201a1_1598540767507_48555_4995'
+                    name 'validate'
+                    mControlFlow {
+                       source ''
+                       sourceID '_18_5_3_40201a1_1598540779985_502891_5030'
+                       target 'doThis'
+                       targetID '_18_5_3_40201a1_1598540797236_724482_5044'
+                       name ''
+                       id '_18_5_3_40201a1_1598540818319_58611_5074'
+                    }
+                    mControlFlow {
+                       source 'doThis'
+                       sourceID '_18_5_3_40201a1_1598540797236_724482_5044'
+                       target ''
+                       targetID '_18_5_3_40201a1_1598542382475_787780_5207'
+                       name ''
+                       id '_18_5_3_40201a1_1598540821590_232441_5079'
+                    }
+                    mControlFlow {
+                       source 'doThat'
+                       sourceID '_18_5_3_40201a1_1598540805121_962415_5058'
+                       target 'Boolean.TRUE'
+                       targetID '_18_5_3_40201a1_1598540788349_164322_5036'
+                       name ''
+                       id '_18_5_3_40201a1_1598540827199_553187_5084'
+                    }
+                    mControlFlow {
+                       source ''
+                       sourceID '_18_5_3_40201a1_1598542382475_787780_5207'
+                       target 'doThat'
+                       targetID '_18_5_3_40201a1_1598540805121_962415_5058'
+                       name ''
+                       id '_18_5_3_40201a1_1598542385752_425792_5211'
+                       transitOn 'TRUE'
+                    }
+                    mControlFlow {
+                       source ''
+                       sourceID '_18_5_3_40201a1_1598542382475_787780_5207'
+                       target 'Boolean.FASLE'
+                       targetID '_18_5_3_40201a1_1598602564034_308900_5211'
+                       name ''
+                       id '_18_5_3_40201a1_1598542393943_260656_5218'
+                       transitOn 'FASLE'
+                    }
+                    mControlFlow {
+                       source 'reCalculate'
+                       sourceID '_18_5_3_40201a1_1598602620614_462563_5223'
+                       target 'doThis'
+                       targetID '_18_5_3_40201a1_1598540797236_724482_5044'
+                       name ''
+                       id '_18_5_3_40201a1_1598602634807_973422_5238'
+                    }
+                    mControlFlow {
+                       source ''
+                       sourceID '_18_5_3_40201a1_1598542382475_787780_5207'
+                       target 'reCalculate'
+                       targetID '_18_5_3_40201a1_1598602620614_462563_5223'
+                       name ''
+                       id '_18_5_3_40201a1_1598602645624_988825_5259'
+                       transitOn 'NULL'
+                    }
+                    initNode {
+                      id: '_18_5_3_40201a1_1598540779985_502891_5030'
+                    }
+                    finalNode {
+                      id: '_18_5_3_40201a1_1598540788349_164322_5036'
+                      value: 'Boolean.TRUE'
+                    }
+                    mAction {
+                      id '_18_5_3_40201a1_1598540797236_724482_5044'
+                      name 'doThis'
+                    }
+                    mAction {
+                      id '_18_5_3_40201a1_1598540805121_962415_5058'
+                      name 'doThat'
+                    }
+                    mDecision {
+                      id '_18_5_3_40201a1_1598542382475_787780_5207'
+                      incoming {
+                        mControlFlow { 
+                          source 'doThis'
+                          sourceID '_18_5_3_40201a1_1598540797236_724482_5044'
+                          target ''
+                          targetID '_18_5_3_40201a1_1598542382475_787780_5207'
+                          name ''
+                          id '_18_5_3_40201a1_1598540821590_232441_5079'
+                          transitOn ''
+                        }
+                      }
+                      outgoing {
+                        mControlFlow { 
+                          source ''
+                          sourceID '_18_5_3_40201a1_1598542382475_787780_5207'
+                          target 'doThat'
+                          targetID '_18_5_3_40201a1_1598540805121_962415_5058'
+                          name ''
+                          id '_18_5_3_40201a1_1598542385752_425792_5211'
+                          transitOn 'TRUE'
+                        }
+                        mControlFlow { 
+                          source ''
+                          sourceID '_18_5_3_40201a1_1598542382475_787780_5207'
+                          target 'Boolean.FASLE'
+                          targetID '_18_5_3_40201a1_1598602564034_308900_5211'
+                          name ''
+                          id '_18_5_3_40201a1_1598542393943_260656_5218'
+                          transitOn 'FASLE'
+                        }
+                        mControlFlow { 
+                          source ''
+                          sourceID '_18_5_3_40201a1_1598542382475_787780_5207'
+                          target 'reCalculate'
+                          targetID '_18_5_3_40201a1_1598602620614_462563_5223'
+                          name ''
+                          id '_18_5_3_40201a1_1598602645624_988825_5259'
+                          transitOn 'NULL'
+                        }
+                      }
+                    }
+                    finalNode {
+                      id: '_18_5_3_40201a1_1598602564034_308900_5211'
+                      value: 'Boolean.FASLE'
+                    }
+                    mAction {
+                      stereotype 'Interactive', {
+                          taggedValue 'redirectTo', '/recalculation'
+                      }
+                      id '_18_5_3_40201a1_1598602620614_462563_5223'
+                      name 'reCalculate'
+                    }
+                  }
+                }
+                mClass {
+                  name 'SpringBootApp'
+                  xmiID '_18_5_3_40201a1_1598192828859_847532_4757'
+                    stereotype 'SpringBootApp', {
+                    }
+                  mUsage {
+                     target 'de.csp.demo.rest.User'
+                  }
+                }
+                mPackage {
+                  name 'model'
+                  mClass {
+                    name 'Adresse'
+                    xmiID '_18_5_3_40201a1_1598193824609_803334_4863'
+                      stereotype 'Entity', {
+                          taggedValue 'dbTableName', 'ADR_TAB'
+                      }
+                    mAttribute {
+                        name 'strasse'
+                        stereotype 'PersistentField', {
+                            taggedValue 'label', 'Straﬂe'
+                            taggedValue 'length', '80'
+                            taggedValue 'type', 'string'
+                        }
+                        type 'String'
+                        visibility 'private'
+                    }
+                    mAttribute {
+                        name 'hausnr'
+                        stereotype 'PersistentField', {
+                            taggedValue 'label', 'Hausnummer'
+                            taggedValue 'type', 'string'
+                            taggedValue 'length', '10'
+                            taggedValue 'nullable', 'true'
+                        }
+                        type 'String'
+                        visibility 'private'
+                    }
+                    mAttribute {
+                        name 'plz'
+                        stereotype 'PersistentField', {
+                            taggedValue 'label', 'Plz'
+                            taggedValue 'type', 'string'
+                            taggedValue 'length', '10'
+                        }
+                        type 'String'
+                        visibility 'private'
+                    }
+                    mAttribute {
+                        name 'ort'
+                        stereotype 'PersistentField', {
+                            taggedValue 'label', 'Ort'
+                            taggedValue 'type', 'string'
+                            taggedValue 'length', '80'
+                        }
+                        type 'String'
+                        visibility 'private'
+                    }
+                    mAssociation {
+                        assocId '_18_5_3_40201a1_1600257802821_486446_5344'
+                        opositeAttribute 'adressen'
+                        opositeMultiplicity '0..*'
+                        associationType 'ManyToOne'
+                        type 'de.csp.demo.rest.User'
+                        name 'user'
+                        multiplicity '1'
+                        composite 'false'
+                    }
+                  }
+                  mClass {
+                    name 'Group'
+                    xmiID '_18_5_3_40201a1_1647527780466_233403_5395'
+                      stereotype 'Entity', {
+                          taggedValue 'dbTableName', 'GRP_TAB'
+                      }
+                    mAttribute {
+                        name 'name'
+                        type 'String'
+                        visibility 'private'
+                    }
+                    mAssociation {
+                        assocId '_18_5_3_40201a1_1647527861088_782719_5428'
+                        opositeAttribute 'groups'
+                        opositeMultiplicity '0..*'
+                        associationType 'ManyToMany'
+                        type 'de.csp.demo.rest.User'
+                        name 'users'
+                        multiplicity '0..*'
+                        composite 'false'
+                    }
+                  }
+                  mClass {
+                    name 'Customer'
+                    xmiID '_18_5_3_40201a1_1647534612006_239661_5507'
+                      stereotype 'Entity', {
+                          taggedValue 'dbTableName', 'CUSTOMER'
+                      }
+                    relation {
+                      type 'extends'
+                      targetXmID '_18_5_3_40201a1_1598192894951_110135_4796'
+                      targetType 'de.csp.demo.rest.User'
+                    }
+                    mAttribute {
+                        name 'customerValue'
+                        type 'Integer'
+                        visibility 'private'
+                    }
+                    mAssociation {
+                        assocId '_18_5_3_40201a1_1647538192274_862335_5656'
+                        opositeAttribute 'customer'
+                        opositeMultiplicity '1'
+                        associationType 'OneToMany'
+                        type 'de.csp.demo.rest.model.BankAccount'
+                        name 'bankAccounts'
+                        multiplicity '0..*'
+                        composite 'true'
+                    }
+                  }
+                  mClass {
+                    name 'BankAccount'
+                    xmiID '_18_5_3_40201a1_1647535183156_861715_5543'
+                      stereotype 'Entity', {
+                          taggedValue 'dbTableName', 'BNK_ACCOUNT'
+                      }
+                    mAttribute {
+                        name 'iban'
+                        stereotype 'PersistentField', {
+                            taggedValue 'label', 'IBAN'
+                            taggedValue 'length', '32'
+                            taggedValue 'nullable', 'false'
+                            taggedValue 'type', 'string'
+                        }
+                        type 'String'
+                        visibility 'null'
+                    }
+                    mAssociation {
+                        assocId '_18_5_3_40201a1_1647538192274_862335_5656'
+                        opositeAttribute 'bankAccounts'
+                        opositeMultiplicity '0..*'
+                        associationType 'ManyToOne'
+                        type 'de.csp.demo.rest.model.Customer'
+                        name 'customer'
+                        multiplicity '1'
+                        composite 'false'
+                    }
+                  }
+                }
+                mActivity {
+                  stereotype 'Flow', {
+                  }
+                  id '_18_5_3_40201a1_1599469053784_894447_5292'
+                  name 'Login'
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469098993_685700_5333'
+                     target 'readCredentials'
+                     targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                     name ''
+                     id '_18_5_3_40201a1_1599469124051_566658_5354'
+                  }
+                  mControlFlow {
+                     source 'readCredentials'
+                     sourceID '_18_5_3_40201a1_1599469102346_856197_5339'
+                     target 'checkCredentials'
+                     targetID '_18_5_3_40201a1_1599469172193_835272_5360'
+                     name ''
+                     id '_18_5_3_40201a1_1599469186094_885099_5376'
+                  }
+                  mControlFlow {
+                     source 'checkCredentials'
+                     sourceID '_18_5_3_40201a1_1599469172193_835272_5360'
+                     target ''
+                     targetID '_18_5_3_40201a1_1599469195365_772607_5379'
+                     name ''
+                     id '_18_5_3_40201a1_1599469198720_611391_5386'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469195365_772607_5379'
+                     target 'readCredentials'
+                     targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                     name ''
+                     id '_18_5_3_40201a1_1599469203772_862336_5391'
+                     transitOn 'WRONG'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469195365_772607_5379'
+                     target 'checkOKTime'
+                     targetID '_18_5_3_40201a1_1599469255591_154738_5410'
+                     name ''
+                     id '_18_5_3_40201a1_1599469263410_299924_5425'
+                     transitOn 'CORRECT'
+                  }
+                  mControlFlow {
+                     source 'checkOKTime'
+                     sourceID '_18_5_3_40201a1_1599469255591_154738_5410'
+                     target ''
+                     targetID '_18_5_3_40201a1_1599469282149_834323_5431'
+                     name ''
+                     id '_18_5_3_40201a1_1599469285697_120115_5438'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469282149_834323_5431'
+                     target 'presentHumanCheck'
+                     targetID '_18_5_3_40201a1_1599469294594_899291_5441'
+                     name ''
+                     id '_18_5_3_40201a1_1599469357428_23384_5460'
+                     transitOn 'NEEDS_CHECK'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469282149_834323_5431'
+                     target 'Boolean.TRUE'
+                     targetID '_18_5_3_40201a1_1599469374500_332375_5466'
+                     name ''
+                     id '_18_5_3_40201a1_1599469382065_836630_5475'
+                     transitOn 'IS_HUMAN'
+                  }
+                  mControlFlow {
+                     source 'presentHumanCheck'
+                     sourceID '_18_5_3_40201a1_1599469294594_899291_5441'
+                     target ''
+                     targetID '_18_5_3_40201a1_1599469399465_523812_5481'
+                     name ''
+                     id '_18_5_3_40201a1_1599469402537_315754_5488'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469399465_523812_5481'
+                     target 'Boolean.TRUE'
+                     targetID '_18_5_3_40201a1_1599469374500_332375_5466'
+                     name ''
+                     id '_18_5_3_40201a1_1599469413203_746906_5508'
+                     transitOn 'IS_HUMAN'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469399465_523812_5481'
+                     target 'presentHumanCheck'
+                     targetID '_18_5_3_40201a1_1599469294594_899291_5441'
+                     name ''
+                     id '_18_5_3_40201a1_1599469431112_597397_5516'
+                     transitOn 'NEEDS_CHECK'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469399465_523812_5481'
+                     target 'readCredentials'
+                     targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                     name ''
+                     id '_18_5_3_40201a1_1599469451451_966459_5524'
+                     transitOn 'RELOGIN'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599469195365_772607_5379'
+                     target 'requestPersonalData'
+                     targetID '_18_5_3_40201a1_1599469998927_655816_5535'
+                     name 'REGISTRATION'
+                     id '_18_5_3_40201a1_1599470019294_694615_5551'
+                  }
+                  mControlFlow {
+                     source 'requestPersonalData'
+                     sourceID '_18_5_3_40201a1_1599469998927_655816_5535'
+                     target ''
+                     targetID '_18_5_3_40201a1_1599470047063_638833_5571'
+                     name ''
+                     id '_18_5_3_40201a1_1599470052950_826783_5580'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599470047063_638833_5571'
+                     target 'readCredentials'
+                     targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                     name ''
+                     id '_18_5_3_40201a1_1599470056567_16423_5585'
+                     transitOn 'ALREADY_REGISTERED'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599470047063_638833_5571'
+                     target 'requestPersonalData'
+                     targetID '_18_5_3_40201a1_1599469998927_655816_5535'
+                     name ''
+                     id '_18_5_3_40201a1_1599470077158_542408_5593'
+                     transitOn 'DATA_INCOMPLETE'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599470047063_638833_5571'
+                     target 'sendRegistraionEMail'
+                     targetID '_18_5_3_40201a1_1599470094917_401164_5601'
+                     name ''
+                     id '_18_5_3_40201a1_1599470094926_484516_5603'
+                  }
+                  mControlFlow {
+                     source 'sendRegistraionEMail'
+                     sourceID '_18_5_3_40201a1_1599470094917_401164_5601'
+                     target 'waitForRegistrationEMail'
+                     targetID '_18_5_3_40201a1_1599470160432_776127_5615'
+                     name ''
+                     id '_18_5_3_40201a1_1599470178628_646538_5631'
+                  }
+                  mControlFlow {
+                     source 'waitForRegistrationEMail'
+                     sourceID '_18_5_3_40201a1_1599470160432_776127_5615'
+                     target ''
+                     targetID '_18_5_3_40201a1_1599470188302_865429_5634'
+                     name ''
+                     id '_18_5_3_40201a1_1599470193175_75065_5641'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599470188302_865429_5634'
+                     target 'presentSuccessfullRegistration'
+                     targetID '_18_5_3_40201a1_1599470252030_651271_5660'
+                     name ''
+                     id '_18_5_3_40201a1_1599470203220_172523_5646'
+                     transitOn 'REGISTRATION_CODE_OK'
+                  }
+                  mControlFlow {
+                     source ''
+                     sourceID '_18_5_3_40201a1_1599470188302_865429_5634'
+                     target 'waitForRegistrationEMail'
+                     targetID '_18_5_3_40201a1_1599470160432_776127_5615'
+                     name ''
+                     id '_18_5_3_40201a1_1599470228126_940427_5654'
+                     transitOn 'REGISTRATION_CODE_FAILED'
+                  }
+                  mControlFlow {
+                     source 'presentSuccessfullRegistration'
+                     sourceID '_18_5_3_40201a1_1599470252030_651271_5660'
+                     target 'readCredentials'
+                     targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                     name ''
+                     id '_18_5_3_40201a1_1599470255307_469228_5673'
+                  }
+                  initNode {
+                    id: '_18_5_3_40201a1_1599469098993_685700_5333'
+                  }
+                  mAction {
+                    stereotype 'Interactive', {
+                        taggedValue 'redirectTo', 'login'
+                    }
+                    id '_18_5_3_40201a1_1599469102346_856197_5339'
+                    name 'readCredentials'
+                  }
+                  mAction {
+                    id '_18_5_3_40201a1_1599469172193_835272_5360'
+                    name 'checkCredentials'
+                  }
+                  mDecision {
+                    id '_18_5_3_40201a1_1599469195365_772607_5379'
+                    incoming {
+                      mControlFlow { 
+                        source 'checkCredentials'
+                        sourceID '_18_5_3_40201a1_1599469172193_835272_5360'
+                        target ''
+                        targetID '_18_5_3_40201a1_1599469195365_772607_5379'
+                        name ''
+                        id '_18_5_3_40201a1_1599469198720_611391_5386'
+                        transitOn ''
+                      }
+                    }
+                    outgoing {
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469195365_772607_5379'
+                        target 'readCredentials'
+                        targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                        name ''
+                        id '_18_5_3_40201a1_1599469203772_862336_5391'
+                        transitOn 'WRONG'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469195365_772607_5379'
+                        target 'checkOKTime'
+                        targetID '_18_5_3_40201a1_1599469255591_154738_5410'
+                        name ''
+                        id '_18_5_3_40201a1_1599469263410_299924_5425'
+                        transitOn 'CORRECT'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469195365_772607_5379'
+                        target 'requestPersonalData'
+                        targetID '_18_5_3_40201a1_1599469998927_655816_5535'
+                        name 'REGISTRATION'
+                        id '_18_5_3_40201a1_1599470019294_694615_5551'
+                        transitOn ''
+                      }
+                    }
+                  }
+                  mAction {
+                    id '_18_5_3_40201a1_1599469255591_154738_5410'
+                    name 'checkOKTime'
+                  }
+                  mDecision {
+                    id '_18_5_3_40201a1_1599469282149_834323_5431'
+                    incoming {
+                      mControlFlow { 
+                        source 'checkOKTime'
+                        sourceID '_18_5_3_40201a1_1599469255591_154738_5410'
+                        target ''
+                        targetID '_18_5_3_40201a1_1599469282149_834323_5431'
+                        name ''
+                        id '_18_5_3_40201a1_1599469285697_120115_5438'
+                        transitOn ''
+                      }
+                    }
+                    outgoing {
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469282149_834323_5431'
+                        target 'presentHumanCheck'
+                        targetID '_18_5_3_40201a1_1599469294594_899291_5441'
+                        name ''
+                        id '_18_5_3_40201a1_1599469357428_23384_5460'
+                        transitOn 'NEEDS_CHECK'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469282149_834323_5431'
+                        target 'Boolean.TRUE'
+                        targetID '_18_5_3_40201a1_1599469374500_332375_5466'
+                        name ''
+                        id '_18_5_3_40201a1_1599469382065_836630_5475'
+                        transitOn 'IS_HUMAN'
+                      }
+                    }
+                  }
+                  mAction {
+                    stereotype 'Interactive', {
+                        taggedValue 'redirectTo', 'checkHuman'
+                    }
+                    id '_18_5_3_40201a1_1599469294594_899291_5441'
+                    name 'presentHumanCheck'
+                  }
+                  finalNode {
+                    id: '_18_5_3_40201a1_1599469374500_332375_5466'
+                    value: 'Boolean.TRUE'
+                  }
+                  mDecision {
+                    id '_18_5_3_40201a1_1599469399465_523812_5481'
+                    incoming {
+                      mControlFlow { 
+                        source 'presentHumanCheck'
+                        sourceID '_18_5_3_40201a1_1599469294594_899291_5441'
+                        target ''
+                        targetID '_18_5_3_40201a1_1599469399465_523812_5481'
+                        name ''
+                        id '_18_5_3_40201a1_1599469402537_315754_5488'
+                        transitOn ''
+                      }
+                    }
+                    outgoing {
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469399465_523812_5481'
+                        target 'Boolean.TRUE'
+                        targetID '_18_5_3_40201a1_1599469374500_332375_5466'
+                        name ''
+                        id '_18_5_3_40201a1_1599469413203_746906_5508'
+                        transitOn 'IS_HUMAN'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469399465_523812_5481'
+                        target 'presentHumanCheck'
+                        targetID '_18_5_3_40201a1_1599469294594_899291_5441'
+                        name ''
+                        id '_18_5_3_40201a1_1599469431112_597397_5516'
+                        transitOn 'NEEDS_CHECK'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599469399465_523812_5481'
+                        target 'readCredentials'
+                        targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                        name ''
+                        id '_18_5_3_40201a1_1599469451451_966459_5524'
+                        transitOn 'RELOGIN'
+                      }
+                    }
+                  }
+                  mAction {
+                    id '_18_5_3_40201a1_1599469998927_655816_5535'
+                    name 'requestPersonalData'
+                  }
+                  mDecision {
+                    id '_18_5_3_40201a1_1599470047063_638833_5571'
+                    incoming {
+                      mControlFlow { 
+                        source 'requestPersonalData'
+                        sourceID '_18_5_3_40201a1_1599469998927_655816_5535'
+                        target ''
+                        targetID '_18_5_3_40201a1_1599470047063_638833_5571'
+                        name ''
+                        id '_18_5_3_40201a1_1599470052950_826783_5580'
+                        transitOn ''
+                      }
+                    }
+                    outgoing {
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599470047063_638833_5571'
+                        target 'readCredentials'
+                        targetID '_18_5_3_40201a1_1599469102346_856197_5339'
+                        name ''
+                        id '_18_5_3_40201a1_1599470056567_16423_5585'
+                        transitOn 'ALREADY_REGISTERED'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599470047063_638833_5571'
+                        target 'requestPersonalData'
+                        targetID '_18_5_3_40201a1_1599469998927_655816_5535'
+                        name ''
+                        id '_18_5_3_40201a1_1599470077158_542408_5593'
+                        transitOn 'DATA_INCOMPLETE'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599470047063_638833_5571'
+                        target 'sendRegistraionEMail'
+                        targetID '_18_5_3_40201a1_1599470094917_401164_5601'
+                        name ''
+                        id '_18_5_3_40201a1_1599470094926_484516_5603'
+                        transitOn ''
+                      }
+                    }
+                  }
+                  mAction {
+                    id '_18_5_3_40201a1_1599470094917_401164_5601'
+                    name 'sendRegistraionEMail'
+                  }
+                  mAction {
+                    stereotype 'Interactive', {
+                    }
+                    id '_18_5_3_40201a1_1599470160432_776127_5615'
+                    name 'waitForRegistrationEMail'
+                  }
+                  mDecision {
+                    id '_18_5_3_40201a1_1599470188302_865429_5634'
+                    incoming {
+                      mControlFlow { 
+                        source 'waitForRegistrationEMail'
+                        sourceID '_18_5_3_40201a1_1599470160432_776127_5615'
+                        target ''
+                        targetID '_18_5_3_40201a1_1599470188302_865429_5634'
+                        name ''
+                        id '_18_5_3_40201a1_1599470193175_75065_5641'
+                        transitOn ''
+                      }
+                    }
+                    outgoing {
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599470188302_865429_5634'
+                        target 'presentSuccessfullRegistration'
+                        targetID '_18_5_3_40201a1_1599470252030_651271_5660'
+                        name ''
+                        id '_18_5_3_40201a1_1599470203220_172523_5646'
+                        transitOn 'REGISTRATION_CODE_OK'
+                      }
+                      mControlFlow { 
+                        source ''
+                        sourceID '_18_5_3_40201a1_1599470188302_865429_5634'
+                        target 'waitForRegistrationEMail'
+                        targetID '_18_5_3_40201a1_1599470160432_776127_5615'
+                        name ''
+                        id '_18_5_3_40201a1_1599470228126_940427_5654'
+                        transitOn 'REGISTRATION_CODE_FAILED'
+                      }
+                    }
+                  }
+                  mAction {
+                    stereotype 'Interactive', {
+                        taggedValue 'redirectTo', 'welcomeRegistration'
+                    }
+                    id '_18_5_3_40201a1_1599470252030_651271_5660'
+                    name 'presentSuccessfullRegistration'
+                  }
+                }
+                mClass {
+                  name 'PhpRestBackend'
+                  xmiID '_18_5_3_40201a1_1600096000435_78100_5388'
+                    stereotype 'PhpSymfonyApplication', {
+                        taggedValue 'dbname', 'phuser'
+                        taggedValue 'dbpassword', 'phuserpwd'
+                        taggedValue 'dbuser', 'phuser'
+                    }
+                  mUsage {
+                     target 'de.csp.demo.rest.User'
+                  }
+                }
+              }
+            }
+          }
+        }
+}
