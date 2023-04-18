@@ -1,0 +1,59 @@
+import org.gradle.api.tasks.compile.JavaCompile
+
+buildscript {
+    repositories {
+        mavenCentral();
+        maven {
+            url="${project.rootDir}/../../../repo"
+        }
+    }
+    dependencies {
+        classpath "de.spraener.nxtgen:cgV19-core:21.0.0-SNAPSHOT"
+        classpath "de.spraener.nxtgen:cgV19-gradle:21.0.0-SNAPSHOT"
+    }
+}
+
+plugins {
+    id 'java-library'
+}
+
+apply plugin: 'de.spraener.nxtgen.cgV19'
+
+repositories {
+    mavenCentral();
+    maven {
+        url="${project.rootDir}/../../../repo"
+    }
+}
+
+cgV19 {
+    //model = './src/main/helloWorld.oom'
+    model = 'http://localhost:7001/de.spraener.netgen.vpplugin.cartridge'
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn generate
+}
+
+sourceSets {
+    src{
+        main {
+            java {
+                srcDir('src/main/java')
+                srcDir('src/main/java-gen')
+            }
+        }
+    }
+}
+
+dependencies {
+    cartridge "de.spraener.nxtgen:cgV19-core:21.0.0-SNAPSHOT"
+    cartridge "de.spraener.nxtgen:cgV19-oom:21.0.0-SNAPSHOT"
+    cartridge "de.spraener.nxtgen:cgV19-MetaCartridge:21.0.0-SNAPSHOT"
+
+    implementation "de.spraener.nxtgen:cgV19-core:21.0.0-SNAPSHOT"
+    implementation "de.spraener.nxtgen:cgV19-oom:21.0.0-SNAPSHOT"
+    testImplementation 'junit:junit:4.13.1'
+}
+
+compileJava.dependsOn generate

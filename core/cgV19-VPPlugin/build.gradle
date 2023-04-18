@@ -1,13 +1,31 @@
+import org.gradle.api.JavaVersion
+buildscript {
+    repositories {
+        mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
+    }
+    dependencies {
+        classpath "${project.ext.group}:cgV19-core:${project.ext.version}"
+        classpath "${project.ext.group}:cgV19-gradle:${project.ext.version}"
+    }
+}
+
 plugins {
     id 'java-library'
     id 'application'
 }
+
+
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 def home=System.getenv("HOME");
 def VP_HOME="/Applications/Visual Paradigm.app/Contents/Resources"
 def repoDir="${home}/Projekte/GitHub/cgV19/repo"
 
 targetCompatibility=JavaVersion.VERSION_11
+sourceCompatibility= JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
@@ -15,11 +33,31 @@ repositories {
         url "file://$repoDir"
     }
     flatDir {
-        dirs("libs")
+        dirs("${VP_HOME}/app/lib")
     }
 }
 
+
+sourceSets {
+    src{
+        main {
+            java {
+                srcDir('src/main/java')
+                srcDir('src/main/java-gen')
+            }
+        }
+    }
+}
+
+cgV19 {
+    model = 'http://localhost:7001/de.spraener.nextgen.vpplugin'
+}
+
 dependencies {
+    cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
+    cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
+    cartridge files("${project.rootDir}/cgV19-VPPluginCartridge/build/libs/cgV19-VPPluginCartridge-21.0.0-SNAPSHOT.jar")
+
     //implementation project(':cgV19-core')
     //implementation project(':cgV19-oom')
 
@@ -35,5 +73,7 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+compileJava.dependsOn generate
 
 mainClassName="de.spraener.nextgen.vpplugin.CgV19Plugin"

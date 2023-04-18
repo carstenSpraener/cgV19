@@ -3,8 +3,11 @@ package de.spraener.nextgen.vpplugin.oom;
 import com.vp.plugin.model.IModelElement;
 import com.vp.plugin.model.IStereotype;
 import com.vp.plugin.model.ITaggedValue;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PropertiesExporter {
 
@@ -14,24 +17,21 @@ public class PropertiesExporter {
             return;
         }
         for (IStereotype sType : stereotypes) {
-            exportStereotype(pw, indentation, sType);
+            exportStereotype(pw, indentation, sType, mElement);
         }
     }
 
-    private static void exportStereotype(PrintWriter pw, String indentation, IStereotype sType) {
+    private static void exportStereotype(PrintWriter pw, String indentation, IStereotype sType, IModelElement mElement) {
         pw.printf("%sstereotype '%s'", indentation, sType.getName());
-        if (sType.getTaggedValues() != null) {
-            pw.printf(" {\n");
-            ITaggedValue[] taggedValues = sType.getTaggedValues().toTaggedValueArray();
+        if (mElement.getTaggedValues() != null) {
+            pw.printf(", {\n");
+            ITaggedValue[] taggedValues = mElement.getTaggedValues().toTaggedValueArray();
             if (taggedValues != null && taggedValues.length > 0) {
-                pw.printf("%s  taggedValues {\n", indentation);
                 for (ITaggedValue tv : taggedValues) {
-                    pw.printf("%s    taggedValue {\n", indentation);
-                    pw.printf("%s      name '%s'\n", indentation, tv.getName());
-                    pw.printf("%s      value '%s'\n", indentation, tv.getValue());
-                    pw.printf("%s    }\n", indentation);
+                    if( tv.getValue()!=null ) {
+                        pw.printf("%s  taggedValue '%s', '%s'\n", indentation, tv.getName(), tv.getValue());
+                    }
                 }
-                pw.printf("%s  }\n", indentation);
             }
             pw.printf("%s}\n", indentation);
         } else {
@@ -39,14 +39,25 @@ public class PropertiesExporter {
         }
     }
 
-    public static void exportProperties(PrintWriter pw, String indentation, IModelElement mElement) {
-        pw.printf("%sname '%s'\n", indentation, mElement.getName());
-        pw.printf("%sdocumentation '%s'\n", indentation, toStringValue(mElement.getDocumentation()));
-        pw.printf("%saddress '%s'\n", indentation, mElement.getAddress());
-        pw.printf("%sxmiID '%s'\n", indentation, mElement.getId());
-        pw.printf("%smetaType '%s'\n", indentation, mElement.getModelType());
-
+    public static void exportProperties(PrintWriter pw, String indentation, IModelElement mElement, PropertyOverwriter... propOverwrite) {
+        Set<String> overwrittenProps = new HashSet<>();
+        if( propOverwrite!=null ) {
+            for( PropertyOverwriter po : propOverwrite ) {
+                pw.printf("%s%s '%s'\n", indentation, po.getKey(), po.getValue());
+                overwrittenProps.add(po.getKey());
+            }
+        }
+        exportProperty(pw, indentation, overwrittenProps, "name",  mElement.getName());
+        exportProperty(pw, indentation, overwrittenProps, "documentation", toStringValue(mElement.getDocumentation()));
+        exportProperty(pw, indentation, overwrittenProps, "id", mElement.getAddress());
+        exportProperty(pw, indentation, overwrittenProps, "metaType", mElement.getModelType());
         exportStereotypes(pw, indentation, mElement);
+    }
+
+    private static void exportProperty(PrintWriter pw, String indentation, Set<String> overwrittenProps, String propName, String value) {
+        if( !overwrittenProps.contains(propName) ) {
+            pw.printf("%s%s '%s'\n", indentation, propName, value);
+        }
     }
 
     private static String toStringValue(String str) {

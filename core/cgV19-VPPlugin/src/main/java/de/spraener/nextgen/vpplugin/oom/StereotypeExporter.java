@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 public class StereotypeExporter  implements Exporter {
     @Override
-    public void export(PrintWriter pw, String indentation, IModelElement element) {
+    public void export(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
         IStereotype sType = (IStereotype)element;
         pw.printf("%smClass {\n",indentation);
         PropertiesExporter.exportProperties(pw,indentation+"  ", element);
