@@ -14,6 +14,18 @@ public class OOModelElementFactory implements ModelElementFactory {
                 return new ModelElementImpl();
             case "MPackage":
                 return new MPackage();
+            case "initNode":
+            case "finalNode":
+                return new MActivityNode();
+            case "mControlFlow":
+                return new MActivityControlFlow();
+            case "mAction":
+                return new MActivityAction();
+            case "mDecision":
+                return new MActivityDecision();
+            case "incoming":
+            case "outgoing":
+                return new ModelElementImpl();
             default:
                 try {
                     Class<? extends ModelElement> clazz = (Class<? extends ModelElement>)Class.forName("de.spraener.nxtgen.oom.model.M" + modelElmentName.substring(1));

@@ -1,15 +1,21 @@
 import org.gradle.api.tasks.compile.JavaCompile
 
 buildscript {
+    def version= '21.0.0-SNAPSHOT'
+    def group='de.spraener.nxtgen'
+
     repositories {
         mavenCentral();
         maven {
             url="${project.rootDir}/../repo"
         }
+        maven {
+            url="${project.rootDir}/../../repo"
+        }
     }
     dependencies {
-        classpath "${project.ext.group}:cgV19-core:${project.ext.version}"
-        classpath "${project.ext.group}:cgV19-gradle:${project.ext.version}"
+        classpath "${group}:cgV19-core:${version}"
+        classpath "${group}:cgV19-gradle:${version}"
     }
 }
 
@@ -19,10 +25,13 @@ plugins {
 
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
+def version=project.properties['prj.version']
+def group=project.properties['prj.group']
+
 repositories {
     mavenCentral();
     maven {
-        url="${project.rootDir}/../repo"
+        url="${project.rootDir}../../repo"
     }
 }
 
@@ -47,12 +56,12 @@ sourceSets {
 }
 
 dependencies {
-    cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
-    cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
-    cartridge "${project.ext.group}:cgV19-MetaCartridge:${project.ext.version}"
+    cartridge "${group}:cgV19-core:${version}"
+    cartridge "${group}:cgV19-oom:${version}"
+    cartridge "${group}:cgV19-MetaCartridge:${version}"
 
-    implementation "${project.ext.group}:cgV19-core:${project.ext.version}"
-    implementation "${project.ext.group}:cgV19-oom:${project.ext.version}"
+    implementation "${group}:cgV19-core:${version}"
+    implementation "${group}:cgV19-oom:${version}"
     testImplementation 'junit:junit:4.13.1'
 }
 

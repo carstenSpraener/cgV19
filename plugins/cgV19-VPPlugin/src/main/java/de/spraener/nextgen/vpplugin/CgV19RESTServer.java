@@ -9,14 +9,14 @@ public class CgV19RESTServer {
     public void init() {
         app = Javalin.create()
                 .start(7001);
+        app.get("/ping", ctx->{
+            ctx.result("Pong!");
+        } ) ;
        app.get("/{rootPackage}", ctx -> {
             ctx.result(OOMExporter.exportByPackageName(ctx.pathParam("rootPackage")));
         });
         app.post("/", OOMImport::imoprtOOM);
 
-        app.get("/ping", ctx->{
-            ctx.result("Pong!");
-        } ) ;
         CgV19Plugin.log("REST-Server initialized. Listening on port 7001.");
     }
 }

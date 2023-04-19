@@ -84,6 +84,7 @@ class GroovyElement extends ModelElementImpl {
             ge.metaType = methodName;
             myModelElement.childs.add(ge.myModelElement);
             ge.myModelElement.setParent(myModelElement);
+            ge.myModelElement.metaType = methodName;
 
             value.delegate = ge;
             value.resolveStrategy = Closure.DELEGATE_FIRST;

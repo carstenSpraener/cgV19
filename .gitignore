@@ -9,3 +9,5 @@ helloWorldNxtGen
 /cgV19-MetaCartridge/src/main/resources/meta/
 /core/cgV19-MetaCartridge/src/main/resources/meta/CartridgeServiceLocaterTemplate.groovy
 /restDemo/
+./**/*.vpp.bak_*
+./**/*.vpp.lck

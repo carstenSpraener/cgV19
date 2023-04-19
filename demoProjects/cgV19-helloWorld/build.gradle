@@ -26,8 +26,9 @@ repositories {
 }
 
 cgV19 {
-    //model = './src/main/helloWorld.oom'
-    model = 'http://localhost:7001/de.spraener.nxtgen.hello'
+    model = './src/main/helloWorld.oom'
+    //if you use VisualParadigm
+    //model = 'http://localhost:7001/de.spraener.nxtgen.hello'
 }
 
 tasks.withType(JavaCompile) {

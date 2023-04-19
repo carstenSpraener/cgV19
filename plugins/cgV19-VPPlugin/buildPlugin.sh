@@ -1,8 +1,8 @@
 #!/bin/bash
-VP_PLUGIN_DIR="/Users/casi/Library/Application Support/VisualParadigm/plugins"
+VP_PLUGIN_DIR="${HOME}/Library/Application Support/VisualParadigm/plugins"
 PLUGIN="de.spraener.nextgen.vpplugin"
 
-(cd ..; gradle :cgV19-VPPlugin:clean :cgV19-VPPlugin:install);
+(cd ..; gradle :cgV19-VPPlugin:clean :cgV19-VPPluginCartridge:jar :cgV19-VPPlugin:install);
 mkdir -p ./build/${PLUGIN}/lib
 mkdir -p ./build/${PLUGIN}/classes
 

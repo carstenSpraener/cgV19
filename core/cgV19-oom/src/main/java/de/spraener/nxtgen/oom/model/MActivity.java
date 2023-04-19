@@ -25,7 +25,9 @@ public class MActivity extends MAbstractModelElement {
 
         this.initNode = ((ModelElementImpl)this).filterChilds( child -> {
             return child.getMetaType().equals("initNode");
-        }).map(me-> (MActivityNode) me)
+        }).map(me->
+                        (MActivityNode) me
+                )
         .findFirst().orElse(null);
 
         this.finalNodes =  filterChilds( child -> child.getMetaType().equals("finalNode"))

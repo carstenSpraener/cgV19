@@ -28,7 +28,7 @@ sourceSets {
 }
 
 cgV19 {
-    model='http://localhost:7000/WebFlow'
+    model='http://localhost:7001/WebFlow'
 }
 
 tasks.withType(JavaCompile) {

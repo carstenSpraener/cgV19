@@ -11,8 +11,8 @@ dependencies {
 gradlePlugin {
     plugins {
         cgV19Plugin {
-            id = "${project.ext.group}.cgV19"
-            implementationClass="${project.ext.group}.gradle.CGV19"
+            id = "de.spraener.nextgen.cgV19"
+            implementationClass="de.spraener.nxtgen.gradle.CGV19"
         }
     }
 }
