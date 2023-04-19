@@ -147,7 +147,7 @@ But for now we will use an ordinary file. So insert the following line to the ``
 cgV19 {
     model = './src/main/helloWorld.oom'
     // If you installed VisualParadigm Plugin:
-    // model='http://localhost:7001/'
+    // model='http://localhost:7001/de.spraener.nxtgen.hello'
 }
 // Tell gradle that a compile task needs a generation first
 tasks.withType(JavaCompile) {
@@ -157,7 +157,7 @@ tasks.withType(JavaCompile) {
 
 This tells the cgV19-Plugin that your model is described in the given file. The second block is to
 tell gradle, that all compile task depending on the generate task. So the generate will be executed
-before generation starts.
+before compilation starts.
 
 Now you have to tell what cartridges you want to use. This is done via the dependencies block of the
 build.gradle file. The cgV19-Plugin defines a new dependency-group __cartridge__. Add all required
