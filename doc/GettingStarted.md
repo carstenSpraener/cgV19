@@ -12,6 +12,12 @@ __Describe a simple model and do Model driven development__ The last step is to 
 with a simple PoJo in a DSL, start the genrate process and look that happens 
 
 ## Set up the base environment
+
+You need to have the following software installed on your computer:
+* Java-SDK 11 or higher
+* Gradle 8 (Gradle 6 and 7 may run but untested)
+* Optional: [VisualParadigm Community Edition Version 17 or higher](https://www.visual-paradigm.com/download/community.jsp).
+
 If you want to compile cgV19 on your own and using the most recent version, you can
 pull it directly from here. Therefore:
 
