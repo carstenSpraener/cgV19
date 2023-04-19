@@ -5,7 +5,7 @@ plugins {
 
 def home=System.getenv("HOME");
 def MD_HOME="/Applications/MagicDraw"
-def repoDir="/Users/casi/Projekte/GitHub/cgV19/repo"
+def repoDir="${home}/Projekte/GitHub/cgV19/repo"
 
 repositories {
     mavenCentral()

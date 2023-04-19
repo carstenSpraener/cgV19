@@ -61,7 +61,7 @@ public class ControlledOperationToFSM implements Transformation {
             annotations.append("\n        @FSMTransition(target=\""+targetName+"\", guard=\""+guard+"\"),");
         }
         if( annotations.length()> 0 ) {
-            String annotatrionsStr = "@FSMTransitions({"+annotations.toString()+"\n    })\n    ";
+            String annotatrionsStr = "/*\n    @FSMTransitions({"+annotations.toString()+"\n    })\n    */\n    ";
             op.setProperty("annotations", annotatrionsStr);
         }
     }

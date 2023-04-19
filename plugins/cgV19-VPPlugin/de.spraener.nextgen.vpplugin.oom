@@ -1,0 +1,133 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+  mPackage {
+    name 'de.spraener.nextgen.vpplugin'
+    documentation ''
+    id 'rI1vjuGGAqACRBw8'
+    metaType 'Package'
+    stereotype 'cgV19Project'
+    mClass {
+      name 'cgV19Project'
+      documentation ''
+      id 'rI1vjuGGAqACRBw8:GazvjuGGAqACRBxE'
+      metaType 'Stereotype'
+    }
+    mPackage {  //Exported by PackageExporterBase
+      name 'oom'
+      documentation ''
+      id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW'
+      metaType 'Package'
+      mClass {  //Exported by ClassExporterBase
+        name 'ActivityExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:WFpi0eGGAqACRAoV'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Activity'
+          taggedValue 'oomType', 'mActivity'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'ActionExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:K535KeGGAqACRAm0'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'ActivityAction'
+          taggedValue 'oomType', 'mAction'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'ControlFlowExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:jdflKeGGAqACRAjI'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'ControlFlow'
+          taggedValue 'oomType', 'mControlFlow'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'InitialNodeExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:QVYVKeGGAqACRAkk'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'InitialNode'
+          taggedValue 'oomType', 'initNode'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'ActivityFinalNodeExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:NuiVKeGGAqACRAk6'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'ActivityFinalNode'
+          taggedValue 'oomType', 'finalNode'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'DecisionNodeExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:tNjvKeGGAqACRAqS'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'DecisionNode'
+          taggedValue 'oomType', 'mDecision'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'OperationExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:Z97yqeGGAqACRAoV'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Operation'
+          taggedValue 'oomType', 'operation'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'ParameterExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:mVXKqeGGAqACRAv9'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Parameter'
+          taggedValue 'oomType', 'mParam'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'PackageExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:sB96qeGGAqACRAw.'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Package'
+          taggedValue 'oomType', 'mPackage'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'ClassExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:WuoGqeGGAqACRAxy'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Class'
+          taggedValue 'oomType', 'mClass'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'AttributeExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:coaGqeGGAqACRAyV'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Attribute'
+          taggedValue 'oomType', 'mAttribute'
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Welcome to cgV19
-_Last Update on: March the 17th 2022._
+_Last Update on: April the 19th 2023._
+
+### [Quick start: See doc/GettingStarted.md](doc/GettingStarted.md)
 
 If you are looking for a Low Code platform development envirnonemnt you may consider trying
 cgV19. With cgV19 you can build your own LowCode to NoCode development environment. It provides:
@@ -7,9 +9,9 @@ cgV19. With cgV19 you can build your own LowCode to NoCode development environme
 __Model driven development (MDD)__ 
 
 With cgV19 your development will be driven from a Model described in some
-Language or in UML. The model is a high level ob abstraction and with cgV19 you define the rules that brings
+Language or in UML. The model is a high level abstraction and with cgV19 you define the rules that brings
 this abstraction to live. In the demoProjects you will find a project __restDemo__ that generates a complete
-Spring Boot application from a single Class markes as << Resource >>.
+Spring Boot application from a single Class marked as << Resource >>.
 
 __Reusable__ 
 
@@ -18,44 +20,44 @@ will interpret a Model and build the Code, the documentation and all configurati
 concrete project can plug in the cartridges that it will need.
 
 The __restDemo__ project makes use of the __cgV19-RESTCartridge__ that generates a Spring Boot application as 
-well as a runnable PHP Symfony application. The projecdt can decide which backend to use. PHP/Symfony or 
+well as a runnable PHP Symfony application. The project can decide which backend to use. PHP/Symfony or 
 Java/SpringBoot.
 
 __Supports the whole development life circle__ 
 
-With cgV19 you can build not onle templates that are generated once and will act as a start point for manual 
-development. This is what tools like spring initializer of ng CLI-Platform do. cgV19 can generate code that
+With cgV19 you can build not only templates that are generated once and will act as a start point for manual 
+development. This is what tools like spring initializer or ng CLI-Platform do. cgV19 can generate code that
 is never touched and always generated to 100%. And the development cycle depends mainly on the model. So for
 many tasks you need to update your model, re-generate your code and start developing. This ensures, that your
-model and you programm are always in sync and you can rely on the model generated documentation.
+model and you programm are always in sync, and you can rely on the model generated documentation.
 
 __Deploy it where ever you want__ 
 
 What you will generate is completely in your hand. cgV19 is not a concrete
-Low Code environment. It is a tool box for building such environments. You can not only generate Your code. 
-It is possible to generate any artifact you need for you deployment. Dockerfiles, StartScripts or even
+Low Code environment. It is a tool box for building such environments. You can not only generate your code. 
+It is possible to generate any artifact you need for your deployment. Dockerfiles, StartScripts or even
 generic user interfaces.
 
 __cgV19 is tested with__ 
 
 * Java version 8 and 17
-* Build with gradle 6 and gradle 7
+* Build with gradle 6 and gradle 8
 
 ## A brief history
-In 2002 i started to work on a project for an insurance company in germany. The goal was to build 
+In 2002 I started to work on a project for an insurance company in germany. The goal was to build 
 an application for insurance estimations. The problem was it has to run in multiple channels
 on the web or as a pure swing application. And in 2002 this was a real task.
 
 We decided to work with a self programmed code generator called __CodeGen__. This generator
-has gone several realeases and is still in work for the project.
+has gone several releases and is still in work for the project.
 
-In 2019 i started to recreate the whole generator from scratch. This is the
-begining of __cgV19__
+In 2019 I started to recreate the whole generator from scratch. This is the
+beginning of __cgV19__
 
-In __cgV19__ i implemented several features i missed in CodeGen. It has a new
-concept of so called __cartridges__. Yes think of it as the old hardware
+In __cgV19__ I implemented several features I missed in CodeGen. It has a new
+concept of so-called __cartridges__. Yes think of it as the old hardware
 modules to plug into your game console. It has a self generated
-meta model and the loading of a model can be plugged in from 
+metamodel and the loading of a model can be plugged in from 
 classpath.
 
 Dependencies are very low. The core module only depends on Groovy.
@@ -63,42 +65,64 @@ Groovy is a language on top of java that is predestined for generation
 and defining DSLs. 
 
 While the old CodeGen had a very special model type (xml), __cgV19__ 
-has a java meta model, that can be extended and created from nearly
+has a java metamodel, that can be extended and created from nearly
 every type of data.
 
 __cgV19__ comes with a plugin for gradle. You can add it to your build.gradle and
 the generator will run before the compile task starts. 
 
-It is not a big monolite but splitted in several modules. 
+It is not a big monolith but split in several modules. 
 
 ## What are all these modules?
 
 ### [core/cgV19-core](core/cgV19-core/doc/CoreArchitecture.md)
 
 This is the very hard of cgV19. If you want to use cgV19, this is the module you 
-really allways have to use. All other modules dependending on this.
+really always have to use. All other modules depend on this.
 
 ### core/cgV19-oom
 
-This modules adds some basic object oriented mode features to cgV19. It impelements
-a model that containes packages, classes, attribute and relations between the
-classes. If you want to generate some object oriented language like, let's say java,
+This module adds some basic object-oriented mode features to cgV19. It implements
+a model that contains packages, classes, attribute and relations between the
+classes. If you want to generate some object-oriented language like, let's say java,
 you can use this module to read your model into the generator.
-
-### core/cgV19-pojo
-
-This is an example of a very basic __cartridge__. It can take a OOM-Model and will
-generate PoJos on classes marked as PoJos in the model.
 
 ### core/cgV19-gradle
 
 This module implements a gradle plugin to enable gradle projects to use cgV19.
 
-### core/cgV19-MDPlugin
+### core/cgV19-pojo
 
-A plugin for MagicDraw to provide the model in MagicDraw to 
-cgV19 via port 7000. Only useable if you have MagicDraw v18.5 or higher 
+This is an example of a very basic __cartridge__. It can take an OOM-Model and will
+generate PoJos on classes marked as PoJos in the model.
+
+Its main goal is to provide a simple example of a __cartridge__ and not to use it in a 
+production environment.
+
+### plugins/cgV19-VPPlugin
+
+A plugin for [VisualParadigm](https://www.visual-paradigm.com) to provide the model in VP to 
+cgV19 via port 7001. Only useable if you have VisualParadigm v17 or higher 
 installed.
+
+[VisualParadigm is available as a community edition](https://www.visual-paradigm.com/download/community.jsp). This edition comes with
+no costs and is completely sufficient for using cgV19 as your LowCode platform.
+
+The Plugin is developed in a model driven environment and uses the
+cgV19-VPPluginCartridge to generate the code.
+
+### plugins/cgV19-VPPluginCartridge
+
+This is the cartridge used for building the VP-Plugin.
+
+### plugins/cgV19-MDPlugin (deprecated)
+
+The first version of cgV19 was used with MagicDraw as its modelling tool. 
+But MagicDraw is now under the control of Dassault Systems and the price
+is far beyond of its original price.
+
+It also has no community edition so I decided to switch to VP.
+
 
 ### [cartridges/cgV19-RESTCartridge](cartridges/cgV19-RESTCartridge/Readme.md)
 

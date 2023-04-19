@@ -1,0 +1,74 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+  mPackage {
+    name 'de.spraener.nextgen.vpplugin.cartridge'
+    documentation ''
+    id 'II0IAeGGAqACRCCo'
+    metaType 'Package'
+    mClass {  //Exported by ClassExporterBase
+      name 'ExporterBaseGenerator'
+      documentation ''
+      id 'II0IAeGGAqACRCCo:x.twAeGGAqACRCBb'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'ExporterBase'
+        taggedValue 'outputType', 'Java'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src-gen'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'GeneratorGapTransformation'
+      documentation 'Copies a Class with Steretype <S> to another Class with Stereotype <S>Base. All Attributes, Relations, Operations and Activities are also copied.'
+      id 'II0IAeGGAqACRCCo:x3HwAeGGAqACRCB7'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'priority', '1'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'VPPluginCartridge'
+      documentation ''
+      id 'II0IAeGGAqACRCCo:vwJwAeGGAqACRCA1'
+      metaType 'Class'
+      stereotype 'cgV19Cartridge'
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'ExporterGenerator'
+      documentation ''
+      id 'II0IAeGGAqACRCCo:FCRYAeGGAqACRCGK'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'Exporter'
+        taggedValue 'outputType', 'Java'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'CreateExporterRegistryFillerTransformation'
+      documentation 'Erzeugt eine neue Klasse "ExporterRegistryFiller" und pflegt\neine Liste mit alle <<Exporter>> Klassen im Modell.\n\nDamit kann eine Registry gefüllt werden, in der alle generierten Exporter\nenthalten sind.'
+      id 'II0IAeGGAqACRCCo:v0A20eGGAqACRAqC'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'Exporter'
+        taggedValue 'priority', '10'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'RegistryFillerGenerator'
+      documentation ''
+      id 'II0IAeGGAqACRCCo:IrG.0eGGAqACRAtV'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'ExporterRegistryFiller'
+        taggedValue 'outputType', 'Java'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src-gen'
+      }
+    }
+  }
+}

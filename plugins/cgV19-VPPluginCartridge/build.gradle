@@ -1,0 +1,68 @@
+import org.gradle.api.tasks.compile.JavaCompile
+
+buildscript {
+    def version= '21.0.0-SNAPSHOT'
+    def group='de.spraener.nxtgen'
+
+    repositories {
+        mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
+        maven {
+            url="${project.rootDir}/../../repo"
+        }
+    }
+    dependencies {
+        classpath "${group}:cgV19-core:${version}"
+        classpath "${group}:cgV19-gradle:${version}"
+    }
+}
+
+plugins {
+    id 'java-library'
+}
+
+apply plugin: 'de.spraener.nxtgen.cgV19'
+
+def version=project.properties['prj.version']
+def group=project.properties['prj.group']
+
+repositories {
+    mavenCentral();
+    maven {
+        url="${project.rootDir}../../repo"
+    }
+}
+
+cgV19 {
+    //model = './src/main/helloWorld.oom'
+    model = 'http://localhost:7001/de.spraener.nextgen.vpplugin.cartridge'
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn generate
+}
+
+sourceSets {
+    src{
+        main {
+            java {
+                srcDir('src/main/java')
+                srcDir('src/main/java-gen')
+            }
+        }
+    }
+}
+
+dependencies {
+    cartridge "${group}:cgV19-core:${version}"
+    cartridge "${group}:cgV19-oom:${version}"
+    cartridge "${group}:cgV19-MetaCartridge:${version}"
+
+    implementation "${group}:cgV19-core:${version}"
+    implementation "${group}:cgV19-oom:${version}"
+    testImplementation 'junit:junit:4.13.1'
+}
+
+compileJava.dependsOn generate

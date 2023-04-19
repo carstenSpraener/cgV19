@@ -1,0 +1,466 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+  mPackage {
+    name 'de'
+    documentation ''
+    address 'VEieOuGGAqACRAkc'
+    xmiID 'VEieOuGGAqACRAkc'
+    metaType 'Package'
+    mPackage {
+      name 'csp'
+      documentation ''
+      address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd'
+      xmiID 'dEieOuGGAqACRAkd'
+      metaType 'Package'
+      mPackage {
+        name 'demo'
+        documentation ''
+        address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke'
+        xmiID '9EieOuGGAqACRAke'
+        metaType 'Package'
+        mPackage {
+          name 'rest'
+          documentation ''
+          address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf'
+          xmiID 'DEieOuGGAqACRAkf'
+          metaType 'Package'
+          stereotype 'cgV19Project'
+          mClass {
+            name 'User'
+            documentation ''
+            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh'
+            xmiID 'HEieOuGGAqACRAkh'
+            metaType 'Class'
+            stereotype 'Ressource'
+            mAttribute {
+              name 'name'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$QkieOuGGAqACRAkj'
+              xmiID 'QkieOuGGAqACRAkj'
+              metaType 'Attribute'
+              stereotype 'PersistentField'
+              type 'string'
+            }
+            mAttribute {
+              name 'vorname'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$UkieOuGGAqACRAkk'
+              xmiID 'UkieOuGGAqACRAkk'
+              metaType 'Attribute'
+              stereotype 'PersistentField'
+              type 'string'
+            }
+            mAttribute {
+              name 'isVeryfied'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$0kieOuGGAqACRAkl'
+              xmiID '0kieOuGGAqACRAkl'
+              metaType 'Attribute'
+              stereotype 'PersistentField'
+              type 'boolean'
+            }
+            mAttribute {
+              name 'gebDat'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$MkieOuGGAqACRAkm'
+              xmiID 'MkieOuGGAqACRAkm'
+              metaType 'Attribute'
+              stereotype 'PersistentField'
+              type 'Date'
+            }
+            mAttribute {
+              name 'email'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$MkieOuGGAqACRAkn'
+              xmiID 'MkieOuGGAqACRAkn'
+              metaType 'Attribute'
+              stereotype 'PersistentField'
+              type 'string'
+            }
+            mElement {
+              name 'validate'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp'
+              xmiID '6kieOuGGAqACRAkp'
+              metaType 'Activity'
+              stereotype 'ControlledOperation'
+              mElement {
+                name ''
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:2kieOuGGAqACRAkr'
+                xmiID '2kieOuGGAqACRAkr'
+                metaType 'InitialNode'
+              }
+              mElement {
+                name 'Boolean.TRUE'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:ekieOuGGAqACRAkt'
+                xmiID 'ekieOuGGAqACRAkt'
+                metaType 'ActivityFinalNode'
+              }
+              mElement {
+                name 'doThis'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                xmiID 'hkieOuGGAqACRAkv'
+                metaType 'ActivityAction'
+              }
+              mElement {
+                name 'doThat'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:JkieOuGGAqACRAkw'
+                xmiID 'JkieOuGGAqACRAkw'
+                metaType 'ActivityAction'
+              }
+              mElement {
+                name ''
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                xmiID 'FkieOuGGAqACRAky'
+                metaType 'DecisionNode'
+              }
+              mElement {
+                name 'Boolean.FASLE'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:lkieOuGGAqACRAkz'
+                xmiID 'lkieOuGGAqACRAkz'
+                metaType 'ActivityFinalNode'
+              }
+              mElement {
+                name 'reCalculate'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
+                xmiID 'VkieOuGGAqACRAk0'
+                metaType 'ActivityAction'
+                stereotype 'Interactive'
+              }
+            }
+            mAssociation {
+              name 'adressen'
+              documentation ''
+              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$Y0ieOuGGAqACRAmH'
+              xmiID 'Y0ieOuGGAqACRAmH'
+              metaType 'AssociationEnd'
+              type 'none'
+              multiplicity '0..*'
+              target 'de.csp.demo.rest.model.Adresse'
+              navigable '0'
+            }
+            mAssociation {
+              name 'groups'
+              documentation ''
+              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$k0ieOuGGAqACRAmQ'
+              xmiID 'k0ieOuGGAqACRAmQ'
+              metaType 'AssociationEnd'
+              type 'none'
+              multiplicity '0..*'
+              target 'de.csp.demo.rest.model.Group'
+              navigable '0'
+            }
+            mRelation {
+              name ''
+              documentation ''
+              address '9yieOuGGAqACRAsj:DyieOuGGAqACRAsk:8UieOuGGAqACRAlL'
+              xmiID '8UieOuGGAqACRAlL'
+              metaType 'Generalization'
+            }
+          }
+          mClass {
+            name 'SpringBootApp'
+            documentation ''
+            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:PkieOuGGAqACRAk9'
+            xmiID 'PkieOuGGAqACRAk9'
+            metaType 'Class'
+            stereotype 'SpringBootApp'
+            mRelation {
+              name ''
+              documentation ''
+              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:_kieOuGGAqACRAk_'
+              xmiID '_kieOuGGAqACRAk_'
+              metaType 'Usage'
+              stereotype 'use'
+            }
+          }
+          mPackage {
+            name 'model'
+            documentation ''
+            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA'
+            xmiID 'gUieOuGGAqACRAlA'
+            metaType 'Package'
+            mClass {
+              name 'Adresse'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB'
+              xmiID 'QUieOuGGAqACRAlB'
+              metaType 'Class'
+              stereotype 'Entity'
+              mAttribute {
+                name 'strasse'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$wUieOuGGAqACRAlC'
+                xmiID 'wUieOuGGAqACRAlC'
+                metaType 'Attribute'
+                stereotype 'PersistentField'
+                type 'string'
+              }
+              mAttribute {
+                name 'hausnr'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$IUieOuGGAqACRAlD'
+                xmiID 'IUieOuGGAqACRAlD'
+                metaType 'Attribute'
+                stereotype 'PersistentField'
+                type 'string'
+              }
+              mAttribute {
+                name 'plz'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$oUieOuGGAqACRAlE'
+                xmiID 'oUieOuGGAqACRAlE'
+                metaType 'Attribute'
+                stereotype 'PersistentField'
+                type 'string'
+              }
+              mAttribute {
+                name 'ort'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$oUieOuGGAqACRAlF'
+                xmiID 'oUieOuGGAqACRAlF'
+                metaType 'Attribute'
+                stereotype 'PersistentField'
+                type 'string'
+              }
+              mAssociation {
+                name 'user'
+                documentation ''
+                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$40ieOuGGAqACRAmJ'
+                xmiID '40ieOuGGAqACRAmJ'
+                metaType 'AssociationEnd'
+                type 'composite'
+                multiplicity '1'
+                target 'de.csp.demo.rest.User'
+                navigable '0'
+              }
+            }
+            mClass {
+              name 'Group'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG'
+              xmiID 'YUieOuGGAqACRAlG'
+              metaType 'Class'
+              stereotype 'Entity'
+              mAttribute {
+                name 'name'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG$4UieOuGGAqACRAlH'
+                xmiID '4UieOuGGAqACRAlH'
+                metaType 'Attribute'
+                type 'string'
+              }
+              mAssociation {
+                name 'users'
+                documentation ''
+                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$U0ieOuGGAqACRAmS'
+                xmiID 'U0ieOuGGAqACRAmS'
+                metaType 'AssociationEnd'
+                type 'none'
+                multiplicity '0..*'
+                target 'de.csp.demo.rest.User'
+                navigable '0'
+              }
+            }
+            mClass {
+              name 'Customer'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:EUieOuGGAqACRAlI'
+              xmiID 'EUieOuGGAqACRAlI'
+              metaType 'Class'
+              stereotype 'Entity'
+              mAttribute {
+                name 'customerValue'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:EUieOuGGAqACRAlI$UUieOuGGAqACRAlJ'
+                xmiID 'UUieOuGGAqACRAlJ'
+                metaType 'Attribute'
+                type 'int'
+              }
+              mAssociation {
+                name 'bankAccounts'
+                documentation ''
+                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$xUieOuGGAqACRAlW'
+                xmiID 'xUieOuGGAqACRAlW'
+                metaType 'AssociationEnd'
+                type 'none'
+                multiplicity '0..*'
+                target 'de.csp.demo.rest.model.BankAccount'
+                navigable '0'
+              }
+            }
+            mClass {
+              name 'BankAccount'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM'
+              xmiID 'iUieOuGGAqACRAlM'
+              metaType 'Class'
+              stereotype 'Entity'
+              mAttribute {
+                name 'iban'
+                documentation ''
+                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM$SUieOuGGAqACRAlN'
+                xmiID 'SUieOuGGAqACRAlN'
+                metaType 'Attribute'
+                stereotype 'PersistentField'
+                type 'string'
+              }
+              mAssociation {
+                name 'customer'
+                documentation ''
+                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$JUieOuGGAqACRAlY'
+                xmiID 'JUieOuGGAqACRAlY'
+                metaType 'AssociationEnd'
+                type 'composite'
+                multiplicity '1'
+                target 'de.csp.demo.rest.model.Customer'
+                navigable '0'
+              }
+            }
+          }
+          mElement {
+            name 'Login'
+            documentation ''
+            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla'
+            xmiID 'pUieOuGGAqACRAla'
+            metaType 'Activity'
+            stereotype 'Flow'
+            mElement {
+              name ''
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:ZUieOuGGAqACRAlb'
+              xmiID 'ZUieOuGGAqACRAlb'
+              metaType 'InitialNode'
+            }
+            mElement {
+              name 'readCredentials'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+              xmiID '5UieOuGGAqACRAlc'
+              metaType 'ActivityAction'
+              stereotype 'Interactive'
+            }
+            mElement {
+              name 'checkCredentials'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
+              xmiID 'FUieOuGGAqACRAld'
+              metaType 'ActivityAction'
+            }
+            mElement {
+              name ''
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+              xmiID 'lUieOuGGAqACRAle'
+              metaType 'DecisionNode'
+            }
+            mElement {
+              name 'checkOKTime'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
+              xmiID 'VUieOuGGAqACRAlf'
+              metaType 'ActivityAction'
+            }
+            mElement {
+              name ''
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
+              xmiID 'VUieOuGGAqACRAlg'
+              metaType 'DecisionNode'
+            }
+            mElement {
+              name 'presentHumanCheck'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+              xmiID '1UieOuGGAqACRAlh'
+              metaType 'ActivityAction'
+              stereotype 'Interactive'
+            }
+            mElement {
+              name 'Boolean.TRUE'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAli'
+              xmiID 'NUieOuGGAqACRAli'
+              metaType 'ActivityFinalNode'
+            }
+            mElement {
+              name ''
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+              xmiID 'NUieOuGGAqACRAlj'
+              metaType 'DecisionNode'
+            }
+            mElement {
+              name 'requestPersonalData'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+              xmiID 'tUieOuGGAqACRAlk'
+              metaType 'ActivityAction'
+            }
+            mElement {
+              name ''
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+              xmiID 'dUieOuGGAqACRAll'
+              metaType 'DecisionNode'
+            }
+            mElement {
+              name 'sendRegistraionEMail'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
+              xmiID 'dUieOuGGAqACRAlm'
+              metaType 'ActivityAction'
+            }
+            mElement {
+              name 'waitForRegistrationEMail'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+              xmiID '9UieOuGGAqACRAln'
+              metaType 'ActivityAction'
+              stereotype 'Interactive'
+            }
+            mElement {
+              name ''
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+              xmiID 'DUieOuGGAqACRAlo'
+              metaType 'DecisionNode'
+            }
+            mElement {
+              name 'presentSuccessfullRegistration'
+              documentation ''
+              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
+              xmiID 'jUieOuGGAqACRAlp'
+              metaType 'ActivityAction'
+              stereotype 'Interactive'
+            }
+          }
+          mClass {
+            name 'PhpRestBackend'
+            documentation ''
+            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:w0ieOuGGAqACRAmA'
+            xmiID 'w0ieOuGGAqACRAmA'
+            metaType 'Class'
+            stereotype 'PhpSymfonyApplication'
+            mRelation {
+              name ''
+              documentation ''
+              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:I0ieOuGGAqACRAmB'
+              xmiID 'I0ieOuGGAqACRAmB'
+              metaType 'Usage'
+              stereotype 'use'
+            }
+          }
+        }
+      }
+    }
+  }
+}

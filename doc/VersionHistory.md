@@ -42,4 +42,4 @@ I got time to improve cgV19. Features are:
 * Build restructured to reflect dependencies between the projects
 * new MetaCartridge to generate generators
 * a new RESTCartridge, that can build a complete Spring Boot application from a model
-* 
+* added Support for VisualParadigm

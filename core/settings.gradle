@@ -1,9 +1,9 @@
-rootProject.name = 'cgV19-Generator'
-
-include ':cgV19-core'
-include ':cgV19-gradle'
-include ':cgV19-oom'
-include ':cgV19-pojo'
-include ':cgV19-MetaCartridge'
+include(':cgV19-core',':cgV19-gradle',':cgV19-oom',':cgV19-pojo')
+include(':cgV19-MetaCartridge')
+include(':cgV19-VPPluginCartridge')
+/*
+includeBuild('./cgV19-VPPlugin')
+includeBuild('./cgv19-annotationProcessor')
+ */
 // this module is only compilable if you have MagicDraw available.
-include ':cgV19-MDPlugin'
+//include ':cgV19-MDPlugin'

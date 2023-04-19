@@ -1,0 +1,10 @@
+GET http://localhost:7001/de
+
+###
+GET http://localhost:7001/META-DSL
+
+###
+GET http://localhost:7001/de.spraener.nxtgen.hello
+
+###
+

@@ -1,0 +1,40 @@
+<plugin
+        id="de.spraener.nextgen.vpplugin"
+        name="CGV19 Visual Paradigm Plugin"
+        description="Exports and imports your model as OOM for CGV19"
+        provider="CGV19"
+        class="de.spraener.nextgen.vpplugin.CgV19Plugin">
+    <runtime>
+        <library path="lib/annotations-13.0.jar" relativePath="true"/>
+        <library path="lib/asm-9.3.jar" relativePath="true"/>
+        <library path="lib/asm-analysis-9.3.jar" relativePath="true"/>
+        <library path="lib/asm-commons-9.3.jar" relativePath="true"/>
+        <library path="lib/asm-tree-9.3.jar" relativePath="true"/>
+        <library path="lib/commons-lang3-3.12.0.jar" relativePath="true"/>
+        <library path="lib/jakarta.annotation-api-2.1.1.jar" relativePath="true"/>
+        <library path="lib/jakarta.transaction-api-2.0.0.jar" relativePath="true"/>
+        <library path="lib/javalin-5.0.0.jar" relativePath="true"/>
+        <library path="lib/jetty-annotations-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-http-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-io-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-jakarta-servlet-api-5.0.2.jar" relativePath="true"/>
+        <library path="lib/jetty-jndi-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-plus-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-security-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-server-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-servlet-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-util-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-webapp-11.0.12.jar" relativePath="true"/>
+        <library path="lib/jetty-xml-11.0.12.jar" relativePath="true"/>
+        <library path="lib/kotlin-stdlib-1.7.10.jar" relativePath="true"/>
+        <library path="lib/kotlin-stdlib-common-1.7.10.jar" relativePath="true"/>
+        <library path="lib/kotlin-stdlib-jdk7-1.7.10.jar" relativePath="true"/>
+        <library path="lib/kotlin-stdlib-jdk8-1.7.10.jar" relativePath="true"/>
+        <library path="lib/websocket-core-common-11.0.12.jar" relativePath="true"/>
+        <library path="lib/websocket-core-server-11.0.12.jar" relativePath="true"/>
+        <library path="lib/websocket-jetty-api-11.0.12.jar" relativePath="true"/>
+        <library path="lib/websocket-jetty-common-11.0.12.jar" relativePath="true"/>
+        <library path="lib/websocket-jetty-server-11.0.12.jar" relativePath="true"/>
+        <library path="lib/websocket-servlet-11.0.12.jar" relativePath="true"/>
+    </runtime>
+</plugin>

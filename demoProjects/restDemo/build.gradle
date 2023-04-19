@@ -20,8 +20,8 @@ repositories {
     mavenCentral()
 }
 cgV19 {
-    model='./restDemo.oom'
-    //model='http://localhost:7000/de'
+    //model='./restDemo.oom'
+    model='./restDemo-MD.oom'
 }
 
 tasks.withType(JavaCompile) {
@@ -42,7 +42,7 @@ dependencies {
     cartridge "${project.ext.group}:cgV19-core:${project.ext.version}"
     cartridge "${project.ext.group}:cgV19-oom:${project.ext.version}"
     cartridge "${project.ext.group}:cgV19-RESTCartridge:${project.ext.version}"
-    cartridge "${project.ext.group}:cgV19-WebFlowCartridge:${project.ext.version}"
+    //UNDER CONSTRUCTION! cartridge "${project.ext.group}:cgV19-WebFlowCartridge:${project.ext.version}"
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion
