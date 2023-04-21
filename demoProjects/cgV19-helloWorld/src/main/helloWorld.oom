@@ -4,7 +4,7 @@ ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.hello'
         mPackage {
-            name = 'model'
+            name 'model'
             mClass {
                 name 'Person'
                 stereotype 'PoJo'
