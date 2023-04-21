@@ -1,5 +1,18 @@
 #!/bin/bash
-VP_PLUGIN_DIR="${HOME}/Library/Application Support/VisualParadigm/plugins"
+
+case `uname` in
+  Darwin)
+    export VP_PLUGIN_DIR="${HOME}/Library/Application Support/VisualParadigm/plugins"
+    export VP_HOME="/Applications/Visual Paradigm.app/Contents/Resources/app"
+    ;;
+  Linux)
+    export VP_PLUGIN_DIR="${HOME}/.config/VisualParadigm/plugins"
+    export VP_HOME="${HOME}/Visual_Paradigm_CE_17.0"
+    ;;
+  Cygwin)
+    ;;
+esac
+
 PLUGIN="de.spraener.nextgen.vpplugin"
 
 (cd ..; gradle :cgV19-VPPlugin:clean :cgV19-VPPluginCartridge:jar :cgV19-VPPlugin:install);
