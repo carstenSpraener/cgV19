@@ -4,460 +4,1147 @@ ModelDSL.make {
   mPackage {
     name 'de'
     documentation ''
-    address 'VEieOuGGAqACRAkc'
-    xmiID 'VEieOuGGAqACRAkc'
+    id 'VEieOuGGAqACRAkc'
     metaType 'Package'
-    mPackage {
+    mPackage {  //Exported by PackageExporterBase
       name 'csp'
       documentation ''
-      address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd'
-      xmiID 'dEieOuGGAqACRAkd'
+      id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd'
       metaType 'Package'
-      mPackage {
+      mPackage {  //Exported by PackageExporterBase
         name 'demo'
         documentation ''
-        address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke'
-        xmiID '9EieOuGGAqACRAke'
+        id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke'
         metaType 'Package'
-        mPackage {
+        mPackage {  //Exported by PackageExporterBase
           name 'rest'
           documentation ''
-          address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf'
-          xmiID 'DEieOuGGAqACRAkf'
+          id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf'
           metaType 'Package'
           stereotype 'cgV19Project'
-          mClass {
+          mClass {  //Exported by ClassExporterBase
             name 'User'
             documentation ''
-            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh'
-            xmiID 'HEieOuGGAqACRAkh'
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh'
             metaType 'Class'
-            stereotype 'Ressource'
-            mAttribute {
-              name 'name'
-              documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$QkieOuGGAqACRAkj'
-              xmiID 'QkieOuGGAqACRAkj'
-              metaType 'Attribute'
-              stereotype 'PersistentField'
-              type 'string'
-            }
-            mAttribute {
-              name 'vorname'
-              documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$UkieOuGGAqACRAkk'
-              xmiID 'UkieOuGGAqACRAkk'
-              metaType 'Attribute'
-              stereotype 'PersistentField'
-              type 'string'
-            }
-            mAttribute {
-              name 'isVeryfied'
-              documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$0kieOuGGAqACRAkl'
-              xmiID '0kieOuGGAqACRAkl'
-              metaType 'Attribute'
-              stereotype 'PersistentField'
-              type 'boolean'
-            }
-            mAttribute {
-              name 'gebDat'
-              documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$MkieOuGGAqACRAkm'
-              xmiID 'MkieOuGGAqACRAkm'
-              metaType 'Attribute'
-              stereotype 'PersistentField'
-              type 'Date'
-            }
-            mAttribute {
-              name 'email'
-              documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$MkieOuGGAqACRAkn'
-              xmiID 'MkieOuGGAqACRAkn'
-              metaType 'Attribute'
-              stereotype 'PersistentField'
-              type 'string'
-            }
-            mElement {
-              name 'validate'
-              documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp'
-              xmiID '6kieOuGGAqACRAkp'
-              metaType 'Activity'
-              stereotype 'ControlledOperation'
-              mElement {
-                name ''
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:2kieOuGGAqACRAkr'
-                xmiID '2kieOuGGAqACRAkr'
-                metaType 'InitialNode'
-              }
-              mElement {
-                name 'Boolean.TRUE'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:ekieOuGGAqACRAkt'
-                xmiID 'ekieOuGGAqACRAkt'
-                metaType 'ActivityFinalNode'
-              }
-              mElement {
-                name 'doThis'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
-                xmiID 'hkieOuGGAqACRAkv'
-                metaType 'ActivityAction'
-              }
-              mElement {
-                name 'doThat'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:JkieOuGGAqACRAkw'
-                xmiID 'JkieOuGGAqACRAkw'
-                metaType 'ActivityAction'
-              }
-              mElement {
-                name ''
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
-                xmiID 'FkieOuGGAqACRAky'
-                metaType 'DecisionNode'
-              }
-              mElement {
-                name 'Boolean.FASLE'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:lkieOuGGAqACRAkz'
-                xmiID 'lkieOuGGAqACRAkz'
-                metaType 'ActivityFinalNode'
-              }
-              mElement {
-                name 'reCalculate'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
-                xmiID 'VkieOuGGAqACRAk0'
-                metaType 'ActivityAction'
-                stereotype 'Interactive'
-              }
+            stereotype 'Ressource', {
+              taggedValue 'dbTable', 'USR_TAB'
             }
             mAssociation {
               name 'adressen'
               documentation ''
-              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$Y0ieOuGGAqACRAmH'
-              xmiID 'Y0ieOuGGAqACRAmH'
+              id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$Y0ieOuGGAqACRAmH'
               metaType 'AssociationEnd'
-              type 'none'
+              assocId '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$Y0ieOuGGAqACRAmH'
+              opositeAttribute 'user'
+              opositeMultiplicity '1'
+              associationType 'OneToMany'
+              type 'de.csp.demo.rest.model.Adresse'
               multiplicity '0..*'
-              target 'de.csp.demo.rest.model.Adresse'
-              navigable '0'
+              navigable 'true'
+              composite 'true'
+              oppositeAggregationKind 'composite'
             }
             mAssociation {
               name 'groups'
               documentation ''
-              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$k0ieOuGGAqACRAmQ'
-              xmiID 'k0ieOuGGAqACRAmQ'
+              id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$k0ieOuGGAqACRAmQ'
               metaType 'AssociationEnd'
-              type 'none'
+              assocId '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$k0ieOuGGAqACRAmQ'
+              opositeAttribute 'users'
+              opositeMultiplicity '0..*'
+              associationType 'ManyToMany'
+              type 'de.csp.demo.rest.model.Group'
               multiplicity '0..*'
-              target 'de.csp.demo.rest.model.Group'
-              navigable '0'
+              navigable 'true'
+              composite 'false'
+              oppositeAggregationKind 'none'
             }
-            mRelation {
-              name ''
+            mAttribute {  //Exported by AttributeExporterBase
+              name 'name'
               documentation ''
-              address '9yieOuGGAqACRAsj:DyieOuGGAqACRAsk:8UieOuGGAqACRAlL'
-              xmiID '8UieOuGGAqACRAlL'
-              metaType 'Generalization'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$QkieOuGGAqACRAkj'
+              metaType 'Attribute'
+              stereotype 'PersistentField', {
+                taggedValue 'nullable', 'false'
+                taggedValue 'unique', 'true'
+                taggedValue 'type', 'string'
+                taggedValue 'length', '255'
+                taggedValue 'label', 'Name'
+              }
+              type 'String'
+              visibility 'private'
+            }
+            mAttribute {  //Exported by AttributeExporterBase
+              name 'vorname'
+              documentation ''
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$UkieOuGGAqACRAkk'
+              metaType 'Attribute'
+              stereotype 'PersistentField', {
+                taggedValue 'nullable', 'false'
+                taggedValue 'unique', 'true'
+                taggedValue 'type', 'string'
+                taggedValue 'label', 'Vorname'
+              }
+              type 'String'
+              visibility 'private'
+            }
+            mAttribute {  //Exported by AttributeExporterBase
+              name 'isVeryfied'
+              documentation ''
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$0kieOuGGAqACRAkl'
+              metaType 'Attribute'
+              stereotype 'PersistentField', {
+                taggedValue 'nullable', 'true'
+                taggedValue 'unique', 'false'
+                taggedValue 'type', 'boolean'
+                taggedValue 'label', 'Verifiziert'
+                taggedValue 'detailOnly', 'true'
+              }
+              type 'Boolean'
+              visibility 'private'
+            }
+            mAttribute {  //Exported by AttributeExporterBase
+              name 'gebDat'
+              documentation ''
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$MkieOuGGAqACRAkm'
+              metaType 'Attribute'
+              stereotype 'PersistentField', {
+                taggedValue 'nullable', 'true'
+                taggedValue 'unique', 'false'
+                taggedValue 'type', 'date'
+                taggedValue 'label', 'Geburtsdatum'
+                taggedValue 'detailOnly', 'true'
+              }
+              type 'java.util.Date'
+              visibility 'private'
+            }
+            mAttribute {  //Exported by AttributeExporterBase
+              name 'email'
+              documentation ''
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh$MkieOuGGAqACRAkn'
+              metaType 'Attribute'
+              stereotype 'PersistentField', {
+                taggedValue 'nullable', 'true'
+                taggedValue 'unique', 'false'
+                taggedValue 'type', 'string'
+                taggedValue 'label', 'EMail'
+                taggedValue 'detailOnly', 'false'
+              }
+              type 'String'
+              visibility 'private'
+            }
+            mActivity {  //Exported by ActivityExporterBase
+              name 'validate'
+              documentation ''
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp'
+              metaType 'Activity'
+              stereotype 'ControlledOperation'
+              initNode {  //Exported by InitialNodeExporterBase
+                name ''
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:2kieOuGGAqACRAkr'
+                metaType 'InitialNode'
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:LkieOuGGAqACRAk2'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:2kieOuGGAqACRAkr'
+                    target 'doThis'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                  }
+                }
+              }
+              finalNode {  //Exported by ActivityFinalNodeExporterBase
+                name 'Boolean.TRUE'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:ekieOuGGAqACRAkt'
+                metaType 'ActivityFinalNode'
+              }
+              mAction {  //Exported by ActionExporterBase
+                name 'doThis'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                metaType 'ActivityAction'
+                incoming {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:LkieOuGGAqACRAk2'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:2kieOuGGAqACRAkr'
+                    target 'doThis'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                  }
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:3kieOuGGAqACRAk7'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'reCalculate'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
+                    target 'doThis'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                  }
+                }
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:bkieOuGGAqACRAk3'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'doThis'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                    target ''
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                  }
+                }
+              }
+              mAction {  //Exported by ActionExporterBase
+                name 'doThat'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:JkieOuGGAqACRAkw'
+                metaType 'ActivityAction'
+                incoming {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:7kieOuGGAqACRAk5'
+                    metaType 'ControlFlow'
+                    guard 'TRUE'
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                    target 'doThat'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:JkieOuGGAqACRAkw'
+                  }
+                }
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:7kieOuGGAqACRAk4'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'doThat'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:JkieOuGGAqACRAkw'
+                    target 'Boolean.TRUE'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:ekieOuGGAqACRAkt'
+                  }
+                }
+              }
+              mDecision {  //Exported by DecisionNodeExporterBase
+                name ''
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                metaType 'DecisionNode'
+                incoming {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:bkieOuGGAqACRAk3'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'doThis'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                    target ''
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                  }
+                }
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:7kieOuGGAqACRAk5'
+                    metaType 'ControlFlow'
+                    guard 'TRUE'
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                    target 'doThat'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:JkieOuGGAqACRAkw'
+                  }
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:nkieOuGGAqACRAk6'
+                    metaType 'ControlFlow'
+                    guard 'FASLE'
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                    target 'Boolean.FASLE'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:lkieOuGGAqACRAkz'
+                  }
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:3kieOuGGAqACRAk8'
+                    metaType 'ControlFlow'
+                    guard 'NULL'
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                    target 'reCalculate'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
+                  }
+                }
+              }
+              finalNode {  //Exported by ActivityFinalNodeExporterBase
+                name 'Boolean.FASLE'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:lkieOuGGAqACRAkz'
+                metaType 'ActivityFinalNode'
+              }
+              mAction {  //Exported by ActionExporterBase
+                name 'reCalculate'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
+                metaType 'ActivityAction'
+                stereotype 'Interactive'
+                incoming {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:3kieOuGGAqACRAk8'
+                    metaType 'ControlFlow'
+                    guard 'NULL'
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                    target 'reCalculate'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
+                  }
+                }
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name ''
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:3kieOuGGAqACRAk7'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'reCalculate'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
+                    target 'doThis'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:hkieOuGGAqACRAkv'
+                  }
+                }
+              }
             }
           }
-          mClass {
+          mClass {  //Exported by ClassExporterBase
             name 'SpringBootApp'
             documentation ''
-            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:PkieOuGGAqACRAk9'
-            xmiID 'PkieOuGGAqACRAk9'
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:PkieOuGGAqACRAk9'
             metaType 'Class'
             stereotype 'SpringBootApp'
-            mRelation {
-              name ''
-              documentation ''
-              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:_kieOuGGAqACRAk_'
-              xmiID '_kieOuGGAqACRAk_'
-              metaType 'Usage'
-              stereotype 'use'
-            }
           }
-          mPackage {
+          mPackage {  //Exported by PackageExporterBase
             name 'model'
             documentation ''
-            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA'
-            xmiID 'gUieOuGGAqACRAlA'
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA'
             metaType 'Package'
-            mClass {
+            mClass {  //Exported by ClassExporterBase
               name 'Adresse'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB'
-              xmiID 'QUieOuGGAqACRAlB'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB'
               metaType 'Class'
-              stereotype 'Entity'
-              mAttribute {
-                name 'strasse'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$wUieOuGGAqACRAlC'
-                xmiID 'wUieOuGGAqACRAlC'
-                metaType 'Attribute'
-                stereotype 'PersistentField'
-                type 'string'
-              }
-              mAttribute {
-                name 'hausnr'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$IUieOuGGAqACRAlD'
-                xmiID 'IUieOuGGAqACRAlD'
-                metaType 'Attribute'
-                stereotype 'PersistentField'
-                type 'string'
-              }
-              mAttribute {
-                name 'plz'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$oUieOuGGAqACRAlE'
-                xmiID 'oUieOuGGAqACRAlE'
-                metaType 'Attribute'
-                stereotype 'PersistentField'
-                type 'string'
-              }
-              mAttribute {
-                name 'ort'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$oUieOuGGAqACRAlF'
-                xmiID 'oUieOuGGAqACRAlF'
-                metaType 'Attribute'
-                stereotype 'PersistentField'
-                type 'string'
+              stereotype 'Entity', {
               }
               mAssociation {
                 name 'user'
                 documentation ''
-                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$40ieOuGGAqACRAmJ'
-                xmiID '40ieOuGGAqACRAmJ'
+                id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$40ieOuGGAqACRAmJ'
                 metaType 'AssociationEnd'
-                type 'composite'
+                assocId '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:o0ieOuGGAqACRAmC$40ieOuGGAqACRAmJ'
+                opositeAttribute 'adressen'
+                opositeMultiplicity '0..*'
+                associationType 'ManyToOne'
+                type 'de.csp.demo.rest.User'
                 multiplicity '1'
-                target 'de.csp.demo.rest.User'
-                navigable '0'
+                navigable 'true'
+                composite 'false'
+                oppositeAggregationKind 'none'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'strasse'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$wUieOuGGAqACRAlC'
+                metaType 'Attribute'
+                stereotype 'PersistentField', {
+                  taggedValue 'nullable', 'true'
+                  taggedValue 'unique', 'false'
+                }
+                type 'String'
+                visibility 'private'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'hausnr'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$IUieOuGGAqACRAlD'
+                metaType 'Attribute'
+                stereotype 'PersistentField', {
+                  taggedValue 'nullable', 'true'
+                  taggedValue 'unique', 'false'
+                }
+                type 'String'
+                visibility 'private'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'plz'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$oUieOuGGAqACRAlE'
+                metaType 'Attribute'
+                stereotype 'PersistentField', {
+                  taggedValue 'nullable', 'true'
+                  taggedValue 'unique', 'false'
+                }
+                type 'String'
+                visibility 'private'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'ort'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB$oUieOuGGAqACRAlF'
+                metaType 'Attribute'
+                stereotype 'PersistentField', {
+                  taggedValue 'nullable', 'true'
+                  taggedValue 'unique', 'false'
+                }
+                type 'String'
+                visibility 'private'
               }
             }
-            mClass {
+            mClass {  //Exported by ClassExporterBase
               name 'Group'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG'
-              xmiID 'YUieOuGGAqACRAlG'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG'
               metaType 'Class'
-              stereotype 'Entity'
-              mAttribute {
-                name 'name'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG$4UieOuGGAqACRAlH'
-                xmiID '4UieOuGGAqACRAlH'
-                metaType 'Attribute'
-                type 'string'
+              stereotype 'Entity', {
               }
               mAssociation {
                 name 'users'
                 documentation ''
-                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$U0ieOuGGAqACRAmS'
-                xmiID 'U0ieOuGGAqACRAmS'
+                id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$U0ieOuGGAqACRAmS'
                 metaType 'AssociationEnd'
-                type 'none'
+                assocId '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:40ieOuGGAqACRAmL$U0ieOuGGAqACRAmS'
+                opositeAttribute 'groups'
+                opositeMultiplicity '0..*'
+                associationType 'ManyToMany'
+                type 'de.csp.demo.rest.User'
                 multiplicity '0..*'
-                target 'de.csp.demo.rest.User'
-                navigable '0'
+                navigable 'true'
+                composite 'false'
+                oppositeAggregationKind 'none'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'name'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG$4UieOuGGAqACRAlH'
+                metaType 'Attribute'
+                type 'String'
+                visibility 'private'
               }
             }
-            mClass {
+            mClass {  //Exported by ClassExporterBase
               name 'Customer'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:EUieOuGGAqACRAlI'
-              xmiID 'EUieOuGGAqACRAlI'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:EUieOuGGAqACRAlI'
               metaType 'Class'
-              stereotype 'Entity'
-              mAttribute {
-                name 'customerValue'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:EUieOuGGAqACRAlI$UUieOuGGAqACRAlJ'
-                xmiID 'UUieOuGGAqACRAlJ'
-                metaType 'Attribute'
-                type 'int'
+              stereotype 'Entity', {
+                taggedValue 'dbTableName', 'CUSTOMER'
               }
               mAssociation {
                 name 'bankAccounts'
                 documentation ''
-                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$xUieOuGGAqACRAlW'
-                xmiID 'xUieOuGGAqACRAlW'
+                id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$xUieOuGGAqACRAlW'
                 metaType 'AssociationEnd'
-                type 'none'
+                assocId '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$xUieOuGGAqACRAlW'
+                opositeAttribute 'customer'
+                opositeMultiplicity '1'
+                associationType 'OneToMany'
+                type 'de.csp.demo.rest.model.BankAccount'
                 multiplicity '0..*'
-                target 'de.csp.demo.rest.model.BankAccount'
-                navigable '0'
+                navigable 'true'
+                composite 'true'
+                oppositeAggregationKind 'composite'
+              }
+              relation {
+                type='extends'
+                targetXmID='VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh'
+                targetType 'de.csp.demo.rest.User'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'customerValue'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:EUieOuGGAqACRAlI$UUieOuGGAqACRAlJ'
+                metaType 'Attribute'
+                type 'Integer'
+                visibility 'private'
               }
             }
-            mClass {
+            mClass {  //Exported by ClassExporterBase
               name 'BankAccount'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM'
-              xmiID 'iUieOuGGAqACRAlM'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM'
               metaType 'Class'
-              stereotype 'Entity'
-              mAttribute {
-                name 'iban'
-                documentation ''
-                address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM$SUieOuGGAqACRAlN'
-                xmiID 'SUieOuGGAqACRAlN'
-                metaType 'Attribute'
-                stereotype 'PersistentField'
-                type 'string'
+              stereotype 'Entity', {
               }
               mAssociation {
                 name 'customer'
                 documentation ''
-                address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$JUieOuGGAqACRAlY'
-                xmiID 'JUieOuGGAqACRAlY'
+                id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$JUieOuGGAqACRAlY'
                 metaType 'AssociationEnd'
-                type 'composite'
+                assocId '9yieOuGGAqACRAsj:zyieOuGGAqACRAsn:mUieOuGGAqACRAlP$JUieOuGGAqACRAlY'
+                opositeAttribute 'bankAccounts'
+                opositeMultiplicity '0..*'
+                associationType 'ManyToOne'
+                type 'de.csp.demo.rest.model.Customer'
                 multiplicity '1'
-                target 'de.csp.demo.rest.model.Customer'
-                navigable '0'
+                navigable 'true'
+                composite 'false'
+                oppositeAggregationKind 'none'
+              }
+              mAttribute {  //Exported by AttributeExporterBase
+                name 'iban'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM$SUieOuGGAqACRAlN'
+                metaType 'Attribute'
+                stereotype 'PersistentField', {
+                  taggedValue 'nullable', 'true'
+                  taggedValue 'unique', 'false'
+                }
+                type 'String'
+                visibility 'public'
               }
             }
           }
-          mElement {
+          mActivity {  //Exported by ActivityExporterBase
             name 'Login'
             documentation ''
-            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla'
-            xmiID 'pUieOuGGAqACRAla'
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla'
             metaType 'Activity'
             stereotype 'Flow'
-            mElement {
+            initNode {  //Exported by InitialNodeExporterBase
               name ''
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:ZUieOuGGAqACRAlb'
-              xmiID 'ZUieOuGGAqACRAlb'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:ZUieOuGGAqACRAlb'
               metaType 'InitialNode'
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:TUieOuGGAqACRAlq'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:ZUieOuGGAqACRAlb'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'readCredentials'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
-              xmiID '5UieOuGGAqACRAlc'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
               metaType 'ActivityAction'
               stereotype 'Interactive'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:TUieOuGGAqACRAlq'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:ZUieOuGGAqACRAlb'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:LUieOuGGAqACRAlt'
+                  metaType 'ControlFlow'
+                  guard 'WRONG'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:PUieOuGGAqACRAl1'
+                  metaType 'ControlFlow'
+                  guard 'RELOGIN'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:fUieOuGGAqACRAl4'
+                  metaType 'ControlFlow'
+                  guard 'ALREADY_REGISTERED'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:Q0ieOuGGAqACRAl_'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'presentSuccessfullRegistration'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:zUieOuGGAqACRAlr'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'readCredentials'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                  target 'checkCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'checkCredentials'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
-              xmiID 'FUieOuGGAqACRAld'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
               metaType 'ActivityAction'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:zUieOuGGAqACRAlr'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'readCredentials'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                  target 'checkCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:LUieOuGGAqACRAls'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'checkCredentials'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                }
+              }
             }
-            mElement {
+            mDecision {  //Exported by DecisionNodeExporterBase
               name ''
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
-              xmiID 'lUieOuGGAqACRAle'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
               metaType 'DecisionNode'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:LUieOuGGAqACRAls'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'checkCredentials'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:FUieOuGGAqACRAld'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:LUieOuGGAqACRAlt'
+                  metaType 'ControlFlow'
+                  guard 'WRONG'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:rUieOuGGAqACRAlu'
+                  metaType 'ControlFlow'
+                  guard 'CORRECT'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                  target 'checkOKTime'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name 'REGISTRATION'
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:PUieOuGGAqACRAl2'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                  target 'requestPersonalData'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'checkOKTime'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
-              xmiID 'VUieOuGGAqACRAlf'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
               metaType 'ActivityAction'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:rUieOuGGAqACRAlu'
+                  metaType 'ControlFlow'
+                  guard 'CORRECT'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                  target 'checkOKTime'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:bUieOuGGAqACRAlv'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'checkOKTime'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
+                }
+              }
             }
-            mElement {
+            mDecision {  //Exported by DecisionNodeExporterBase
               name ''
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
-              xmiID 'VUieOuGGAqACRAlg'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
               metaType 'DecisionNode'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:bUieOuGGAqACRAlv'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'checkOKTime'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlf'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:7UieOuGGAqACRAlw'
+                  metaType 'ControlFlow'
+                  guard 'NEEDS_CHECK'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
+                  target 'presentHumanCheck'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:HUieOuGGAqACRAlx'
+                  metaType 'ControlFlow'
+                  guard 'IS_HUMAN'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
+                  target 'Boolean.TRUE'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAli'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'presentHumanCheck'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
-              xmiID '1UieOuGGAqACRAlh'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
               metaType 'ActivityAction'
               stereotype 'Interactive'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:7UieOuGGAqACRAlw'
+                  metaType 'ControlFlow'
+                  guard 'NEEDS_CHECK'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:VUieOuGGAqACRAlg'
+                  target 'presentHumanCheck'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:3UieOuGGAqACRAl0'
+                  metaType 'ControlFlow'
+                  guard 'NEEDS_CHECK'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                  target 'presentHumanCheck'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:nUieOuGGAqACRAly'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'presentHumanCheck'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                }
+              }
             }
-            mElement {
+            finalNode {  //Exported by ActivityFinalNodeExporterBase
               name 'Boolean.TRUE'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAli'
-              xmiID 'NUieOuGGAqACRAli'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAli'
               metaType 'ActivityFinalNode'
             }
-            mElement {
+            mDecision {  //Exported by DecisionNodeExporterBase
               name ''
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
-              xmiID 'NUieOuGGAqACRAlj'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
               metaType 'DecisionNode'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:nUieOuGGAqACRAly'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'presentHumanCheck'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:XUieOuGGAqACRAlz'
+                  metaType 'ControlFlow'
+                  guard 'IS_HUMAN'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                  target 'Boolean.TRUE'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAli'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:3UieOuGGAqACRAl0'
+                  metaType 'ControlFlow'
+                  guard 'NEEDS_CHECK'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                  target 'presentHumanCheck'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:1UieOuGGAqACRAlh'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:PUieOuGGAqACRAl1'
+                  metaType 'ControlFlow'
+                  guard 'RELOGIN'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:NUieOuGGAqACRAlj'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'requestPersonalData'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
-              xmiID 'tUieOuGGAqACRAlk'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
               metaType 'ActivityAction'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name 'REGISTRATION'
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:PUieOuGGAqACRAl2'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:lUieOuGGAqACRAle'
+                  target 'requestPersonalData'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:_UieOuGGAqACRAl5'
+                  metaType 'ControlFlow'
+                  guard 'DATA_INCOMPLETE'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                  target 'requestPersonalData'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:fUieOuGGAqACRAl3'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'requestPersonalData'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                }
+              }
             }
-            mElement {
+            mDecision {  //Exported by DecisionNodeExporterBase
               name ''
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
-              xmiID 'dUieOuGGAqACRAll'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
               metaType 'DecisionNode'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:fUieOuGGAqACRAl3'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'requestPersonalData'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:fUieOuGGAqACRAl4'
+                  metaType 'ControlFlow'
+                  guard 'ALREADY_REGISTERED'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:_UieOuGGAqACRAl5'
+                  metaType 'ControlFlow'
+                  guard 'DATA_INCOMPLETE'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                  target 'requestPersonalData'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:tUieOuGGAqACRAlk'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:A0ieOuGGAqACRAl6'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                  target 'sendRegistraionEMail'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'sendRegistraionEMail'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
-              xmiID 'dUieOuGGAqACRAlm'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
               metaType 'ActivityAction'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:A0ieOuGGAqACRAl6'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAll'
+                  target 'sendRegistraionEMail'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:A0ieOuGGAqACRAl7'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'sendRegistraionEMail'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
+                  target 'waitForRegistrationEMail'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'waitForRegistrationEMail'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
-              xmiID '9UieOuGGAqACRAln'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
               metaType 'ActivityAction'
               stereotype 'Interactive'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:A0ieOuGGAqACRAl7'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'sendRegistraionEMail'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:dUieOuGGAqACRAlm'
+                  target 'waitForRegistrationEMail'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:Q0ieOuGGAqACRAl.'
+                  metaType 'ControlFlow'
+                  guard 'REGISTRATION_CODE_FAILED'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+                  target 'waitForRegistrationEMail'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:A0ieOuGGAqACRAl8'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'waitForRegistrationEMail'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+                }
+              }
             }
-            mElement {
+            mDecision {  //Exported by DecisionNodeExporterBase
               name ''
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
-              xmiID 'DUieOuGGAqACRAlo'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
               metaType 'DecisionNode'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:A0ieOuGGAqACRAl8'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'waitForRegistrationEMail'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+                  target ''
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:g0ieOuGGAqACRAl9'
+                  metaType 'ControlFlow'
+                  guard 'REGISTRATION_CODE_OK'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+                  target 'presentSuccessfullRegistration'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
+                }
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:Q0ieOuGGAqACRAl.'
+                  metaType 'ControlFlow'
+                  guard 'REGISTRATION_CODE_FAILED'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+                  target 'waitForRegistrationEMail'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:9UieOuGGAqACRAln'
+                }
+              }
             }
-            mElement {
+            mAction {  //Exported by ActionExporterBase
               name 'presentSuccessfullRegistration'
               documentation ''
-              address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
-              xmiID 'jUieOuGGAqACRAlp'
+              id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
               metaType 'ActivityAction'
               stereotype 'Interactive'
+              incoming {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:g0ieOuGGAqACRAl9'
+                  metaType 'ControlFlow'
+                  guard 'REGISTRATION_CODE_OK'
+                  source ''
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:DUieOuGGAqACRAlo'
+                  target 'presentSuccessfullRegistration'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
+                }
+              }
+              outgoing {
+                mControlFlow {  //Exported by ControlFlowExporterBase
+                  name ''
+                  documentation ''
+                  id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:Q0ieOuGGAqACRAl_'
+                  metaType 'ControlFlow'
+                  guard ''
+                  source 'presentSuccessfullRegistration'
+                  sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:jUieOuGGAqACRAlp'
+                  target 'readCredentials'
+                  targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:pUieOuGGAqACRAla:5UieOuGGAqACRAlc'
+                }
+              }
             }
           }
-          mClass {
+          mClass {  //Exported by ClassExporterBase
             name 'PhpRestBackend'
             documentation ''
-            address 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:w0ieOuGGAqACRAmA'
-            xmiID 'w0ieOuGGAqACRAmA'
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:w0ieOuGGAqACRAmA'
             metaType 'Class'
             stereotype 'PhpSymfonyApplication'
-            mRelation {
-              name ''
-              documentation ''
-              address '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:I0ieOuGGAqACRAmB'
-              xmiID 'I0ieOuGGAqACRAmB'
-              metaType 'Usage'
-              stereotype 'use'
-            }
           }
         }
       }

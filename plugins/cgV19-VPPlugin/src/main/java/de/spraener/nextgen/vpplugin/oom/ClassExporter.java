@@ -1,6 +1,7 @@
 package de.spraener.nextgen.vpplugin.oom;
 
 import com.vp.plugin.model.*;
+import de.spraener.nextgen.vpplugin.CgV19Plugin;
 
 import java.io.PrintWriter;
 
@@ -18,8 +19,25 @@ public class ClassExporter extends ClassExporterBase {
             exportRelationshipEnd(pw, indentation, rel);
         }
         for (IRelationship rel : clazz.toFromRelationshipArray()) {
-            exportRelationship(pw, indentation, rel);
+            if( !"Generalization".equals(rel.getModelType()) ) {
+                exportRelationship(pw, indentation, rel);
+            }
         }
+        for (IRelationship rel : clazz.toToRelationshipArray()) {
+            if( !"Generalization".equals(rel.getModelType()) ) {
+                exportRelationship(pw, indentation, rel);
+            } else {
+                exportExtends(pw,indentation, rel);
+            }
+        }
+    }
+
+    private void exportExtends(PrintWriter pw, String indent, IRelationship rel) {
+        pw.printf("%srelation {\n", indent);
+        pw.printf("%s  type='extends'\n", indent);
+        pw.printf("%s  targetXmID='%s'\n", indent, rel.getFrom().getAddress());
+        pw.printf("%s  targetType '%s'\n", indent, OOMExporter.getFQName(rel.getFrom()));
+        pw.printf("%s}\n", indent);
     }
 
 
@@ -28,17 +46,23 @@ public class ClassExporter extends ClassExporterBase {
         if (rel instanceof IAssociation) {
             exportAssociation(pw, indent, (IAssociation) rel, relEnd.getOppositeEnd());
         } else {
-            pw.printf("%smRelation {\n", indent);
+            /*
+            pw.printf("%srelation {\n", indent);
             PropertiesExporter.exportProperties(pw, indent + "  ", rel);
             pw.printf("%s}\n", indent);
+             */
+            return;
         }
     }
 
 
     private void exportRelationship(PrintWriter pw, String indent, IRelationship rel) {
-        pw.printf("%smRelation {\n", indent);
+        /**
+        pw.printf("%srelation {\n", indent);
         PropertiesExporter.exportProperties(pw, indent + "  ", rel);
         pw.printf("%s}\n", indent);
+         */
+        return;
     }
 
     private void exportAssociation(PrintWriter pw, String indent, IAssociation assoc, IRelationshipEnd relEnd) {
@@ -49,11 +73,41 @@ public class ClassExporter extends ClassExporterBase {
             }
             pw.printf("%smAssociation {\n", indent);
             PropertiesExporter.exportProperties(pw, indent + "  ", assocEnd);
-            pw.printf("%s  type '%s'\n", indent, assocEnd.getAggregationKind());
+            IAssociationEnd opposite = (IAssociationEnd)assocEnd.getOppositeEnd();
+
+            pw.printf("%s  assocId '%s'\n", indent, assocEnd.getAddress());
+            pw.printf("%s  opositeAttribute '%s'\n", indent, opposite.getName());
+            pw.printf("%s  opositeMultiplicity '%s'\n", indent, opposite.getMultiplicity());
+            pw.printf("%s  associationType '%s'\n", indent, toAssociationType(assocEnd));
+            pw.printf("%s  type '%s'\n", indent, OOMExporter.getFQName(assocEnd.getModelElement()));
             pw.printf("%s  multiplicity '%s'\n", indent, assocEnd.getMultiplicity());
-            pw.printf("%s  target '%s'\n", indent, OOMExporter.getFQName(assocEnd.getModelElement()));
             pw.printf("%s  navigable '%s'\n", indent, assocEnd.getNavigable()==2 ? "false" : "true");
+            pw.printf("%s  composite '%s'\n", indent, isComposited(assocEnd) ? "true" : "false");
+            pw.printf("%s  oppositeAggregationKind '%s'\n", indent, opposite.getAggregationKind());
+
             pw.printf("%s}\n", indent);
+        }
+    }
+
+    private boolean isComposited(IAssociationEnd assocEnd) {
+        return "composite".equalsIgnoreCase(((IAssociationEnd)assocEnd.getOppositeEnd()).getAggregationKind());
+    }
+
+    private String toAssociationType(IAssociationEnd assocEnd) {
+        String thisMulti = assocEnd.getMultiplicity();
+        String oppositeMulti = ((IAssociationEnd)assocEnd.getOppositeEnd()).getMultiplicity();
+        if( thisMulti.contains("*") ) {
+            if( oppositeMulti.contains("*") ) {
+                return "ManyToMany";
+            } else {
+                return "OneToMany";
+            }
+        } else {
+            if( oppositeMulti.contains("*") ) {
+                return "ManyToOne";
+            } else {
+                return "OneToOne";
+            }
         }
     }
 

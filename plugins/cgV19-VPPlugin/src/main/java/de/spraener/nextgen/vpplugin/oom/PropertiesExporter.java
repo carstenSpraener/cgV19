@@ -28,8 +28,8 @@ public class PropertiesExporter {
             ITaggedValue[] taggedValues = mElement.getTaggedValues().toTaggedValueArray();
             if (taggedValues != null && taggedValues.length > 0) {
                 for (ITaggedValue tv : taggedValues) {
-                    if( tv.getValue()!=null ) {
-                        pw.printf("%s  taggedValue '%s', '%s'\n", indentation, tv.getName(), tv.getValue());
+                    if( tv.getValue()!=null && !"Unspecified".equalsIgnoreCase(tv.getValue().toString()) ) {
+                        pw.printf("%s  taggedValue '%s', '%s'\n", indentation, tv.getName(), formatValue(tv.getValue()));
                     }
                 }
             }
@@ -37,6 +37,19 @@ public class PropertiesExporter {
         } else {
             pw.println();
         }
+    }
+
+    private static String formatValue(Object value) {
+        if( value == null ) {
+            return "null";
+        }
+        if( value.toString().equalsIgnoreCase("true") ) {
+            return "true";
+        }
+        if( value.toString().equalsIgnoreCase("false") ) {
+            return "false";
+        }
+        return value.toString();
     }
 
     public static void exportProperties(PrintWriter pw, String indentation, IModelElement mElement, PropertyOverwriter... propOverwrite) {
