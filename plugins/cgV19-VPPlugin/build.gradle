@@ -7,7 +7,7 @@ buildscript {
     repositories {
         mavenCentral();
         maven {
-            url="${project.parent.rootDir}/../repo"
+            url="${project.rootDir}/../repo"
         }
     }
     dependencies {
@@ -24,9 +24,9 @@ plugins {
 
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
-def home=System.getenv("HOME");
-def VP_HOME="/Applications/Visual Paradigm.app/Contents/Resources"
-def repoDir="${home}/Projekte/GitHub/cgV19/repo"
+def home=System.getenv("HOME")
+def VP_HOME=System.getenv("VP_HOME")
+def repoDir="${project.rootDir}/../repo"
 def version= '21.0.0-SNAPSHOT'
 def group='de.spraener.nxtgen'
 
@@ -39,7 +39,7 @@ repositories {
         url "file://$repoDir"
     }
     flatDir {
-        dirs("${VP_HOME}/app/lib")
+        dirs("${VP_HOME}/lib")
     }
 }
 
