@@ -20,8 +20,9 @@ repositories {
     mavenCentral()
 }
 cgV19 {
-    //model='./restDemo.oom'
-    model='./restDemo-MD.oom'
+    model='./restDemo.oom'
+    // If you arer using VisualParadigm
+    // model='http://localhost:7001/de'
 }
 
 tasks.withType(JavaCompile) {
