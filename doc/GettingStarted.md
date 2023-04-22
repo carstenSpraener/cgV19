@@ -1,6 +1,6 @@
 # Getting Started with cgV19
 
-This getting started requires gradle in version 6 or higher. You will run 3 steps:
+![GettingStarted.png width="70%"](model%2FGettingStarted.png)
 
 __Setup the Environment__ Clone the cgV9 Project to your workspace, compile and publish all generator 
 components to a local repository directory.
