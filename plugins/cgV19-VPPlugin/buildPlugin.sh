@@ -9,9 +9,20 @@ case `uname` in
     export VP_PLUGIN_DIR="${HOME}/.config/VisualParadigm/plugins"
     export VP_HOME="${HOME}/Visual_Paradigm_CE_17.0"
     ;;
+  MINGW*)
+    export VP_PLUGIN_DIR="${HOME}/AppData/Roaming/VisualParadigm/plugins"
+    export VP_HOME="/C/Program Files/Visual Paradigm CE 17.0"
+    ;;
   Cygwin)
     ;;
 esac
+
+echo "***************************************************************************"
+echo "* Using:"
+echo "*     VP_PLUGIN_DIR=${VP_PLUGIN_DIR}"
+echo "*     VP_HOME=${VP_HOME}"
+echo "*"
+echo "***************************************************************************"
 
 PLUGIN="de.spraener.nextgen.vpplugin"
 
