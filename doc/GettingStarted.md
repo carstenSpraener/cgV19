@@ -73,13 +73,8 @@ If you want to give it a try install the community edition on your system. Then 
 this steps to build and install the cgV19-VPPlugin.
 
 * go to the `cgV19/core` folder an run `gradle publish`
-* Go to the folder `cgV19/plugins/cgV19-VPPlugin` and edit the bash script. You need to
-edit the installation/plugin dir to your local environment.
-```bash
-# Plugin-Dir under macOS
-VP_PLUGIN_DIR="${HOME}/Library/Application Support/VisualParadigm/plugins" 
-```
-* run the bash script inside the cgV19-VPPlugin folder
+* Go to the folder `cgV19/plugins/cgV19-VPPlugin`
+* run the bash script buildPlugin.sh inside the cgV19-VPPlugin folder (tested under macOS and Linux)
 * restart VisualParadigm and check the plugin. The link http://localhost:7001/ping should
 response with a "pong!"
 
