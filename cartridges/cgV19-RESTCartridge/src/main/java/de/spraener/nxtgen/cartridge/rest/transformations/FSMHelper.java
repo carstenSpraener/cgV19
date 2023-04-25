@@ -81,4 +81,13 @@ public class FSMHelper {
     public List<MActivityControlFlow> findOIncoming(ModelElement me) {
         return findControllFlows(me, "targetID");
     }
+
+    public String findInitNode(MActivity activity) {
+        MActivityNode initNode = activity.getInitNode();
+        return findOutgoings(initNode).get(0).getTarget();
+    }
+
+    public List<String> getFinalStates(MActivity activity) {
+        return activity.getFinalNodes().stream().map(n -> n.getName()).collect(Collectors.toList());
+    }
 }

@@ -8,6 +8,6 @@ public class StartGenerator {
     @Test
     public void testRestModel() {
         System.out.println(new File(".").getAbsolutePath());
-        NextGen.main(new String[]{"../../demoProjects/restDemo/restDemo.oom"});
+        NextGen.main(new String[]{"http://localhost:7001/de.csp.demo.rest"});
     }
 }

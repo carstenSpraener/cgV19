@@ -23,6 +23,8 @@ public class ResourceToLogic implements Transformation {
     public MClass create(MClass mClass) {
         MPackage pkgLogic = mClass.getPackage().findOrCreatePackage("logic");
         MClass logicBase = pkgLogic.createMClass(mClass.getName()+"LogicBase");
+        logicBase.setModel(mClass.getModel());
+        logicBase.setProperty("originalClass", mClass.getFQName());
         Stereotype stType = new StereotypeImpl(RESTStereotypes.LOGIC.getName());
         logicBase.getStereotypes().add(stType);
         stType.setTaggedValue("dataType", mClass.getFQName()+"Entity");

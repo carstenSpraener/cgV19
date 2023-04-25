@@ -4,6 +4,8 @@ import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.cartridge.rest.RESTJavaHelper
 import de.spraener.nxtgen.oom.StereotypeHelper
+import de.spraener.nxtgen.oom.model.JavaHelper
+import de.spraener.nxtgen.oom.model.MActivity
 import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
@@ -42,6 +44,31 @@ def requestMethods(MClass c) {
     return sb.toString();
 }
 
+def toControlledOperationHandler( MClass c, String entityName, MActivity activity ) {
+    String fsmName = entityName+ activity.name.substring(0,1).toUpperCase() + activity.name.substring(1);
+    return """
+    public Object ${activity.name}( ${entityName} instance ) {
+        de.csp.fsm.FSMRunner<${entityName}> runner = new de.csp.fsm.FSMRunner<${entityName}>(${fsmName}.class, instance);
+        runner.run();
+        return runner.getResult();
+    }
+    
+"""
+
+}
+def activityMethods(MClass c, String entityName) {
+    StringBuilder sb = new StringBuilder();
+    MClass originalClass = RESTJavaHelper.getOriginalClass(c);
+    if( originalClass == null ) {
+        return "";
+    }
+    for(MActivity activity : originalClass.getActivities() ) {
+        if( StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLEDOPERATION.getName()) ) {
+            sb.append(toControlledOperationHandler(c, entityName, activity));
+        }
+    }
+    return sb.toString();
+}
 def pkgName = ((MClass)modelElement).getPackage().getFQName();
 def cName = modelElement.name;
 def repoName = toRepoName(modelElement);
@@ -101,5 +128,6 @@ public abstract class ${cName} {
     }
 
 ${requestMethods(modelElement)}
+${activityMethods(modelElement, entityName)}
 }
 """
