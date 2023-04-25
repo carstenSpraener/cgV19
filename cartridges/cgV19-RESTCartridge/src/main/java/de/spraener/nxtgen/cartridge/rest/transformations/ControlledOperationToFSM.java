@@ -37,7 +37,7 @@ public class ControlledOperationToFSM implements Transformation {
         Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLEDOPERATION.getName());
         fsmClass.addStereotypes(sType);
         MOperation initOP = fsmClass.createOperation("initContext");
-        initOP.createParameter("context", "FSMContext");
+        initOP.createParameter("context", "FSMContext<"+mClass.getName()+">");
         for (MActivityAction action : activity.getActions()) {
             addOperation(fsmHelper, action);
         }
@@ -52,7 +52,8 @@ public class ControlledOperationToFSM implements Transformation {
                 "import de.csp.fsm.FSMTransitions;\n" +
                 "import de.csp.fsm.FSMRunnable;\n" +
                 "import de.csp.fsm.FSMBefore;\n" +
-                "import de.csp.fsm.FSMContext;";
+                "import de.csp.fsm.FSMContext;\n\n" +
+                "import "+mClass.getPackage().getFQName()+".model.*;";
         fsmClass.setProperty("importList", importList);
     }
 
@@ -92,10 +93,11 @@ public class ControlledOperationToFSM implements Transformation {
 
     private void addOperation(FSMHelper fsmHelper, MActivityAction action) {
         MClass fsmClass = fsmHelper.getFSMClass();
+        MClass mClass = (MClass) action.getParent().getParent();
         MOperation op = fsmClass.createOperation(action.getName());
         op.setType("Object");
         op.setName(action.getName());
-        op.createParameter("context", "FSMContext");
+        op.createParameter("context", "FSMContext<"+mClass.getName()+">");
         StringBuffer annotations = new StringBuffer();
         for (ModelElement outgoing : fsmHelper.findOutgoings(action)) {
             String targetName = outgoing.getProperty("target");
