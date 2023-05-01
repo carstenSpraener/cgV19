@@ -75,6 +75,19 @@ ModelDSL.make {
             xmiID '_18_5_3_40201a1_1598604191334_706006_5287'
           }
           mClass {
+                name 'ActivityImpl'
+                mAssociation {
+                    assocId '_18_5_3_40201a1_1598193837214_726218_4890'
+                    opositeAttribute 'extension_Ressource'
+                    opositeMultiplicity '0..1'
+                    associationType 'ManyToMany'
+                    type 'UML Standard Profile.UML2 Metamodel.Class'
+                    name 'base_Class'
+                    multiplicity ''
+                    composite 'false'
+                }
+          }
+          mClass {
             name 'Interactive'
             xmiID '_18_5_3_40201a1_1599159601345_291183_5094'
             mAssociation {

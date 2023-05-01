@@ -31,64 +31,22 @@ public class ControlledOperationToFSM implements Transformation {
         FSMHelper fsmHelper = new FSMHelper(activity);
         MClass mClass = (MClass) activity.getParent();
         MPackage pkg = mClass.getPackage().findOrCreatePackage("logic");
+
         MClass fsmClass = pkg.createMClass(mClass.getName() + firstToUpperCaser(activity.getName()));
-        fsmClass.addStereotypes(new StereotypeImpl(RESTStereotypes.IMPL.getName()));
+        fsmClass.putObject("fsmHelper", fsmHelper);
+        fsmClass.putObject("originalClass", mClass);
+        fsmClass.putObject("activity", activity);
+
+        fsmClass.addStereotypes(new StereotypeImpl(RESTStereotypes.ACTIVITYIMPL.getName()));
         fsmHelper.setFSMClass(fsmClass);
         Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLEDOPERATION.getName());
         fsmClass.addStereotypes(sType);
+
         MOperation initOP = fsmClass.createOperation("initContext");
         initOP.createParameter("context", "FSMContext<"+mClass.getName()+">");
         for (MActivityAction action : activity.getActions()) {
             addOperation(fsmHelper, action);
         }
-        addFSMBeforeAnnotation(initOP);
-        setFSMClassAnnotation(fsmHelper, fsmClass, activity);
-
-        String importList = fsmClass.getProperty("importList");
-        if( null==importList ) {
-            importList = "";
-        }
-        importList+="\nimport de.csp.fsm.FSMTransition;\n" +
-                "import de.csp.fsm.FSMTransitions;\n" +
-                "import de.csp.fsm.FSMRunnable;\n" +
-                "import de.csp.fsm.FSMBefore;\n" +
-                "import de.csp.fsm.FSMContext;\n\n" +
-                "import "+mClass.getPackage().getFQName()+".model.*;";
-        fsmClass.setProperty("importList", importList);
-    }
-
-    private void addFSMBeforeAnnotation(MOperation initOP) {
-        String annitations = initOP.getProperty("annotations");
-        if( annitations == null ) {
-            annitations = "";
-        }
-        annitations+="@FSMBefore\n    ";
-        initOP.setProperty("annotations", annitations);
-    }
-
-    private void setFSMClassAnnotation(FSMHelper fsmHelper, MClass fsmClass, MActivity activity) {
-        StringBuilder annotations = new StringBuilder();
-        annotations.append("@FSMRunnable(\n");
-        annotations.append("    initialMethod = \"").append(fsmHelper.findInitNode(activity)).append("\",\n");
-        annotations.append("    finalStates = {");
-        boolean firstState = true;
-        for( String state : fsmHelper.getFinalStates(activity) ) {
-            if( !firstState ) {
-                annotations.append(",");
-            } else {
-                firstState = false;
-            }
-            annotations.append("\n");
-            annotations.append("        \"").append(state).append("\"");
-        }
-        annotations.append("\n    }\n");
-        annotations.append(")\n");
-        String fsmAnnos = fsmClass.getProperty("annotations");
-        if( fsmAnnos == null ) {
-            fsmAnnos = "";
-        }
-        fsmAnnos += "\n"+annotations.toString();
-        fsmClass.setProperty("annotations", fsmAnnos);
     }
 
     private void addOperation(FSMHelper fsmHelper, MActivityAction action) {
@@ -98,25 +56,6 @@ public class ControlledOperationToFSM implements Transformation {
         op.setType("Object");
         op.setName(action.getName());
         op.createParameter("context", "FSMContext<"+mClass.getName()+">");
-        StringBuffer annotations = new StringBuffer();
-        for (ModelElement outgoing : fsmHelper.findOutgoings(action)) {
-            String targetName = outgoing.getProperty("target");
-            String guard = outgoing.getProperty("transitOn");
-            if( guard == null ) {
-                guard = outgoing.getProperty("guard");
-            }
-            if( guard==null) {
-                guard = "VOID";
-            }
-            ModelElementImpl transition = new ModelElementImpl();
-            transition.setParent(op);
-            transition.setMetaType("mTransition");
-            op.getChilds().add(transition);
-            annotations.append("\n        @FSMTransition(target=\""+targetName+"\", guard=\""+guard+"\"),");
-        }
-        if( annotations.length()> 0 ) {
-            String annotationsStr = "@FSMTransitions(transistions={"+annotations.toString()+"\n    })\n    ";
-            op.setProperty("annotations", annotationsStr);
-        }
+        op.putObject("activityAction", action);
     }
 }

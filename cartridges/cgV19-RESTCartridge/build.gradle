@@ -28,7 +28,8 @@ sourceSets {
 }
 
 cgV19 {
-    model='./DSL.oom'
+    model="./DSL.oom"
+    // model='http://localhost:7001/DSL'
 }
 
 tasks.withType(JavaCompile) {

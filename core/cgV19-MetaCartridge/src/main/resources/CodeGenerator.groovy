@@ -35,19 +35,6 @@ String getRequiredStereotype(MClass mClass) {
     return readTaggedValue(mClass,"CodeGenerator", "requiredStereotype", "not-found")
 }
 
-String getPhpRootPackage(MClass mClass) {
-    String sType = getRequiredStereotype(mClass);
-    if( sType.contains("Controller") ) {
-        return "Controller";
-    } else if (sType.equals("Entity") ) {
-        return "Entity"
-    } else if(sType.equals("Repository")) {
-        return "Repository"
-    }
-    NextGen.LOGGER.warning("MClass "+mClass.getName()+" has no known generateOn="+sType);
-    return "Unknonw";
-}
-
 String getOutputDir( MClass mClass) {
     String rootDir = StereotypeHelper.getStereotype(mClass, MetaCartridge.STEREOTYPE_CODE_GENERATOR).getTaggedValue("outputRootDir");
     if( rootDir != null ) {
@@ -57,6 +44,15 @@ String getOutputDir( MClass mClass) {
     }
 }
 
+String applyModifiers(String cbName) {
+"""
+        if( codeBlockModifiers!=null ) {
+            for (Consumer<CodeBlock> codeBlockModifier: this.codeBlockModifiers) {
+                codeBlockModifier.accept(${cbName});
+            }
+        }
+"""
+}
 String getCodeBlockDefinition(MClass mClass, String outputType) {
     String outputTo = "src".equals(getOutputTo(mClass)) ? "src/main/java" : "src/main/java-gen"
     String metaType = getGeneratesOn(mClass)
@@ -66,19 +62,22 @@ String getCodeBlockDefinition(MClass mClass, String outputType) {
         JavaCodeBlock jcb = new JavaCodeBlock("${outputTo}", me.getPackage().getFQName(), me.getName());
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("${mClass.getName()}", me, "${getTemplateFileName(mClass)}");
         jcb.addCodeBlock(gcb);
+${applyModifiers("jcb")}
         return jcb;"""
             break;
         case "PHP":
             return """${metaType} me = (${metaType})element;
-        de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock("src", "${getPhpRootPackage(mClass)}", me.getName());
+        de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock("src", "", me.getName());
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("${mClass.getPackage().getName()}", me, "${getTemplateFileName(mClass)}");
         phpCB.addCodeBlock(gcb);
+${applyModifiers("phpCB")}
         return phpCB;
 """
             break;
         case "TypeScript":
             return """GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("typscript", element, "${getTemplateFileName(mClass)}");
         gcb.setToFileStrategy(new de.spraener.nxtgen.filestrategies.TypeScriptFileStrategy("angular/src/app/model", element.getName()));
+${applyModifiers("gcb")}
         return gcb;
 """
             break;
@@ -87,6 +86,7 @@ String getCodeBlockDefinition(MClass mClass, String outputType) {
         case "Xml":
             return """GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("xml", element, "${getTemplateFileName(mClass)}");
         gcb.setToFileStrategy(new de.spraener.nxtgen.filestrategies.XmlFileStrategy("${getOutputDir(mClass)}", element));
+${applyModifiers("gcb")}
         return gcb;
 """
             return
@@ -95,7 +95,6 @@ String getCodeBlockDefinition(MClass mClass, String outputType) {
             return """// TODO: Implement the creation of a CodeBlock"
         return null;
 """
-
             break;
     }
 }
@@ -105,6 +104,8 @@ String outputType = getOutputType(mClass)
 """// ${ProtectionStrategieDefaultImpl.GENERATED_LINE}
 package ${mClass.getPackage().getFQName()};
 
+import java.util.function.Consumer;
+
 import de.spraener.nxtgen.CodeBlock;
 import de.spraener.nxtgen.CodeGenerator;
 import de.spraener.nxtgen.GroovyCodeBlockImpl;
@@ -113,6 +114,12 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
 
 public class ${mClass.getName()} implements CodeGenerator {
+    private Consumer<CodeBlock>[] codeBlockModifiers;
+
+    public ${mClass.getName()}(Consumer<CodeBlock>... codeBlockModifiers) {
+        this.codeBlockModifiers = codeBlockModifiers;
+    }
+    
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         ${getCodeBlockDefinition(mClass, outputType)}

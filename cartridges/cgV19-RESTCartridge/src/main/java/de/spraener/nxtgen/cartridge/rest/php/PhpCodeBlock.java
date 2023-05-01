@@ -25,9 +25,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
     @Override
     public void writeOutput(String workingDir) {
         try {
-            String phpProjectDir = getOutputPath(workingDir);
-            String filePath = phpProjectDir+"/src/"+toFilePath()+".php";
-            File outFile = new File(filePath);
+            File outFile = toFile(workingDir);
             if( outFile.exists() && checkProtected(outFile) ) {
                 return;
             }
@@ -41,7 +39,17 @@ public class PhpCodeBlock extends CodeBlockImpl {
         }
     }
 
-    private static String getOutputPath() {
+    private File toFile(String workingDir) {
+        if( getToFileStrategy() != null ) {
+            return getToFileStrategy().open();
+        } else {
+            String phpProjectDir = getOutputPath(workingDir);
+            String filePath = phpProjectDir + "/src/" + toFilePath() + ".php";
+            return new File(filePath);
+        }
+    }
+
+    public static String getOutputPath() {
         if( outputPath==null ) {
             outputPath = System.getenv("php_project_dir");
             if (outputPath == null || "".equals(outputPath)) {
@@ -62,7 +70,36 @@ public class PhpCodeBlock extends CodeBlockImpl {
         }
         return outputPath;
     }
+
     private String toFilePath() {
         return this.pkgName.replaceAll("\\.", "/")+"/"+this.className;
+    }
+
+    public static void setOutputPath(String outputPath) {
+        PhpCodeBlock.outputPath = outputPath;
+    }
+
+    public String getSrcDir() {
+        return srcDir;
+    }
+
+    public void setSrcDir(String srcDir) {
+        this.srcDir = srcDir;
+    }
+
+    public String getPkgName() {
+        return pkgName;
+    }
+
+    public void setPkgName(String pkgName) {
+        this.pkgName = pkgName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

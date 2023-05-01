@@ -43,6 +43,9 @@ subprojects {
             maven {
                 url="${project.rootDir}/../repo"
             }
+            maven {
+                url="/Users/casi/.m2/repository"
+            }
         }
     }
 }
