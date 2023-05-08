@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '21.0.0-RC1'
+    project.ext.version = '23.0.0-RC1'
 
     repositories {
         mavenCentral()
@@ -41,14 +41,6 @@ subprojects {
         repositories {
             maven {
                 url="${project.rootDir}/../repo"
-            }
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/carstenSpraener/cgV19")
-                credentials {
-                    username = System.getenv("GITHUB_USERNAME")
-                    password = System.getenv("GITHUB_TOKEN")
-                }
             }
         }
     }

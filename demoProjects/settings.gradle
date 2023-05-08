@@ -1,4 +1,4 @@
-rootProject.name = 'cgV19-DemoProjects'
+rootProject.name = 'cgv19-DemoProjects'
 
-include ':cgV19-helloWorld'
-include ':restDemo'
+include ':cgv19-helloworld'
+include ':restdemo'

@@ -1,4 +1,4 @@
-include (":cgV19-VPPluginCartridge")
-include (":cgV19-VPPlugin")
-//include (":cgV19-MDPlugin")
+include (":cgv19-vpplugin-cartridge")
+include (":cgv19-vpplugin")
+//include (":cgv19-MDPlugin")
 

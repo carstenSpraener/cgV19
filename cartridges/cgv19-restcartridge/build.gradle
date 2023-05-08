@@ -12,28 +12,9 @@ buildscript {
 }
 
 plugins {
-    id 'java'
-    id 'application'
+    id 'java-library'
 }
-
 apply plugin: 'de.spraener.nxtgen.cgv19'
-
-repositories {
-    mavenCentral();
-    maven {
-        url="${project.rootDir}/../repo"
-    }
-}
-
-cgV19 {
-    model = './src/main/helloWorld.oom'
-    //if you use VisualParadigm
-    //model = 'http://localhost:7001/de.spraener.nxtgen.hello'
-}
-
-tasks.withType(JavaCompile) {
-    compileTask -> compileTask.dependsOn generate
-}
 
 sourceSets {
     src{
@@ -41,19 +22,28 @@ sourceSets {
             java {
                 srcDir('src/main/java')
                 srcDir('src/main/java-gen')
+                srcDir('src/lib/java')
             }
         }
     }
 }
 
+cgV19 {
+    model="./DSL.oom"
+    // model='http://localhost:7001/DSL'
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn generate
+}
+
 dependencies {
     cartridge "${project.ext.group}:cgv19-core:${project.ext.version}"
     cartridge "${project.ext.group}:cgv19-oom:${project.ext.version}"
-    cartridge "${project.ext.group}:cgv19-pojo:${project.ext.version}"
+    cartridge "${project.ext.group}:cgv19-metacartridge:${project.ext.version}"
+
+    implementation "${project.ext.group}:cgv19-core:${project.ext.version}"
+    implementation "${project.ext.group}:cgv19-oom:${project.ext.version}"
 
     testImplementation 'junit:junit:4.13.1'
 }
-
-compileJava.dependsOn generate
-
-mainClassName = 'de.spraener.nxtgen.hello.App'

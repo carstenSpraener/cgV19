@@ -1,4 +1,3 @@
-rootProject.name = 'cgV19-Cartridges'
+rootProject.name = 'cgv19-cartridges'
 
-include ':cgV19-RESTCartridge'
-// Under Construction! include ':cgV19-WebFlowCartridge'
+include ':cgv19-restcartridge'
