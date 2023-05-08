@@ -8,7 +8,7 @@ build a cartridge for PoJos.
 
 To build a cartridge you should create a new project for a java
 library. The library needs to have a class implementing the Cartridge
-interface of cgV19. 
+interface of cgv19. 
 
 In the META-INF/services directory of the jar has to be a file with the
 full qualified name of this interface and a single line in it containing
@@ -97,7 +97,7 @@ where it comes to real generating.
 > You have the option to write Templates in Groovy as 
 > [described here](doc/GroovyAsTemplateLanguage.md)
 
-cgV19 offers several ways to implement CodeGenerators. For this first
+cgv19 offers several ways to implement CodeGenerators. For this first
 example we will use a standard java _CodeBlock_ to do our generation.
 But first we need a _CodeGenerator_ class.
 
@@ -122,7 +122,7 @@ _mapGenerator_-Method. This is how the _Catridge_ works together
 with the _CodeGenerator_.
 
 Knowing that we can safely cast the ModelElement to a MClass. Next 
-the generator uses a class _JavaCodeBlock_ from the cgV19-core package.
+the generator uses a class _JavaCodeBlock_ from the cgv19-core package.
 This _CodeBlock_ is a handy class to generate java output. It is created
 with a output directory (here it is "src/main/java-gen"), a package name
 and a class name. The _JavaCodeBlock_ will write the source to the correct
@@ -164,12 +164,12 @@ pretty forward but let's explain some details.
 
 #### ProtectionLine
 First the generator prints out a so called __ProtectionLine__. This is the standard
-mechanism of cgV19 to distinguish between code that can be regenerated and code that
+mechanism of cgv19 to distinguish between code that can be regenerated and code that
 shoud not get touched. The standard strategy looks for a line with the content of
 `THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS`. If it finds such a line it the
 first 5 lines of a file it will regenerate the file.
 
-To protect your code from overriding by cgV19 just remove this line. 
+To protect your code from overriding by cgv19 just remove this line. 
 
 The protection strategy can be changed, but for now it is good enough. In fact i used
 this strategy for years with no problem.
@@ -178,7 +178,7 @@ this strategy for years with no problem.
 
 Every java class has to declare it's package in the very first line of code. The 
 generation of this line shows you the first interaction of your generator with
-the meta model of cgV19. As the model loader is the _OOMModelLoader_ our MetaModel
+the meta model of cgv19. As the model loader is the _OOMModelLoader_ our MetaModel
 is an instance of an OOM-Model. In an OOMModel every MClass instance has a MPackage
 and the MPackage has a name.
 
@@ -240,7 +240,7 @@ transforming _firstName_ to _FirstName_.
 ## The output
 
 Bind all this classes and service-Files to a jar and add it to the classpath when you 
-call cgV19. If you run this cartridge on a OOM-Model like this:
+call cgv19. If you run this cartridge on a OOM-Model like this:
 
 ```groovy
 import de.spraener.nxtgen.groovy.ModelDSL

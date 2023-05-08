@@ -2,19 +2,19 @@
 
 # Introduction and Goals
 
-cgV19-core is the heard of the cgV19 generator framework. It defines the underlying base structure
+cgv19-core is the heard of the cgV19 generator framework. It defines the underlying base structure
 to describe models, defines a wokrflow for the generation process and provides interfaces
 to fill these workflows with logic.
 
-cgV19-core is written in java but can generate every type of output. It is not designed for
+cgv19-core is written in java but can generate every type of output. It is not designed for
 any specific output language.
 
 ## Requirements Overview
 
-cgV19-core only needs a JDK-8 or higher and has a very low footprint. It's only dependency is groovy
+cgv19-core only needs a JDK-8 or higher and has a very low footprint. It's only dependency is groovy
 as it is very handy to define a base domain specific language.
 
-There should be no other dependencies in the cgV19-core.
+There should be no other dependencies in the cgv19-core.
 
 The underlying model for describing your domain model (for example UML) should be simple but
 powerfull enough to contain UML Models or Data Model from a Database.
@@ -23,11 +23,11 @@ powerfull enough to contain UML Models or Data Model from a Database.
 
 The main class of cgV19 is NextGen. It's job is described in the following diagramm.
 
-![cgV19 base components and how the play togheter](img/cgV19-core.png)
+![cgV19 base components and how the play togheter](img/cgv19-core.png)
 
 ### Meta Model
 
-cgV19-core defines a sctructure for describing nearly all types of models. This structure is
+cgv19-core defines a sctructure for describing nearly all types of models. This structure is
 called a _MetaModel_ since it is a model to describe models. It is at its heard a composite 
 pattern with ModelElements that contains ModelElements.
 
@@ -37,7 +37,7 @@ The composite pattern is as easy as powerfull for this task.
 
 ### Model Loader
 
-This is an interface defined in cgV19-core. 
+This is an interface defined in cgv19-core. 
 
 ```java
 public interface ModelLoader {
@@ -54,12 +54,12 @@ ModelLoader instances are injected to chgV19 via the Java ServiceLoader mechanis
 it possibel to just put a jar-File to the classpath and cgV19 can find the ModelLoader
 implementations. 
 
-cgV19-core provides a simple DSL in ModelBuilder.groovy script. These can be used to load a model.
+cgv19-core provides a simple DSL in ModelBuilder.groovy script. These can be used to load a model.
 
 ### Cartridge
 
 A cartridge is a plugable component that proveds the generator logic and the output to the 
-cgV19-core. Cartridges are located via the java ServiceLoader mechanism and they only need 
+cgv19-core. Cartridges are located via the java ServiceLoader mechanism and they only need 
 to be on the classpath. (With the right service loader file in the META-INF/services directory)
 
 Cartridges will receive a new loaded model from the core and can execute some transformations 

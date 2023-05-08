@@ -5,7 +5,7 @@ public class MetaCartridgeStartGenerator {
 
     @Test
     public void testRESTCartridgeDSLModel() {
-        NextGen.main(new String[]{"../cgV19-RESTCartridge/DSL.oom"});
+        NextGen.main(new String[]{"../cgv19-RESTCartridge/DSL.oom"});
     }
 
     @Test
