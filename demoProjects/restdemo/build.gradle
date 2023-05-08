@@ -10,7 +10,7 @@ buildscript {
     }
     if( !project.ext.hasProperty("group") ) {
         project.ext.group = 'de.spraener.nxtgen'
-        project.ext.version = '21.0.0-RC1'
+        project.ext.version = '23.0.0-RC1'
     }
     dependencies {
         classpath "${project.ext.group}:cgv19-core:${project.ext.version}"

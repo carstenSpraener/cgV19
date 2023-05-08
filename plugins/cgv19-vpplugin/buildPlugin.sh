@@ -26,7 +26,7 @@ echo "**************************************************************************
 
 PLUGIN="de.spraener.nextgen.vpplugin"
 
-(cd ..; gradle :cgv19-VPPlugin:clean :cgv19-VPPluginCartridge:jar :cgv19-VPPlugin:install);
+(cd ..; gradle :cgv19-vpplugin:clean :cgv19-vpplugin-cartridge:jar :cgv19-vpplugin:install);
 mkdir -p ./build/${PLUGIN}/lib
 mkdir -p ./build/${PLUGIN}/classes
 
