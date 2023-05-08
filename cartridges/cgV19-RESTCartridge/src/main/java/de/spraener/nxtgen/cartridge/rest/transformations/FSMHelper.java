@@ -1,7 +1,9 @@
 package de.spraener.nxtgen.cartridge.rest.transformations;
 
+import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.ModelHelper;
+import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.*;
 
 import java.util.ArrayList;
@@ -89,5 +91,9 @@ public class FSMHelper {
 
     public List<String> getFinalStates(MActivity activity) {
         return activity.getFinalNodes().stream().map(n -> n.getName()).collect(Collectors.toList());
+    }
+
+    public boolean isInteractive(ModelElement me) {
+        return StereotypeHelper.hasStereotye(me, RESTStereotypes.INTERACTIVE.getName());
     }
 }

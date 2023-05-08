@@ -1,13 +1,18 @@
 package de.csp.fsm;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FSMContextImpl<T> implements FSMContext<T> {
     private Map<String,Object> valueMap = new HashMap<>();
+    private Class<?> fsmClass;
     private T rootObject;
+    private Method returnFromMethod;
+    private boolean interrupted;
 
-    FSMContextImpl(T rootObject) {
+    FSMContextImpl(Class<?> fsmClass, T rootObject) {
+        this.fsmClass = fsmClass;
         this.rootObject = rootObject;
     }
 
@@ -29,5 +34,25 @@ public class FSMContextImpl<T> implements FSMContext<T> {
     @Override
     public T getRootObject() {
         return rootObject;
+    }
+
+    public Class<?> getFsmClass() {
+        return fsmClass;
+    }
+
+    public Method getReturnFromMethod() {
+        return returnFromMethod;
+    }
+
+    public void setReturnFromMethod(Method returnFromMethod) {
+        this.returnFromMethod = returnFromMethod;
+    }
+
+    public boolean isInterrupted() {
+        return interrupted;
+    }
+
+    public void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;
     }
 }

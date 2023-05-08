@@ -22,6 +22,7 @@ sourceSets {
             java {
                 srcDir('src/main/java')
                 srcDir('src/main/java-gen')
+                srcDir('src/lib/java')
             }
         }
     }

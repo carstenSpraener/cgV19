@@ -1,9 +1,3 @@
-include(':cgV19-core',':cgV19-gradle',':cgV19-oom',':cgV19-pojo')
-include(':cgV19-MetaCartridge')
-include(':cgV19-VPPluginCartridge')
-/*
-includeBuild('./cgV19-VPPlugin')
-includeBuild('./cgv19-annotationProcessor')
- */
-// this module is only compilable if you have MagicDraw available.
-//include ':cgV19-MDPlugin'
+include(':cgv19-core',':cgv19-gradle',':cgv19-oom',':cgv19-pojo')
+include(':cgv19-metacartridge')
+include(':cgv19-annotationprocessor')

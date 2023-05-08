@@ -27,6 +27,8 @@ public class ActivityImplGenerator implements CodeGenerator {
                 "import de.csp.fsm.FSMTransitions;\n" +
                 "import de.csp.fsm.FSMRunnable;\n" +
                 "import de.csp.fsm.FSMBefore;\n" +
+                "import de.csp.fsm.FSMPrepareFor;\n" +
+                "import de.csp.fsm.FSMReturnFrom;\n" +
                 "import de.csp.fsm.FSMContext;\n\n" +
                 "import "+mClass.getPackage().getFQName()+".model.*;";
         fsmClass.setProperty("importList", importList);
@@ -84,25 +86,33 @@ public class ActivityImplGenerator implements CodeGenerator {
     private void addAnnotations(FSMHelper fsmHelper, MOperation op) {
         MActivityAction action = (MActivityAction)op.getObject("activityAction");
         StringBuffer annotations = new StringBuffer();
-        for (ModelElement outgoing : fsmHelper.findOutgoings(action)) {
-            String targetName = outgoing.getProperty("target");
-            String guard = outgoing.getProperty("transitOn");
-            if( guard == null ) {
-                guard = outgoing.getProperty("guard");
+        String annotationsStr = "";
+        if( op.getProperty("interruptedBefore") == null) {
+            for (ModelElement outgoing : fsmHelper.findOutgoings(action)) {
+                String targetName = outgoing.getProperty("target");
+                String guard = outgoing.getProperty("transitOn");
+                if (guard == null) {
+                    guard = outgoing.getProperty("guard");
+                }
+                if (guard == null) {
+                    guard = "VOID";
+                }
+                ModelElementImpl transition = new ModelElementImpl();
+                transition.setParent(op);
+                transition.setMetaType("mTransition");
+                op.getChilds().add(transition);
+                annotations.append("\n        @FSMTransition(target=\"" + targetName + "\", guard=\"" + guard + "\"),");
+                if( annotations.length()> 0 ) {
+                     annotationsStr = "@FSMTransitions(transistions={" + annotations.toString() + "\n    })\n    ";
+                }
             }
-            if( guard==null) {
-                guard = "VOID";
-            }
-            ModelElementImpl transition = new ModelElementImpl();
-            transition.setParent(op);
-            transition.setMetaType("mTransition");
-            op.getChilds().add(transition);
-            annotations.append("\n        @FSMTransition(target=\""+targetName+"\", guard=\""+guard+"\"),");
+        } else if(op.getProperty("interruptedBefore") != null ) {
+            annotationsStr = "@FSMPrepareFor(\""+action.getName()+"\")\n    ";
         }
-        if( annotations.length()> 0 ) {
-            String annotationsStr = "@FSMTransitions(transistions={"+annotations.toString()+"\n    })\n    ";
-            op.setProperty("annotations", annotationsStr);
+        if(op.getProperty("interruptedReturn") != null ) {
+            annotationsStr = "@FSMReturnFrom(\""+action.getName()+"\")\n    "+annotationsStr;
         }
+        op.setProperty("annotations", annotationsStr);
     }
 
 }
