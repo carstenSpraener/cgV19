@@ -59,6 +59,8 @@ public class OOMModelLoader implements ModelLoader {
         File f = new File(modelURI);
         if( f.exists() ) {
             return new InputStreamReader(new FileInputStream(f));
+        } else if( getClass().getResourceAsStream(modelURI)!=null ) {
+            return new InputStreamReader(getClass().getResourceAsStream(modelURI));
         } else {
             URL url = new URL(modelURI);
             try {

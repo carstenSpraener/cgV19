@@ -19,6 +19,10 @@ public class JavaHelper {
         return relationList(me, "implements");
     }
 
+    public static String firstToUpperCase(String name) {
+        return name.substring(0,1).toUpperCase()+name.substring(1);
+    }
+
     public static String relationList( ModelElement me, String relType ) {
         String relStr = "";
         for(Relation r  :me.getRelations() ) {

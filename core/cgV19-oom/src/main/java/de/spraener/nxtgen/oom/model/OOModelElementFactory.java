@@ -11,6 +11,7 @@ public class OOModelElementFactory implements ModelElementFactory {
     public ModelElement createModelElement(String modelElmentName) {
         switch( modelElmentName ) {
             case "root":
+            case "mElement":
                 return new ModelElementImpl();
             case "MPackage":
                 return new MPackage();

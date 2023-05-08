@@ -35,6 +35,7 @@ public class ResourceToContoller implements Transformation {
 
         MClass cntrlImpl = mClass.getPackage().createMClass(mClass.getName()+"Controller");
         Stereotype stTypeImpl = new StereotypeImpl(RESTStereotypes.IMPL.getName());
+        stTypeImpl.setTaggedValue("dataType", mClass.getFQName());
         cntrlImpl.getStereotypes().add(stTypeImpl);
         cntrlImpl.setProperty("extends", cntrl.getFQName());
         cntrlImpl.setProperty("constructorArgs", mClass.getPackage().getFQName()+".logic."+mClass.getName()+"Logic logic");

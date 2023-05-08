@@ -4,12 +4,12 @@ import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
-import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.cartridge.JavaHelper;
 import de.spraener.nxtgen.oom.model.*;
 
-import static de.spraener.nxtgen.cartridge.rest.transformations.TransformationHelper.*;
+import static de.spraener.nxtgen.cartridge.rest.transformations.TransformationHelper.firstToUpperCaser;
 
 public class ControlledOperationToFSM implements Transformation {
     @Override
@@ -18,9 +18,9 @@ public class ControlledOperationToFSM implements Transformation {
             return;
         }
         MClass c = (MClass) element;
-        if( c.getActivities()!=null) {
+        if (c.getActivities() != null) {
             for (MActivity activity : c.getActivities()) {
-                if( StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLEDOPERATION.getName())) {
+                if (StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLEDOPERATION.getName())) {
                     createFinalStateMachine(activity);
                 }
             }
@@ -30,12 +30,20 @@ public class ControlledOperationToFSM implements Transformation {
     private void createFinalStateMachine(MActivity activity) {
         FSMHelper fsmHelper = new FSMHelper(activity);
         MClass mClass = (MClass) activity.getParent();
-        MPackage pkg = mClass.getPackage();
+        MPackage pkg = mClass.getPackage().findOrCreatePackage("logic");
+
         MClass fsmClass = pkg.createMClass(mClass.getName() + firstToUpperCaser(activity.getName()));
-        fsmClass.addStereotypes(new StereotypeImpl(RESTStereotypes.IMPL.getName()));
+        fsmClass.putObject("fsmHelper", fsmHelper);
+        fsmClass.putObject("originalClass", mClass);
+        fsmClass.putObject("activity", activity);
+
+        fsmClass.addStereotypes(new StereotypeImpl(RESTStereotypes.ACTIVITYIMPL.getName()));
         fsmHelper.setFSMClass(fsmClass);
         Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLEDOPERATION.getName());
         fsmClass.addStereotypes(sType);
+
+        MOperation initOP = fsmClass.createOperation("initContext");
+        initOP.createParameter("context", "FSMContext<" + mClass.getName() + ">");
         for (MActivityAction action : activity.getActions()) {
             addOperation(fsmHelper, action);
         }
@@ -43,26 +51,36 @@ public class ControlledOperationToFSM implements Transformation {
 
     private void addOperation(FSMHelper fsmHelper, MActivityAction action) {
         MClass fsmClass = fsmHelper.getFSMClass();
-        MOperation op = fsmClass.createOperation(action.getName());
-        op.setName(action.getName());
-        MParameter p = op.createParameter("context", "java.util.Map<String,String>");
-        Stereotype sType = new StereotypeImpl(RESTStereotypes.CONTROLLEDOPERATIONNODE.getName());
-        StringBuffer annotations = new StringBuffer();
-        for (ModelElement outgoing : fsmHelper.findOutgoings(action)) {
-            String targetName = outgoing.getProperty("target");
-            String guard = outgoing.getProperty("transitOn");
-            if( guard==null) {
-                guard = "VOID";
+        MClass mClass = (MClass) action.getParent().getParent();
+        if (fsmHelper.isInteractive(action)) {
+            MOperation opBefore = fsmClass.createOperation(action.getName());
+            opBefore.setType("Void");
+            opBefore.createParameter("context", "FSMContext<" + mClass.getName() + ">");
+            opBefore.putObject("activityAction", action);
+            opBefore.setProperty("interruptedBefore", "true");
+            for (Stereotype st : action.getStereotypes()) {
+                opBefore.getStereotypes().add(st);
             }
-            ModelElementImpl transition = new ModelElementImpl();
-            transition.setParent(op);
-            transition.setMetaType("mTransition");
-            op.getChilds().add(transition);
-            annotations.append("\n        @FSMTransition(target=\""+targetName+"\", guard=\""+guard+"\"),");
+
+            MOperation opReturnFrom = fsmClass.createOperation( "returnFrom"+ JavaHelper.firstToUpperCase(action.getName()) );
+            opReturnFrom.setType("Object");
+            opReturnFrom.createParameter("returnValue", "Object");
+            opReturnFrom.createParameter("context", "FSMContext<" + mClass.getName() + ">");
+            opReturnFrom.putObject("activityAction", action);
+            opReturnFrom.setProperty("interruptedReturn", "true");
+            for (Stereotype st : action.getStereotypes()) {
+                opReturnFrom.getStereotypes().add(st);
+            }
+        } else {
+            MOperation op = fsmClass.createOperation(action.getName());
+            op.setType("Object");
+            op.setName(action.getName());
+            op.createParameter("context", "FSMContext<" + mClass.getName() + ">");
+            op.putObject("activityAction", action);
+            for (Stereotype st : action.getStereotypes()) {
+                op.getStereotypes().add(st);
+            }
         }
-        if( annotations.length()> 0 ) {
-            String annotatrionsStr = "/*\n    @FSMTransitions({"+annotations.toString()+"\n    })\n    */\n    ";
-            op.setProperty("annotations", annotatrionsStr);
-        }
+
     }
 }

@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
-    implementation project(":cgV19-core")
-    implementation project(":cgV19-oom")
+    implementation project(":cgv19-core")
+    implementation project(":cgv19-oom")
 
     testImplementation 'junit:junit:4.13.1'
 }

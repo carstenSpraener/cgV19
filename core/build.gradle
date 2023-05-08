@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '21.0.0-SNAPSHOT'
+    project.ext.version = '21.0.0-RC1'
 
     repositories {
         mavenCentral()
@@ -25,6 +25,8 @@ subprojects {
         }
     }
 
+    apply plugin: "maven-publish"
+
     version = "${project.ext.version}"
     group = "${project.ext.group}"
 
@@ -32,16 +34,21 @@ subprojects {
 
     publishing {
         publications {
-            maven(MavenPublication) {
-                groupId = "${project.ext.group}"
-                artifactId = "${project.name}"
-                version = "${project.ext.version}"
-                from components.java
+            gpr(MavenPublication) {
+                from(components.java)
             }
         }
         repositories {
             maven {
                 url="${project.rootDir}/../repo"
+            }
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/carstenSpraener/cgV19")
+                credentials {
+                    username = System.getenv("GITHUB_USERNAME")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
             }
         }
     }

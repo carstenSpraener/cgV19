@@ -3,10 +3,7 @@
  */
 package de.spraener.nxtgen.cartridge.rest;
 
-import de.spraener.nxtgen.Cartridge;
-import de.spraener.nxtgen.CodeGeneratorMapping;
-import de.spraener.nxtgen.NextGen;
-import de.spraener.nxtgen.Transformation;
+import de.spraener.nxtgen.*;
 import de.spraener.nxtgen.cartridge.rest.angular.TSTypeGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.ControllerGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.LogicGenerator;
@@ -17,7 +14,8 @@ import de.spraener.nxtgen.cartridge.rest.entity.EntityGenerator;
 import de.spraener.nxtgen.cartridge.rest.entity.PhpEntityGenerator;
 import de.spraener.nxtgen.cartridge.rest.entity.RepositoryGenerator;
 import de.spraener.nxtgen.cartridge.rest.entity.PhpRepositoryGenerator;
-import de.spraener.nxtgen.cartridge.rest.transformations.*;
+import de.spraener.nxtgen.cartridge.rest.filestrategies.PhpFileStrategy;
+import de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
@@ -40,20 +38,30 @@ public class RESTCartridge extends  RESTCartridgeBase {
             NextGen.LOGGER.finer("handling model element "+me.getName());
             if( isEntity(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new EntityGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpEntityGenerator()));
+                result.add(CodeGeneratorMapping.create(me, new PhpEntityGenerator(
+                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Entity", me.getName()+".php"))
+                )));
             } else if( isDDL(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new DDLGenerator()));
             } else if( isTSType(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new TSTypeGenerator()));
             } else if( isRepository(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new RepositoryGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpRepositoryGenerator()));
+                result.add(CodeGeneratorMapping.create(me, new PhpRepositoryGenerator(
+                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Repository", me.getName()+".php"))
+                )));
             } else if( hasStereotype(RESTStereotypes.RESTCONTROLLER.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new ControllerGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpControllerBaseGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpControllerGenerator()));
+                result.add(CodeGeneratorMapping.create(me, new PhpControllerBaseGenerator(
+                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Controller/Base", me.getName()+".php"))
+                )));
+                result.add(CodeGeneratorMapping.create(me, new PhpControllerGenerator(
+                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Controller", me.getName().replace("Base", "")+".php"))
+                )));
             } else if( hasStereotype(RESTStereotypes.IMPL.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
+            } else if( hasStereotype(RESTStereotypes.ACTIVITYIMPL.getName(), me) ) {
+                result.add(CodeGeneratorMapping.create(me, new ActivityImplGenerator()));
             } else if( isLogic(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new LogicGenerator()));
             } else if( isSprintBootApplication(me) ) {

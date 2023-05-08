@@ -141,6 +141,10 @@ public class OOMExporter implements Runnable {
         pw.println("import de.spraener.nxtgen.groovy.ModelDSL\n");
         pw.println(identation + "ModelDSL.make {");
         pw.printf("%s  mPackage {\n", identation);
+        // Hack because in VP you can not assign a stereotype to a profile.
+        if( root.getModelType().equals(IModelElementFactory.MODEL_TYPE_PROFILE) && root.getDocumentation().contains("<<ModelRoot>>")) {
+            pw.printf("%s    stereotype 'ModelRoot'\n", identation);
+        }
         PropertiesExporter.exportProperties(
                 pw,identation+"    ",
                 root,
