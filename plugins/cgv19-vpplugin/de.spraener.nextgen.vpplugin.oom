@@ -85,7 +85,7 @@ ModelDSL.make {
         metaType 'Class'
         stereotype 'Exporter', {
           taggedValue 'vpModelType', 'Operation'
-          taggedValue 'oomType', 'operation'
+          taggedValue 'oomType', 'mOperation'
         }
       }
       mClass {  //Exported by ClassExporterBase
@@ -126,6 +126,16 @@ ModelDSL.make {
         stereotype 'Exporter', {
           taggedValue 'vpModelType', 'Attribute'
           taggedValue 'oomType', 'mAttribute'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'DependencyExporter'
+        documentation ''
+        id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:4gjf2BGGAqACRCRZ'
+        metaType 'Class'
+        stereotype 'Exporter', {
+          taggedValue 'vpModelType', 'Dependency'
+          taggedValue 'oomType', 'mDependency'
         }
       }
     }
