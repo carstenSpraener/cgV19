@@ -18,7 +18,7 @@ public class MParameter extends MAbstractModelElement {
        this.setType(type);
     }
 
-    private MParameter() {}
+    protected MParameter() {}
 
     public String getType() {
         return type;

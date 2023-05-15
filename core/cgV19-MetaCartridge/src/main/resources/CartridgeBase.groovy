@@ -1,5 +1,7 @@
 import de.spraener.nxtgen.ProtectionStrategieDefaultImpl
 import de.spraener.nxtgen.cartridge.meta.CartridgeGeneratorHelper
+import de.spraener.nxtgen.model.Stereotype
+import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.OOModel
 
@@ -21,16 +23,29 @@ String listCodeGeneratorMappings(MClass mClass, String me, String resutListName)
     Map<String,List<MClass>> codeGenertorList = CartridgeGeneratorHelper.listCodeGeneratoryByStereotype((OOModel)mClass.getModel());
     for( String sTypeName : codeGenertorList.keySet() ) {
         List<MClass> codeGenList = codeGenertorList.get(sTypeName);
-        sb.append("${printCodeGEneratorMapping(sTypeName, codeGenList, me, resutListName)}")
+        sb.append("${printCodeGeneratorMapping(sTypeName, codeGenList, me, resutListName)}")
     }
     return sb.toString();
 }
 
-String printCodeGEneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
+String getGeneratesOn(MClass codeGenerator) {
+    Stereotype stype = StereotypeHelper.getStereotype(codeGenerator, "CodeGenerator")
+    return stype.getTaggedValue("generatesOn")
+}
+
+String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
     StringBuffer sb = new StringBuffer();
     sb.append("            if( StereotypeHelper.hasStereotye(me, \"${sTypeName}\") ) {\n");
     for( MClass codeGenerator : mClasses ) {
-        sb.append("                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));\n")
+        String generatesOn = getGeneratesOn(codeGenerator)
+        if( generatesOn!=null ) {
+            sb.append("""                    if( ${meName} instanceof ${generatesOn} tME ) {
+                        ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));
+                    }
+""")
+        } else {
+            sb.append("                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));\n")
+        }
     }
     sb.append("            }\n");
     return sb.toString()
@@ -45,6 +60,7 @@ import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.model.*;
 
 import java.util.List;
 import java.util.ArrayList;
