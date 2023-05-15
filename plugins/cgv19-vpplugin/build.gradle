@@ -1,7 +1,7 @@
 import org.gradle.api.JavaVersion
 
 buildscript {
-    def version= '23.0.0-RC1'
+    def version= '23.0.0-RC2'
     def group='de.spraener.nxtgen'
 
     repositories {
