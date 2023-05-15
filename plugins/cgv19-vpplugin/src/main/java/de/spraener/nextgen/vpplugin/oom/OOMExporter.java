@@ -148,7 +148,7 @@ public class OOMExporter implements Runnable {
         PropertiesExporter.exportProperties(
                 pw,identation+"    ",
                 root,
-                PropertyOverwriter.overwrite("name", rootPackageName)
+                PropertyOverwriter.overwrite("name", root.getName())
         );
         exportChilds(pw, identation + "    ", root);
         pw.printf("%s  }\n", identation);

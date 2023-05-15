@@ -16,6 +16,10 @@ public class AttributeExporter extends AttributeExporterBase {
         IAttribute attr = (IAttribute)element;
         pw.printf("%stype '%s'\n", indentation, formatType(attr.getTypeAsString()) );
         pw.printf("%svisibility '%s'\n", indentation, attr.getVisibility());
+        pw.printf("%smultiplicity '%s'\n", indentation, attr.getMultiplicity());
+        if( "1".equals(attr.getMultiplicity()) ) {
+            pw.printf("%srequired 'true'\n", indentation);
+        }
     }
 
     private String formatType(String typeAsString) {
