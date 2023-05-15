@@ -333,7 +333,7 @@ ModelDSL.make {
                     mClass {
                       name 'RESTCartridge'
                       xmiID '_18_5_3_40201a1_1647805905530_324704_6168'
-                        stereotype 'cgv19Cartridge', {
+                        stereotype 'cgV19Cartridge', {
                         }
                     }
                     mPackage {
