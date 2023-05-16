@@ -20,12 +20,12 @@ public class ClassExporter extends ClassExporterBase {
         }
         for (IRelationship rel : clazz.toFromRelationshipArray()) {
             if( !"Generalization".equals(rel.getModelType()) ) {
-                exportRelationship(pw, indentation, rel);
+                exporter.exportElement(pw, indentation, rel);
             }
         }
         for (IRelationship rel : clazz.toToRelationshipArray()) {
             if( !"Generalization".equals(rel.getModelType()) ) {
-                exportRelationship(pw, indentation, rel);
+                exporter.exportElement(pw, indentation, rel);
             } else {
                 exportExtends(pw,indentation, rel);
             }
@@ -57,11 +57,9 @@ public class ClassExporter extends ClassExporterBase {
 
 
     private void exportRelationship(PrintWriter pw, String indent, IRelationship rel) {
-        /**
-        pw.printf("%srelation {\n", indent);
+        pw.printf("%mDependency {\n", indent);
         PropertiesExporter.exportProperties(pw, indent + "  ", rel);
         pw.printf("%s}\n", indent);
-         */
         return;
     }
 

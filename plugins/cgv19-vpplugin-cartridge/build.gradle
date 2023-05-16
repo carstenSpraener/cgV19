@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.compile.JavaCompile
 
 buildscript {
-    def version= '23.0.0-RC1'
+    def version= '23.0.0-RC2'
     def group='de.spraener.nxtgen'
 
     repositories {
@@ -24,6 +24,7 @@ plugins {
 }
 
 apply plugin: 'de.spraener.nxtgen.cgv19'
+apply plugin: "maven-publish"
 
 def version=project.properties['prj.version']
 def group=project.properties['prj.group']
@@ -66,3 +67,21 @@ dependencies {
 }
 
 compileJava.dependsOn generate
+
+publishing {
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/carstenSpraener/cgV19")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}

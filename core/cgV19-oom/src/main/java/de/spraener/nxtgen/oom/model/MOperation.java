@@ -20,7 +20,7 @@ public class MOperation extends MAbstractModelElement {
         super.postDefinition();
     }
 
-    private MOperation() {}
+    protected MOperation() {}
 
     protected MOperation(MClass parent, String name) {
         this.setParent(parent);
