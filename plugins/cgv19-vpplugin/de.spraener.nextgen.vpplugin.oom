@@ -95,7 +95,7 @@ ModelDSL.make {
         metaType 'Class'
         stereotype 'Exporter', {
           taggedValue 'vpModelType', 'Parameter'
-          taggedValue 'oomType', 'mParam'
+          taggedValue 'oomType', 'mParameter'
         }
       }
       mClass {  //Exported by ClassExporterBase
