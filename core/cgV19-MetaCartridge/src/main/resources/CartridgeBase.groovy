@@ -39,9 +39,15 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
     for( MClass codeGenerator : mClasses ) {
         String generatesOn = getGeneratesOn(codeGenerator)
         if( generatesOn!=null ) {
-            sb.append("""                    if( ${meName} instanceof ${generatesOn} tME ) {
+            sb.append(
+"""                if( ${meName} instanceof ${generatesOn} tME ) {
+                    CodeGeneratorMapping mapping = createMapping(tME, "${sTypeName}");
+                    if (mapping != null) {
+                        ${listName}.add(mapping);
+                    } else {
                         ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));
                     }
+                }
 """)
         } else {
             sb.append("                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));\n")
@@ -86,6 +92,15 @@ ${addTransformations(mClass, "result")}
 ${listCodeGeneratorMappings(mClass, "me", "result")}
         }
         return result;
+    }
+
+
+
+    /**
+     * Use this method to override default mappings. Return null for default mapping.
+     */
+    protected CodeGeneratorMapping createMapping(ModelElement me, String stereotypeName) {
+        return null;
     }
 }
 

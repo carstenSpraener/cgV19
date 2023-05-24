@@ -132,9 +132,13 @@ public class OOMExporter implements Runnable {
     public void run() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintWriter pw = new PrintWriter(baos);
-        exportModel(pw, "", rootPackageName, root);
-        pw.flush();
-        this.exportedModel = new String(baos.toByteArray(), StandardCharsets.UTF_8);
+        try {
+            exportModel(pw, "", rootPackageName, root);
+            pw.flush();
+            this.exportedModel = new String(baos.toByteArray(), StandardCharsets.UTF_8);
+        } catch( Exception e ) {
+            e.printStackTrace(pw);
+        }
     }
 
     private void exportModel(PrintWriter pw, String identation, String rootPackageName, IModelElement root) {

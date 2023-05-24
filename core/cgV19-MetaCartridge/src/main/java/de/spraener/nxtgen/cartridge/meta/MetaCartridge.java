@@ -47,7 +47,7 @@ public class MetaCartridge implements Cartridge {
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
         List<CodeGeneratorMapping> result = new ArrayList<>();
         for( ModelElement me : m.getModelElements() ) {
-            if( me instanceof MClass && ((MClass) me).hasStereotype(STEREOTYPE_NAME) && !((MClass) me).getAssociations().isEmpty()) {
+            if( me instanceof MClass && ((MClass) me).hasStereotype(STEREOTYPE_NAME)) {
                 result.add(CodeGeneratorMapping.create(me, new StereotypeDocGenerator()));
             }
             if( me instanceof MClass && ((MClass) me).hasStereotype(STEREOTYPE_ENUM) ) {

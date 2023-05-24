@@ -3,6 +3,9 @@ import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 
 def getDataType(me) {
     def fqName= me.getTaggedValue(RESTStereotypes.RESTCONTROLLER.name, "dataType");
+    if( fqName ==null ) {
+        fqName = me.name;
+    }
     return fqName.substring(fqName.lastIndexOf('.')+1);
 }
 

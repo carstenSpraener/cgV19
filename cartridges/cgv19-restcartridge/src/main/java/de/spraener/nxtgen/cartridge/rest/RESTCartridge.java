@@ -5,10 +5,7 @@ package de.spraener.nxtgen.cartridge.rest;
 
 import de.spraener.nxtgen.*;
 import de.spraener.nxtgen.cartridge.rest.angular.TSTypeGenerator;
-import de.spraener.nxtgen.cartridge.rest.cntrl.ControllerGenerator;
-import de.spraener.nxtgen.cartridge.rest.cntrl.LogicGenerator;
-import de.spraener.nxtgen.cartridge.rest.cntrl.PhpControllerBaseGenerator;
-import de.spraener.nxtgen.cartridge.rest.cntrl.PhpControllerGenerator;
+import de.spraener.nxtgen.cartridge.rest.cntrl.*;
 import de.spraener.nxtgen.cartridge.rest.entity.DDLGenerator;
 import de.spraener.nxtgen.cartridge.rest.entity.EntityGenerator;
 import de.spraener.nxtgen.cartridge.rest.entity.PhpEntityGenerator;
@@ -16,6 +13,7 @@ import de.spraener.nxtgen.cartridge.rest.entity.RepositoryGenerator;
 import de.spraener.nxtgen.cartridge.rest.entity.PhpRepositoryGenerator;
 import de.spraener.nxtgen.cartridge.rest.filestrategies.PhpFileStrategy;
 import de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock;
+import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
@@ -57,6 +55,11 @@ public class RESTCartridge extends  RESTCartridgeBase {
                 )));
                 result.add(CodeGeneratorMapping.create(me, new PhpControllerGenerator(
                         cb -> cb.setToFileStrategy(new PhpFileStrategy("Controller", me.getName().replace("Base", "")+".php"))
+                )));
+            } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName(), me) ) {
+                result.add(CodeGeneratorMapping.create(me, new ApiControllerGenerator()));
+                result.add(CodeGeneratorMapping.create(me, new ApiControllerBaseGenerator(
+                        cb -> ((JavaCodeBlock)cb).setClassName(me.getName()+"Base")
                 )));
             } else if( hasStereotype(RESTStereotypes.IMPL.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));

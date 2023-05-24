@@ -89,11 +89,13 @@ ${applyModifiers("gcb")}
 ${applyModifiers("gcb")}
         return gcb;
 """
-            return
             break;
+        case "other":
         default:
-            return """// TODO: Implement the creation of a CodeBlock"
-        return null;
+             return """GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("", element, "${getTemplateFileName(mClass)}");
+        gcb.setToFileStrategy(new de.spraener.nxtgen.filestrategies.GeneralFileStrategy(".", "", ""));
+${applyModifiers("gcb")}
+        return gcb;
 """
             break;
     }

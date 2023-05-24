@@ -57,9 +57,9 @@ public class OOMModelLoader implements ModelLoader {
 
     private InputStreamReader openModel(String modelURI) throws IOException {
         File f = new File(modelURI);
-        if( f.exists() ) {
+        if( f.exists() && checkFileDate(f) ) {
             return new InputStreamReader(new FileInputStream(f));
-        } else if( getClass().getResourceAsStream(modelURI)!=null ) {
+        } else if( getClass().getResourceAsStream(modelURI)!=null && checkFileDate(modelURI) ) {
             return new InputStreamReader(getClass().getResourceAsStream(modelURI));
         } else {
             URL url = new URL(modelURI);
@@ -77,6 +77,16 @@ public class OOMModelLoader implements ModelLoader {
                 }
             }
         }
+    }
+
+    private boolean checkFileDate(File f) throws IOException {
+        File lastGenTS = new File( ".oomLastGen" );
+        if( lastGenTS.exists() ) {
+            return f.lastModified() < lastGenTS.lastModified();
+        } else {
+            lastGenTS.createNewFile();
+        }
+        return true;
     }
 
     private String toFileName(String modelURI) {
