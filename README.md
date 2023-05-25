@@ -1,5 +1,12 @@
 # Welcome to cgV19
-_Last Update on: April the 19th 2023._
+Last Update on: Mai the 25th 2023
+
+## A code abstraction framework to
+![cgv19-overview.png](doc%2Fimages%2Fcgv19-overview.png)
+* Implement rules that make your ideas real code
+* Automate booring codeing tasks
+* keep your documentation and code in sync
+* generate your own code and use it where and when you want
 
 ### [Quick start: See doc/GettingStarted.md](doc/GettingStarted.md)
 
@@ -15,7 +22,7 @@ Spring Boot application from a single Class marked as << Resource >>.
 
 __Reusable__ 
 
-With cgV19 you can build cartridges that defines a DSL and can be used in many projects. Cartridges
+With cgV19 you can build cartridges that can be used in many projects. Cartridges
 will interpret a Model and build the Code, the documentation and all configuration that you may need. A 
 concrete project can plug in the cartridges that it will need.
 
@@ -23,7 +30,7 @@ The __restDemo__ project makes use of the __cgV19-RESTCartridge__ that generates
 well as a runnable PHP Symfony application. The project can decide which backend to use. PHP/Symfony or 
 Java/SpringBoot.
 
-__Supports the whole development life circle__ 
+__Keep documentation and code in sync__ 
 
 With cgV19 you can build not only templates that are generated once and will act as a start point for manual 
 development. This is what tools like spring initializer or ng CLI-Platform do. cgV19 can generate code that
@@ -40,8 +47,8 @@ generic user interfaces.
 
 __cgV19 is tested with__ 
 
-* Java version 8 and 17
-* Build with gradle 6 and gradle 8
+* Java 17
+* Build with gradle 8
 
 ## A brief history
 In 2002 I started to work on a project for an insurance company in germany. The goal was to build 
@@ -177,6 +184,8 @@ side effects.
 
 ## Cartridges
 
+
+![cartridge-work.png](doc%2Fimages%2Fcartridge-work.png)
 [You can find a detailed descritption of a cartidge here](cartridges/doc/Cartridges.md)
 
 Cartridges provide the real generation logic to a project. In a real project you
