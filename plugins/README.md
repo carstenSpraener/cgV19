@@ -18,7 +18,7 @@ In order to use this VisualParadigm plugin you will need:
 * cgv19 with cgv19-oom cartridge plugged in
 * VisualParadigm up and running with the model you are working on
 
-You can than specify your model as "http://lcalhost:7001/<<model-package>>"
+You can than specify your model as "http://lcalhost:7001/&lt;&lt;model-package&gt;&gt;"
 in order to let cgv19 run on it.
 
 For example you can start VP and load the restDemo-model and than
@@ -29,7 +29,7 @@ cgv19 http://lcoalhost:7001/de.csp.demo.rest
 ## What will happen when Visual Paradigm is not running?
 
 Well in that case the cgv19-oom cartridge will look for a file
-<<model-package>>.oom. If it is found, the loader will load the model
+&lt;&lt;model-package&gt;&gt;.oom. If it is found, the loader will load the model
 from that file.
 
 
