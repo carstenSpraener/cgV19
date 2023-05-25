@@ -156,7 +156,7 @@ affected. But from scratch to that is a long way to go.
 
 # How does it work
 
-![Overview of cgV19 components](core/cgV19-core/doc/img/ApplicationOverview.png)
+![Overview of cgV19 components](core/cgv19-core/doc/img/ApplicationOverview.png)
 
 cgV19 uses the java service loader mechanism to find it's components. The first
 component is an implementation of the ModelLoader interface. 
