@@ -1,6 +1,6 @@
 # You are here
 
-![cartridge-you-are-here.png](..%2Fcore%2Fcgv19-metacartridge%2Fdoc%2Fimages%2Fcartridge-you-are-here.png)
+![cartridge-you-are-here.png](doc%2Fimages%2Fcartridge-you-are-here.png)
 
 # What is a cartridge
 __No! Not this. But the idea is very similar.__
