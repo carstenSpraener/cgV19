@@ -7,7 +7,7 @@ public class CartridgeServicesLocatorTransformation extends CartridgeServicesLoc
 
     @Override
     public void doTransformationIntern(MClass mClass) {
-        MClass service = mClass.getPackage().createMClass("CartridgeServiceLocatior");
+        MClass service = mClass.getPackage().createMClass("CartridgeServiceLocator");
         service.setModel(mClass.getModel());
         StereotypeImpl sType = new StereotypeImpl(MetaCartridge.STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION);
         service.getStereotypes().add(sType);

@@ -24,7 +24,7 @@ public abstract class ${mClass.getName()} implements de.spraener.nextgen.vpplugi
     @Override
     public void export(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
         pw.printf("%s${oomType} {  //Exported by ${mClass.getName()}\\n", indentation);
-        exportProperties(exporter, pw,indentation+"  ", element);
+        exportProperties(pw,indentation+"  ", element);
         exportBody(exporter, pw,indentation+"  ", element);
         exportChilds(exporter, pw, indentation+"  ", element);
         pw.printf("%s}\\n", indentation);        
@@ -36,7 +36,7 @@ public abstract class ${mClass.getName()} implements de.spraener.nextgen.vpplugi
         }
     }
 
-    protected void exportProperties(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
+    protected void exportProperties(PrintWriter pw, String indentation, IModelElement element) {
         PropertiesExporter.exportProperties(pw, indentation, element);
     }
     
