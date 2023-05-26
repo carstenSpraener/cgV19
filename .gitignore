@@ -4,10 +4,9 @@ build
 gradle.properties
 target
 repo
-helloWorldNxtGen
+core/cgv19-metacartridge/src/main/resources/meta/**
 ./**/*.DS_Store
-/cgV19-MetaCartridge/src/main/resources/meta/
-/core/cgV19-MetaCartridge/src/main/resources/meta/CartridgeServiceLocaterTemplate.groovy
 /restDemo/
-./**/*.vpp.bak_*
-./**/*.vpp.lck
+**/*.vpp.bak_*
+**/*.vpp.lck
+**/*-gen

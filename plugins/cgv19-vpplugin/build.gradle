@@ -1,7 +1,7 @@
 import org.gradle.api.JavaVersion
 
 buildscript {
-    def version= '23.0.0-RC2'
+    def version= '23.0.0-RC3'
     def group='de.spraener.nxtgen'
 
     repositories {
@@ -27,7 +27,7 @@ apply plugin: 'de.spraener.nxtgen.cgv19'
 def home=System.getenv("HOME")
 def VP_HOME="/Applications/Visual Paradigm.app/Contents/Resources/app";// System.getenv("VP_HOME")
 def repoDir="${project.rootDir}/../repo"
-def version= '23.0.0-RC2'
+def version= '23.0.0-RC3'
 def group='de.spraener.nxtgen'
 
 targetCompatibility=JavaVersion.VERSION_11

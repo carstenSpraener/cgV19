@@ -1,0 +1,11 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'pkg'
+        mClass {
+            name 'AnApi'
+            stereotype 'ApiRessource'
+        }
+    }
+}

@@ -10,7 +10,8 @@ public class MetaCartridgeStartGenerator {
 
     @Test
     public void testMetaCartridgeSelfGenerator() {
-        NextGen.main(new String[]{"./META-DSL.oom"});
+        NextGen.main(new String[]{"http://localhost:7001/" +
+                "de.spraener.nxtgen.cartridge.meta"});
     }
 
     @Test

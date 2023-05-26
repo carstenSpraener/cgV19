@@ -59,9 +59,7 @@ public class OOMExporter implements Runnable {
         for (IModelElement mElement : prj.toModelElementArray()) {
             if (IModelElementFactory.MODEL_TYPE_PACKAGE.equals(mElement.getModelType())) {
                 IPackage pkg = (IPackage) mElement;
-                CgV19Plugin.log("Child mit Namen '" + mElement.getName() + "' ist ein IPackage.");
                 if (pkg.getName().equals(rootPackageName)) {
-                    CgV19Plugin.log("Rootpackage '" + mElement.getName() + "' gefunden.");
                     return pkg;
                 } else if( rootPackageName.startsWith(getFQName(pkg)) ) {
                     IPackage subPackage = findSubPackageByName(pkg, rootPackageName);
@@ -70,12 +68,10 @@ public class OOMExporter implements Runnable {
                     }
                 }
             } else if (IModelElementFactory.MODEL_TYPE_MODEL.equals(mElement.getModelType())) {
-                CgV19Plugin.log("Child mit Namen '" + mElement.getName() + "' ist ein IModel.");
                 if (mElement.getName().equals(rootPackageName)) {
                     return mElement;
                 }
             } else if (IModelElementFactory.MODEL_TYPE_PROFILE.equals(mElement.getModelType())) {
-                CgV19Plugin.log("Child mit Namen '" + mElement.getName() + "' ist ein IProfile.");
                 if (mElement.getName().equals(rootPackageName)) {
                     return mElement;
                 }
@@ -103,12 +99,9 @@ public class OOMExporter implements Runnable {
     }
 
     private static IModelElement findPackage(IModel mElement, String pkgName) {
-        CgV19Plugin.log("Suche nach Paket " + pkgName + " in Model " + mElement.getName() + ".");
         for (IModelElement mChild : mElement.toChildArray()) {
             if (IModelElementFactory.MODEL_TYPE_PACKAGE.equals(mChild.getModelType())) {
-                CgV19Plugin.log("Model " + mElement.getName() + " enthält Paket mit Namen " + mChild.getName() + ".");
                 if (mChild.getName().equals(pkgName)) {
-                    CgV19Plugin.log("Paket mit Namen " + mChild.getName() + " gefunden!");
                     return mChild;
                 }
             }
