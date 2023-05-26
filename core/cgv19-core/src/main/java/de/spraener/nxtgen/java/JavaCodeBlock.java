@@ -19,6 +19,11 @@ public class JavaCodeBlock extends CodeBlockImpl {
         this.srcDir = srcDir;
     }
 
+    public JavaCodeBlock setClassName(String name) {
+        this.className = name;
+        return this;
+    }
+
     @Override
     public void writeOutput(String workingDir) {
         try {

@@ -62,7 +62,45 @@ Now everything you need is set up. The required artifacts are now
 in a local maven repository directory _repo_ under the cgV19 project
 directory.
 
-### Optional: Building and installing the VisualParadigm plugin
+## Running cgv19 as a standalone application
+
+You can use cgv19 as a command line tool without need of gradle. If you go to the
+`cgv19-core` directory and build cgv19 as a installDist,
+
+```bash
+gradle :cgv19-core:installDist
+```
+there will be a command
+line tool at `cgv19-core/build/install/cgv19`. Copy this folder into an appropriate place
+and add the `bin` subfolder to your classpath.
+
+```bash
+export PATH=$PATH:<<CGV19_DIR>>/bin
+```
+
+To make use of several cartridges just copy them into the `cartridges` subfolder of
+your cgv19 installation.
+
+For example to make use of the provided cartridges, your target installation should 
+look like
+```text
+cgv19
+??? bin
+?   ??? cgV19
+?   ??? cgV19.bat
+??? cartridges
+?   ??? README.MD
+?   ??? cgv19-metacartridge-23.0.0-RC2.jar
+?   ??? cgv19-oom-23.0.0-RC2.jar
+?   ??? cgv19-restcartridge-23.0.0-RC2.jar
+?   ??? upe-application-cartridge.jar
+??? lib
+    ??? cgv19-core-23.0.0-RC2.jar
+    ??? groovy-4.0.12.jar
+```
+
+
+## Optional: Building and installing the VisualParadigm plugin
 
 cgV19 provides a plugin for VisualParadigm. With VP installed and setup correctly you
 will be able to generate your code directly while  modeling in VP. [VP has a community
@@ -80,7 +118,7 @@ response with a "pong!"
 
 YES! You successfully installed the cgV19-VPPlugin into your VisualParadigm.
 
-## Setup the basic gradle porject
+## Setup a basic gradle project
 
 Make a new directory, lets say "helloWorldNxtGen" and copy the following build script into a new build.gradle
  ```groovy

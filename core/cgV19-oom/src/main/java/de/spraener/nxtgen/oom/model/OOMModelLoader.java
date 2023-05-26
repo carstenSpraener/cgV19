@@ -57,7 +57,7 @@ public class OOMModelLoader implements ModelLoader {
 
     private InputStreamReader openModel(String modelURI) throws IOException {
         File f = new File(modelURI);
-        if( f.exists() ) {
+        if( f.exists()) {
             return new InputStreamReader(new FileInputStream(f));
         } else if( getClass().getResourceAsStream(modelURI)!=null ) {
             return new InputStreamReader(getClass().getResourceAsStream(modelURI));

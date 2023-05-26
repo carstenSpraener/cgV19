@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'application'
 }
 
 repositories {
@@ -17,3 +18,18 @@ jar {
     }
 }
 
+startScripts {
+    applicationName = 'cgV19'
+    mainClass = 'de.spraener.nxtgen.NextGen'
+    applicationName = 'cgv19'
+    doLast {
+        def scriptFile = file "${outputDir}/${applicationName}"
+        scriptFile.text = scriptFile.text.replace('CLASSPATH=$APP_HOME/lib', 'CLASSPATH=$APP_HOME/cartridges/*:$APP_HOME/lib')
+    }
+}
+
+distributions {
+    main {
+        distributionBaseName="cgv19"
+    }
+}

@@ -1,9 +1,9 @@
 package entity
 
+import de.spraener.nxtgen.CGV19
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.model.Stereotype
-import de.spraener.nxtgen.cartridge.rest.RESTJavaHelper
 import de.spraener.nxtgen.model.impl.ModelElementImpl
 import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MAssociation
@@ -206,11 +206,12 @@ def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 def dbTable = findStereotype(RESTStereotypes.ENTITY).getTaggedValue("dbTable")
 def extendsStr = getExtendsRelation();
+def persistenceAPI = CGV19.definitionOf("javax.persistence");
 
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
-import javax.persistence.*;
+import ${persistenceAPI}.*;
 import java.util.*;
 
 @Entity

@@ -1,9 +1,16 @@
 # Welcome to cgV19
-_Last Update on: April the 19th 2023._
+Last Update on: Mai the 25th 2023
+
+![cgv19-overview.png](doc/images/cgv19-overview.png)
+## A code abstraction framework to
+* Implement rules that make your ideas real code
+* Automate boring coding tasks
+* keep your documentation and code in sync
+* generate your own code and use it where and when you want
 
 ### [Quick start: See doc/GettingStarted.md](doc/GettingStarted.md)
 
-If you are looking for a Low Code platform development envirnonemnt you may consider trying
+If you are looking for a Low Code platform development environment you may consider trying
 cgV19. With cgV19 you can build your own LowCode to NoCode development environment. It provides:
 
 __Model driven development (MDD)__ 
@@ -15,7 +22,7 @@ Spring Boot application from a single Class marked as << Resource >>.
 
 __Reusable__ 
 
-With cgV19 you can build cartridges that defines a DSL and can be used in many projects. Cartridges
+With cgV19 you can build cartridges that can be used in many projects. Cartridges
 will interpret a Model and build the Code, the documentation and all configuration that you may need. A 
 concrete project can plug in the cartridges that it will need.
 
@@ -23,7 +30,7 @@ The __restDemo__ project makes use of the __cgV19-RESTCartridge__ that generates
 well as a runnable PHP Symfony application. The project can decide which backend to use. PHP/Symfony or 
 Java/SpringBoot.
 
-__Supports the whole development life circle__ 
+__Keep documentation and code in sync__ 
 
 With cgV19 you can build not only templates that are generated once and will act as a start point for manual 
 development. This is what tools like spring initializer or ng CLI-Platform do. cgV19 can generate code that
@@ -40,18 +47,18 @@ generic user interfaces.
 
 __cgV19 is tested with__ 
 
-* Java version 8 and 17
-* Build with gradle 6 and gradle 8
+* Java 17
+* Build with gradle 8
 
 ## A brief history
-In 2002 I started to work on a project for an insurance company in germany. The goal was to build 
+In 2002, I started to work on a project for an insurance company in germany. The goal was to build 
 an application for insurance estimations. The problem was it has to run in multiple channels
 on the web or as a pure swing application. And in 2002 this was a real task.
 
 We decided to work with a self programmed code generator called __CodeGen__. This generator
 has gone several releases and is still in work for the project.
 
-In 2019 I started to recreate the whole generator from scratch. This is the
+In 2019, I started to recreate the whole generator from scratch. This is the
 beginning of __cgV19__
 
 In __cgV19__ I implemented several features I missed in CodeGen. It has a new
@@ -75,7 +82,7 @@ It is not a big monolith but split in several modules.
 
 ## What are all these modules?
 
-### [core/cgV19-core](core/cgV19-core/doc/CoreArchitecture.md)
+### [core/cgV19-core](core/cgv19-core/doc/CoreArchitecture.md)
 
 This is the very hard of cgV19. If you want to use cgV19, this is the module you 
 really always have to use. All other modules depend on this.
@@ -102,7 +109,7 @@ production environment.
 ### plugins/cgV19-VPPlugin
 
 A plugin for [VisualParadigm](https://www.visual-paradigm.com) to provide the model in VP to 
-cgV19 via port 7001. Only useable if you have VisualParadigm v17 or higher 
+cgV19 via port 7001. Only usable if you have VisualParadigm v17 or higher 
 installed.
 
 [VisualParadigm is available as a community edition](https://www.visual-paradigm.com/download/community.jsp). This edition comes with
@@ -118,35 +125,35 @@ This is the cartridge used for building the VP-Plugin.
 ### plugins/cgV19-MDPlugin (deprecated)
 
 The first version of cgV19 was used with MagicDraw as its modelling tool. 
-But MagicDraw is now under the control of Dassault Systems and the price
+But MagicDraw is now under the control of "Dassault Systems" and the price
 is far beyond of its original price.
 
-It also has no community edition so I decided to switch to VP.
+It also has no community edition, so I decided to switch to VP.
 
 
-### [cartridges/cgV19-RESTCartridge](cartridges/cgV19-RESTCartridge/Readme.md)
+### [cartridges/cgV19-restcartridge](cartridges/cgv19-restcartridge/Readme.MD)
 
 A (under construction) cartridge that generates a full runnable Spring Boot
-application from the a model. It also provides a PHP-Symfony Backend to
+application from the model. It also provides a PHP-Symfony Backend to
 demonstrate multiple language generation.
 
-### [demoProjects/restDemo](demoProjects/restDemo/Readme.md)
+### [demoProjects/restDemo](demoProjects/restdemo/Readme.md)
 
 A demonstration project of how to use the cgV19-RESTCartridge.
 
 ### demoProjects/cgV19-helloWorld
 
-A very very basic project to demonstrate how you can use cgV19 in your projects.
+A very, very basic project to demonstrate how you can use cgV19 in your projects.
 The truth of how to use cgV19 is here!
 
 ## Want to start?
 
 If you want to have a brief "how does it feel" follow the steps in th [Getting Started](doc/GettingStarted.md). 
 
-But be warned: Model driven development is powerfull and fun. But you should know that 
+But be warned: Model driven development is powerful and fun. But you should know that 
 writing templates and transformations for a real productive application is as
-complex as writing a compiler. And also as powerfull. The real use of MDD comes
-with powerfull transformations and generators that implementing a high level of 
+complex as writing a compiler. And also as powerful. The real use of MDD comes
+with powerful transformations and generators that implementing a high level of 
 abstraction. For example with a simple class marked as __Ressource__ you can
 generate a whole Spring Boot 2 Resource (Entity, Repository, Controller) with
 Angular frontend (TypeScript: Model, Service, Form). Where everything fits,
@@ -156,9 +163,9 @@ affected. But from scratch to that is a long way to go.
 
 # How does it work
 
-![Overview of cgV19 components](core/cgV19-core/doc/img/ApplicationOverview.png)
+![Overview of cgV19 components](core/cgv19-core/doc/img/ApplicationOverview.png)
 
-cgV19 uses the java service loader mechanism to find it's components. The first
+cgV19 uses the java service loader mechanism to find its components. The first
 component is an implementation of the ModelLoader interface. 
 
 One implementation is located in the cgV19-oom jar and in can handle oom-Files
@@ -167,17 +174,19 @@ with the syntax as seen in the helloWorld.oom.
 ## ModelLoader
 
 A ModelLoader takes a String, that describes the input of a (text) source and will
-create a instance of _Model_. The string could be a path to a file ore an URL. cgV19
+create an instance of _Model_. The string could be a path to a file ore a URL. cgV19
 comes with a ModelLoader that can take text files in the OOM-Format or a URL to a 
-REST-Service that provides a OOM-File.
+REST-Service that provides an OOM-File.
 
 The ModelLoader is called to create a new instance every time a cartridge is 
-started. It should not buffer Model instances cause this can lead to unpredictable 
+started. It should not buffer Model instances because this can lead to unpredictable 
 side effects.
 
 ## Cartridges
 
-[You can find a detailed descritption of a cartidge here](cartridges/doc/Cartridges.md)
+
+![cartridge-work.png](doc/images/cartridge-work.png)
+[You can find a detailed description of a cartridge here](cartridges/doc/Cartridges.md)
 
 Cartridges provide the real generation logic to a project. In a real project you
 can have several cartridges all working on the same input model. One Cartridge 
@@ -195,7 +204,7 @@ the model and so it defines what to do with the declared ModelElements.
 That means that a cartridge defines your own DSL of your project.
 
 ### cgV19-pojo
-A very simple cartrdige is in the cgV19-pojo module. This cartridge is for learning
+A very simple cartridge is in the cgV19-pojo module. This cartridge is for learning
 howto write a cartridge or as a base for your own.
 
 ###cgV19-RESTCartridge
@@ -208,5 +217,5 @@ that does the same as the Spring Boot application.
 The purpose of this cartridge is to show the power of MDD and to
 check the concepts behind cgV19.
 
-You can use this cartridges as they are or copy and modify them for
+You can use these cartridges as they are or copy and modify them for
 your own needs,

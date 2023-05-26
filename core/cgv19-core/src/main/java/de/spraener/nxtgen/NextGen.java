@@ -38,13 +38,23 @@ public class NextGen implements Runnable {
     public static final Logger LOGGER = Logger.getLogger("NextGen");
     private static ProtectionStrategie protectionStrategie = null;
     private String modelURI;
-    private final String workingDir;
+    private static String workingDir;
     private static ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
 
 
     private NextGen(String modelURI) {
         this.modelURI = modelURI;
-        this.workingDir = new File(".").getAbsolutePath();
+        if( this.workingDir == null ) {
+            this.workingDir = new File(".").getAbsolutePath();
+        }
+    }
+
+    public static void setWorkingDir(String workingDir) {
+        File f = new File(workingDir);
+        if( !f.exists() || !f.isDirectory() ) {
+            throw new IllegalArgumentException("assigned working directory '"+workingDir+"' does not exists or is not a directory");
+        }
+        NextGen.workingDir = workingDir;
     }
 
     public static ProtectionStrategie getProtectionStrategie() {
@@ -116,8 +126,8 @@ public class NextGen implements Runnable {
         }
     }
 
-    private String getWorkingDir() {
-        return this.workingDir;
+    public static String getWorkingDir() {
+        return workingDir;
     }
 
     private List<Model> loadModels(String modelURI) {
