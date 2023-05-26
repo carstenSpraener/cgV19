@@ -14,6 +14,10 @@ public class GeneralFileStrategy implements ToFileStrategy {
     }
     @Override
     public File open() {
-        return new File(outDir+"/"+typeName+"."+fileEnding);
+        String fileName = outDir+"/"+typeName;
+        if( fileEnding!=null && !"".equals(fileEnding)) {
+            fileName += "."+fileEnding;
+        }
+        return new File(fileName);
     }
 }
