@@ -23,7 +23,6 @@ public class MetaCartridgeBase implements Cartridge {
     public List<Transformation> getTransformations() {
         List<Transformation> result = new ArrayList<>();
         result.add( new de.spraener.nxtgen.cartridge.meta.RemoveModelRootPackage() );
-        result.add( new de.spraener.nxtgen.cartridge.meta.AddStereotypeToMClassTransformantion() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureGeneratorDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureTransformationDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
