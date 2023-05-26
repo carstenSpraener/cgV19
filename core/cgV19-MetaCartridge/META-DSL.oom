@@ -33,16 +33,6 @@ ModelDSL.make {
               id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ'
               metaType 'Package'
               mClass {  //Exported by ClassExporterBase
-                name 'AddStereotypeToMClassTransformantion'
-                documentation ''
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:hMieOuGGAqACRAoK'
-                metaType 'Class'
-                stereotype 'Transformation', {
-                  taggedValue 'transformedMetaType', 'MClass'
-                  taggedValue 'priority', '1'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
                 name 'RemoveModelRootPackage'
                 documentation ''
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:RMieOuGGAqACRAoL'
