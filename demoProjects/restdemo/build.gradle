@@ -74,8 +74,7 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     testImplementation "${project.ext.group}:cgv19-core:${project.ext.version}"
     testImplementation "${project.ext.group}:cgv19-oom:${project.ext.version}"
-    testImplementation "${project.ext.group}:cgv19-RESTCartridge:${project.ext.version}"
-    testImplementation "${project.ext.group}:cgv19-WebFlowCartridge:${project.ext.version}"
+    testImplementation "${project.ext.group}:cgv19-restcartridge:${project.ext.version}"
     testImplementation 'org.apache.httpcomponents:httpclient:4.5.10'
 }
 

@@ -119,7 +119,7 @@ public class ${mClass.getName()} implements CodeGenerator {
     public ${mClass.getName()}(Consumer<CodeBlock>... codeBlockModifiers) {
         this.codeBlockModifiers = codeBlockModifiers;
     }
-    
+
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         ${getCodeBlockDefinition(mClass, outputType)}
