@@ -16,7 +16,7 @@ public class CartridgeImplGenerator implements CodeGenerator {
     public CartridgeImplGenerator(Consumer<CodeBlock>... codeBlockModifiers) {
         this.codeBlockModifiers = codeBlockModifiers;
     }
-    
+
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         MClass me = (MClass)element;

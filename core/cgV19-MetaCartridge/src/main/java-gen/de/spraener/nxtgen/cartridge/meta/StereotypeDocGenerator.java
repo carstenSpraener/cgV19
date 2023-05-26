@@ -16,7 +16,7 @@ public class StereotypeDocGenerator implements CodeGenerator {
     public StereotypeDocGenerator(Consumer<CodeBlock>... codeBlockModifiers) {
         this.codeBlockModifiers = codeBlockModifiers;
     }
-    
+
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("", element, "/StereotypeDocumentation.groovy");

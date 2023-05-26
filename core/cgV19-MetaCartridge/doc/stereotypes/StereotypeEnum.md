@@ -8,5 +8,11 @@ A class marked with this stereotype will hold a constant for all your Stereotype
 This is very handy when implementing Templates and Generators 
 
 
+## BaseClass(es)
+This stereotype is applicable to the following UML-ELements:
+
+* Element
+
+
 ## Associated Tagged Values
 This Stereotype has no associated tagged vales.

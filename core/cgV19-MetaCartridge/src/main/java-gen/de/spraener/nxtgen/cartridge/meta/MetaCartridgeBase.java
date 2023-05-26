@@ -23,10 +23,11 @@ public class MetaCartridgeBase implements Cartridge {
     public List<Transformation> getTransformations() {
         List<Transformation> result = new ArrayList<>();
         result.add( new de.spraener.nxtgen.cartridge.meta.RemoveModelRootPackage() );
+        result.add( new de.spraener.nxtgen.cartridge.meta.AddStereotypeToMClassTransformantion() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureGeneratorDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureTransformationDefinitionsTransformation() );
-        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeServicesLocatorTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
+        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeServicesLocatorTransformation() );
 
         return result;
     }
@@ -61,7 +62,7 @@ public class MetaCartridgeBase implements Cartridge {
                     if (mapping != null) {
                         result.add(mapping);
                     } else {
-                        result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.TransformationBaseGenerator()));
+                        result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.TransformationGenerator()));
                     }
                 }
                 if( me instanceof MClass tME ) {
@@ -69,7 +70,7 @@ public class MetaCartridgeBase implements Cartridge {
                     if (mapping != null) {
                         result.add(mapping);
                     } else {
-                        result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.TransformationGenerator()));
+                        result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.TransformationBaseGenerator()));
                     }
                 }
             }

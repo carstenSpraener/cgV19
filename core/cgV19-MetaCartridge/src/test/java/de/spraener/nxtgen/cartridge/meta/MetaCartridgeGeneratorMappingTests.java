@@ -78,10 +78,13 @@ public class MetaCartridgeGeneratorMappingTests extends AbstractOOModelTest {
         MetaCartridge mc = new MetaCartridge();
         Assertions.assertThat(mc.getTransformations())
                 .map(t -> t.getClass().getSimpleName() )
-                .containsExactly(
+                .containsSequence(
                         "RemoveModelRootPackage",
+                        "AddStereotypeToMClassTransformantion")
+                .contains(
                         "EnsureGeneratorDefinitionsTransformation",
-                        "EnsureTransformationDefinitionsTransformation",
+                        "EnsureTransformationDefinitionsTransformation")
+                .contains(
                         "CartridgeServicesLocatorTransformation",
                         "CartridgeBaseForCartridgeTransformation"
                 );

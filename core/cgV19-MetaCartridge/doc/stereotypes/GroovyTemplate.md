@@ -8,6 +8,12 @@ A property marked with this stereotype inside a CodeGenerator defines the Groovy
 The meta cartridge will generate a GroovyTemplate as a template for implementation. If you specified the outputType, the generated groovy script could be enhanced. 
 
 
+## BaseClass(es)
+This stereotype is applicable to the following UML-ELements:
+
+* Element
+
+
 ## Associated Tagged Values
 | Name | Type | Documentation |
 |------|-------|----------------------------------------|
