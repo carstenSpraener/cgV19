@@ -9,7 +9,7 @@ MClass mClass = this.getProperty("modelElement");
 package ${mClass.getPackage().getFQName()};
 
 public class ${mClass.getName()} extends ${mClass.getInheritsFrom().getFullQualifiedClassName()} {
-    
+
     @Override
     public String getName() {
         return "${mClass.getName()}";
