@@ -17,6 +17,12 @@ generated code will run only on model elements
 that matches this criteria.
 
 
+## BaseClass(es)
+This stereotype is applicable to the following UML-ELements:
+
+* Element
+
+
 ## Associated Tagged Values
 | Name | Type | Documentation |
 |------|-------|----------------------------------------|

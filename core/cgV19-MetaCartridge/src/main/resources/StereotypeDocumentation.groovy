@@ -9,9 +9,6 @@ def cName = modelElement.name;
 MClass mClass = (MClass)getProperty("modelElement");
 
 String baseClass(mClass) {
-    if( mClass.getAssociations().isEmpty() ) {
-        return "";
-    }
     String baseClassList = "";
     for(MAssociation assoc : mClass.getAssociations() ) {
         if( "base_Class".equals(assoc.name) ) {
@@ -23,7 +20,7 @@ String baseClass(mClass) {
         }
     }
     if( baseClassList.equals("") ) {
-        return "\n* Element"
+        baseClassList = "\n* Element"
     }
     return """
 
