@@ -1,6 +1,5 @@
 package cntrl
 
-import de.spraener.nxtgen.CGV19
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.model.ModelElement
@@ -62,7 +61,7 @@ def logicName = toLogicName(modelElement);
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
-import ${CGV19.definitionOf("jakarta.persistence")}.*;
+import javax.persistence.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;

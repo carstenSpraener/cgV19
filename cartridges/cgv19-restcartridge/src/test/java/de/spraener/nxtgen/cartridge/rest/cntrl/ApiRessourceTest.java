@@ -11,7 +11,6 @@ public class ApiRessourceTest {
 
     @Test
     public void testApiRessourceGeneration() throws Exception {
-        NextGen.setWorkingDir("build/tmp");
         NextGen.main(new String[]{"/apiRessource.oom"});
         File api = new File("build/tmp/src/main/java/pkg/AnAPi.java");
         File apiBase = new File("build/tmp/src/main/java-gen/pkg/AnAPiBase.java");
