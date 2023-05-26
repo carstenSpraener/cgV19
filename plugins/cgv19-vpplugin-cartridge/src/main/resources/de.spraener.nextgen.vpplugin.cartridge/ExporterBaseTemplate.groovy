@@ -37,7 +37,7 @@ public abstract class ${mClass.getName()} implements de.spraener.nextgen.vpplugi
     }
 
     protected void exportProperties(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
-        PropertiesExporter.exportProperties(pw, indentation, element);
+        PropertiesExporter.exportProperties(exporter, pw, indentation, element);
     }
     
     protected void exportBody(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {

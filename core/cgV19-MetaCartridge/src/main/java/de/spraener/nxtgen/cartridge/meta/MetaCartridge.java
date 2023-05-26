@@ -9,7 +9,7 @@ import de.spraener.nxtgen.oom.model.MClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetaCartridge implements Cartridge {
+public class MetaCartridge extends MetaCartridgeBase {
     public static final String STEREOTYPE_NAME="Stereotype";
     public static final String STEREOTYPE_MODEL_ROOT="ModelRoot";
     public static final String STEREOTYPE_ENUM="StereotypeEnum";
@@ -29,18 +29,6 @@ public class MetaCartridge implements Cartridge {
     @Override
     public String getName() {
         return "Meta-Catridge for OOM";
-    }
-
-    @Override
-    public List<Transformation> getTransformations() {
-        List<Transformation> result = new ArrayList<>();
-        result.add(new AddStereotypeToMClassTransformantion());
-        result.add(new RemoveModelRootPackage());
-        result.add(new EnsureGeneratorDefinitionsTransformation());
-        result.add(new EnsureTransformationDefinitionsTransformation());
-        result.add(new CartridgeBaseForCartridgeTransformation());
-        result.add(new CartridgeServicesLocatorTransformation());
-        return result;
     }
 
     @Override

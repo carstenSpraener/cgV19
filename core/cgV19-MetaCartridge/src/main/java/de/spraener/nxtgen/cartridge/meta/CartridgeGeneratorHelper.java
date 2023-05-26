@@ -17,7 +17,7 @@ public class CartridgeGeneratorHelper {
                 .collect(Collectors.toSet());
         List<MClass> result = new ArrayList<>();
         result.addAll(set);
-        Collections.sort(result, (a,b) -> readTransformationsPriority(a) - readTransformationsPriority(b));
+        Collections.sort(result, Comparator.comparingInt(CartridgeGeneratorHelper::readTransformationsPriority));
         return result;
     }
 

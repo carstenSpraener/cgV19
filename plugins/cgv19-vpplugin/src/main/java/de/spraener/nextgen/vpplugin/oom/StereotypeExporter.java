@@ -12,6 +12,7 @@ public class StereotypeExporter  implements Exporter {
     public void export(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
         IStereotype sType = (IStereotype)element;
         pw.printf("%smClass {\n",indentation);
+        pw.printf("%s  stereotype 'Stereotype'\n", indentation);
         PropertiesExporter.exportProperties(pw,indentation+"  ", element);
         if( sType.getTaggedValueDefinitions() != null ) {
             for (ITaggedValueDefinition tv : sType.getTaggedValueDefinitions().toTaggedValueDefinitionArray()) {
