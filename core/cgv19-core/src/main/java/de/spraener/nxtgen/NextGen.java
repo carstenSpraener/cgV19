@@ -158,7 +158,7 @@ public class NextGen implements Runnable {
         activeLoader.set(null);
     }
 
-    private static void setActiveLoader(ModelLoader loader) {
+    public static void setActiveLoader(ModelLoader loader) {
         activeLoader.set(loader);
     }
 

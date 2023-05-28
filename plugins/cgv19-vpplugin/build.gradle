@@ -77,6 +77,4 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-compileJava.dependsOn generate
-
 mainClassName="de.spraener.nextgen.vpplugin.CgV19Plugin"

@@ -1,1 +1,1 @@
-rootProject.name = 'cgv19-core'
+rootProject.setName('cgv19-core')

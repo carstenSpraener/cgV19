@@ -33,10 +33,6 @@ cgV19 {
     //model='http://localhost:7001/de'
 }
 
-tasks.withType(JavaCompile) {
-    compileTask -> compileTask.dependsOn generate
-}
-
 sourceSets {
     main {
         java {

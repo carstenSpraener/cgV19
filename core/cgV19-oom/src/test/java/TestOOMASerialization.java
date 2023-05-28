@@ -1,4 +1,5 @@
 import com.google.gson.*;
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.oom.model.OOMModelLoader;
@@ -13,6 +14,8 @@ public class TestOOMASerialization {
 
     @Test
     public void testJSON() throws Exception {
+        OOMModelLoader modelLoader = new OOMModelLoader();
+        NextGen.setActiveLoader(modelLoader);
         OOModel model = (OOModel) new OOMModelLoader().loadModel("file:src/test/resources/activity.oom");
         String json = new Gson().toJson(model);
         assertNotNull(json);
