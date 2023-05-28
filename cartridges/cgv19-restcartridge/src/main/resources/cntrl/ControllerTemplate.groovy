@@ -127,7 +127,7 @@ def logicName = toLogicName(modelElement);
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
-import ${CGV19.definitionOf("jakarta.persistence")}.*;
+import ${CGV19.definitionOf("javax.persistence")}.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;

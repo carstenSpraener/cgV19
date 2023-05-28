@@ -41,10 +41,6 @@ cgV19 {
     model = 'http://localhost:7001/de.spraener.nextgen.vpplugin.cartridge'
 }
 
-tasks.withType(JavaCompile) {
-    compileTask -> compileTask.dependsOn generate
-}
-
 sourceSets {
     src{
         main {
@@ -64,24 +60,4 @@ dependencies {
     implementation "${group}:cgv19-core:${version}"
     implementation "${group}:cgv19-oom:${version}"
     testImplementation 'junit:junit:4.13.1'
-}
-
-compileJava.dependsOn generate
-
-publishing {
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/carstenSpraener/cgV19")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
 }
