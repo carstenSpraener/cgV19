@@ -1,18 +1,12 @@
-apply plugin: 'java-gradle-plugin'
-apply plugin: 'groovy'
-
-dependencies {
-    implementation gradleApi()
-    implementation localGroovy()
-
-    testImplementation 'junit:junit:4.13.1'
+plugins {
+    id 'java-gradle-plugin'
 }
 
 gradlePlugin {
     plugins {
-        cgV19Plugin {
-            id = "de.spraener.nxtgen.cgv19"
-            implementationClass="de.spraener.nxtgen.gradle.CGV19"
+        simplePlugin {
+            id = 'de.spraener.nxtgen.gradle.CGV19'
+            implementationClass = 'de.spraener.nxtgen.gradle.CGV19'
         }
     }
 }
