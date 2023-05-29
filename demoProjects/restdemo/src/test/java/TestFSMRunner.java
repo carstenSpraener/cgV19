@@ -1,4 +1,5 @@
-import de.csp.demo.rest.logic.UserValidate2;
+import de.csp.demo.rest.logic
+        .UserValidate2;
 import de.csp.demo.rest.model.User;
 import de.csp.fsm.FSMContextImpl;
 import de.csp.fsm.FSMRunner;

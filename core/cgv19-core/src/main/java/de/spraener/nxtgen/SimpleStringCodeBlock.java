@@ -19,7 +19,6 @@ public class SimpleStringCodeBlock implements CodeBlock {
     @Override
     public void println(String txt) {
         this.text.append(txt).append("\n");
-
     }
 
     @Override
@@ -34,10 +33,11 @@ public class SimpleStringCodeBlock implements CodeBlock {
 
     @Override
     public void writeOutput(String workingDir) {
-        System.out.println(workingDir);
+        throw new UnsupportedOperationException("writeOutput not supported by SimpleStringCodeblock");
     }
 
     @Override
     public void setToFileStrategy(ToFileStrategy strategy) {
+        throw new UnsupportedOperationException("setToFileStrategy not supported by SimpleStringCodeblock");
     }
 }
