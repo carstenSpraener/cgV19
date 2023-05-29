@@ -33,12 +33,7 @@ public class MetaCartridge extends MetaCartridgeBase {
             );
         }
         if (me instanceof MClass && ((MClass) me).hasStereotype(STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION)) {
-            return CodeGeneratorMapping.create(me,
-                    new CartridgeServiceLocaterGenerator(
-                            cb -> cb.setToFileStrategy(() -> new File("src/main/resources/META-INF/services/de.spraener.nxtgen.Cartridge")
-                        )
-                    )
-            );
+            return CodeGeneratorMapping.create(me,new CartridgeServiceLocaterGenerator());
         }
         return super.createMapping(me, stereotypeName);
     }

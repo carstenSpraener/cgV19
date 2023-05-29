@@ -21,7 +21,7 @@ buildscript {
 plugins {
     id 'application'
 }
-apply plugin: 'de.spraener.nxtgen.cgv19'
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     mavenCentral()
