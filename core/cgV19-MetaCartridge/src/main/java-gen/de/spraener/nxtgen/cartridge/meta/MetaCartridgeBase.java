@@ -25,8 +25,8 @@ public class MetaCartridgeBase implements Cartridge {
         result.add( new de.spraener.nxtgen.cartridge.meta.RemoveModelRootPackage() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureGeneratorDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureTransformationDefinitionsTransformation() );
-        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeServicesLocatorTransformation() );
+        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
 
         return result;
     }
