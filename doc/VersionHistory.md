@@ -37,9 +37,11 @@ Coming soon. There are several things to do:
 * fixing some typos
 * make the plugin less chatty abound the __catridge__ class path
 
-# 21.0.0
+# 23.0.0
 I got time to improve cgV19. Features are:
 * Build restructured to reflect dependencies between the projects
 * new MetaCartridge to generate generators
 * a new RESTCartridge, that can build a complete Spring Boot application from a model
 * added Support for VisualParadigm
+
+This release is again available at maven central. 
