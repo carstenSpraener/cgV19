@@ -1,5 +1,5 @@
 .gradle
-out
-build
-gradle
-target
+./out
+./build
+./gradle
+./target
