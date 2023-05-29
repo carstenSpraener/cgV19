@@ -1,12 +1,12 @@
 
-## clone from github and compile yourself
+## clone from GitHub and compile yourself
 
 ![GettingStarted.png width="70%"](model/GettingStarted.png)
 
-__Setup the Environment__ Clone the cgV9 Project to your workspace, compile and publish all generator
+__Set up the Environment__ Clone the cgV9 Project to your workspace, compile and publish all generator
 components to a local repository directory.
 
-__Setup the project__ Build a new gradle project, modify the build.gradle to make use of tha cgV19
+__Set up the project__ Build a new gradle project, modify the build.gradle to make use of tha cgV19
 gradle plugin and tell cgV19 where to find the model description and what it should generate.
 
 __Describe a simple model and do Model driven development__ The last step is to describe a model
@@ -94,7 +94,7 @@ See: [building-VisualParadigm-Plugin.md](building-VisualParadigm-Plugin.md)
 The creation of the oom-File by hand is also not very handy. If your
 IDE supports groovy-script you will have some kind of syntax highlighting.
 
-But i prefere the use of a UML-Modeling tool like MagicDraw and
+But I prefer the use of a UML-Modeling tool like MagicDraw and
 install the MDPlugin there. That will give you the power of describing
 your model in UML.
 
@@ -111,17 +111,21 @@ bad at reading an __if__ statement. But 20 if statements can be
 hard to understand. If you have such complex situations it's maybe
 better to define an activity diagram and abstract to sub activities.
 
-Also the model is and abstraction and that is an absolut MUST! It
+Also, the model is an abstraction and that is an absolut MUST! It
 does not make sense to model all decisions and let the code be
 100% generated. That will lead to a model that is hard to understand
-and not debugable.
+and not debuggable.
+
+For me
+__There is nothing wrong in reading an if-statement__, but
+__Reading deep nested if statement is horrible__
 
 To find the right way is a question of experience.
 
 ## The Generator Gap Pattern
 
-With cgV19 you could definitiv write cartridges that mix hand
-writte (manifested) code and generated code in one file. But I
+With cgV19 you could definitiv write cartridges that mix handwritten 
+(manifested) code and generated code in one file. But I
 prefer a strict separation of files that are generated and files
 that are manifested.
 

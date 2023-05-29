@@ -2,7 +2,7 @@
 
 ## Using cgv19 from maven repository
 
-The easiest way of getting started with cg19 is by seting up a small
+The easiest way of getting started with cgV19 is by setting up a small
 gradle project, that uses cgV19 as a component from maven central.
 
 ### Requirements
@@ -21,7 +21,7 @@ mkdir my-cartridge
 cd my-cartridge
 ```
 
-### Greate a build.gradle file to use cgV19 from maven central
+### Create a build.gradle file to use cgV19 from maven central
 
 Open your favorite editor and create a new file __build.gradle__ and
 copy this content into that build.gradle file:
@@ -31,7 +31,7 @@ buildscript {
     repositories {
         mavenCentral();
     }
-    // add cgv19 to the build scirpts classpath
+    // add cgv19 to the build scripts classpath
     dependencies {
         classpath "de.spraener.nxtgen:cgv19-gradle:23.0.0"
         classpath "de.spraener.nxtgen:cgv19-core:23.0.0"
@@ -71,7 +71,7 @@ sourceSets {
 dependencies {
     // apply this cartridges to cgV19 so we can generate something
     cartridge 'de.spraener.nxtgen:cgv19-core:23.0.0'
-    // oom-loader is responsible to loade Object Oriented Models
+    // oom-loader is responsible to load Object Oriented Models
     cartridge 'de.spraener.nxtgen:cgv19-oom:23.0.0'
     // to create your own cartridge, the meta-cartridge can help
     cartridge 'de.spraener.nxtgen:cgv19-metacartridge:23.0.0'
@@ -113,7 +113,7 @@ Your directory should now look like this:
 ![dirTree-beforeGeneration.png](images%2FdirTree-beforeGeneration.png)
 
 ### Run the generator 
-You can run the generator on it's own by calling 
+You can run the generator on its own by calling 
 
 ```bash
 gradle cgV19
@@ -127,7 +127,9 @@ gradle jar
 ```
 
 After That your directory should now look like:
+
 ![dirTree-afterGeneration.png](images%2FdirTree-afterGeneration.png)
+
 Well done! You just created your first cartridge. 
 
 But maybe you want to dive into the next step...
@@ -140,6 +142,6 @@ But maybe you want to dive into the next step...
 This is a very, very tiny usage of a model driven development strategie,
 and it is definitive not worth the overhead. But in real projects
 when the complexity is growing you will benefit from the level of
-abstraction that MDD can reach. Especialy when you make exhausted use
+abstraction that MDD can reach. Especially when you make exhausted use
 of transformations.
 
