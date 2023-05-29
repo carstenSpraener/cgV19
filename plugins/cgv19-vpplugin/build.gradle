@@ -22,7 +22,7 @@ plugins {
 }
 
 
-apply plugin: 'de.spraener.nxtgen.cgv19'
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 def home=System.getenv("HOME")
 def VP_HOME="/Applications/Visual Paradigm.app/Contents/Resources/app";// System.getenv("VP_HOME")

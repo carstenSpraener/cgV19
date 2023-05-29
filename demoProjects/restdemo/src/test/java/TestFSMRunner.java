@@ -1,5 +1,4 @@
-import de.csp.demo.rest.logic
-        .UserValidate2;
+import de.csp.demo.rest.logic.UserValidate;
 import de.csp.demo.rest.model.User;
 import de.csp.fsm.FSMContextImpl;
 import de.csp.fsm.FSMRunner;
@@ -26,7 +25,7 @@ public class TestFSMRunner {
 
     @Test
     public void testUserValidateRunning() throws Exception {
-        FSMRunner<User> runner = new FSMRunner(UserValidate2.class, new User())
+        FSMRunner<User> runner = new FSMRunner(UserValidate.class, new User())
                 .withStateStorage(storage);
         runner.run();
 

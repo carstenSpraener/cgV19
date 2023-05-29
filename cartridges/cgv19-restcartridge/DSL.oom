@@ -244,7 +244,7 @@ ModelDSL.make {
                   }
                 }
                 mClass {  //Exported by ClassExporterBase
-                  name 'RessourceToLogic'
+                  name 'ResourceToLogic'
                   documentation 'Creates a __logic__ class for each resource. The logic implements code conversion or other stuff that\nshould not be placed in the controller.\n\nThe controller will get an instance of logic injected on creation.'
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:n0ieOuGGAqACRAnL'
                   metaType 'Class'
