@@ -9,9 +9,6 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven {
-            url="${project.rootDir}/../repo"
-        }
     }
 }
 
@@ -27,6 +24,11 @@ subprojects {
 
     version = "${project.ext.version}"
     group = "${project.ext.group}"
+
+    repositories {
+        mavenCentral()
+    }
+
     tasks.getByName("processResources").setProperty("duplicatesStrategy", "exclude")
 
     publishing {

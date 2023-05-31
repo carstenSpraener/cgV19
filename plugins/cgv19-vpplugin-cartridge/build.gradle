@@ -1,16 +1,14 @@
-import org.gradle.api.tasks.compile.JavaCompile
-
 buildscript {
-    def version= '23.0.0'
-    def group='de.spraener.nxtgen'
+    def version = '23.0.0'
+    def group = 'de.spraener.nxtgen'
 
     repositories {
         mavenCentral();
         maven {
-            url="${project.rootDir}/../repo"
+            url = "${project.rootDir}/../repo"
         }
         maven {
-            url="${project.rootDir}/../../repo"
+            url = "${project.rootDir}/../../repo"
         }
     }
     dependencies {
@@ -26,13 +24,13 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 apply plugin: "maven-publish"
 
-def version=project.properties['prj.version']
-def group=project.properties['prj.group']
+def version = project.properties['prj.version']
+def group = project.properties['prj.group']
 
 repositories {
     mavenCentral();
     maven {
-        url="${project.rootDir}../../repo"
+        url = "${project.rootDir}../../repo"
     }
 }
 
@@ -42,12 +40,9 @@ cgV19 {
 }
 
 sourceSets {
-    src{
-        main {
-            java {
-                srcDir('src/main/java')
-                srcDir('src/main/java-gen')
-            }
+    main {
+        java {
+            srcDir('src/main/java-gen')
         }
     }
 }

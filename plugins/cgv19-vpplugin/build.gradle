@@ -1,13 +1,11 @@
-import org.gradle.api.JavaVersion
-
 buildscript {
-    def version= '23.0.0'
-    def group='de.spraener.nxtgen'
+    def version = '23.0.0'
+    def group = 'de.spraener.nxtgen'
 
     repositories {
         mavenCentral();
         maven {
-            url="${project.rootDir}/../repo"
+            url = "${project.rootDir}/../repo"
         }
     }
     dependencies {
@@ -24,14 +22,14 @@ plugins {
 
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
-def home=System.getenv("HOME")
-def VP_HOME="/Applications/Visual Paradigm.app/Contents/Resources/app";// System.getenv("VP_HOME")
-def repoDir="${project.rootDir}/../repo"
-def version= '23.0.0'
-def group='de.spraener.nxtgen'
+def home = System.getenv("HOME")
+def VP_HOME = "/Applications/Visual Paradigm.app/Contents/Resources/app";// System.getenv("VP_HOME")
+def repoDir = "${project.rootDir}/../repo"
+def version = '23.0.0'
+def group = 'de.spraener.nxtgen'
 
-targetCompatibility=JavaVersion.VERSION_11
-sourceCompatibility= JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
@@ -45,12 +43,9 @@ repositories {
 
 
 sourceSets {
-    src{
-        main {
-            java {
-                srcDir('src/main/java')
-                srcDir('src/main/java-gen')
-            }
+    main {
+        java {
+            srcDir('src/main/java-gen')
         }
     }
 }
@@ -67,7 +62,7 @@ dependencies {
 
     implementation group: 'io.javalin', name: 'javalin', version: '5.0.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
-    implementation (":openapi:")
+    implementation(":openapi:")
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
@@ -77,4 +72,4 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-mainClassName="de.spraener.nextgen.vpplugin.CgV19Plugin"
+mainClassName = "de.spraener.nextgen.vpplugin.CgV19Plugin"

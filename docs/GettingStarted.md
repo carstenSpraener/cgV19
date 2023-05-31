@@ -6,13 +6,16 @@ The easiest way of getting started with cgV19 is by setting up a small
 gradle project, that uses cgV19 as a component from maven central.
 
 ### Requirements
+
 You need to have:
+
 * A bash-like shell. Windows users should install git bash or similar.
 * Java 17 or higher. Check with ```java -version```
 * Gradle 8.0 or higher. Check with ```gradle --version```
 * A text editor of your choice. vi, emacs, VSC, IntelliJ or whatever you want.
 
 ### Create a new directory
+
 Go to your favorite project directory and create a new sub directory
 lets say __my-cartridge__
 
@@ -58,12 +61,9 @@ repositories {
 // cgV19 will generate java sources into src/main/java
 // AND! src/main/java-gen
 sourceSets {
-    src{
-        main {
-            java {
-                srcDir('src/main/java')
-                srcDir('src/main/java-gen')
-            }
+    main {
+        java {
+            srcDir('src/main/java-gen')
         }
     }
 }
@@ -85,11 +85,12 @@ dependencies {
 ```
 
 ### Create a little model.oom
-OOM stands for __O__ bject __O__ riented __M__ odel and means that you
-can specify Packages, Classes, Operations, Attributes, Inheritance... 
 
-But for the first Model we just want one class with a _stereotype_ 
-"cgv19Cartridge". 
+OOM stands for __O__ bject __O__ riented __M__ odel and means that you
+can specify Packages, Classes, Operations, Attributes, Inheritance...
+
+But for the first Model we just want one class with a _stereotype_
+"cgv19Cartridge".
 
 The language to specify such a model is a Groovy-DSL. Here is the example:
 
@@ -106,14 +107,16 @@ ModelDSL.make {
     }
 }
 ```
+
 Store this model in a file model.oom in the project directory.
 
 Your directory should now look like this:
 
 ![dirTree-beforeGeneration.png](images%2FdirTree-beforeGeneration.png)
 
-### Run the generator 
-You can run the generator on its own by calling 
+### Run the generator
+
+You can run the generator on its own by calling
 
 ```bash
 gradle cgV19
@@ -130,7 +133,7 @@ After That your directory should now look like:
 
 ![dirTree-afterGeneration.png](images%2FdirTree-afterGeneration.png)
 
-Well done! You just created your first cartridge. 
+Well done! You just created your first cartridge.
 
 But maybe you want to dive into the next step...
 

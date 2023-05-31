@@ -2,7 +2,7 @@ buildscript {
     repositories {
         mavenCentral();
         maven {
-            url="${project.rootDir}/../repo"
+            url = "${project.rootDir}/../repo"
         }
     }
     dependencies {
@@ -17,19 +17,16 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
 sourceSets {
-    src{
-        main {
-            java {
-                srcDir('src/main/java')
-                srcDir('src/main/java-gen')
-                srcDir('src/lib/java')
-            }
+    main {
+        java {
+            srcDir('src/main/java-gen')
+            srcDir('src/lib/java')
         }
     }
 }
 
 cgV19 {
-    model='http://localhost:7001/DSL'
+    model = 'http://localhost:7001/DSL'
 }
 
 dependencies {
