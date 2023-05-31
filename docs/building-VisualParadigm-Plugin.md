@@ -47,13 +47,13 @@ cgV19 {
 ```
 Now start VisualParadigm with the cgV19-Plugin installed and create
 the following model:
-![vp-createNewModel.png](images%2Fvp-createNewModel.png)
+![vp-createNewModel.png](images/vp-createNewModel.png)
 
 In that project create a new Package model and inside the model package
 a new class MyCartridge with a stereotype "cgv19Cartridge"
 
 The model should look like this:
-![vp-FirstCartridgeModel.png](images%2Fvp-FirstCartridgeModel.png)
+![vp-FirstCartridgeModel.png](images/vp-FirstCartridgeModel.png)
 __Notice:__ the package is named __model__ which correspond
 to the model URL given in the build.gradle
 
@@ -169,7 +169,7 @@ Ups! We are getting an error. But that's ok because at the moment there
 is now "my.project"-Model.
 
 Much more noticeable is the list of cartridges, that cgV19 loads. As you
-may see in the log it loads the new "MyCartridge". Of not, go to the
+may see in the log it loads the new "MyCartridge". If not, go to the
 my-cartridge project, start ```gradle jar``` and then start ```gradle cgV19```
 inside the _my-project_ again.
 
@@ -180,7 +180,7 @@ But to make cgV19 inside my-project satisfied let's do one more step
 Go back to VisualParadigm and create a package "my" and inside that
 package another Package "project" as shown below:
 
-![vp-CombinedProject.png](images%2Fvp-CombinedProject.png)
+![vp-CombinedProject.png](images/vp-CombinedProject.png)
 
 If you start cgV19 inside my-project again it now looks ok:
 
@@ -198,5 +198,5 @@ __Fantastic!__ the basic setup for model driven development is done.
 ## What next?
 Now you can start defining your own domain specific language by defining
 _Stereotypes_, _Transformations_, and _CodeGenerators_ inside your 
-__model__ package and use them in your __my.project__ package to describe
+__model__ and use them in your __my.project__ package to describe
 your program.

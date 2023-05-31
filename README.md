@@ -43,7 +43,7 @@ Java/SpringBoot.
 <img alt="groovy-logo.png" src="docs/images/groovy-logo.png" width="100"/>
 
 A template
-with groovy can make use of its multiline strings with interpolateion 
+with groovy can make use of its multiline strings with interpolation 
 like this:
 
 ```groovy
