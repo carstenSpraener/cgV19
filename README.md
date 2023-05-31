@@ -1,7 +1,8 @@
 # Welcome to cgV19
 Last Update on: Mai the 25th 2023
 
-![cgv19-overview.png](docs/images/cgv19-overview.png)
+![cgv19-overview.
+png](docs/images/cgv19-overview.png)
 ## A code abstraction framework to
 * Implement rules that make your ideas real code
 * Automate boring coding tasks
@@ -16,19 +17,48 @@ cgV19. With cgV19 you can build your own LowCode to NoCode development environme
 __Model driven development (MDD)__ 
 
 With cgV19 your development will be driven from a Model described in some
-Language or in UML. The model is a high level abstraction and with cgV19 you define the rules that brings
+Language or in UML.
+
+![mdd-example.png](docs%2Fimages%2Fmdd-example.png)
+
+The model is a high level abstraction and with cgV19 you define the rules that brings
 this abstraction to live. In the demoProjects you will find a project __restDemo__ that generates a complete
 Spring Boot application from a single Class marked as << Resource >>.
 
 __Reusable__ 
 
 With cgV19 you can build cartridges that can be used in many projects. Cartridges
-will interpret a Model and build the Code, the documentation and all configuration that you may need. A 
-concrete project can plug in the cartridges that it will need.
+will interpret a Model and build the Code, the documentation and all configuration that you may need.
+
+![cartridge-retro.png](cartridges/doc/images/cartridge-retro.png)
+
+A concrete project can plug in the cartridges that it will need.
 
 The __restDemo__ project makes use of the __cgV19-RESTCartridge__ that generates a Spring Boot application as 
 well as a runnable PHP Symfony application. The project can decide which backend to use. PHP/Symfony or 
 Java/SpringBoot.
+
+[__Groovy as a template language__](docs%2FGroovyAsTemplateLanguage.md)
+
+<img alt="groovy-logo.png" src="docs/images/groovy-logo.png" width="100"/>
+
+A template
+with groovy can make use of its multiline strings with interpolateion 
+like this:
+
+```groovy
+MClass mClass = this.getProperty("modelElement");
+OOModel model = mClass.getModel();
+
+
+"""//${ProtectionStrategieDefaultImpl.GENERATED_LINE}
+package ${mClass.getPackage().getFQName()};
+
+public class ${mClass.getName()} {
+}
+"""
+```
+
 
 __Keep documentation and code in sync__ 
 
