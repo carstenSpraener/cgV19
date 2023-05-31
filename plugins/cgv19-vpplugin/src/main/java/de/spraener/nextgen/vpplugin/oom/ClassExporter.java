@@ -13,10 +13,10 @@ public class ClassExporter extends ClassExporterBase {
         super.exportBody(exporter, pw, indentation, element);
         IClass clazz = (IClass) element;
         for (IRelationshipEnd rel : clazz.toToRelationshipEndArray()) {
-            exportRelationshipEnd(pw, indentation, rel);
+            exportRelationshipEnd(exporter, pw, indentation, rel);
         }
         for (IRelationshipEnd rel : clazz.toFromRelationshipEndArray()) {
-            exportRelationshipEnd(pw, indentation, rel);
+            exportRelationshipEnd(exporter, pw, indentation, rel);
         }
         for (IRelationship rel : clazz.toFromRelationshipArray()) {
             if( !"Generalization".equals(rel.getModelType()) ) {
@@ -41,10 +41,10 @@ public class ClassExporter extends ClassExporterBase {
     }
 
 
-    private void exportRelationshipEnd(PrintWriter pw, String indent, IRelationshipEnd relEnd) {
+    private void exportRelationshipEnd(OOMExporter exporter,PrintWriter pw, String indent, IRelationshipEnd relEnd) {
         IRelationship rel = relEnd.getEndRelationship();
         if (rel instanceof IAssociation) {
-            exportAssociation(pw, indent, (IAssociation) rel, relEnd.getOppositeEnd());
+            exportAssociation(exporter, pw, indent, (IAssociation) rel, relEnd.getOppositeEnd());
         } else {
             /*
             pw.printf("%srelation {\n", indent);
@@ -63,7 +63,7 @@ public class ClassExporter extends ClassExporterBase {
         return;
     }
 
-    private void exportAssociation(PrintWriter pw, String indent, IAssociation assoc, IRelationshipEnd relEnd) {
+    private void exportAssociation(OOMExporter exporter, PrintWriter pw, String indent, IAssociation assoc, IRelationshipEnd relEnd) {
         if (relEnd instanceof IAssociationEnd) {
             IAssociationEnd assocEnd = (IAssociationEnd) relEnd;
             if( assocEnd.getNavigable()==2 ) {
@@ -82,7 +82,10 @@ public class ClassExporter extends ClassExporterBase {
             pw.printf("%s  navigable '%s'\n", indent, assocEnd.getNavigable()==2 ? "false" : "true");
             pw.printf("%s  composite '%s'\n", indent, isComposited(assocEnd) ? "true" : "false");
             pw.printf("%s  oppositeAggregationKind '%s'\n", indent, opposite.getAggregationKind());
-
+            for( IModelElement child : assoc.toChildArray() ) {
+                exporter.exportElement(pw, indent+"  ", child);
+            }
+            PropertiesExporter.exportStereotypes(pw, indent+"  ", assoc);
             pw.printf("%s}\n", indent);
         }
     }

@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class PropertiesExporter {
 
-    private static void exportStereotypes(PrintWriter pw, String indentation, IModelElement mElement) {
+    public static void exportStereotypes(PrintWriter pw, String indentation, IModelElement mElement) {
         IStereotype[] stereotypes = mElement.toStereotypeModelArray();
         if (stereotypes == null || stereotypes.length == 0) {
             return;

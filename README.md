@@ -1,14 +1,14 @@
 # Welcome to cgV19
 Last Update on: Mai the 25th 2023
 
-![cgv19-overview.png](doc/images/cgv19-overview.png)
+![cgv19-overview.png](docs/images/cgv19-overview.png)
 ## A code abstraction framework to
 * Implement rules that make your ideas real code
 * Automate boring coding tasks
 * keep your documentation and code in sync
 * generate your own code and use it where and when you want
 
-### [Quick start: See doc/GettingStarted.md](doc/GettingStarted.md)
+### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md)
 
 If you are looking for a Low Code platform development environment you may consider trying
 cgV19. With cgV19 you can build your own LowCode to NoCode development environment. It provides:
@@ -118,7 +118,7 @@ The truth of how to use cgV19 is here!
 
 ## Want to start?
 
-If you want to have a brief "how does it feel" follow the steps in th [Getting Started](doc/GettingStarted.md). 
+If you want to have a brief "how does it feel" follow the steps in th [Getting Started](docs/GettingStarted.md). 
 
 But be warned: Model driven development is powerful and fun. But you should know that 
 writing templates and transformations for a real productive application is as
@@ -155,7 +155,7 @@ side effects.
 ## Cartridges
 
 
-![cartridge-work.png](doc/images/cartridge-work.png)
+![cartridge-work.png](docs/images/cartridge-work.png)
 [You can find a detailed description of a cartridge here](cartridges/doc/Cartridges.md)
 
 Cartridges provide the real generation logic to a project. In a real project you
@@ -190,4 +190,4 @@ check the concepts behind cgV19.
 You can use these cartridges as they are or copy and modify them for
 your own needs,
 
-## [A brief history](doc/aBriefHistory.md)
+## [A brief history](docs/aBriefHistory.md)
