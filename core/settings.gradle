@@ -1,3 +1,4 @@
 include(':cgv19-core',':cgv19-gradle',':cgv19-oom',':cgv19-pojo')
 include(':cgv19-metacartridge')
 include(':cgv19-annotationprocessor')
+include(':cgv19-javapoet')

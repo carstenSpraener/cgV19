@@ -5,6 +5,7 @@ import de.spraener.nxtgen.NxtGenRuntimeException;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class JavaCodeBlock extends CodeBlockImpl {
@@ -27,18 +28,33 @@ public class JavaCodeBlock extends CodeBlockImpl {
     @Override
     public void writeOutput(String workingDir) {
         try {
-            File outFile = new File(workingDir+"/"+srcDir+"/"+toFilePath()+".java");
-            if( outFile.exists() && checkProtected(outFile) ) {
-                return;
-            }
-            outFile.getParentFile().mkdirs();
-            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            PrintWriter pw = getPrintWriter(workingDir);
+            if (pw == null) return;
             pw.print( this.toCode() );
             pw.flush();
             pw.close();
         } catch( Exception e ) {
             throw new NxtGenRuntimeException(e);
         }
+    }
+
+    protected PrintWriter getPrintWriter(String workingDir) throws IOException {
+        File outFile = getOutputFile(workingDir);
+        if (outFile == null) return null;
+        return  new PrintWriter(new FileWriter(outFile));
+    }
+
+    protected File getOutputFile(String workingDir) {
+        File outFile = new File(workingDir +"/"+srcDir+"/"+toFilePath()+".java");
+        if( outFile.exists() && checkProtected(outFile) ) {
+            return null;
+        }
+        outFile.getParentFile().mkdirs();
+        return outFile;
+    }
+
+    public String getSrcDir() {
+        return srcDir;
     }
 
     private String toFilePath() {
