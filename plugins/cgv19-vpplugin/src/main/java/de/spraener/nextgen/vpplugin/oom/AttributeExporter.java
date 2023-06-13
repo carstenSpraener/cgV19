@@ -22,7 +22,7 @@ public class AttributeExporter extends AttributeExporterBase {
         }
     }
 
-    private String formatType(String typeAsString) {
+    public static String formatType(String typeAsString) {
         if( typeAsString.equalsIgnoreCase("date")) {
             // FIXME: No Java-Knowledge inside the plugin
             return "java.util.Date";

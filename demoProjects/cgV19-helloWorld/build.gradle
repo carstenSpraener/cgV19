@@ -32,12 +32,9 @@ cgV19 {
 }
 
 sourceSets {
-    src{
-        main {
-            java {
-                srcDir('src/main/java')
-                srcDir('src/main/java-gen')
-            }
+    main {
+        java {
+            srcDir('src/main/java-gen')
         }
     }
 }
