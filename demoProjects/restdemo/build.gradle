@@ -13,14 +13,15 @@ buildscript {
         project.ext.version = '23.0.0'
     }
     dependencies {
-        classpath "${project.ext.group}:cgv19-core:${project.ext.version}"
-        classpath "${project.ext.group}:cgv19-gradle:${project.ext.version}"
+        classpath "de.spraener.nxtgen:cgv19-core:23.0.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:23.0.0"
     }
 }
 
 plugins {
     id 'application'
 }
+
 apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
@@ -28,9 +29,7 @@ repositories {
 }
 
 cgV19 {
-    model='./restDemo.oom'
-    // If you arer using VisualParadigm
-    //model='http://localhost:7001/de'
+    model='http://localhost:7001/de.spraener.students.oom'
 }
 
 sourceSets {
@@ -43,9 +42,9 @@ sourceSets {
 
 def springBootVersion='2.5.6'
 dependencies {
-    cartridge "${project.ext.group}:cgv19-core:${project.ext.version}"
-    cartridge "${project.ext.group}:cgv19-oom:${project.ext.version}"
-    cartridge "${project.ext.group}:cgv19-restcartridge:${project.ext.version}"
+    cartridge "de.spraener.nxtgen:cgv19-core:23.0.0"
+    cartridge "de.spraener.nxtgen:cgv19-oom:23.0.0"
+    cartridge "de.spraener.nxtgen:cgv19-restcartridge:23.0.0"
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion

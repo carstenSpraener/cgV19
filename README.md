@@ -1,13 +1,15 @@
-# Welcome to cgV19
-Last Update on: Mai the 25th 2023
+![cgv19-logo.png](docs%2Fimages%2Fcgv19-logo.png)
 
-![cgv19-overview.
-png](docs/images/cgv19-overview.png)
+# Welcome to cgV19
+Last Update on: June the 13th 2023
+
 ## A code abstraction framework to
 * Implement rules that make your ideas real code
 * Automate boring coding tasks
 * keep your documentation and code in sync
 * generate your own code and use it where and when you want
+
+![cgv19-overview.png](docs/images/cgv19-overview.png)
 
 ### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md)
 
