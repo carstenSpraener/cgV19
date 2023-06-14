@@ -5,6 +5,10 @@ import de.spraener.nxtgen.model.ModelElement;
 public class SingleLineSnippet extends CodeSnippet {
     private String lineOfCode;
 
+    public SingleLineSnippet(String lineOfCode) {
+        this(CodeTarget.activeAspect.get(), lineOfCode);
+    }
+
     public SingleLineSnippet(Object aspect, String lineOfCode) {
         this(aspect, null, lineOfCode);
     }

@@ -23,6 +23,9 @@ public abstract class CodeSnippet {
      */
     private ModelElement me;
 
+    public CodeSnippet() {
+        this(CodeTarget.activeAspect.get());
+    }
     /**
      * Create a snippet to implement the given aspect. The ModelELement is set to null.
      * @param aspect The aspect this snippet is needed for.

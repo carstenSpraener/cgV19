@@ -6,8 +6,12 @@ public class CodeBlockSnippet extends CodeSnippet {
 
     private final String codeBlock;
 
-    public CodeBlockSnippet(Object key, ModelElement me, String codeBlock ) {
-        super(key, me);
+    public CodeBlockSnippet( String codeBlock ) {
+        this(CodeTarget.activeAspect.get(), CodeTarget.acticeModelElement.get(), codeBlock);
+    }
+
+    public CodeBlockSnippet(Object aspect, ModelElement me, String codeBlock ) {
+        super(aspect, me);
         this.codeBlock = codeBlock;
     }
 
