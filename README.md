@@ -1,7 +1,11 @@
 ![cgv19-logo.png](docs%2Fimages%2Fcgv19-logo.png)
 
 # Welcome to cgV19
-Last Update on: June the 13th 2023
+Last Update on: June the 14th 2023
+## Upcoming Release 23.1
+__cgV19 Release 23.1 is in the pipeline. It will bring some exciting new features!__
+
+New concept of CodeTargets, support for JavaPoet and more
 
 ## A code abstraction framework to
 * Implement rules that make your ideas real code
