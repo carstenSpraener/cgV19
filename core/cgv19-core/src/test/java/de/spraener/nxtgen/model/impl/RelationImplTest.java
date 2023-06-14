@@ -1,9 +1,9 @@
 package de.spraener.nxtgen.model.impl;
 
 import de.spraener.nxtgen.model.ModelHelper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RelationImplTest {
 
