@@ -1,8 +1,8 @@
 package de.spraener.nxtgen;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleStringCodeBlockTest {
     @Test
@@ -24,20 +24,28 @@ public class SimpleStringCodeBlockTest {
         SimpleStringCodeBlock scb2 = new SimpleStringCodeBlock("Embedded CodeBlock");
         scb.addCodeBlock(scb2);
         assertEquals("""
-                
+                                
                 Embedded CodeBlock
                 """, scb.toCode());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testUnsupportedMethodWriteOutput() throws Exception {
-        SimpleStringCodeBlock scb = new SimpleStringCodeBlock("");
-        scb.writeOutput("targetDir");
+        try {
+            SimpleStringCodeBlock scb = new SimpleStringCodeBlock("");
+            scb.writeOutput("targetDir");
+            fail();
+        } catch (UnsupportedOperationException xc) {
+        }
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testUnsupportedMethodSetToFileStrategy() throws Exception {
-        SimpleStringCodeBlock scb = new SimpleStringCodeBlock("");
-        scb.setToFileStrategy(null);
+        try {
+            SimpleStringCodeBlock scb = new SimpleStringCodeBlock("");
+            scb.setToFileStrategy(null);
+            fail();
+        } catch (UnsupportedOperationException xc) {
+        }
     }
 }

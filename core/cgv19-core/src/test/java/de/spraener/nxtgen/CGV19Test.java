@@ -1,6 +1,6 @@
 package de.spraener.nxtgen;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -8,7 +8,7 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CGV19Test {
     private Map<String,String> envMap = new HashMap<>();
