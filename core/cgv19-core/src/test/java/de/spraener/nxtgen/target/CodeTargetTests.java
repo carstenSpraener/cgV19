@@ -15,7 +15,7 @@ public class CodeTargetTests {
     void testCodeSectionAdded() throws Exception {
         uut.addCodeSection("A",cbSectionA);
         assertNotNull(uut.getSection("A"));
-        assertEquals(cbSectionA, uut.getSection("A").get());
+        assertEquals(cbSectionA, uut.getSection("A"));
     }
 
 
@@ -28,16 +28,16 @@ public class CodeTargetTests {
         ;
 
         assertNotNull(uut.getSection("A"));
-        assertEquals(cbSectionA, uut.getSection("A").get());
+        assertEquals(cbSectionA, uut.getSection("A"));
 
         assertNotNull(uut.getSection("B"));
-        assertEquals(cbSectionB, uut.getSection("B").get());
+        assertEquals(cbSectionB, uut.getSection("B"));
 
         assertNotNull(uut.getSection("C"));
-        assertEquals(cbSectionA, uut.getSection("C").get());
+        assertEquals(cbSectionA, uut.getSection("C"));
 
         assertNotNull(uut.getSection("D"));
-        assertEquals(cbSectionB, uut.getSection("D").get());
+        assertEquals(cbSectionB, uut.getSection("D"));
 
         Assertions.assertThat(uut.getSectionsOrdered())
                 .contains(

@@ -1,8 +1,8 @@
-![cgv19-logo.png](docs%2Fimages%2Fcgv19-logo.png)
+![cgv19-logo.png](docs/images/cgv19-logo.png)
 
 # Welcome to cgV19
 Last Update on: June the 14th 2023
-## Upcoming Release 23.1
+## [ Upcoming Release 23.1](docs/Release-23.1.md)
 __cgV19 Release 23.1 is in the pipeline. It will bring some exciting new features!__
 
 New concept of CodeTargets, support for JavaPoet and more
@@ -25,7 +25,7 @@ __Model-Driven development (MDD)__
 With cgV19, your development will be driven by a Model described in some
 Language or in UML.
 
-![mdd-example.png](docs%2Fimages%2Fmdd-example.png)
+![mdd-example.png](docs/images/mdd-example.png)
 
 The Model is a high-level abstraction, and with cgV19, you define the rules that bring this abstraction to life. In the demo project, you will find a project __restDemo__ that generates a complete
 Spring Boot application from a Class marked as << Resource >>.
@@ -40,7 +40,7 @@ A concrete project can plug in the cartridges that it will need.
 
 The __restDemo__ project uses the __cgV19-RESTCartridge__ that generates a Spring Boot application and a runnable PHP Symfony application. The project can decide which backend to use. PHP/Symfony or Java/SpringBoot.
 
-[__Groovy as a template language__](docs%2FGroovyAsTemplateLanguage.md)
+[__Groovy as a template language__](docs/GroovyAsTemplateLanguage.md)
 
 <img alt="groovy-logo.png" src="docs/images/groovy-logo.png" width="100"/>
 

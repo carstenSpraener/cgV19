@@ -1,6 +1,9 @@
 package de.spraener.nxtgen.target;
 
+import de.spraener.nxtgen.model.ModelElement;
+
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * <h4>Responsibility</h4>
@@ -13,8 +16,9 @@ import java.util.*;
  * order of insertion.
  */
 public class CodeTarget {
-    private Map<Object, CodeSection> mySectionMap = new TreeMap<>();
-
+    public static ThreadLocal<ModelElement> acticeModelElement = new ThreadLocal<>();
+    private Map<Object, CodeSection> mySectionMap = new LinkedHashMap<>();
+    public static ThreadLocal<Object> activeAspect = new ThreadLocal<>();
     /**
      * Add a CodeSection under the given Key to the CodeTarget. A former
      * added CodeSection under that key will be replaced.
@@ -45,8 +49,8 @@ public class CodeTarget {
      * @param key The key for the CodeSection requested
      * @return an Optional of the CodeSection. This can be empty if no CodeSection with that key is present.
      */
-    public Optional<CodeSection> getSection(Object key) {
-        return Optional.ofNullable(mySectionMap.get(key));
+    public CodeSection getSection(Object key) {
+        return mySectionMap.get(key);
     }
 
     /**
@@ -55,5 +59,16 @@ public class CodeTarget {
      */
     public Collection<CodeSection> getSectionsOrdered() {
         return this.mySectionMap.values();
+    }
+
+    public void forAspectAndModelElement(Object aspect, ModelElement me, Consumer<CodeTarget> consumer) {
+        try {
+            activeAspect.set(aspect);
+            acticeModelElement.set(me);
+            consumer.accept(this);
+        } finally {
+            activeAspect.set(null);
+            acticeModelElement.set(null);
+        }
     }
 }

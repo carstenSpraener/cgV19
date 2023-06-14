@@ -28,18 +28,17 @@ public class ObjectMother {
 
     public static CodeTarget createPoJoTarget(ModelElement nameAttr) {
         CodeTarget target = JavaSections.createJavaCodeTarget("//"+ ProtectionStrategieDefaultImpl.GENERATED_LINE);
-        target.getSection(JavaSections.HEADER).get()
+        target.getSection(JavaSections.HEADER)
                 .getLastSnippetForAspect("preamble")
                 .insertAfter(new CodeBlockSnippet("java", null, "package me.test.pkg;\n\n"));
 
-        target.getSection(JavaSections.IMPORTS).get().add("PoJo", "import java.util.*;\n");
-        target.getSection(JavaSections.CLASS_DECLARATION).get()
-                .add(new CodeBlockSnippet("BeginDeclaration", null, "\npublic class AClass "))
-                .add(new CodeBlockSnippet("FinishDeclaration", null, "{\n"));
-        target.getSection(JavaSections.ATTRIBUTE_DECLARATION).get()
-                .add(new CodeBlockSnippet("AttributeDeclaration", nameAttr,
+        target.getSection(JavaSections.IMPORTS).add("PoJo", "import java.util.*;\n");
+        target.getSection(JavaSections.CLASS_DECLARATION)
+                .add(new CodeBlockSnippet("classNameAndVisibility", null, "\npublic class AClass"));
+        target.getSection(JavaSections.ATTRIBUTE_DECLARATIONS)
+                .add(new CodeBlockSnippet("declareAttribute", nameAttr,
                         "    private String name;\n"));
-        target.getSection(JavaSections.METHODS).get()
+        target.getSection(JavaSections.METHODS)
                 .add(new CodeBlockSnippet("Getter", nameAttr, """
                             
                             public String getName() {
@@ -47,7 +46,7 @@ public class ObjectMother {
                             }
                         """)
                 );
-        target.getSection(JavaSections.METHODS).get()
+        target.getSection(JavaSections.METHODS)
                 .add(new CodeBlockSnippet("Setter", nameAttr, """
                             
                             public void setName(String value) {
@@ -55,8 +54,6 @@ public class ObjectMother {
                             }
                         """)
                 );
-        target.getSection(JavaSections.FOOTER).get()
-                .add("CloseClass", "}");
         String code = new CodeTargetToCodeConverter(target).toString();
         assertThat(code)
                 .containsIgnoringWhitespaces(POJO_CODE);
