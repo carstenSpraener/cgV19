@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '23.0.0'
+    project.ext.version = '23.1.0'
 
     repositories {
         mavenCentral()

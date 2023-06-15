@@ -10,11 +10,11 @@ buildscript {
     }
     if( !project.ext.hasProperty("group") ) {
         project.ext.group = 'de.spraener.nxtgen'
-        project.ext.version = '23.0.0'
+        project.ext.version = '23.1.0'
     }
     dependencies {
-        classpath "de.spraener.nxtgen:cgv19-core:23.0.0"
-        classpath "de.spraener.nxtgen:cgv19-gradle:23.0.0"
+        classpath "de.spraener.nxtgen:cgv19-core:23.1.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:23.1.0"
     }
 }
 
@@ -42,9 +42,9 @@ sourceSets {
 
 def springBootVersion='2.5.6'
 dependencies {
-    cartridge "de.spraener.nxtgen:cgv19-core:23.0.0"
-    cartridge "de.spraener.nxtgen:cgv19-oom:23.0.0"
-    cartridge "de.spraener.nxtgen:cgv19-restcartridge:23.0.0"
+    cartridge "de.spraener.nxtgen:cgv19-core:23.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-oom:23.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-restcartridge:23.1.0"
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion

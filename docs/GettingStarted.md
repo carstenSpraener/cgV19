@@ -36,8 +36,8 @@ buildscript {
     }
     // add cgv19 to the build scripts classpath
     dependencies {
-        classpath "de.spraener.nxtgen:cgv19-gradle:23.0.0"
-        classpath "de.spraener.nxtgen:cgv19-core:23.0.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:23.1.0"
+        classpath "de.spraener.nxtgen:cgv19-core:23.1.0"
     }
 }
 
@@ -70,16 +70,16 @@ sourceSets {
 
 dependencies {
     // apply this cartridges to cgV19 so we can generate something
-    cartridge 'de.spraener.nxtgen:cgv19-core:23.0.0'
+    cartridge 'de.spraener.nxtgen:cgv19-core:23.1.0'
     // oom-loader is responsible to load Object Oriented Models
-    cartridge 'de.spraener.nxtgen:cgv19-oom:23.0.0'
+    cartridge 'de.spraener.nxtgen:cgv19-oom:23.1.0'
     // to create your own cartridge, the meta-cartridge can help
-    cartridge 'de.spraener.nxtgen:cgv19-metacartridge:23.0.0'
+    cartridge 'de.spraener.nxtgen:cgv19-metacartridge:23.1.0'
 
     // You also need this jars during implementing your cartridge
-    implementation 'de.spraener.nxtgen:cgv19-core:23.0.0'
-    implementation 'de.spraener.nxtgen:cgv19-oom:23.0.0'
-    implementation 'de.spraener.nxtgen:cgv19-metacartridge:23.0.0'
+    implementation 'de.spraener.nxtgen:cgv19-core:23.1.0'
+    implementation 'de.spraener.nxtgen:cgv19-oom:23.1.0'
+    implementation 'de.spraener.nxtgen:cgv19-metacartridge:23.1.0'
 
 }
 ```
