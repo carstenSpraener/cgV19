@@ -28,7 +28,7 @@ public class ResourceToContoller implements Transformation {
         stType.setTaggedValue("dataType", mClass.getFQName());
         for(MOperation op : mClass.getOperations() ) {
             MOperation opClone = op.cloneTo(cntrl);
-            String type = RessourceToLogic.toLogicReturnType(opClone.getType());
+            String type = ResourceToLogic.toLogicReturnType(opClone.getType());
             opClone.setType(type);
             op.setProperty("returnStatement", "return null;");
         }

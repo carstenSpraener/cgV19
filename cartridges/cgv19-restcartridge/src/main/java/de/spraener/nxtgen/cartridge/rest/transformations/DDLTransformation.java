@@ -26,7 +26,7 @@ public class DDLTransformation implements Transformation {
     }
 
     private MClass addRESTLogic(MClass mClass) {
-        return new RessourceToLogic().create(mClass);
+        return new ResourceToLogic().create(mClass);
     }
 
     private MClass addEntity(MClass mClass) {
