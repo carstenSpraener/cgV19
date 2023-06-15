@@ -71,7 +71,7 @@ stereotype __PoJo__. So we could implement the method as follows:
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
         List<CodeGeneratorMapping> mappings = new ArrayList<>();
         for(ModelElement me : m.getModelElements() ) {
-            if (me instanceof MClass && StereotypeHelper.hasStereotye(me, ST_POJO)) {
+            if (me instanceof MClass && StereotypeHelper.hasStereotype(me, ST_POJO)) {
                 mappings.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
             }
         }

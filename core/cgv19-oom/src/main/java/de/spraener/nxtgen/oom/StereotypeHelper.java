@@ -4,12 +4,9 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.TaggedValue;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
-import de.spraener.nxtgen.model.impl.TaggedValueImpl;
-import de.spraener.nxtgen.oom.model.MAttribute;
-import de.spraener.nxtgen.oom.model.MClass;
 
 public class StereotypeHelper {
-    public static boolean hasStereotye(ModelElement me, String name) {
+    public static boolean hasStereotype(ModelElement me, String name) {
         return getStereotype(me, name) != null;
     }
 

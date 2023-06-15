@@ -13,7 +13,7 @@ public class GeneratorGapTransformation extends GeneratorGapTransformationBase {
 
     @Override
     public void doTransformationIntern(MClass mClass) {
-        if( !StereotypeHelper.hasStereotye(mClass, "Exporter") ) {
+        if( !StereotypeHelper.hasStereotype(mClass, "Exporter") ) {
             return;
         }
         NextGen.LOGGER.info("Running GeneratorGapTransformation on "+mClass.getFQName());

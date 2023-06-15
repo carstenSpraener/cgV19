@@ -60,6 +60,6 @@ public class ResourceToTSType implements Transformation {
     }
 
     private boolean isLinkReference(MAttribute attr) {
-        return StereotypeHelper.hasStereotye(attr, RESTStereotypes.LINK.getName());
+        return StereotypeHelper.hasStereotype(attr, RESTStereotypes.LINK.getName());
     }
 }

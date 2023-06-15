@@ -9,7 +9,7 @@ import de.spraener.nxtgen.oom.model.MClass;
 public class EntitySupport {
 
     public static boolean isLinkAttribute(MAttribute a) {
-        return StereotypeHelper.hasStereotye(a, RESTStereotypes.LINK.getName());
+        return StereotypeHelper.hasStereotype(a, RESTStereotypes.LINK.getName());
     }
 
     public static MClass findLinkTarget(MAttribute a) {
@@ -46,7 +46,7 @@ public class EntitySupport {
     }
 
     public static JPALinkClassifier classifyJPALinkType(MAttribute a) {
-        if( !StereotypeHelper.hasStereotye(a, RESTStereotypes.LINK.getName()) ) {
+        if( !StereotypeHelper.hasStereotype(a, RESTStereotypes.LINK.getName()) ) {
             return null;
         }
         boolean isToN = a.isToN();

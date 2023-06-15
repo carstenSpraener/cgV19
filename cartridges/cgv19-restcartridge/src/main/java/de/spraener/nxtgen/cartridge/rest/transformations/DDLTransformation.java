@@ -1,9 +1,6 @@
 package de.spraener.nxtgen.cartridge.rest.transformations;
 
-import de.spraener.nxtgen.cartridge.rest.RESTCartridge;
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
-import de.spraener.nxtgen.model.Stereotype;
-import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.ModelElement;

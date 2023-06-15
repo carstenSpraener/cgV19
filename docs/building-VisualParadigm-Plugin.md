@@ -122,9 +122,9 @@ dependencies inside the _my-project_ build.gradle as follows:
 ```groovy 
 dependencies {
     // apply this cartridges to cgV19 so we can generate something
-    cartridge 'de.spraener.nxtgen:cgv19-core:23.0.0'
+    cartridge 'de.spraener.nxtgen:cgv19-core:23.1.0'
     // oom-loader is responsible to load Object Oriented Models
-    cartridge 'de.spraener.nxtgen:cgv19-oom:23.0.0'
+    cartridge 'de.spraener.nxtgen:cgv19-oom:23.1.0'
     cartridge project(':my-cartridge')
 
 }

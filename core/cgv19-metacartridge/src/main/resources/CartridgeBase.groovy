@@ -20,7 +20,7 @@ String addTransformations(MClass mClass, String listName ) {
 
 String listCodeGeneratorMappings(MClass mClass, String me, String resutListName) {
     StringBuffer sb = new StringBuffer();
-    Map<String,List<MClass>> codeGenertorList = CartridgeGeneratorHelper.listCodeGeneratoryByStereotype((OOModel)mClass.getModel());
+    Map<String,List<MClass>> codeGenertorList = CartridgeGeneratorHelper.listCodeGeneratorByStereotype((OOModel)mClass.getModel());
     for( String sTypeName : codeGenertorList.keySet() ) {
         List<MClass> codeGenList = codeGenertorList.get(sTypeName);
         sb.append("${printCodeGeneratorMapping(sTypeName, codeGenList, me, resutListName)}")
@@ -35,7 +35,7 @@ String getGeneratesOn(MClass codeGenerator) {
 
 String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
     StringBuffer sb = new StringBuffer();
-    sb.append("            if( StereotypeHelper.hasStereotye(me, \"${sTypeName}\") ) {\n");
+    sb.append("            if( StereotypeHelper.hasStereotype(me, \"${sTypeName}\") ) {\n");
     for( MClass codeGenerator : mClasses ) {
         String generatesOn = getGeneratesOn(codeGenerator)
         if( generatesOn!=null ) {

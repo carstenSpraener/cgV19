@@ -26,7 +26,7 @@ will receive the TypeSpec.Builder and the ModelElement MClass to fill the Builde
 
 Here is an example of a Cartridge that maps a MClass with stereotype "PoJo" to a PoJoGenertaor, that uses JavaPoet:
 ```Java
-if (me instanceof MClass mc && StereotypeHelper.hasStereotye(mc, "PoJo")) {
+if (me instanceof MClass mc && StereotypeHelper.hasStereotype(mc, "PoJo")) {
     mappingList.add(
             CodeGeneratorMapping.create(mc, new JavaPoetGenerator(
                     mClazz -> TypeSpec.classBuilder(mClazz.getName()),
@@ -87,7 +87,7 @@ With a JavaPoet generator this can easily be achieved. The next example shows ho
 EntityGenerator with pre generating a PoJo:
 
 ```Java
-if (me instanceof MClass mc && StereotypeHelper.hasStereotye(mc, "Entity")) {
+if (me instanceof MClass mc && StereotypeHelper.hasStereotype(mc, "Entity")) {
     mappingList.add(
             CodeGeneratorMapping.create(mc, new JavaPoetGenerator(
                     mClazz -> TypeSpec.classBuilder(mClazz.getName()),

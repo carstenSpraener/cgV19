@@ -88,7 +88,7 @@ public class CartridgeBaseGeneratorTests extends AbstractOOModelTest {
                 .contains(GENERATOR_MAPPING_END)
                 .contains(OVERWRITEABLE_MAPPING_METHOD)
                 .contains("""
-                                    if( StereotypeHelper.hasStereotye(me, "AStereoType") ) {
+                                    if( StereotypeHelper.hasStereotype(me, "AStereoType") ) {
                                         if( me instanceof MClass tME ) {
                                             CodeGeneratorMapping mapping = createMapping(tME, "AStereoType");
                                             if (mapping != null) {

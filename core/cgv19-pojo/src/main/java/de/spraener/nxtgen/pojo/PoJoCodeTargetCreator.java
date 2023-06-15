@@ -39,7 +39,7 @@ public class PoJoCodeTargetCreator {
     private void declareImplements(CodeTarget target) {
         if (pojo.getDependencies() != null) {
             for (MDependency dependency : pojo.getDependencies()) {
-                if (StereotypeHelper.hasStereotye(dependency, "Implements")) {
+                if (StereotypeHelper.hasStereotype(dependency, "Implements")) {
                     MClass depTarget = (MClass) ((OOModel) pojo.getModel()).findClassByName(dependency.getTarget());
                     addImplements(target, depTarget);
                 }
@@ -58,7 +58,7 @@ public class PoJoCodeTargetCreator {
     }
 
     private CodeSection declarePackage(CodeTarget t) {
-        return t.getSection(JavaSections.HEADER).add(new SingleLineSnippet("package " + pojo.getPackage().getName() + ";"));
+        return t.getSection(JavaSections.HEADER).add(new SingleLineSnippet("package " + pojo.getPackage().getFQName() + ";"));
     }
 
     private void declareClazz(CodeTarget t) {
@@ -70,6 +70,7 @@ public class PoJoCodeTargetCreator {
         target.inContext(DEFAULT_CONSTRUCTOR, pojo, t -> {
             StringBuilder sb = new StringBuilder();
             sb.append("    public " + pojo.getName() + "() {\n");
+            sb.append("        super();\n");
             sb.append("    }\n");
             t.getSection(JavaSections.CONSTRUCTORS)
                     .add(new CodeBlockSnippet(sb.toString()));

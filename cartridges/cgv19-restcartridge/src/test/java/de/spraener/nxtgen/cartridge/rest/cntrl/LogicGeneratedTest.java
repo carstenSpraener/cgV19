@@ -35,10 +35,10 @@ public class LogicGeneratedTest {
 
         MClass logic = m.findClassByName("pkg.logic.ARessourceLogic");
         assertNotNull("No Logic-Class generated", logic );
-        assertTrue(StereotypeHelper.hasStereotye(logic, RESTStereotypes.IMPL.getName()));
+        assertTrue(StereotypeHelper.hasStereotype(logic, RESTStereotypes.IMPL.getName()));
 
         MClass logicBase = m.findClassByName("pkg.logic.ARessourceLogicBase");
         assertNotNull("No Logic-Class generated", logic );
-        assertTrue(StereotypeHelper.hasStereotye(logicBase, RESTStereotypes.LOGIC.getName()));
+        assertTrue(StereotypeHelper.hasStereotype(logicBase, RESTStereotypes.LOGIC.getName()));
     }
 }

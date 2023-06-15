@@ -32,7 +32,7 @@ public class PoJoCartridge implements Cartridge {
         for(ModelElement me : m.getModelElements() ) {
             if (me instanceof MClass) {
                 Logger.getAnonymousLogger().info("Mapping class "+me.getName());
-                if (StereotypeHelper.hasStereotye(me, ST_POJO)) {
+                if (StereotypeHelper.hasStereotype(me, ST_POJO)) {
                     mappings.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
                 }
             }
