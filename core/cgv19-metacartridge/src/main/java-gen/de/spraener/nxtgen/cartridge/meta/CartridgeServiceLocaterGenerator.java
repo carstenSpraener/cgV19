@@ -5,10 +5,19 @@ import de.spraener.nxtgen.CodeBlockImpl;
 import de.spraener.nxtgen.CodeGenerator;
 import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.model.ModelElement;
-import de.spraener.nxtgen.oom.model.MClass;
+import de.spraener.nxtgen.oom.model.*;
+import de.spraener.nxtgen.annotations.*;
 
 import java.io.File;
 
+@CGV19Generator(
+        requiredStereotype = "cgV19CartridgeServiceDefinition",
+        operatesOn = MClass.class,
+        outputType = OutputType.JAVA,
+        outputTo = OutputTo.OTHER,
+        tempalteName = "/meta/CartridgeServiceLocaterTemplate.groovy",
+        implementationKind = ImplementationKind.GROOVY_TEMPLATE
+)
 public class CartridgeServiceLocaterGenerator implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {

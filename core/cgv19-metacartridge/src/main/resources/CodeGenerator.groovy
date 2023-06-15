@@ -19,8 +19,17 @@ String getOutputType( MClass mClass) {
     return readTaggedValue(mClass, "CodeGenerator", "outputType", "none")
 }
 
+String getOutputTypeEnum( MClass mClass) {
+    return readTaggedValue(mClass, "CodeGenerator", "outputType", "none").toUpperCase();
+}
+
 String getOutputTo( MClass mClass) {
     return readTaggedValue(mClass, "CodeGenerator", "outputTo", "src-gen")
+}
+String getOutputToEnum( MClass mClass) {
+    String outputTo = readTaggedValue(mClass, "CodeGenerator", "outputTo", "SRC_GEN")
+    outputTo = outputTo.toUpperCase().replace('-', '_');
+    return outputTo;
 }
 
 String getGeneratesOn(mClass) {
@@ -114,7 +123,16 @@ import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
+import de.spraener.nxtgen.annotations.*;
 
+@CGV19Generator(
+        requiredStereotype = "${getRequiredStereotype(mClass)}",
+        operatesOn = ${getGeneratesOn(mClass)}.class,
+        outputType = OutputType.${getOutputTypeEnum(mClass)},
+        outputTo = OutputTo.${getOutputToEnum(mClass)},
+        tempalteName = "${getTemplateFileName(mClass)}",
+        implementationKind = ImplementationKind.GROOVY_TEMPLATE
+)
 public class ${mClass.getName()} implements CodeGenerator {
     private Consumer<CodeBlock>[] codeBlockModifiers;
 

@@ -48,18 +48,22 @@ public class MetaCartridgeGeneratorMappingTests extends AbstractOOModelTest {
     }
 
     @Test
-    public void testDefaultMappings() throws Exception {
-        assertDefaultMapping("cgV19CartridgeBase", 1);
-        assertDefaultMapping("GroovyScript", 1);
-        assertDefaultMapping("Transformation", 2);
-        assertDefaultMapping("cgV19Cartridge", 1);
-        assertDefaultMapping("cgV19CartridgeServiceDefinition", 1);
-        assertDefaultMapping("StereotypeEnum", 1);
-        assertDefaultMapping("Stereotype", 1);
-        assertDefaultMapping("CodeGenerator", 1);
+    public void testDefaultMappings() {
+        assertDefaultMappings(uut);
     }
 
-    private void assertDefaultMapping(String stereotype, int nofMappingsExpected) {
+    public static void assertDefaultMappings(Cartridge uut) {
+        assertDefaultMapping(uut, "cgV19CartridgeBase", 1);
+        assertDefaultMapping(uut, "GroovyScript", 1);
+        assertDefaultMapping(uut, "Transformation", 2);
+        assertDefaultMapping(uut, "cgV19Cartridge", 1);
+        assertDefaultMapping(uut, "cgV19CartridgeServiceDefinition", 1);
+        assertDefaultMapping(uut, "StereotypeEnum", 1);
+        assertDefaultMapping(uut, "Stereotype", 1);
+        assertDefaultMapping(uut, "CodeGenerator", 1);
+    }
+
+    public static void assertDefaultMapping(Cartridge uut, String stereotype, int nofMappingsExpected) {
         OOMetaModelObjetctMother objectMother = new OOMetaModelObjetctMother();
         objectMother.createDefaultOOModel();
         objectMother.createClass("Test"+stereotype+"Mapping",

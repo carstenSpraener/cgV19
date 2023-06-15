@@ -94,7 +94,7 @@ ModelDSL.make {
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
                   taggedValue 'requiredStereotype', 'Stereotype'
-                  taggedValue 'outputType', 'MarkMown'
+                  taggedValue 'outputType', 'MarkDown'
                   taggedValue 'generatesOn', 'MClass'
                   taggedValue 'outputTo', 'other'
                   taggedValue 'templateScript', '/StereotypeDocumentation.groovy'

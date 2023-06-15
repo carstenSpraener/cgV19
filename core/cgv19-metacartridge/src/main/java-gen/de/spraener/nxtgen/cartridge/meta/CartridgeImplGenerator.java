@@ -9,7 +9,16 @@ import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
+import de.spraener.nxtgen.annotations.*;
 
+@CGV19Generator(
+        requiredStereotype = "cgV19Cartridge",
+        operatesOn = MClass.class,
+        outputType = OutputType.JAVA,
+        outputTo = OutputTo.SRC,
+        tempalteName = "/meta/CartridgeImplTemplate.groovy",
+        implementationKind = ImplementationKind.GROOVY_TEMPLATE
+)
 public class CartridgeImplGenerator implements CodeGenerator {
     private Consumer<CodeBlock>[] codeBlockModifiers;
 
