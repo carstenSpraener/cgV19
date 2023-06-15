@@ -57,12 +57,12 @@ public class GroovyCodeBlockImpl extends CodeBlockImpl {
         b.setProperty("modelElement", this.me);
         b.setProperty("codeBlock", this);
         GroovyShell shell = new GroovyShell(b);
-        Script scr = shell.parse(templateScript);
+        Script scr = shell.parse(templateScript,templateScriptURL);
         try {
             Object value = scr.run();
             return value.toString();
         } catch (Exception e) {
-            NextGen.LOGGER.severe(() -> "Error while exeucting script " + this.templateScriptURL + ": "+e.getMessage());
+            NextGen.LOGGER.severe(() -> "Error while executing script " + this.templateScriptURL + ": "+e.getMessage());
             throw new NxtGenRuntimeException(e);
         }
     }

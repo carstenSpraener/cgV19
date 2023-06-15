@@ -8,8 +8,7 @@ MClass mClass = (MClass)this.getProperty("modelElement")
 OOModel model = (OOModel)mClass.getModel()
 
 String checkStereotype(MClass mClass) {
-    Stereotype sType = StereotypeHelper.getStereotype(mClass, "Transformation");
-    String requiredStereotype = sType.getTaggedValue("requiredStereotype");
+    String requiredStereotype = getRequiresStereotype(mClass)
     if( requiredStereotype!=null && !"".equals(requiredStereotype) ) {
         return """
         if( !StereotypeHelper.hasStereotype(element, "${requiredStereotype}")) {
@@ -18,6 +17,12 @@ String checkStereotype(MClass mClass) {
     } else {
         return "";
     }
+}
+
+String getRequiresStereotype(MClass mClass) {
+    Stereotype sType = StereotypeHelper.getStereotype(mClass, "Transformation");
+    String requiredStereotype = sType.getTaggedValue("requiredStereotype");
+    requiredStereotype
 }
 
 String getMetaType(MClass mClass) {
@@ -36,7 +41,13 @@ package ${mClass.getPackage().getFQName()};
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.model.*;
+import de.spraener.nxtgen.annotations.*;
 
+@CGV19Transformation(
+        requiredStereotype = "${getRequiresStereotype(mClass)}",
+        operatesOn = ${metaType}.class
+)
 public abstract class ${mClass.getName()}Base implements de.spraener.nxtgen.Transformation {
 
     @Override

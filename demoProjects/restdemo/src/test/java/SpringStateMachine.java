@@ -1,4 +1,4 @@
-import de.csp.demo.rest.logic.UserValidate2;
+import de.csp.demo.rest.logic.UserValidate;
 import de.csp.demo.rest.model.User;
 import de.csp.fsm.FSMContext;
 import org.junit.Test;
@@ -36,7 +36,7 @@ class FSMContextImpl implements FSMContext<User> {
 }
 public class SpringStateMachine {
 
-    UserValidate2 userValidate2 = new UserValidate2();
+    UserValidate userValidate2 = new UserValidate();
     FSMContext<User> userFSMContext = new FSMContextImpl();
 
     private Mono<Void> init(StateContext<String, String> context) {
