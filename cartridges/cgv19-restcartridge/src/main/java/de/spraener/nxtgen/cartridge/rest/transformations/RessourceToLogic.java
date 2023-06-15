@@ -7,7 +7,7 @@ import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.*;
 
-public class ResourceToLogic implements Transformation {
+public class RessourceToLogic implements Transformation {
 
     @Override
     public void doTransformation(ModelElement element) {
