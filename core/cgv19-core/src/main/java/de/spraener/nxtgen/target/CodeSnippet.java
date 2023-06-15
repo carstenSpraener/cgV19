@@ -18,20 +18,22 @@ public abstract class CodeSnippet {
      */
     private Object aspect;
     /**
-     * The reason why this snippet is there. For Example the MAttribute needs
-     * this snippet.
+     * The reason why this snippet is there. For Example the MAttribute that needs
+     * this snippet. With this information a CodeTarget can be modified by
+     * searching the snippet for aspect A and ModelElement E, and then
+     * inserting a snippet before that snippet.
      */
     private ModelElement me;
 
     public CodeSnippet() {
-        this(CodeTarget.activeAspect.get());
+        this(CodeTargetContext.getActiveContext().getAspect(), CodeTargetContext.getActiveContext().getModelElement());
     }
     /**
      * Create a snippet to implement the given aspect. The ModelELement is set to null.
      * @param aspect The aspect this snippet is needed for.
      */
     public CodeSnippet(Object aspect) {
-        this(aspect, null);
+        this(aspect, CodeTargetContext.getActiveContext().getModelElement());
     }
 
     /**

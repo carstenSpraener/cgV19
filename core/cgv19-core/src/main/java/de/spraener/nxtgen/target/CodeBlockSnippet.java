@@ -7,7 +7,7 @@ public class CodeBlockSnippet extends CodeSnippet {
     private final String codeBlock;
 
     public CodeBlockSnippet( String codeBlock ) {
-        this(CodeTarget.activeAspect.get(), CodeTarget.acticeModelElement.get(), codeBlock);
+        this(CodeTargetContext.getActiveContext().getAspect(), CodeTargetContext.getActiveContext().getModelElement(), codeBlock);
     }
 
     public CodeBlockSnippet(Object aspect, ModelElement me, String codeBlock ) {

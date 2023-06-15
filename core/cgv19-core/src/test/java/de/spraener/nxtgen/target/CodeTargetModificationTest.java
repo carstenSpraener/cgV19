@@ -1,6 +1,5 @@
 package de.spraener.nxtgen.target;
 
-import de.spraener.nxtgen.ProtectionStrategieDefaultImpl;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.target.java.JavaAspects;
@@ -59,7 +58,7 @@ public class CodeTargetModificationTest {
         ModelElement attr = new ModelElementImpl();
         CodeTarget target = ObjectMother.createPoJoTarget(attr);
         // Make an existing classTarget a Serializable
-        target.forAspectAndModelElement(JavaAspects.SERIALIZABLE, null, t -> {
+        target.inContext(JavaAspects.SERIALIZABLE, null, t -> {
             // Add the import to the import section
             t.getSection(JavaSections.IMPORTS)
                     .add(new SingleLineSnippet("import java.io.Serializable;"));
@@ -81,7 +80,7 @@ public class CodeTargetModificationTest {
     void testFluentAPITwoInterfaces() {
         ModelElement attr = new ModelElementImpl();
         CodeTarget target = ObjectMother.createPoJoTarget(attr);
-        target.forAspectAndModelElement(JavaAspects.SERIALIZABLE, null, t -> {
+        target.inContext(JavaAspects.SERIALIZABLE, null, t -> {
             t.getSection(JavaSections.IMPLEMENTS)
                     .add(new CodeBlockSnippet("Serializable"))
                     .add(new CodeBlockSnippet("Runnable"))
