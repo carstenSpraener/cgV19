@@ -6,11 +6,11 @@ public class SingleLineSnippet extends CodeSnippet {
     private String lineOfCode;
 
     public SingleLineSnippet(String lineOfCode) {
-        this(CodeTarget.activeAspect.get(), lineOfCode);
+        this(CodeTargetContext.getActiveContext().getAspect(), CodeTargetContext.getActiveContext().getModelElement(), lineOfCode);
     }
 
     public SingleLineSnippet(Object aspect, String lineOfCode) {
-        this(aspect, null, lineOfCode);
+        this(aspect,  CodeTargetContext.getActiveContext().getModelElement(), lineOfCode);
     }
 
     public SingleLineSnippet(Object aspect, ModelElement me, String lineOfCode) {

@@ -16,9 +16,7 @@ import java.util.function.Consumer;
  * order of insertion.
  */
 public class CodeTarget {
-    public static ThreadLocal<ModelElement> acticeModelElement = new ThreadLocal<>();
     private Map<Object, CodeSection> mySectionMap = new LinkedHashMap<>();
-    public static ThreadLocal<Object> activeAspect = new ThreadLocal<>();
     /**
      * Add a CodeSection under the given Key to the CodeTarget. A former
      * added CodeSection under that key will be replaced.
@@ -61,14 +59,22 @@ public class CodeTarget {
         return this.mySectionMap.values();
     }
 
-    public void forAspectAndModelElement(Object aspect, ModelElement me, Consumer<CodeTarget> consumer) {
-        try {
-            activeAspect.set(aspect);
-            acticeModelElement.set(me);
-            consumer.accept(this);
-        } finally {
-            activeAspect.set(null);
-            acticeModelElement.set(null);
+    /**
+     * Opens a new CodeTargetContext and calls all consumers on this CodeTarget, so they are working in that
+     * given CodeTargetContext.
+     * @param aspect An aspect the consumer working on or null.
+     * @param me A ModelElement the consumers wokring on or null.
+     * @param consumers a list of consumers to do some work on this CodeTarget.
+     * @return CodeTarget itself for queuing.
+     */
+    public CodeTarget inContext(Object aspect, ModelElement me, Consumer<CodeTarget>... consumers) {
+        try (var ctxt = new CodeTargetContext(aspect, me)){
+            if( consumers!=null ) {
+                for( Consumer<CodeTarget> consumer: consumers) {
+                    consumer.accept(this);
+                }
+            }
         }
+        return this;
     }
 }
