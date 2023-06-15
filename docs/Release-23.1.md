@@ -2,11 +2,11 @@
 
 # cgV19 Release 23.1
 
-This release brings some exciting new features to cgV19
+This release brings some exciting new features to cgV19.
 
 ## Support for JavaPoet
 
-You can use Java-Poet to implement your CodeGenerators for Java from a MClass-Instance.
+You can use Java-Poet to implement your CodeGenerators for Java from an MClass-Instance.
 
 See [the README in module core/cgv19-javapoet](../core/cgv19-javapoet/README.md)
 
@@ -15,17 +15,15 @@ See [the README in module core/cgv19-javapoet](../core/cgv19-javapoet/README.md)
 ![CodeTargetModel.png](images/CodeTargetModel.png)
 
 ### Don't reinvent the wheel
-With CodeTargets it is possible to build reusable Generators so that a cartridge A can
-use the CodeGenerator of the cartridge B and enhance it. So, if you want to generate an Entity
-with your EntityGenerator in can call a PoJoGenerator from another Cartridge and add the 
+With CodeTargets, it is possible to build reusable Generators so that cartridge A can
+use the CodeGenerator of cartridge B and enhance it. So, if you want to generate an Entity
+with your EntityGenerator, it can call a PoJoGenerator from another Cartridge and add the
 JPA-Annotations as required. This is possible because a CodeTarget divides an output file into
-sections which have snippets. Each snippet is addressable and you can add new snippets before
-it, after it or even replace it.
+sections that have snippets. Each snippet is addressable; you can add new snippets before, after, or even replace them.
 
-### Keep thinks together
-Another main advantage is that in a CodeTarget based Generator the code necessary to implement
-a certain aspect will stay together. In a classic template Generator it is  spread out over several
-sections of a output file. 
+### Keep things together
+Another main advantage is that in a CodeTarget-based Generator, the code necessary to implement a specific aspect will stay together. In a classic template Generator, this aspect is  spread out over several
+sections of an output file.
 
 ### Examples of using CodeTargets
 
@@ -33,9 +31,8 @@ See the JUnit-Test for code modification with CodeTarget
 [test example in CodeTargetModificationTest](../core/cgv19-core/src/test/java/de/spraener/nxtgen/target/CodeTargetModificationTest.java)
 
 #### A new and reusable PoJo-Generator
-With the introduction of CodeTargets the good old PoJo-Generator that was used
-as a template for cartridge creation can become a complete new role. Now it 
-can be the base for many other generators. Here is the new PoJo-Generator based on
+With the introduction of CodeTargets, the good old PoJo-Generator used
+as a template for cartridge creation can become an entirely new role. Now it can be the base for many other generators. Here is the new PoJo-Generator based on
 the CodeTarget-Concept: (see [PoJoGenerator.java](../core/cgv19-pojo/src/main/java/de/spraener/nxtgen/pojo/PoJoGenerator.java))
 
 ```Java
@@ -50,9 +47,8 @@ public class PoJoGenerator implements CodeGenerator {
 }
 ```
 
-The important part is the `new PoJoCodeTargetCreator(mc).createPoJoTarget()`. This create
-a new PoJoCodeTargetCreator which provides a CodeTarget filled with the PoJo-Code of
-an MClass ModelElement.
+The critical part is the `new PoJoCodeTargetCreator(mc).createPoJoTarget()`. This creates
+a new PoJoCodeTargetCreator provides a CodeTarget filled with the PoJo-Code of an MClass ModelElement.
 
 The Creator looks like this:
 ```java
@@ -94,10 +90,9 @@ public class PoJoCodeTargetCreator {
 }
 ```
 
-Each of the produced CodeSnippets can now be addressed by the Section, Aspect and ModelElement.
+Each of the produced CodeSnippets can now be addressed by the Section, Aspect, and ModelElement.
 
-If another Cartridge wants to be all PoJos implements the Serializable-Interface it can
-use this PoJo-CodeTarget and enhance it like:
+If another Cartridge wants to be all PoJos implements the Serializable-Interface, it can use this PoJo-CodeTarget and enhance it like:
 
 ```java
 CodeTarget target = new PoJoCodeTargetCreator(pojo).createPoJoTarget();
@@ -123,7 +118,7 @@ public class SerializableEnhancer implements Consumer<CodeTarget> {
             t.getSection(JavaSections.IMPORTS)
                     .add(new SingleLineSnippet("import java.io.Serializable;"));
 
-            // add an "implements" to the class declaration
+            //Add an "implements" to the class declaration
             t.getSection(JavaSections.IMPLEMENTS)
                     .add(new CodeBlockSnippet("Serializable"));
 
