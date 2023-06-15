@@ -58,7 +58,7 @@ public class PoJoCodeTargetCreator {
     }
 
     private CodeSection declarePackage(CodeTarget t) {
-        return t.getSection(JavaSections.HEADER).add(new SingleLineSnippet("package " + pojo.getPackage().getName() + ";"));
+        return t.getSection(JavaSections.HEADER).add(new SingleLineSnippet("package " + pojo.getPackage().getFQName() + ";"));
     }
 
     private void declareClazz(CodeTarget t) {

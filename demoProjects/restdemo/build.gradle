@@ -29,7 +29,8 @@ repositories {
 }
 
 cgV19 {
-    model='http://localhost:7001/de.spraener.students.oom'
+    model='./restDemo.oom'
+    //model='http://localhost:7001/de'
 }
 
 sourceSets {
