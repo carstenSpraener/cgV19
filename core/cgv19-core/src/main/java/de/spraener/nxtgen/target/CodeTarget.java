@@ -17,7 +17,6 @@ import java.util.function.Consumer;
  */
 public class CodeTarget {
     private Map<Object, CodeSection> mySectionMap = new LinkedHashMap<>();
-    public static ThreadLocal<Object> activeAspect = new ThreadLocal<>();
     /**
      * Add a CodeSection under the given Key to the CodeTarget. A former
      * added CodeSection under that key will be replaced.
