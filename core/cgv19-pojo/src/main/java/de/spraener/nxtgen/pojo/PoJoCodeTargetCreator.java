@@ -70,6 +70,7 @@ public class PoJoCodeTargetCreator {
         target.inContext(DEFAULT_CONSTRUCTOR, pojo, t -> {
             StringBuilder sb = new StringBuilder();
             sb.append("    public " + pojo.getName() + "() {\n");
+            sb.append("        super();\n");
             sb.append("    }\n");
             t.getSection(JavaSections.CONSTRUCTORS)
                     .add(new CodeBlockSnippet(sb.toString()));

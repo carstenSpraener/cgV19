@@ -21,7 +21,7 @@ public class CartridgeGeneratorHelper {
         return result;
     }
 
-    public static Map<String, List<MClass>> listCodeGeneratoryByStereotype(OOModel m) {
+    public static Map<String, List<MClass>> listCodeGeneratorByStereotype(OOModel m) {
         Set<MClass> set = m.getModelElements().stream()
                 .filter( me -> me instanceof MClass)
                 .filter( me -> StereotypeHelper.hasStereotye(me, MetaCartridge.STEREOTYPE_CODE_GENERATOR))

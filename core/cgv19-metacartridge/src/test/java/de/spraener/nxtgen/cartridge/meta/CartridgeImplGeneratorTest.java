@@ -11,9 +11,17 @@ public class CartridgeImplGeneratorTest extends AbstractOOModelTest {
     public static final String DEFAULT_IMPL = """
             //THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
             package pkg;
-                        
-            public class ACgv19Cartridge extends pkg.ACgv19CartridgeBase {
+                
+            import pkg.ACgv19CartridgeBase;
+                    
+            public class ACgv19Cartridge extends ACgv19CartridgeBase{
             
+
+                public ACgv19Cartridge() {
+                    super();
+                }
+
+
                 @Override
                 public String getName() {
                     return "ACgv19Cartridge";
