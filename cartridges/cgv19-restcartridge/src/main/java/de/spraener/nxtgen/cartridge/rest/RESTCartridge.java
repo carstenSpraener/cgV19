@@ -76,11 +76,11 @@ public class RESTCartridge extends  RESTCartridgeBase {
     }
 
     private boolean isSprintBootApplication(ModelElement me) {
-        return StereotypeHelper.hasStereotye(me, RESTStereotypes.SPRINGBOOTAPP.getName());
+        return StereotypeHelper.hasStereotype(me, RESTStereotypes.SPRINGBOOTAPP.getName());
     }
 
     private boolean isLogic(ModelElement me) {
-        return StereotypeHelper.hasStereotye(me, RESTStereotypes.LOGIC.getName());
+        return StereotypeHelper.hasStereotype(me, RESTStereotypes.LOGIC.getName());
     }
 
     private boolean isRepository(ModelElement me) {
@@ -100,7 +100,7 @@ public class RESTCartridge extends  RESTCartridgeBase {
     }
 
     private boolean hasStereotype(String sTypeName, ModelElement me) {
-        return StereotypeHelper.hasStereotye(me, sTypeName);
+        return StereotypeHelper.hasStereotype(me, sTypeName);
     }
 
 }

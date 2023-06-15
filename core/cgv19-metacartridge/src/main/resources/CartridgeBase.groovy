@@ -35,7 +35,7 @@ String getGeneratesOn(MClass codeGenerator) {
 
 String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
     StringBuffer sb = new StringBuffer();
-    sb.append("            if( StereotypeHelper.hasStereotye(me, \"${sTypeName}\") ) {\n");
+    sb.append("            if( StereotypeHelper.hasStereotype(me, \"${sTypeName}\") ) {\n");
     for( MClass codeGenerator : mClasses ) {
         String generatesOn = getGeneratesOn(codeGenerator)
         if( generatesOn!=null ) {

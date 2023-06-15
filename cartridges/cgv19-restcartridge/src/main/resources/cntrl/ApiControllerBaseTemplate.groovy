@@ -47,7 +47,7 @@ def toRequestMethod(MOperation op) {
 def requestMethodsDelegate(MClass mc) {
     StringBuilder sb = new StringBuilder();
     for( MOperation op : mc.getOperations() ) {
-        if( StereotypeHelper.hasStereotye(op, RESTStereotypes.REQUEST.getName()) ) {
+        if( StereotypeHelper.hasStereotype(op, RESTStereotypes.REQUEST.getName()) ) {
             sb.append(toRequestMethod(op));
         }
     }

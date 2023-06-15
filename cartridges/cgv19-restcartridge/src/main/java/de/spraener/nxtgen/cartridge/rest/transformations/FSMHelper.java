@@ -94,6 +94,6 @@ public class FSMHelper {
     }
 
     public boolean isInteractive(ModelElement me) {
-        return StereotypeHelper.hasStereotye(me, RESTStereotypes.INTERACTIVE.getName());
+        return StereotypeHelper.hasStereotype(me, RESTStereotypes.INTERACTIVE.getName());
     }
 }

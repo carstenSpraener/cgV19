@@ -20,7 +20,7 @@ public class ControlledOperationToFSM implements Transformation {
         MClass c = (MClass) element;
         if (c.getActivities() != null) {
             for (MActivity activity : c.getActivities()) {
-                if (StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLEDOPERATION.getName())) {
+                if (StereotypeHelper.hasStereotype(activity, RESTStereotypes.CONTROLLEDOPERATION.getName())) {
                     createFinalStateMachine(activity);
                 }
             }

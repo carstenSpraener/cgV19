@@ -12,7 +12,7 @@ public abstract class EnsureGeneratorDefinitionsTransformationBase implements de
         if( !(element instanceof MClass) ) {
             return;
         }
-        if( !StereotypeHelper.hasStereotye(element, "CodeGenerator")) {
+        if( !StereotypeHelper.hasStereotype(element, "CodeGenerator")) {
             return;
         }
         doTransformationIntern((MClass)element);

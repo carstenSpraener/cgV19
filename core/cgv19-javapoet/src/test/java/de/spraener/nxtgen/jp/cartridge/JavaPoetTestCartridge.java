@@ -26,7 +26,7 @@ public class JavaPoetTestCartridge implements Cartridge {
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
         List<CodeGeneratorMapping> mappingList = new ArrayList<>();
         for (ModelElement me : m.getModelElements()) {
-            if (me instanceof MClass mc && StereotypeHelper.hasStereotye(mc, "PoJo")) {
+            if (me instanceof MClass mc && StereotypeHelper.hasStereotype(mc, "PoJo")) {
                 mappingList.add(
                         CodeGeneratorMapping.create(mc, new JavaPoetGenerator(
                                 mClazz -> TypeSpec.classBuilder(mClazz.getName()),
@@ -35,7 +35,7 @@ public class JavaPoetTestCartridge implements Cartridge {
                         )
                 );
             }
-            if (me instanceof MClass mc && StereotypeHelper.hasStereotye(mc, "Entity")) {
+            if (me instanceof MClass mc && StereotypeHelper.hasStereotype(mc, "Entity")) {
                 mappingList.add(
                         CodeGeneratorMapping.create(mc, new JavaPoetGenerator(
                                 mClazz -> TypeSpec.classBuilder(mClazz.getName()),

@@ -12,7 +12,7 @@ public abstract class RemoveModelRootPackageBase implements de.spraener.nxtgen.T
         if( !(element instanceof MPackage) ) {
             return;
         }
-        if( !StereotypeHelper.hasStereotye(element, "ModelRoot")) {
+        if( !StereotypeHelper.hasStereotype(element, "ModelRoot")) {
             return;
         }
         doTransformationIntern((MPackage)element);

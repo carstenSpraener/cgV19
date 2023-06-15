@@ -37,7 +37,7 @@ def toRequestMethod(MOperation op) {
 def requestMethods(MClass c) {
     StringBuilder sb = new StringBuilder();
     for( MOperation op : c.getOperations() ) {
-        if( StereotypeHelper.hasStereotye(op, RESTStereotypes.REQUEST.getName()) ) {
+        if( StereotypeHelper.hasStereotype(op, RESTStereotypes.REQUEST.getName()) ) {
             sb.append(toRequestMethod(op));
         }
     }
@@ -63,7 +63,7 @@ def activityMethods(MClass c, String entityName) {
         return "";
     }
     for(MActivity activity : originalClass.getActivities() ) {
-        if( StereotypeHelper.hasStereotye(activity, RESTStereotypes.CONTROLLEDOPERATION.getName()) ) {
+        if( StereotypeHelper.hasStereotype(activity, RESTStereotypes.CONTROLLEDOPERATION.getName()) ) {
             sb.append(toControlledOperationHandler(c, entityName, activity));
         }
     }

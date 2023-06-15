@@ -35,7 +35,7 @@ public class MetaCartridgeBase implements Cartridge {
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
         List<CodeGeneratorMapping> result = new ArrayList<>();
         for( ModelElement me : m.getModelElements() ) {
-            if( StereotypeHelper.hasStereotye(me, "cgV19CartridgeBase") ) {
+            if( StereotypeHelper.hasStereotype(me, "cgV19CartridgeBase") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "cgV19CartridgeBase");
                     if (mapping != null) {
@@ -45,7 +45,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "GroovyScript") ) {
+            if( StereotypeHelper.hasStereotype(me, "GroovyScript") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "GroovyScript");
                     if (mapping != null) {
@@ -55,7 +55,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "Transformation") ) {
+            if( StereotypeHelper.hasStereotype(me, "Transformation") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "Transformation");
                     if (mapping != null) {
@@ -73,7 +73,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "cgV19Cartridge") ) {
+            if( StereotypeHelper.hasStereotype(me, "cgV19Cartridge") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "cgV19Cartridge");
                     if (mapping != null) {
@@ -83,7 +83,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "cgV19CartridgeServiceDefinition") ) {
+            if( StereotypeHelper.hasStereotype(me, "cgV19CartridgeServiceDefinition") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "cgV19CartridgeServiceDefinition");
                     if (mapping != null) {
@@ -93,7 +93,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "StereotypeEnum") ) {
+            if( StereotypeHelper.hasStereotype(me, "StereotypeEnum") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "StereotypeEnum");
                     if (mapping != null) {
@@ -103,7 +103,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "Stereotype") ) {
+            if( StereotypeHelper.hasStereotype(me, "Stereotype") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "Stereotype");
                     if (mapping != null) {
@@ -113,7 +113,7 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotye(me, "CodeGenerator") ) {
+            if( StereotypeHelper.hasStereotype(me, "CodeGenerator") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "CodeGenerator");
                     if (mapping != null) {

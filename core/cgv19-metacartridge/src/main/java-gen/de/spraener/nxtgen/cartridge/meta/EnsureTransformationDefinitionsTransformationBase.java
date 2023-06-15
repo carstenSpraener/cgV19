@@ -12,7 +12,7 @@ public abstract class EnsureTransformationDefinitionsTransformationBase implemen
         if( !(element instanceof MClass) ) {
             return;
         }
-        if( !StereotypeHelper.hasStereotye(element, "Transformation")) {
+        if( !StereotypeHelper.hasStereotype(element, "Transformation")) {
             return;
         }
         doTransformationIntern((MClass)element);

@@ -12,7 +12,7 @@ String checkStereotype(MClass mClass) {
     String requiredStereotype = sType.getTaggedValue("requiredStereotype");
     if( requiredStereotype!=null && !"".equals(requiredStereotype) ) {
         return """
-        if( !StereotypeHelper.hasStereotye(element, "${requiredStereotype}")) {
+        if( !StereotypeHelper.hasStereotype(element, "${requiredStereotype}")) {
             return;
         }"""
     } else {

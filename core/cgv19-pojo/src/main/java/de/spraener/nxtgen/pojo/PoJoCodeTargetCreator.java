@@ -39,7 +39,7 @@ public class PoJoCodeTargetCreator {
     private void declareImplements(CodeTarget target) {
         if (pojo.getDependencies() != null) {
             for (MDependency dependency : pojo.getDependencies()) {
-                if (StereotypeHelper.hasStereotye(dependency, "Implements")) {
+                if (StereotypeHelper.hasStereotype(dependency, "Implements")) {
                     MClass depTarget = (MClass) ((OOModel) pojo.getModel()).findClassByName(dependency.getTarget());
                     addImplements(target, depTarget);
                 }

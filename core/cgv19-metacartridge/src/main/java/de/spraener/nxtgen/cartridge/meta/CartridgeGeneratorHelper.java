@@ -12,7 +12,7 @@ public class CartridgeGeneratorHelper {
     public static List<MClass> listTransformations(OOModel m) {
         Set<MClass> set = m.getModelElements().stream()
                 .filter( me -> me instanceof MClass)
-                .filter( me -> StereotypeHelper.hasStereotye(me, MetaCartridge.STEREOTYPE_TRANSFORMATION))
+                .filter( me -> StereotypeHelper.hasStereotype(me, MetaCartridge.STEREOTYPE_TRANSFORMATION))
                 .map( me -> (MClass)me)
                 .collect(Collectors.toSet());
         List<MClass> result = new ArrayList<>();
@@ -24,7 +24,7 @@ public class CartridgeGeneratorHelper {
     public static Map<String, List<MClass>> listCodeGeneratorByStereotype(OOModel m) {
         Set<MClass> set = m.getModelElements().stream()
                 .filter( me -> me instanceof MClass)
-                .filter( me -> StereotypeHelper.hasStereotye(me, MetaCartridge.STEREOTYPE_CODE_GENERATOR))
+                .filter( me -> StereotypeHelper.hasStereotype(me, MetaCartridge.STEREOTYPE_CODE_GENERATOR))
                 .map( me -> (MClass)me)
                 .collect(Collectors.toSet());
         Map<String, List<MClass>> result = new HashMap<>();

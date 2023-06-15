@@ -12,7 +12,7 @@ public abstract class CartridgeServicesLocatorTransformationBase implements de.s
         if( !(element instanceof MClass) ) {
             return;
         }
-        if( !StereotypeHelper.hasStereotye(element, "cgV19Cartridge")) {
+        if( !StereotypeHelper.hasStereotype(element, "cgV19Cartridge")) {
             return;
         }
         doTransformationIntern((MClass)element);

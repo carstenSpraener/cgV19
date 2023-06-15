@@ -136,7 +136,7 @@ String attrMetaInf() {
         def listed = "true";
         def type = "string";
         def label = it.name;
-        if (StereotypeHelper.hasStereotye(it, RESTStereotypes.PERSISTENTFIELD.getName()) ){
+        if (StereotypeHelper.hasStereotype(it, RESTStereotypes.PERSISTENTFIELD.getName()) ){
             label = readDbFieldTaggedValue(it, "label")
             if (label == null) {
                 label = it.name;

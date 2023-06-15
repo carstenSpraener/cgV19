@@ -53,7 +53,7 @@ public class ResourceToEntity extends ResourceToEntityBase {
     }
 
     public static void ensureEntityDefinition(MAttribute a) {
-        if( !StereotypeHelper.hasStereotye(a, RESTStereotypes.DBFIELD.getName())) {
+        if( !StereotypeHelper.hasStereotype(a, RESTStereotypes.DBFIELD.getName())) {
             Stereotype sType = new StereotypeImpl(RESTStereotypes.DBFIELD.getName());
             sType.setTaggedValue("dbFieldName", toDbFieldName(a.getName()));
             sType.setTaggedValue("dbType", toDbType(a.getType()));
@@ -78,7 +78,7 @@ public class ResourceToEntity extends ResourceToEntityBase {
         entity.getStereotypes().add(eSType);
         // copy attributes as DBFields
         for (MAttribute attr : mClass.getAttributes()) {
-            if( StereotypeHelper.hasStereotye(attr, RESTStereotypes.LINK.getName()) ) {
+            if( StereotypeHelper.hasStereotype(attr, RESTStereotypes.LINK.getName()) ) {
                  entity.addChilds(createLinkRelation(attr));
             } else {
                 entity.addAttribute(toDBField(attr));

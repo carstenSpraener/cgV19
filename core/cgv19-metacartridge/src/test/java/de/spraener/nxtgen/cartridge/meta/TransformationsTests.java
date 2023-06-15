@@ -29,7 +29,7 @@ public class TransformationsTests extends AbstractOOModelTest {
         MClass baseClass = oomObjectMother.getModel().findClassByName(mc.getFQName() + "Base");
         assertNotNull(baseClass);
         // ...with stereotype "cgv19CartridgeBase"...
-        assertTrue(StereotypeHelper.hasStereotye(baseClass, MetaCartridge.STYPE_CGV19CARTRIDGE_BASE));
+        assertTrue(StereotypeHelper.hasStereotype(baseClass, MetaCartridge.STYPE_CGV19CARTRIDGE_BASE));
         // ...and the original class inherits from this.
         assertTrue(mc.getInheritsFrom().getFullQualifiedClassName().equals(baseClass.getFQName()));
     }
@@ -47,7 +47,7 @@ public class TransformationsTests extends AbstractOOModelTest {
 
         MClass clazz = oomObjectMother.getModel().findClassByName("pkg.CartridgeServiceLocator");
         assertNotNull(clazz);
-        assertTrue(StereotypeHelper.hasStereotye(clazz, MetaCartridge.STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION));
+        assertTrue(StereotypeHelper.hasStereotype(clazz, MetaCartridge.STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION));
     }
 
     @Test
