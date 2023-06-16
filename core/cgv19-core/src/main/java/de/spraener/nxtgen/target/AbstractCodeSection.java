@@ -46,6 +46,12 @@ public abstract class AbstractCodeSection implements CodeSection {
     @Override
     public List<CodeSnippetRef> getSnippetsForAspect(Object aspect) {
         return getCodeSnippetList(aspect).stream()
+                .filter(s -> {
+                    if( aspect==null ) {
+                        return true;
+                    }
+                    return aspect.equals(s.getAspect());
+                })
                 .map(s -> new CodeSnippetRef(this, s))
                 .collect(Collectors.toList());
 
@@ -125,6 +131,7 @@ public abstract class AbstractCodeSection implements CodeSection {
             int idx = snippetList.indexOf(snippet);
             if (idx >= 0) {
                 snippetList.add(idx + 1, snippetToInsert);
+                snippetToInsert.updateAspect(snippet);
                 snippetList.remove(idx);
             }
         }
