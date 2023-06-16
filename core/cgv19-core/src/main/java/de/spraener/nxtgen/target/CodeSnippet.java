@@ -73,4 +73,12 @@ public abstract class CodeSnippet {
     public Object getAspect() {
         return aspect;
     }
+
+    public ModelElement getModelElement() {
+        return this.me;
+    }
+
+    void updateAspect(CodeSnippet snippet) {
+        this.aspect = snippet.getAspect();
+    }
 }

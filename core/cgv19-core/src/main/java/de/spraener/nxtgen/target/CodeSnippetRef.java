@@ -21,7 +21,15 @@ public class CodeSnippetRef {
     }
 
     public CodeSnippetRef insertBefore(Object aspect, String code) {
-        return insertBefore(new CodeBlockSnippet(aspect, null, code));
+        return insertBefore(new CodeBlockSnippet(aspect, CodeTargetContext.getActiveContext().getModelElement(), code));
+    }
+
+    public CodeSnippetRef insertBefore(String code) {
+        insertBefore(
+                CodeTargetContext.getActiveContext().getAspect(),
+                code
+        );
+        return this;
     }
 
     public CodeSnippetRef replace(CodeSnippet snippetToInsert) {
@@ -35,7 +43,15 @@ public class CodeSnippetRef {
     }
 
     public CodeSnippetRef replace(Object aspect, String code) {
-        return replace(new CodeBlockSnippet(aspect, null, code));
+        return replace(new CodeBlockSnippet(aspect, CodeTargetContext.getActiveContext().getModelElement(), code));
+    }
+
+    public CodeSnippetRef replace(String code) {
+        replace(
+                CodeTargetContext.getActiveContext().getAspect(),
+                code
+        );
+        return this;
     }
 
     public CodeSnippetRef insertAfter(CodeSnippet snippetToInsert) {
@@ -50,6 +66,14 @@ public class CodeSnippetRef {
 
     public CodeSnippetRef insertAfter(Object aspect, String code) {
         insertAfter(new CodeBlockSnippet(aspect, null, code));
+        return this;
+    }
+
+    public CodeSnippetRef insertAfter(String code) {
+        insertAfter(
+                CodeTargetContext.getActiveContext().getAspect(),
+                code
+        );
         return this;
     }
 

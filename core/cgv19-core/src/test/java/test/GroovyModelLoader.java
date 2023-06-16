@@ -18,7 +18,7 @@ public class GroovyModelLoader implements ModelLoader {
     public Model loadModel(String modelURI) {
         try {
             Binding binding = new Binding();
-            binding.setVariable("foo", new Integer(2));
+            binding.setVariable("foo", Integer.valueOf(2));
             GroovyShell shell = new GroovyShell(binding);
 
             Object value = shell.evaluate(new InputStreamReader(GroovyModelLoader.class.getResourceAsStream(modelURI)));

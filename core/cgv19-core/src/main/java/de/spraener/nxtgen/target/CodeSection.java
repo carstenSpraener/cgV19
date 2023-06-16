@@ -18,6 +18,16 @@ public interface CodeSection {
     CodeSection add(Object aspect, ModelElement me, String code);
     CodeSection insertBefore(CodeSnippet snippet, CodeSnippet snippetToInsert);
     CodeSection insertAfter(CodeSnippet snippet, CodeSnippet snippetToInsert);
+
+    /**
+     * DANGER! This replace-method will REPLACE! the snippet with the snippetToInsert. Only use this method
+     * when you are really sure to do so. The aspect of the snippetToInsert will be overwritten with the
+     * aspect of the replaced snippet. USE WITH CARE!
+     *
+     * @param snippet the snippet to be replaced and to take the aspect from
+     * @param snippetToInsert the snippet to replace the old snippet and get the aspect from the old snippet.
+     * @return the CodeSection with replaced snippet.
+     */
     CodeSection replace(CodeSnippet snippet, CodeSnippet snippetToInsert);
 
     Collection<CodeSnippet> getSnippetsOrdered();
