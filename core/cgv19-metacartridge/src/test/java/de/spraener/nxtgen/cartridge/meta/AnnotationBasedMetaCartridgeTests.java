@@ -10,7 +10,7 @@ public class AnnotationBasedMetaCartridgeTests {
     @Test
     public void testCartridgeLoading() {
         assertEquals(10, uut.getTransformations().size());
-        assertEquals(8, uut.getGeneratorWrappers().size() );
+        assertEquals(9, uut.getGeneratorWrappers().size() );
     }
 
     @Test

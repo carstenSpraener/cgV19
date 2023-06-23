@@ -17,6 +17,10 @@ public class PoJoGenerator {
         return (MClass)mClass.getObject(ORIGINAL_CLASS);
     }
 
+    public static void setOriginalClass(MClass pojo, MClass originalClass) {
+        pojo.putObject(ORIGINAL_CLASS, originalClass);
+    }
+
     @CGV19Transformation(
             requiredStereotype = PoJoCartridge.ST_POJO,
             operatesOn = MClass.class

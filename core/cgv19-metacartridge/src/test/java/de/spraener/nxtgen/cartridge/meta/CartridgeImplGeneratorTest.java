@@ -12,7 +12,6 @@ public class CartridgeImplGeneratorTest extends AbstractOOModelTest {
             //THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
             package pkg;
                 
-            import pkg.ACgv19CartridgeBase;
                     
             public class ACgv19Cartridge extends ACgv19CartridgeBase{
             
@@ -20,7 +19,6 @@ public class CartridgeImplGeneratorTest extends AbstractOOModelTest {
                 public ACgv19Cartridge() {
                     super();
                 }
-
 
                 @Override
                 public String getName() {

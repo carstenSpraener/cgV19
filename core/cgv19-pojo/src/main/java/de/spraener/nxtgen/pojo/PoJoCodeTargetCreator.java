@@ -15,8 +15,12 @@ public class PoJoCodeTargetCreator {
 
     public CodeTarget createPoJoTarget() {
         CodeTarget target = new ClassFrameTargetCreator(this.mClass).createPoJoTarget();
-        MClass pojo = PoJoGenerator.getOriginalClass(this.mClass);
-        if( pojo!=null ) {
+        MClass orgClass = PoJoGenerator.getOriginalClass(this.mClass);
+        if( orgClass == null ) {
+            orgClass = mClass;
+        }
+        if( orgClass!=null ) {
+            final MClass pojo = orgClass;
             target.inContext(POJO_ASPECT, pojo,
                     ct -> new PoJoAttributesCreator().accept(ct, pojo),
                     ct -> new PoJoAssociationCreator().accept(ct, pojo)
