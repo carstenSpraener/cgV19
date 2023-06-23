@@ -1,6 +1,10 @@
-package de.spraener.nxtgen;
+package de.spraener.nxtgen.cartridges;
 
+import de.spraener.nxtgen.Cartridge;
+import de.spraener.nxtgen.CodeGeneratorMapping;
+import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
+import de.spraener.nxtgen.annotations.CGV19Component;
 import de.spraener.nxtgen.annotations.CGV19Generator;
 import de.spraener.nxtgen.annotations.CGV19Transformation;
 import de.spraener.nxtgen.model.Model;
@@ -9,6 +13,7 @@ import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +31,17 @@ public class AnnotatedCartridgeImpl implements Cartridge {
                 new ConfigurationBuilder()
                         .forPackage(pkgName)
                         .filterInputsBy(new FilterBuilder().includePackage(pkgName)));
+        Set<Class<?>> componentClasses = reflections.getTypesAnnotatedWith(CGV19Component.class);
+        for( Class<?> componentClass : componentClasses ) {
+            for( Method m  : componentClass.getMethods() ) {
+                if( m.isAnnotationPresent(CGV19Generator.class) ) {
+                    this.generatorWrapperList.add(new GeneratorWrapper(componentClass, m));
+                }
+                if( m.isAnnotationPresent(CGV19Transformation.class) ) {
+                    this.transformationList.add(new TransformationWrapper(componentClass, m));
+                }
+            }
+        }
         Set<Class<?>> transformationClasses = reflections.getTypesAnnotatedWith(CGV19Transformation.class);
         for( Class<?> t : transformationClasses ) {
             this.transformationList.add( new TransformationWrapper(t));
@@ -53,7 +69,7 @@ public class AnnotatedCartridgeImpl implements Cartridge {
         for(ModelElement e : m.getModelElements() ) {
             for( GeneratorWrapper gw : this.generatorWrapperList ) {
                 if( gw.matches(e) ) {
-                    mappingList.add(CodeGeneratorMapping.create(e, gw.createCodeGeneratorInstance()));
+                    mappingList.add(CodeGeneratorMapping.create(e, gw));
                 }
             }
         }

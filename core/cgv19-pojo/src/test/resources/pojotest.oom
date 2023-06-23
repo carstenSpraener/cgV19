@@ -1,0 +1,18 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'a'
+        mClass {
+            name 'PoJoA'
+            xmiID '_18_5_3_40201a1_1598192894951_110135_4796'
+            stereotype 'PoJo', {
+            }
+            mAttribute {
+                name 'name'
+                type 'String'
+                visibility 'private'
+            }
+        }
+    }
+}
