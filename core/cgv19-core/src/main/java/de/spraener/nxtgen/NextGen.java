@@ -1,5 +1,6 @@
 package de.spraener.nxtgen;
 
+import de.spraener.nxtgen.annotations.CGV19Cartridge;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * The begining of all the hacks...
@@ -111,7 +113,8 @@ public class NextGen implements Runnable {
 
     public void run() {
         try {
-            LOGGER.info(() -> "starting codegen in working dir "+getWorkingDir()+" on model file " + modelURI);
+            String fqWorkingDir = new File(getWorkingDir()).getAbsolutePath();
+            LOGGER.info(() -> "starting codegen in working dir "+fqWorkingDir+" on model file " + modelURI);
             for (Cartridge c : loadCartridges()) {
                 List<Model> models = loadModels(this.modelURI);
                 for (Model m : models) {

@@ -30,7 +30,8 @@ class PoJoCodeTargetCreatorTest {
                 private List<CPojo> myCPoJos = null;
                         
                 public APojo() {
-                }
+                    super();
+               }
                         
                 public String getName() {
                     return name;
@@ -99,6 +100,7 @@ class PoJoCodeTargetCreatorTest {
                 private List<CPojo> myCPoJos = null;
                         
                 public APojo() {
+                    super();
                 }
                         
                 public String getName() {

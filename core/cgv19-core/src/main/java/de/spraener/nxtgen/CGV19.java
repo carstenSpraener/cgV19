@@ -11,6 +11,9 @@ import java.util.function.Supplier;
 
 import static de.spraener.nxtgen.NextGen.LOGGER;
 
+/**
+ * TODO: Document this class
+ */
 public class CGV19 {
     private Properties props = null;
     private static CGV19 myInstance = null;
