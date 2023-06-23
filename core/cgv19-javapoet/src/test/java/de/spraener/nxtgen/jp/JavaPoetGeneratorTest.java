@@ -20,14 +20,14 @@ class JavaPoetGeneratorTest {
         tsBuilder.addField(fs);
         MethodSpec getter = MethodSpec.methodBuilder("getName")
                 .returns(String.class)
-                .addStatement("return $L;", "name")
+                .addStatement("return $L", "name")
                 .addModifiers(Modifier.PUBLIC)
                 .build();
         tsBuilder.addMethod(getter);
         MethodSpec setter = MethodSpec.methodBuilder("setName")
                 .returns(TypeName.VOID)
                 .addParameter(String.class, "value")
-                .addStatement("this.$L=value;", "name")
+                .addStatement("this.$L=value", "name")
                 .addModifiers(Modifier.PUBLIC)
                 .build();
         tsBuilder.addMethod(setter);
@@ -55,15 +55,15 @@ class JavaPoetGeneratorTest {
         Assertions.assertThat(code)
                 .contains("""
                         class SimplePoJo {
-                          private java.lang.String name;
+                          private String name;
                                                 
-                          public java.lang.String getName() {
-                            return name;;
+                          public String getName() {
+                            return name;
                           }
                           
-                          @java.lang.Deprecated                      
-                          public void setName(java.lang.String value) {
-                            this.name=value;;
+                          @Deprecated                      
+                          public void setName(String value) {
+                            this.name=value;
                           }
                         }
                         """);

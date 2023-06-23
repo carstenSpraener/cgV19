@@ -15,7 +15,13 @@ public class TransformationBaseGeneratorTests extends AbstractOOModelTest {
             import de.spraener.nxtgen.model.ModelElement;
             import de.spraener.nxtgen.oom.model.*;
             import de.spraener.nxtgen.oom.StereotypeHelper;
+            import de.spraener.nxtgen.oom.model.*;
+            import de.spraener.nxtgen.annotations.*;
                         
+            @CGV19Transformation(
+                    requiredStereotype = "null",
+                    operatesOn = {{MODEL_ELEMENT}}
+            )
             public abstract class ATransformationBase implements de.spraener.nxtgen.Transformation {
                         
                 @Override
@@ -40,7 +46,7 @@ public class TransformationBaseGeneratorTests extends AbstractOOModelTest {
 
         String code = uut.resolve(gen, "").toCode();
         assertThat(code)
-                .contains(TR_BASE_START)
+                .contains(TR_BASE_START.replace("{{MODEL_ELEMENT}}", "MClass.class"))
                 .contains("""
                                 if( !(element instanceof MClass) ) {
                                     return;
@@ -60,7 +66,7 @@ public class TransformationBaseGeneratorTests extends AbstractOOModelTest {
 
         String code = uut.resolve(gen, "").toCode();
         assertThat(code)
-                .contains(TR_BASE_START)
+                .contains(TR_BASE_START.replace("{{MODEL_ELEMENT}}", "MOperation.class"))
                 .contains("""
                                 if( !(element instanceof MOperation) ) {
                                     return;
@@ -80,7 +86,7 @@ public class TransformationBaseGeneratorTests extends AbstractOOModelTest {
 
         String code = uut.resolve(gen, "").toCode();
         assertThat(code)
-                .contains(TR_BASE_START)
+                .contains(TR_BASE_START.replace("{{MODEL_ELEMENT}}", "ModelElement.class"))
                 .contains("""
                                 if( !(element instanceof ModelElement) ) {
                                     return;

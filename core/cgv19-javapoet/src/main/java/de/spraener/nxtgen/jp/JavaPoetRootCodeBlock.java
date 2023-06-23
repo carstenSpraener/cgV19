@@ -34,7 +34,11 @@ public class JavaPoetRootCodeBlock extends JavaCodeBlock {
         try {
             StringBuilder sb = new StringBuilder();
             sb.append(super.toCode());
-            JavaFile.builder(myClass.getPackage().getFQName(), typeSpecBuilder.build())
+            String pkg = "";
+            if( myClass.getPackage()!=null ) {
+                pkg = myClass.getPackage().getFQName();
+            }
+            JavaFile.builder(pkg, typeSpecBuilder.build())
                     .skipJavaLangImports(true)
                     .build()
                     .writeTo(sb);
