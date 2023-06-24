@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.cartridge.rest;
 
 import de.spraener.nxtgen.annotations.CGV19Component;
+import de.spraener.nxtgen.annotations.CGV19MustacheGenerator;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
@@ -12,14 +13,12 @@ import java.util.Map;
 @CGV19Component
 public class SpringBootApp {
 
-    /*
     @CGV19MustacheGenerator(
+            value="build.gradle",
             requiredStereotype="SpringBootApp",
             operatesOn= MClass.class,
-            template="/mustache/springBootApp/build.gradle.mustache",
-            outputFile="build.gradle"
+            templateResource="/mustache/springBootApp/build.gradle.mustache"
     )
-    */
     public static void fillBuildScriptMap(ModelElement modelElement, Map<String, Object> mustacheScope) {
         MClass app = (MClass) modelElement;
         mustacheScope.put("springBootVersion", "3.1.0");
