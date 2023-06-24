@@ -39,9 +39,8 @@ def toRequestMethod(MOperation op) {
     }
     return """
     @GetMapping(path = "${requestPath}")
-    @ResponseBody
-    public ${type} ${name}(${paramList}) {
-        return this.logic.${name}(${delegateParamList});
+    public ResponseEntity<${type}> ${name}(${paramList}) {
+        return ResponseEntity.ok().body(this.logic.${name}(${delegateParamList}));
     }
 """;
 }
@@ -63,50 +62,44 @@ String dataTypeMethods(ModelElement me ) {
         return "";
     }
     return """    @GetMapping(path="/meta-inf", produces = "application/json")
-    @ResponseBody
     public String getMetaInf() {
         return ${dataType}.getMetaInfJSON();
     }
 
     @GetMapping(path="/{id}", produces = "application/json")
-    @ResponseBody
-    public ${dataType} get${dataType}(@PathVariable String id) {
+    public ResponseEntity<${dataType}> get${dataType}(@PathVariable String id) {
         ${dataType} data = logic.findOrCreate(Long.getLong(id));
 
         if( data == null ) {
-            throw new RuntimeException("no ${dataType} with id: "+id+" found");
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return data;
+        return ResponseEntity.ok().body(data);
     }
 
     @GetMapping(produces = "application/json")
-    @ResponseBody
-    public Iterable<${dataType}> list${dataType}() {
+    public ResponseEntity<Iterable<${dataType}>> list${dataType}() {
         Iterable<${dataType}> data = logic.findFirstPage();
 
         if( data == null ) {
-            throw new RuntimeException("no ${dataType} found");
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return data;
+        return ResponseEntity.ok().body(data);
     }
 
     @PostMapping()
-    @ResponseBody
-    public ${dataType} post(@RequestBody String valueJson) {
-        return this.logic.save( this.logic.fromJson(valueJson));
+    public ResponseEntity<${dataType}> post(@RequestBody String valueJson) {
+        return ResponseEntity.ok().body(this.logic.save( this.logic.fromJson(valueJson)));
     }
 
     @PutMapping()
-    @ResponseBody
-    public ${dataType} put(@RequestBody String valueJson) {
+    public ResponseEntity<${dataType}> put(@RequestBody String valueJson) {
         ${dataType} value = this.logic.fromJson(valueJson);
-        return this.logic.update(value);
+        return ResponseEntity.ok().body(this.logic.update(value));
     }
 
     @DeleteMapping(path="/{id}")
-    @ResponseBody
-    public ${dataType} delete(@PathVariable String id) {
-        return this.logic.delete(Long.getLong(id));
+    public ResponseEntity<${dataType}> delete(@PathVariable String id) {
+        return ResponseEntity.ok().body(this.logic.delete(Long.getLong(id)));
     }
 """
 }
@@ -128,6 +121,8 @@ return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
 import ${CGV19.definitionOf("javax.persistence")}.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;

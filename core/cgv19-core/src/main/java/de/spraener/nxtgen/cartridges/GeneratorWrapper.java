@@ -13,15 +13,12 @@ import java.lang.reflect.Method;
 import java.util.function.Consumer;
 
 public class GeneratorWrapper implements CodeGenerator {
-    private CGV19Generator generatorSpec;
-    private Class<? extends CodeGenerator> generatorClass;
-    private Method cgMethod = null;
+    protected GeneratorSpec generatorSpec;
+    protected Class<? extends CodeGenerator> generatorClass;
+    protected Method cgMethod = null;
 
     public GeneratorWrapper(Class<?> g, Method cgMethod) {
-        generatorSpec = g.getAnnotation(CGV19Generator.class);
-        if(generatorSpec == null ) {
-            generatorSpec = cgMethod.getAnnotation(CGV19Generator.class);
-        }
+        this.generatorSpec = readGeneratorSpec(g, cgMethod);
         try {
             g.getConstructor(Consumer[].class);
         } catch( NoSuchMethodException nsmXC ) {
@@ -35,11 +32,19 @@ public class GeneratorWrapper implements CodeGenerator {
         this.cgMethod = cgMethod;
     }
 
+    protected GeneratorSpec readGeneratorSpec(Class<?> g, Method cgMethod) {
+        GeneratorSpec  generatorSpec = GeneratorSpec.from(g.getAnnotation(CGV19Generator.class));
+        if(generatorSpec == null ) {
+            generatorSpec = GeneratorSpec.from(cgMethod.getAnnotation(CGV19Generator.class));
+        }
+        return generatorSpec;
+    }
+
     public GeneratorWrapper(Class<?> g) {
         this(g, readCgMethod(g));
     }
 
-    private static Method readCgMethod(Class<?> g) {
+    static Method readCgMethod(Class<?> g) {
         try {
             return g.getMethod("resolve", ModelElement.class, String.class);
         } catch( ReflectiveOperationException roXC ) {
@@ -48,19 +53,19 @@ public class GeneratorWrapper implements CodeGenerator {
     }
 
     public Class<? extends ModelElement> operatesOn() {
-        return this.generatorSpec.operatesOn();
+        return this.generatorSpec.getOperatesOn();
     }
 
     public String requiredStereotype() {
-        return this.generatorSpec.requiredStereotype();
+        return this.generatorSpec.getRequiredStereotype();
     }
 
     public boolean matches(ModelElement e ) {
-        if( e.getClass().isAssignableFrom(this.generatorSpec.operatesOn()) ) {
-            if( this.generatorSpec.requiredStereotype()==null || "".equals(this.generatorSpec.requiredStereotype())) {
+        if( e.getClass().isAssignableFrom(this.generatorSpec.getOperatesOn()) ) {
+            if( this.generatorSpec.getRequiredStereotype()==null || "".equals(this.generatorSpec.getRequiredStereotype())) {
                 return true;
             }
-            return matchesStereotype( e, this.generatorSpec.requiredStereotype());
+            return matchesStereotype( e, this.generatorSpec.getRequiredStereotype());
         }
         return false;
     }
@@ -85,20 +90,4 @@ public class GeneratorWrapper implements CodeGenerator {
         }
     }
 
-    public CodeGenerator createCodeGeneratorInstance() {
-        String msg = "";
-        Throwable error;
-        try {
-            return this.generatorClass.getConstructor(Consumer[].class).newInstance((Object)new Consumer[] {});
-        } catch( ReflectiveOperationException roXC ) {
-            msg += roXC.getLocalizedMessage();
-        }
-        try {
-            return this.generatorClass.getConstructor().newInstance();
-        } catch( ReflectiveOperationException roXC ) {
-            msg += roXC.getLocalizedMessage();
-            error = roXC;
-        }
-        throw new RuntimeException("Unable to create an Instance of "+ generatorClass.getName()+": "+msg, error);
-    }
 }

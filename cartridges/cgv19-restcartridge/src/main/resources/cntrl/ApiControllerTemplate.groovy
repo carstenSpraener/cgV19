@@ -8,10 +8,9 @@ OOModel model = mClass.getModel();
 """//${ProtectionStrategieDefaultImpl.GENERATED_LINE}
 package ${mClass.getPackage().getFQName()};
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller()
+@RestController()
 @RequestMapping("/${mClass.getName().toLowerCase()}")
 public class ${mClass.getName()} extends ${mClass.getName()}Base {
 

@@ -1,0 +1,17 @@
+# THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
+FROM {{dockerGradleBuildImage}} as stage1
+
+WORKDIR /{{projectName}}
+
+COPY src ./src/
+COPY build.gradle ./
+
+RUN gradle --no-daemon bootJar
+
+FROM {{dockerProductionRunImage}} as prod
+ENV TZ={{timeZone}}
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+WORKDIR /opt/{{projectName}}
+
+COPY --from=stage1 /{{projectName}}/build/libs/{{projectName}}*.jar  /opt/{{projectName}}/{{projectName}}.jar
+CMD ["java","-jar", "{{projectName}}.jar"]

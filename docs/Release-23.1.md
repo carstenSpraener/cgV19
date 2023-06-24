@@ -132,3 +132,99 @@ public class SerializableEnhancer implements Consumer<CodeTarget> {
     }
 }
 ```
+
+## Annotation based cartridges
+
+The creation of your own cartridge gets much easier with the annotation
+approach. You can create a subclass of AnnotatedCartridgeImpl
+
+```java
+@CGV19Cartridge("PoJo-Cartridge")
+public class PoJoCartridge extends AnnotatedCartridgeImpl {
+}
+```
+
+The classes in the package of this class and all its subpackages are scanned for classes
+annotated with @CGV19Generator, @CGV19Transformation, @CGV19MustacheGenerator or @CGV19Component.
+
+Each of these classes represent a CodeGenerator, a Transformation or a Class with methods
+that representing a Generator or Transformation.
+
+See [PoJoGenerator.java](../core/cgv19-pojo/src/main/java/de/spraener/nxtgen/pojo/PoJoGenerator.java)
+as an example of how to use the annotations.
+
+Listing the transformations or mapping the generators  to 
+model elements is done by the AnnotatedCartridgeImpl. No
+need to implement that.
+
+Here the annotation part of the PoJo generator:
+
+```java
+@CGV19Component
+public class PoJoGenerator {
+
+    @CGV19Transformation(
+            requiredStereotype = PoJoCartridge.ST_POJO,
+            operatesOn = MClass.class
+    )
+    public void doTransformation(ModelElement me) {
+        ...
+    }
+    
+    @CGV19Generator(
+            requiredStereotype  PoJoCartridge.ST_POJO_BASE,
+            outputTo = OutputTo.SRC,
+            outputType = OutputType.JAVA,
+            operatesOn = MClass.class,
+            implementationKind = ImplementationKind.CLASS_TARGET
+    )
+    public CodeBlock generatePoJoBase(ModelElement element, String templateName) {
+        ...
+    }
+    
+    @CGV19Generator(
+            requiredStereotype = PoJoCartridge.ST_POJO,
+            outputTo = OutputTo.SRC_GEN,
+            outputType = OutputType.JAVA,
+            operatesOn = MClass.class,
+            implementationKind = ImplementationKind.CLASS_TARGET
+    )
+    public CodeBlock generatePoJo(ModelElement element, String templateName) {
+        ...
+    }
+}
+```
+## [Mustache Support](https://github.com/spullara/mustache.java)
+Mustache is a template engine, that is very handy when the output file is linear and
+logic free. This is often the case for propertie files, Dockerfile or build scripts.
+
+With mustache, you can create your output files with a
+mail merge concept. Filling some data provider with data
+and reference these data in the template.
+
+To implement a Mustache generator just implement a 
+method inside a @CGV19Component annotated class like 
+the following:
+
+```java
+@CGV19MustacheGenerator(
+        value="build.gradle",
+        requiredStereotype="SpringBootApp",
+        operatesOn= MClass.class,
+        templateResource="/mustache/springBootApp/build.gradle.mustache"
+)
+public static void fillBuildScriptMap(ModelElement modelElement, Map<String, Object> mustacheScope) {
+    MClass app = (MClass) modelElement;
+    mustacheScope.put("springBootVersion", "3.1.0");
+    mustacheScope.put("springDependencyManagementVersion", "1.1.0");
+    mustacheScope.put("app.group", ((MPackage)app.getPackage().getParent()).getFQName());
+    mustacheScope.put("app.version", "0.0.1-SNAPSHOT");
+    mustacheScope.put("javaSourceVersion", "17");
+    mustacheScope.put("applicationMainClass", app.getFQName());
+    List<Map<String, String>>  implementationDependencies = new ArrayList<>();
+    mustacheScope.put("implementationDependencies", implementationDependencies);
+    implementationDependencies.add( Map.of("coordinates", "org.springframework.boot:spring-boot-starter-oauth2-resource-server"));
+    implementationDependencies.add( Map.of("coordinates", "org.springframework.boot:spring-boot-starter-oauth2-client"));
+}
+```
+

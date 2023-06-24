@@ -1,5 +1,6 @@
 package cntrl
 
+import de.spraener.nxtgen.CGV19
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.model.ModelElement
@@ -7,6 +8,8 @@ import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
+
+def persistenceAPI = CGV19.definitionOf("javax.persistence");
 
 def toLogicName(me) {
     return me.name.replace("Controller", "Logic").replace("Base", "");
@@ -37,9 +40,8 @@ def toRequestMethod(MOperation op) {
     }
     return """
     @GetMapping(path = "${requestPath}")
-    @ResponseBody
-    public ${type} ${name}(${paramList}) {
-        return this.logic.${name}(${delegateParamList});
+    public ResponseEntity<${type}> ${name}(${paramList}) {
+        return ResponseEntity.ok().body(this.logic.${name}(${delegateParamList}));
     }
 """;
 }
@@ -61,7 +63,9 @@ def logicName = toLogicName(modelElement);
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
-import javax.persistence.*;
+import ${persistenceAPI}.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
@@ -75,9 +79,8 @@ public abstract class ${cName}Base {
     }
     
     @GetMapping(path = "/ping")
-    @ResponseBody
-    public String ping() {
-        return "pong";
+    public ResponseEntity<String> ping() {
+        return ResponseEntity.ok().body("pong");
     }
 ${requestMethodsDelegate(modelElement)}
 }

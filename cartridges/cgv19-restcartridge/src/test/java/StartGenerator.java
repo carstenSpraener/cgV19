@@ -8,6 +8,7 @@ public class StartGenerator {
     @Test
     public void testRestModel() {
         System.out.println(new File(".").getAbsolutePath());
+        NextGen.setWorkingDir("../../restdemoDocker");
         NextGen.main(new String[]{"http://localhost:7001/de.csp.demo.rest"});
     }
 }

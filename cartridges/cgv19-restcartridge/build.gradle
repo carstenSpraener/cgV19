@@ -36,6 +36,9 @@ dependencies {
 
     implementation "${project.ext.group}:cgv19-core:${project.ext.version}"
     implementation "${project.ext.group}:cgv19-oom:${project.ext.version}"
+    implementation "${project.ext.group}:cgv19-pojo:${project.ext.version}"
+    implementation 'com.github.spullara.mustache.java:compiler:0.9.10'
+    implementation 'commons-io:commons-io:2.13.0'
 
     testImplementation 'junit:junit:4.13.1'
 }
