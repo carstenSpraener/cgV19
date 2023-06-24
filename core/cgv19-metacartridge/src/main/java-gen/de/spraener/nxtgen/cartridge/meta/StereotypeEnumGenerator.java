@@ -16,7 +16,7 @@ import de.spraener.nxtgen.annotations.*;
         operatesOn = MClass.class,
         outputType = OutputType.JAVA,
         outputTo = OutputTo.SRC_GEN,
-        tempalteName = "/StereotypeEnumGenerator.groovy",
+        templateName = "/StereotypeEnumGenerator.groovy",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
 public class StereotypeEnumGenerator implements CodeGenerator {

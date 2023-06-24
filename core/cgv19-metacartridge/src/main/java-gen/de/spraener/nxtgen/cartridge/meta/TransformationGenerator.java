@@ -16,7 +16,7 @@ import de.spraener.nxtgen.annotations.*;
         operatesOn = MClass.class,
         outputType = OutputType.JAVA,
         outputTo = OutputTo.SRC,
-        tempalteName = "/Transformation.groovy",
+        templateName = "/Transformation.groovy",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
 public class TransformationGenerator implements CodeGenerator {

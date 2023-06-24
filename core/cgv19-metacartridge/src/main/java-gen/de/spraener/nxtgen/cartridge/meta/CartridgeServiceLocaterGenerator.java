@@ -3,7 +3,6 @@ package de.spraener.nxtgen.cartridge.meta;
 import de.spraener.nxtgen.CodeBlock;
 import de.spraener.nxtgen.CodeBlockImpl;
 import de.spraener.nxtgen.CodeGenerator;
-import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
@@ -15,7 +14,7 @@ import java.io.File;
         operatesOn = MClass.class,
         outputType = OutputType.JAVA,
         outputTo = OutputTo.OTHER,
-        tempalteName = "/meta/CartridgeServiceLocaterTemplate.groovy",
+        templateName = "/meta/CartridgeServiceLocaterTemplate.groovy",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
 public class CartridgeServiceLocaterGenerator implements CodeGenerator {

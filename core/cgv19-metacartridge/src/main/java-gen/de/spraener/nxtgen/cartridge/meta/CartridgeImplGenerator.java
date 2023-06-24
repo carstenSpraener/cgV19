@@ -16,7 +16,7 @@ import de.spraener.nxtgen.annotations.*;
         operatesOn = MClass.class,
         outputType = OutputType.JAVA,
         outputTo = OutputTo.SRC,
-        tempalteName = "/meta/CartridgeImplTemplate.groovy",
+        templateName = "/meta/CartridgeImplTemplate.groovy",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
 public class CartridgeImplGenerator implements CodeGenerator {

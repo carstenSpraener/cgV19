@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
 public @interface CGV19Generator {
     String requiredStereotype();
     Class<? extends ModelElement> operatesOn() default ModelElement.class;
-    String tempalteName() default "";
+    String templateName() default "";
     OutputType outputType() default OutputType.OTHER;
     OutputTo outputTo() default OutputTo.SRC_GEN;
     ImplementationKind implementationKind() default ImplementationKind.GROOVY_TEMPLATE;

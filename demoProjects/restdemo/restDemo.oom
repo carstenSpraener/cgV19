@@ -60,6 +60,20 @@ ModelDSL.make {
               composite 'false'
               oppositeAggregationKind 'none'
             }
+            mElement {
+              name ''
+              documentation ''
+              id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:_kieOuGGAqACRAk_'
+              metaType 'Usage'
+              stereotype 'use'
+            }
+            mElement {
+              name ''
+              documentation ''
+              id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:I0ieOuGGAqACRAmB'
+              metaType 'Usage'
+              stereotype 'use'
+            }
             mAttribute {  //Exported by AttributeExporterBase
               name 'name'
               documentation ''
@@ -74,6 +88,8 @@ ModelDSL.make {
               }
               type 'String'
               visibility 'private'
+              multiplicity '1'
+              required 'true'
             }
             mAttribute {  //Exported by AttributeExporterBase
               name 'vorname'
@@ -88,6 +104,8 @@ ModelDSL.make {
               }
               type 'String'
               visibility 'private'
+              multiplicity '1'
+              required 'true'
             }
             mAttribute {  //Exported by AttributeExporterBase
               name 'isVeryfied'
@@ -103,6 +121,8 @@ ModelDSL.make {
               }
               type 'Boolean'
               visibility 'private'
+              multiplicity '1'
+              required 'true'
             }
             mAttribute {  //Exported by AttributeExporterBase
               name 'gebDat'
@@ -118,6 +138,8 @@ ModelDSL.make {
               }
               type 'java.util.Date'
               visibility 'private'
+              multiplicity '1'
+              required 'true'
             }
             mAttribute {  //Exported by AttributeExporterBase
               name 'email'
@@ -133,13 +155,14 @@ ModelDSL.make {
               }
               type 'String'
               visibility 'private'
+              multiplicity '1'
+              required 'true'
             }
             mActivity {  //Exported by ActivityExporterBase
               name 'validate'
               documentation ''
               id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp'
               metaType 'Activity'
-              stereotype 'ControlledOperation'
               initNode {  //Exported by InitialNodeExporterBase
                 name ''
                 documentation ''
@@ -275,10 +298,10 @@ ModelDSL.make {
                     documentation ''
                     id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:nkieOuGGAqACRAk6'
                     metaType 'ControlFlow'
-                    guard 'FASLE'
+                    guard 'FALSE'
                     source ''
                     sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
-                    target 'Boolean.FASLE'
+                    target 'Boolean.FALSE'
                     targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:lkieOuGGAqACRAkz'
                   }
                   mControlFlow {  //Exported by ControlFlowExporterBase
@@ -292,10 +315,21 @@ ModelDSL.make {
                     target 'reCalculate'
                     targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:VkieOuGGAqACRAk0'
                   }
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:pR9qG.GGAqACRBiH'
+                    metaType 'ControlFlow'
+                    guard 'UNKNOWN'
+                    source ''
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:FkieOuGGAqACRAky'
+                    target 'ForkThem'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:fZJyG.GGAqACRBbJ'
+                  }
                 }
               }
               finalNode {  //Exported by ActivityFinalNodeExporterBase
-                name 'Boolean.FASLE'
+                name 'Boolean.FALSE'
                 documentation ''
                 id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:lkieOuGGAqACRAkz'
                 metaType 'ActivityFinalNode'
@@ -333,6 +367,82 @@ ModelDSL.make {
                   }
                 }
               }
+              mElement {
+                name 'ForkThem'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:fZJyG.GGAqACRBbJ'
+                metaType 'ForkNode'
+              }
+              mElement {
+                name 'JoinThem'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:o5ZyG.GGAqACRBba'
+                metaType 'JoinNode'
+              }
+              mAction {  //Exported by ActionExporterBase
+                name 'runningPathA'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:rVXyG.GGAqACRBd6'
+                metaType 'ActivityAction'
+                incoming {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:oVQKG.GGAqACRBec'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'ForkThem'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:fZJyG.GGAqACRBbJ'
+                    target 'runningPathA'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:rVXyG.GGAqACRBd6'
+                  }
+                }
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:tEiKG.GGAqACRBfu'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'runningPathA'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:rVXyG.GGAqACRBd6'
+                    target 'JoinThem'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:o5ZyG.GGAqACRBba'
+                  }
+                }
+              }
+              mAction {  //Exported by ActionExporterBase
+                name 'runningPathB'
+                documentation ''
+                id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:YMfyG.GGAqACRBeF'
+                metaType 'ActivityAction'
+                incoming {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:KmYKG.GGAqACRBfE'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'ForkThem'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:fZJyG.GGAqACRBbJ'
+                    target 'runningPathB'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:YMfyG.GGAqACRBeF'
+                  }
+                }
+                outgoing {
+                  mControlFlow {  //Exported by ControlFlowExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:LyieOuGGAqACRAso:SoGKG.GGAqACRBgY'
+                    metaType 'ControlFlow'
+                    guard ''
+                    source 'runningPathB'
+                    sourceID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:YMfyG.GGAqACRBeF'
+                    target 'JoinThem'
+                    targetID 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh:6kieOuGGAqACRAkp:o5ZyG.GGAqACRBba'
+                  }
+                }
+              }
             }
           }
           mClass {  //Exported by ClassExporterBase
@@ -341,6 +451,27 @@ ModelDSL.make {
             id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:PkieOuGGAqACRAk9'
             metaType 'Class'
             stereotype 'SpringBootApp'
+            mElement {
+              name ''
+              documentation ''
+              id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:_kieOuGGAqACRAk_'
+              metaType 'Usage'
+              stereotype 'use'
+            }
+            mDependency {  //Exported by DependencyExporterBase
+              name 'null'
+              documentation ''
+              id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:zhdctxGGAqAAAw66'
+              metaType 'Dependency'
+              target 'DSL.de.spraener.nxtgen.cartridge.springBootComponents.OAuth2Client'
+            }
+            mDependency {  //Exported by DependencyExporterBase
+              name 'null'
+              documentation ''
+              id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:PKjctxGGAqAAAw7C'
+              metaType 'Dependency'
+              target 'DSL.de.spraener.nxtgen.cartridge.springBootComponents.OAuth2ResourceServer'
+            }
           }
           mPackage {  //Exported by PackageExporterBase
             name 'model'
@@ -353,6 +484,7 @@ ModelDSL.make {
               id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:QUieOuGGAqACRAlB'
               metaType 'Class'
               stereotype 'Entity', {
+                taggedValue 'dbTableName', 'ADR_TAB'
               }
               mAssociation {
                 name 'user'
@@ -380,6 +512,8 @@ ModelDSL.make {
                 }
                 type 'String'
                 visibility 'private'
+                multiplicity '1'
+                required 'true'
               }
               mAttribute {  //Exported by AttributeExporterBase
                 name 'hausnr'
@@ -392,6 +526,8 @@ ModelDSL.make {
                 }
                 type 'String'
                 visibility 'private'
+                multiplicity '1'
+                required 'true'
               }
               mAttribute {  //Exported by AttributeExporterBase
                 name 'plz'
@@ -404,6 +540,8 @@ ModelDSL.make {
                 }
                 type 'String'
                 visibility 'private'
+                multiplicity '1'
+                required 'true'
               }
               mAttribute {  //Exported by AttributeExporterBase
                 name 'ort'
@@ -416,6 +554,8 @@ ModelDSL.make {
                 }
                 type 'String'
                 visibility 'private'
+                multiplicity '1'
+                required 'true'
               }
             }
             mClass {  //Exported by ClassExporterBase
@@ -424,6 +564,7 @@ ModelDSL.make {
               id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:YUieOuGGAqACRAlG'
               metaType 'Class'
               stereotype 'Entity', {
+                taggedValue 'dbTableName', 'GRP_TAB'
               }
               mAssociation {
                 name 'users'
@@ -447,6 +588,8 @@ ModelDSL.make {
                 metaType 'Attribute'
                 type 'String'
                 visibility 'private'
+                multiplicity '1'
+                required 'true'
               }
             }
             mClass {  //Exported by ClassExporterBase
@@ -484,6 +627,8 @@ ModelDSL.make {
                 metaType 'Attribute'
                 type 'Integer'
                 visibility 'private'
+                multiplicity '1'
+                required 'true'
               }
             }
             mClass {  //Exported by ClassExporterBase
@@ -492,6 +637,7 @@ ModelDSL.make {
               id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:gUieOuGGAqACRAlA:iUieOuGGAqACRAlM'
               metaType 'Class'
               stereotype 'Entity', {
+                taggedValue 'dbTableName', 'BNK_ACCOUNT'
               }
               mAssociation {
                 name 'customer'
@@ -519,6 +665,8 @@ ModelDSL.make {
                 }
                 type 'String'
                 visibility 'public'
+                multiplicity '1'
+                required 'true'
               }
             }
           }
@@ -1145,6 +1293,26 @@ ModelDSL.make {
             id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:w0ieOuGGAqACRAmA'
             metaType 'Class'
             stereotype 'PhpSymfonyApplication'
+            mElement {
+              name ''
+              documentation ''
+              id '9yieOuGGAqACRAsj:zyieOuGGAqACRAsm:I0ieOuGGAqACRAmB'
+              metaType 'Usage'
+              stereotype 'use'
+            }
+          }
+          mElement {
+            name 'DataModel'
+            documentation ''
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:B8tLpeGD.AAAAQng'
+            metaType 'DiagramOverview'
+          }
+          mClass {  //Exported by ClassExporterBase
+            name 'Student'
+            documentation ''
+            id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:9xtaVxGGAqAAAwu2'
+            metaType 'Class'
+            stereotype 'ApiRessource'
           }
         }
       }

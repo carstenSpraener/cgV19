@@ -3,25 +3,20 @@
  */
 package de.spraener.nxtgen.cartridge.rest;
 
-import de.spraener.nxtgen.*;
+import de.spraener.nxtgen.CodeGeneratorMapping;
+import de.spraener.nxtgen.MustacheGenerator;
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.cartridge.rest.angular.TSTypeGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.*;
-import de.spraener.nxtgen.cartridge.rest.entity.DDLGenerator;
-import de.spraener.nxtgen.cartridge.rest.entity.EntityGenerator;
-import de.spraener.nxtgen.cartridge.rest.entity.PhpEntityGenerator;
-import de.spraener.nxtgen.cartridge.rest.entity.RepositoryGenerator;
-import de.spraener.nxtgen.cartridge.rest.entity.PhpRepositoryGenerator;
+import de.spraener.nxtgen.cartridge.rest.entity.*;
 import de.spraener.nxtgen.cartridge.rest.filestrategies.PhpFileStrategy;
-import de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock;
 import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
-import de.spraener.nxtgen.oom.model.MClass;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class RESTCartridge extends  RESTCartridgeBase {
     @Override
@@ -68,8 +63,18 @@ public class RESTCartridge extends  RESTCartridgeBase {
             } else if( isLogic(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new LogicGenerator()));
             } else if( isSprintBootApplication(me) ) {
-                Logger.getGlobal().finer(()->"Creating SpringBoot-Application");
+                NextGen.LOGGER.info(()->"Creating SpringBoot-Application");
                 result.add(CodeGeneratorMapping.create(me, new SpringBootAppGenerator()));
+                result.add(CodeGeneratorMapping.create(me, new MustacheGenerator(
+                        "mustache/springBootApp/build.gradle.mustache",
+                        "build.gradle",
+                        SpringBootApp::fillBuildScriptMap
+                )));
+                result.add(CodeGeneratorMapping.create(me, new MustacheGenerator(
+                        "mustache/springBootApp/Dockerfile.mustache",
+                        "Dockerfile",
+                        SpringBootApp::fillDockerfileMap
+                )));
             }
         }
         return result;

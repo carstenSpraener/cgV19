@@ -42,12 +42,11 @@ public class ResourceToContoller implements Transformation {
         cntrlImpl.setProperty("superCallArgs","logic");
         cntrlImpl.setProperty("annotations",
                 "@CrossOrigin(origins = \"*\")\n"+
-                "@Controller\n"+
+                "@RestController\n"+
                 "@RequestMapping(\"/"+mClass.getName().toLowerCase()+"s\")\n"
         );
         cntrlImpl.setProperty("importList",
-                "import org.springframework.stereotype.Controller;\n"
-                +"import org.springframework.web.bind.annotation.*;\n"
+                "import org.springframework.web.bind.annotation.*;\n"
         );
         return cntrl;
     }

@@ -130,7 +130,7 @@ import de.spraener.nxtgen.annotations.*;
         operatesOn = ${getGeneratesOn(mClass)}.class,
         outputType = OutputType.${getOutputTypeEnum(mClass)},
         outputTo = OutputTo.${getOutputToEnum(mClass)},
-        tempalteName = "${getTemplateFileName(mClass)}",
+        templateName = "${getTemplateFileName(mClass)}",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
 public class ${mClass.getName()} implements CodeGenerator {
