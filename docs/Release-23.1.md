@@ -4,13 +4,13 @@
 
 This release brings some exciting new features to cgV19.
 
-## Support for JavaPoet
+## [Support for JavaPoet](https://github.com/square/javapoet)
 
 You can use Java-Poet to implement your CodeGenerators for Java from an MClass-Instance.
 
 See [the README in module core/cgv19-javapoet](../core/cgv19-javapoet/README.md)
 
-## Introducing the new concept of CodeTargets
+## <a name="codeTargets"></a>Introducing the new concept of CodeTargets
 
 ![CodeTargetModel.png](images/CodeTargetModel.png)
 
@@ -194,7 +194,7 @@ public class PoJoGenerator {
     }
 }
 ```
-## [Mustache Support](https://github.com/spullara/mustache.java)
+## <a name="mustache"></a>[Mustache Support](https://github.com/spullara/mustache.java)
 Mustache is a template engine, that is very handy when the output file is linear and
 logic free. This is often the case for propertie files, Dockerfile or build scripts.
 
