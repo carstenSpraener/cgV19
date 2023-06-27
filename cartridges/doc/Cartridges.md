@@ -35,93 +35,84 @@ That's the base structure of your cartridge.
 
 ## Implementing the cartidge
 
-The interface requirees three methods to implement.
-
-### getName()
-
-This is just a name for logging and can return any string value. For
-this cartridge"PoJo-Catridge" is a good choice. So:
+The interface requires three methods to be implemented.
 
 ```java
-public String getName() {
-    return "PoJo-Cartidge";
-}
+String getName();
+List<Transformation> getTransformations();
+List<CodeGeneratorMapping> mapGenerators(Model m);
 ```
 
-### List&lt;Transformation&gt; getTransformations()
+#### getName()
+This is just a name for logging and can return any string value.
+#### List&lt;Transformation&gt; getTransformations()
+List all Transformations, that this Cartridge provides and needs
+to be executed.
+#### List&lt;CodeGeneratorMapping&gt; mapGenerators(Model m)
+List all GeneratorMappings which maps a ModelElement to a Generator.
 
-For now the cartridge does not need any transformations to be executed. So
-we return an null value.
-
-```java
-public List<Transformation> getTransformations() {
-    return null;
-}
-```
-
-### List&lt;CodeGeneratorMapping&gt; mapGenerators(Model m)
-
-This method has to map model elements to generators. Therefor it
-walks through the whole model and returns a list of __GeneratorMappings__.
-The PoJo Cartridge is interested in __ModelClass__ marked with the 
-stereotype __PoJo__. So we could implement the method as follows:
-
-```java
-    @Override
-    public List<CodeGeneratorMapping> mapGenerators(Model m) {
-        List<CodeGeneratorMapping> mappings = new ArrayList<>();
-        for(ModelElement me : m.getModelElements() ) {
-            if (me instanceof MClass && StereotypeHelper.hasStereotype(me, ST_POJO)) {
-                mappings.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
-            }
-        }
-        return mappings;
-    }
-```
-
-The method creates a new list and walks through all model elements in the
-model. The Model class gives a method _getModelELements()_ which returns
-a list of all such elements. 
-
-It checks if the _ModelElement_ is a MClass and if this class is marked
-with stereotype ST_POJO, which is a constant String "PoJo". For each such
-class it adds a _CodeGeneratorMapping_ to the result list. The 
-_CodeGeneratorMapping_ holds the _ModelElement_ and the _CodeGenerator_ 
-
-Now the cartridge is ready but you need to create a class PoJoGenerator
-where it comes to real generating.
+### Annotation based implementation
+Since Release 23.1 of cgV19 it is not needed to implement this 
+method yourself, but you can use the AnnotatedGeneratorImpl 
+super class to make thinks much easier.
 
 ## The PoJoGenerator
 
 > This example uses java itself as language for the templates.
 > You have the option to write Templates in Groovy as 
-> [described here](doc/GroovyAsTemplateLanguage.md)
+> * [Groovy Templates](doc/GroovyAsTemplateLanguage.md)
+> * [Java Poet](../../core/cgv19-javapoet/README.md)
+> * [As Mustache Template](../../docs/Release-23.1.md#mustache)
+> * [Via CodeTarget approach](../../docs/Release-23.1.md#codeTargets)
 
 cgv19 offers several ways to implement CodeGenerators. For this first
 example we will use a standard java _CodeBlock_ to do our generation.
-But first we need a _CodeGenerator_ class.
+But first we need the _Cartridge_ class itself.
+```java
+package example.pojo;
+
+@CGV19Cartridge("PoJo-Cartridge")
+public class PoJoCartridge extends AnnotatedCartridgeImpl {
+}
+```
+This will define a new Cartridge with the name "PoJo-Cartridge"
+
+### Defining a Generator
+The PoJo-Cartrige wants to generate PoJos from a Model. Each MClass with 
+stereotype "PoJo" should result in a java class with the declared
+attributes and setter and getter methods for them.
+
+So let's define a Generator that handles this like:
 
 ```java
-public class PoJoGenerator implements CodeGenerator {
-    @Override
-    public CodeBlock resolve(ModelElement element, String templateName) {
+@CGV19Component
+public class PoJoGeneratorComponent {
+
+    @CGV19Generator(
+            requiredStereotype = "PoJo",
+            outputTo = OutputTo.SRC_GEN,
+            outputType = OutputType.JAVA,
+            operatesOn = MClass.class
+    )
+    public CodeBlock generatePoJo(ModelElement element, String templateName) {
         MClass mc = (MClass)element;
         JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", mc.getPackage().getName(), mc.getName() );
         generatePoJo(jCB,mc);
         return jCB;
     }
-    ...
 }
 ```
-The PoJoGenerator implements the _CodeGenerator_ interface and needs
-to implement the _resolve_ Method. In this Method it gets a model element
-and a templateName. The templateName is not relevant for this generator
-but the _ModelElement element_ is an instance of a MClass. This is 
-ensured by the CodeGeneratorMapping as calculated in the cartriges
-_mapGenerator_-Method. This is how the _Catridge_ works together
-with the _CodeGenerator_.
 
-Knowing that we can safely cast the ModelElement to a MClass. Next 
+This annotations will result in a Cartridge with one Generator that
+is interested in ModelElement of type MClass.class and with the stereotype
+"PoJo" applied to them. 
+
+The AnnotatedCartridgeImpl will deal with the model and call the generator
+on the requested model elements. Therefor the annotated methods needs to take 
+two parameters. The model element and the templateName. The Templatename is not 
+used in this example.
+
+Notice that we can safely cast the ModelElement to a MClass. Next 
 the generator uses a class _JavaCodeBlock_ from the cgv19-core package.
 This _CodeBlock_ is a handy class to generate java output. It is created
 with a output directory (here it is "src/main/java-gen"), a package name
