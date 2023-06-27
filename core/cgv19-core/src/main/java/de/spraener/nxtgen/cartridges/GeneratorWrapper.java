@@ -44,7 +44,7 @@ public class GeneratorWrapper implements CodeGenerator {
         this(g, readCgMethod(g));
     }
 
-    static Method readCgMethod(Class<?> g) {
+    protected static Method readCgMethod(Class<?> g) {
         try {
             return g.getMethod("resolve", ModelElement.class, String.class);
         } catch( ReflectiveOperationException roXC ) {

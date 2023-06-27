@@ -9,14 +9,15 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.oom.model.OOModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LogicGeneratedTest {
 
     @Test
-    public void testLogicGenerated() {
+    void testLogicGenerated() {
         OOModel m = new OOModel();
         MPackage p = new MPackage();
         m.addModelElement(p);
@@ -34,11 +35,11 @@ public class LogicGeneratedTest {
         }
 
         MClass logic = m.findClassByName("pkg.logic.ARessourceLogic");
-        assertNotNull("No Logic-Class generated", logic );
+        assertNotNull(logic );
         assertTrue(StereotypeHelper.hasStereotype(logic, RESTStereotypes.IMPL.getName()));
 
         MClass logicBase = m.findClassByName("pkg.logic.ARessourceLogicBase");
-        assertNotNull("No Logic-Class generated", logic );
+        assertNotNull(logic );
         assertTrue(StereotypeHelper.hasStereotype(logicBase, RESTStereotypes.LOGIC.getName()));
     }
 }

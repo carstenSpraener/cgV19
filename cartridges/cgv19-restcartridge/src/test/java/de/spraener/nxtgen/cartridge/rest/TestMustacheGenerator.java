@@ -4,12 +4,12 @@ import de.spraener.nxtgen.CodeBlock;
 import de.spraener.nxtgen.MustacheGenerator;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestMustacheGenerator {
 
     @Test
-    public void testMustacheGenerator() {
+    void testMustacheGenerator() {
         MustacheGenerator gen = new MustacheGenerator(
                 "/mustache/springBootApp/build.gradle.mustache",
                 "build.gradle",
