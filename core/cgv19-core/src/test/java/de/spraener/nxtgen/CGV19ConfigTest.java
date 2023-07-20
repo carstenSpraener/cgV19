@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CGV19Test {
+public class CGV19ConfigTest {
     private Map<String,String> envMap = new HashMap<>();
     private String properties = """
             propA=definitionFromPropertiesA
@@ -24,7 +24,7 @@ public class CGV19Test {
     }
     @Test
     public void testPropertiesReading() throws Exception {
-        CGV19 cgv19 = CGV19.getInstance(
+        CGV19Config cgv19Config = CGV19Config.getInstance(
                 c -> c.withEnvMapSupplier(()->this.envMap),
                 c -> c.withPropertyReaderSupplier(this::getPropertiesReader)
         );
@@ -32,11 +32,11 @@ public class CGV19Test {
         this.envMap.put("cgv19_TEST2", "definitionFromEnv2");
         this.envMap.put("nix", "notRead");
 
-        assertEquals("nix", CGV19.definitionOf("nix"));
-        assertEquals("definitionFromEnv1", CGV19.definitionOf("TEST"));
-        assertEquals("definitionFromEnv2", CGV19.definitionOf("TEST2"));
-        assertEquals("definitionFromPropertiesA", CGV19.definitionOf("propA"));
-        assertEquals("definitionFromPropertiesB", CGV19.definitionOf("propB"));
-        assertEquals("empty", CGV19.definitionOf("nothing"));
+        assertEquals("nix", CGV19Config.definitionOf("nix"));
+        assertEquals("definitionFromEnv1", CGV19Config.definitionOf("TEST"));
+        assertEquals("definitionFromEnv2", CGV19Config.definitionOf("TEST2"));
+        assertEquals("definitionFromPropertiesA", CGV19Config.definitionOf("propA"));
+        assertEquals("definitionFromPropertiesB", CGV19Config.definitionOf("propB"));
+        assertEquals("empty", CGV19Config.definitionOf("nothing"));
     }
 }

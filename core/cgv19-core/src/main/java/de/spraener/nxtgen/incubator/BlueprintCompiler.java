@@ -3,12 +3,10 @@ package de.spraener.nxtgen.incubator;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
-import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
-import java.util.logging.Logger;
 
 /**
  * A BlueprintCompiler copies a whole subtree from the resource classpath to the
@@ -21,12 +19,11 @@ import java.util.logging.Logger;
  *
  */
 public class BlueprintCompiler {
-    private static final Logger LOGGER = Logger.getLogger(BlueprintCompiler.class.getName());
-    private String resourceRoot;
     private List<String> fileList = null;
+    private BlueprintSupplier blueprintSupplier = null;
     private Map<String, String> scope = new HashMap<>();
     MustacheFactory factory = new DefaultMustacheFactory();
-
+    private String name;
     /**
      * Initiates the Blueprint-Compiler with the resources under the given
      * resourceRoot-Path.
@@ -34,16 +31,24 @@ public class BlueprintCompiler {
      * @param resourceRoot
      */
     public BlueprintCompiler(String resourceRoot) {
-        this.resourceRoot = resourceRoot;
+        this.name = resourceRoot;
+        BlueprintResourceLister bprl = new BlueprintResourceLister(resourceRoot);
+        this.fileList = bprl.listFiles();
+        this.blueprintSupplier = bprl;
         initScope();
     }
 
+    public BlueprintCompiler(String name, List<String> fileList, BlueprintSupplier blueprintSupplier) {
+        this.fileList = fileList;
+        this.blueprintSupplier = blueprintSupplier;
+        initScope();
+    }
     public Map<String, String> getScope() {
         return this.scope;
     }
 
     private void initScope() {
-        for( String resource : getFileList() ) {
+        for( String resource : this.fileList ) {
             for( String varName : listVarNames(resource) ) {
                 scope.put(varName, "undefined");
             }
@@ -53,17 +58,10 @@ public class BlueprintCompiler {
     private Set<String> listVarNames(String resource) {
         Set<String> varList = new HashSet<>();
         findMustaches(resource, varList);
-        findMustaches(readContent(resource), varList);
+        findMustaches(this.blueprintSupplier.getContent(resource), varList);
         return varList;
     }
 
-    private String readContent(String resourceName ) {
-        try( InputStreamReader isr = new InputStreamReader(getClass().getResourceAsStream(this.resourceRoot+"/"+resourceName))) {
-            return IOUtils.toString(isr);
-        } catch( IOException xc ) {
-            throw new RuntimeException(xc);
-        }
-    }
     private Set<String> findMustaches(String template, Set<String> varSet) {
         int idx=0;
         while( (idx=template.indexOf("{{", idx))!=-1 ) {
@@ -75,50 +73,7 @@ public class BlueprintCompiler {
         return varSet;
     }
 
-    /**
-     * Returns a List of all files in the blueprint.
-     *
-     * @return unevaluated List for files in the blueprint.
-     */
-    public List<String> getFileList() {
-        if( this.fileList == null ) {
-            this.fileList = new ArrayList<>();
-            try {
-                getResourceFiles(fileList, this.resourceRoot, "");
-            } catch (IOException xc) {
-                LOGGER.severe(() -> "Error while listing blueprint files under " + this.resourceRoot + ": " + xc.getMessage());
-            }
-        }
-        return fileList;
-    }
-
-    private List<String> getResourceFiles(List<String> filenames, String root, String path) throws IOException {
-        try (InputStream in = getResourceAsStream(root+path);
-             BufferedReader br = new BufferedReader(new InputStreamReader(in))
-        ) {
-            String resource;
-            while ((resource = br.readLine()) != null) {
-                InputStream subStream = getClass().getResourceAsStream(root+path+"/"+resource+"/.");
-                if (subStream != null) {
-                    getResourceFiles(filenames, root, path + "/" + resource);
-                } else {
-                    String name = path + "/" + resource;
-                    if( name.startsWith("/")) {
-                        name = name.substring(1);
-                    }
-                    filenames.add(name);
-                }
-            }
-        }
-        return filenames;
-    }
-
-    private InputStream getResourceAsStream(String resource) {
-        final InputStream in = getClass().getClassLoader().getResourceAsStream(resource);
-        return in == null ? getClass().getResourceAsStream(resource) : in;
-    }
-
-    public void evaluteTo(String outDir) {
+    public void evaluateTo(String outDir) {
         for( String fromResource : this.fileList ) {
             String toResource = outDir + "/" + toOutputFilePath(fromResource);
             String content = toOutputContent(fromResource);
@@ -134,7 +89,9 @@ public class BlueprintCompiler {
     }
 
     private String toOutputContent(String resource) {
-        try( InputStreamReader isr = new InputStreamReader(getClass().getResourceAsStream(this.resourceRoot+"/"+resource))) {
+        try(
+                InputStreamReader isr = this.blueprintSupplier.getInputStream(resource);
+        ) {
             Mustache mustache = factory.compile(isr, resource);
             try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 PrintWriter pw = new PrintWriter(baos);
@@ -159,7 +116,16 @@ public class BlueprintCompiler {
         return outputFileName;
     }
 
-    public String getResourceRoot() {
-        return resourceRoot;
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getRequiredValues() {
+        List<String> valueList = new ArrayList<>();
+        for( String key : this.scope.keySet() ) {
+            valueList.add(key);
+        }
+        Collections.sort(valueList);
+        return valueList;
     }
 }

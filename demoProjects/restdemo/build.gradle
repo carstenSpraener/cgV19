@@ -1,37 +1,41 @@
-//THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
+// THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
 buildscript {
     repositories {
-        mavenCentral();
-        maven {
-            url="${project.rootDir}/../repo"
-        }
-        maven {
-            url="${project.rootDir}/../../repo"
-        }
-    }
-    if( !project.ext.hasProperty("group") ) {
-        project.ext.group = 'de.spraener.nxtgen'
-        project.ext.version = '23.1.0'
+        gradlePluginPortal()
     }
     dependencies {
-        classpath "de.spraener.nxtgen:cgv19-core:23.1.0"
-        classpath "de.spraener.nxtgen:cgv19-gradle:23.1.0"
     }
 }
 
 plugins {
-    id 'application'
+    id 'java'
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
-apply plugin: 'de.spraener.nxtgen.cgV19'
+group = 'de.csp.demo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
 
 repositories {
     mavenCentral()
 }
 
-cgV19 {
-    model='./restDemo.oom'
-    //model='http://localhost:7001/de'
+dependencies {
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.h2database:h2:2.1.210'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 sourceSets {
@@ -42,39 +46,11 @@ sourceSets {
     }
 }
 
-def springBootVersion='2.5.6'
-dependencies {
-    cartridge "de.spraener.nxtgen:cgv19-core:23.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-oom:23.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-restcartridge:23.1.0"
-
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: springBootVersion
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
-
-    implementation "org.springframework.webflow:spring-webflow:2.5.1.RELEASE"
-    implementation "org.springframework.webflow:org.springframework.js:2.0.5.RELEASE"
-    implementation "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
-    implementation 'org.springframework.statemachine:spring-statemachine-core:3.2.0'
-    implementation 'javax.validation:validation-api:2.0.1.Final'
-
-    implementation 'com.h2database:h2:2.1.210'
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
-    implementation 'com.google.guava:guava:29.0-jre'
-    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
-    implementation "${project.ext.group}:cgv19-restcartridge:${project.ext.version}"
-
-    testImplementation 'junit:junit:4.13'
-    testImplementation "${project.ext.group}:cgv19-core:${project.ext.version}"
-    testImplementation "${project.ext.group}:cgv19-oom:${project.ext.version}"
-    testImplementation "${project.ext.group}:cgv19-restcartridge:${project.ext.version}"
-    testImplementation 'org.apache.httpcomponents:httpclient:4.5.10'
+springBoot {
+    mainClass = "de.csp.demo.rest.SpringBootApp"
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'de.csp.demo.rest.SpringBootApp'
+tasks.named('test') {
+    useJUnitPlatform()
 }
+

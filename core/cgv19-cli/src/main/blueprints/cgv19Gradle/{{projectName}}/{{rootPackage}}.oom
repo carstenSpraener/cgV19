@@ -1,0 +1,11 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name '{{rootPackage}}'
+        mClass {
+            name 'App'
+            stereotypes 'PoJo'
+        }
+    }
+}

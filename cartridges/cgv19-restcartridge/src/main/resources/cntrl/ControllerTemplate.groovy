@@ -1,9 +1,9 @@
 package cntrl
 
-import de.spraener.nxtgen.CGV19
-import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
+
+import de.spraener.nxtgen.CGV19Config
 import de.spraener.nxtgen.ProtectionStrategie
-import de.spraener.nxtgen.cartridge.rest.RESTJavaHelper
+import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.model.ModelElement
 import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
@@ -120,7 +120,7 @@ def logicName = toLogicName(modelElement);
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
-import ${CGV19.definitionOf("javax.persistence")}.*;
+import ${CGV19Config.definitionOf("javax.persistence")}.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

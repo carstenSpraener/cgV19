@@ -1,7 +1,6 @@
 package de.spraener.nxtgen.incubator;
 
 import de.spraener.nxtgen.CodeBlockImpl;
-import de.spraener.nxtgen.incubator.BlueprintCompiler;
 
 public class BlueprintCodeBlock extends CodeBlockImpl {
     private BlueprintCompiler blueprintCompiler;
@@ -13,7 +12,7 @@ public class BlueprintCodeBlock extends CodeBlockImpl {
      * @param blueprintCompiler a BlueprintCompiler to run on evaluation.
      */
     public BlueprintCodeBlock(BlueprintCompiler blueprintCompiler, String outputDir) {
-        super(blueprintCompiler.getResourceRoot());
+        super(blueprintCompiler.getName());
         this.blueprintCompiler = blueprintCompiler;
         this.outputDir = outputDir;
     }
@@ -26,6 +25,6 @@ public class BlueprintCodeBlock extends CodeBlockImpl {
         } else {
             finalDir = outputDir + "/" + outputDir;
         }
-        this.blueprintCompiler.evaluteTo(finalDir);
+        this.blueprintCompiler.evaluateTo(finalDir);
     }
 }
