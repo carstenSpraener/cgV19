@@ -2,7 +2,7 @@
 
 # Welcome to cgV19
 Last Update on: June the 14th 2023
-## [ Upcoming Release 23.1](docs/Release-23.1.md)
+## [Upcoming Release 23.1](docs/Release-23.1.md)
 __cgV19 Release 23.1 is in the pipeline. It will bring some exciting new features!__
 
 This release will be a huge step and includes:
