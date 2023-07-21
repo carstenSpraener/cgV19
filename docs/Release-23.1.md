@@ -4,6 +4,16 @@
 
 This release brings some exciting new features to cgV19.
 
+## Command line interface (CLI)
+
+The core contains a new module cgv19-cli which builds a terminal application to
+use cgv19 directly on the terminal. It can be build with gradle and installed in
+any appropriate directory. The installation provides a subdirectory "cartridges"
+where you can place your cartridge-jar files to use in your project and also a 
+`cartridges/blueprints` directory to store blueprints. 
+
+See [README.md](../core/cgv19-cli/README.md)
+
 ## [Support for JavaPoet](https://github.com/square/javapoet)
 
 You can use Java-Poet to implement your CodeGenerators for Java from an MClass-Instance.
@@ -228,3 +238,32 @@ public static void fillBuildScriptMap(ModelElement modelElement, Map<String, Obj
 }
 ```
 
+## Blueprint support
+In addition to simple mustache templates a Blueprint is a while directory tree
+with files, templates and named directories. This is very handy when you want to 
+support project setup or other pre-defined directory structures. 
+
+The cli-module comes with a blueprint to set up a cgv19 Gradle Project with the help of
+cgv19. 
+
+Here is the directory structure of this cgv19Gradle blueprint: 
+
+```text
+cgv19Gradle
+└── {{projectName}}
+    ├── build.gradle
+    ├── settings.gradle
+    ├── src
+    │   ├── main
+    │   │   └── java
+    │   └── test
+    │       └── java
+    └── {{rootPackage}}.oom
+```
+
+You may recognize that the directory names themselves are in mustache syntax. To use this 
+blueprint for a new project setup you can call:
+
+```bash
+cgv19 -m test.props -c cgv19Gradle
+```

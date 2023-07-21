@@ -4,6 +4,7 @@ import de.spraener.nxtgen.Cartridge;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.annotations.*;
+import de.spraener.nxtgen.incubator.BlueprintGeneratorWrapper;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import org.reflections.Reflections;
@@ -36,6 +37,9 @@ public class AnnotatedCartridgeImpl implements Cartridge {
                 }
                 if( m.isAnnotationPresent(CGV19MustacheGenerator.class) ) {
                     this.generatorWrapperList.add(new MustacheGeneratorWrapper(componentClass, m));
+                }
+                if( m.isAnnotationPresent(CGV19Blueprint.class) ) {
+                    this.generatorWrapperList.add(new BlueprintGeneratorWrapper(componentClass, m));
                 }
                 if( m.isAnnotationPresent(CGV19Transformation.class) ) {
                     this.transformationList.add(new TransformationWrapper(componentClass, m));

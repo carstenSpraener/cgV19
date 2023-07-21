@@ -1,12 +1,18 @@
 package de.spraener.nxtgen.cartridge.rest;
 
+import de.spraener.nxtgen.annotations.CGV19Blueprint;
 import de.spraener.nxtgen.annotations.CGV19Component;
+import de.spraener.nxtgen.annotations.CGV19Generator;
 import de.spraener.nxtgen.annotations.CGV19MustacheGenerator;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Stereotype;
+import de.spraener.nxtgen.model.TaggedValue;
+import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +28,6 @@ public class SpringBootApp {
     public static void fillBuildScriptMap(ModelElement modelElement, Map<String, Object> mustacheScope) {
         MClass app = (MClass) modelElement;
         mustacheScope.put("springBootVersion", "3.1.0");
-        mustacheScope.put("springDependencyManagementVersion", "1.1.0");
         mustacheScope.put("springDependencyManagementVersion", "1.1.0");
         mustacheScope.put("app.group", ((MPackage)app.getPackage().getParent()).getFQName());
         mustacheScope.put("app.version", "0.0.1-SNAPSHOT");
@@ -40,5 +45,19 @@ public class SpringBootApp {
         mustacheScope.put("projectName", app.getPackage().getName());
         mustacheScope.put("dockerProductionRunImage", "eclipse-temurin:17.0.6_10-jdk-focal");
         mustacheScope.put("timeZone", "Europe/Berlin");
+    }
+
+    @CGV19Blueprint(
+            value="/blueprints/springCloud",
+            requiredStereotype="SpringCloudApp",
+            operatesOn= MClass.class
+    )
+    public Map<String, String> springCloudBlueprintScope(ModelElement me) {
+        Map<String, String> scope = new HashMap<>();
+        Stereotype sType = StereotypeHelper.getStereotype(me, RESTStereotypes.SPRINGBOOTAPP.getName());
+        for( TaggedValue tv : sType.getTaggedValues() ) {
+            scope.put(tv.getName(), tv.getValue() );
+        }
+        return scope;
     }
 }

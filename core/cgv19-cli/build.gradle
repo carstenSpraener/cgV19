@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'commons-cli:commons-cli:1.5.0'
+    implementation 'org.yaml:snakeyaml:2.0'
+
+    implementation project(":cgv19-core")
+
+    compileOnly project(":cgv19-oom")
+    compileOnly project(":cgv19-javapoet")
+    compileOnly project(":cgv19-metacartridge")
+    compileOnly project(":cgv19-pojo")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': "de.spraener.nxtgen.cli.CGV19"
+    }
+}
+
+startScripts {
+    mainClass = 'de.spraener.nxtgen.cli.CGV19'
+    applicationName = 'cgv19'
+    doLast {
+        def scriptFile = file "${outputDir}/${applicationName}"
+        scriptFile.text = scriptFile.text.replace('CLASSPATH=$APP_HOME/lib', 'CLASSPATH=$APP_HOME/cartridges/*:$APP_HOME/lib')
+        scriptFile.text = scriptFile.text.replace("DEFAULT_JVM_OPTS=\"\"\n", "DEFAULT_JVM_OPTS=\"-Dapp.path=\$app_path\"\n")
+    }
+}
+
+application {
+
+    applicationDistribution.from(project(":cgv19-oom").buildDir.absolutePath+"/libs") {
+        include "cgv19*.jar"
+    }.into("cartridges")
+
+    applicationDistribution.from(project(":cgv19-javapoet").buildDir.absolutePath+"/libs") {
+        include "cgv19*.jar"
+    }.into("cartridges")
+
+    applicationDistribution.from(project(":cgv19-metacartridge").buildDir.absolutePath+"/libs") {
+                include "cgv19*.jar"
+    }.into("cartridges")
+
+    applicationDistribution.from(project(":cgv19-pojo").buildDir.absolutePath+"/libs") {
+                include "cgv19*.jar"
+    }.into("cartridges")
+
+    System.out.println("rootDir: "+project(":cgv19-cli").projectDir.getAbsolutePath());
+    applicationDistribution.from(project(":cgv19-cli").projectDir.absolutePath+"/src/main/blueprints") {
+        include "**/*"
+    }.into("cartridges/blueprints")
+}

@@ -1,17 +1,16 @@
 package de.spraener.nxtgen.cartridge.rest;
 
 import de.spraener.nxtgen.CodeBlock;
-import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.OOModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SpringApplicationGeneratorTest {
 
     @Test
-    public void testSpringBootApplicationGeneration() {
+    void testSpringBootApplicationGeneration() {
         SpringBootAppGenerator uut = new SpringBootAppGenerator();
         OOModel model = OOMObjectMother.createModel(
                 m->OOMObjectMother.createPackage(m, "app",

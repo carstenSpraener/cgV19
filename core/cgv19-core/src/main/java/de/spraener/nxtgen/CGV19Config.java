@@ -12,36 +12,49 @@ import java.util.function.Supplier;
 import static de.spraener.nxtgen.NextGen.LOGGER;
 
 /**
- * TODO: Document this class
+ * Responsibility:
+ * <p>
+ * This class provides values from the environment or from a property file to the generators. The generators
+ * can use this values in their logic or templates or whatnot.
+ * <p>
+ * It reads properties from a file ".cgv19.properties" and also from the environment. The properties form
+ * the ".cgv19.properties" file are read in as they are.
+ * <p>
+ * The environment variables have to have a prefix
+ * <b>CGV19_</b> (not case-sensitive) to be accepted as configuration values. The prefix "cgv19_" is removed
+ * from the environment variables name. So an environment value of "CGV19_java_persistence=jakarta.persistence"
+ * is available under "java_persistence" in CGV19.
+ * <p>
+ * To access the definition of a specific value the method "definitionOf(key)" can be used.
  */
-public class CGV19 {
+public class CGV19Config {
     private Properties props = null;
-    private static CGV19 myInstance = null;
+    private static CGV19Config myInstance = null;
     private Supplier<Reader> propertyReaderSupplier = this::getPropertyReader;
-    private Supplier<Map<String,String>> envMapSupplier = System::getenv;
+    private Supplier<Map<String, String>> envMapSupplier = System::getenv;
 
-    public static CGV19 getInstance(Consumer<CGV19>... modifiers) {
+    public static CGV19Config getInstance(Consumer<CGV19Config>... modifiers) {
         if (myInstance == null) {
-            myInstance = new CGV19();
+            myInstance = new CGV19Config();
             if (modifiers != null) {
-                for (Consumer<CGV19> m : modifiers) {
+                for (Consumer<CGV19Config> m : modifiers) {
                     m.accept(myInstance);
                 }
             }
         } else {
             if (modifiers != null && modifiers.length > 0) {
-                LOGGER.warning("Calling CGV19.getInstance with modifiers to existent instance. Modifiers were not applied!");
+                LOGGER.warning("Calling CGV19Config.getInstance with modifiers to existent instance. Modifiers were not applied!");
             }
         }
         return myInstance;
     }
 
-    public CGV19 withPropertyReaderSupplier(Supplier<Reader> propertyReaderSupplier) {
+    public CGV19Config withPropertyReaderSupplier(Supplier<Reader> propertyReaderSupplier) {
         this.propertyReaderSupplier = propertyReaderSupplier;
         return this;
     }
 
-    public CGV19 withEnvMapSupplier(Supplier<Map<String, String>> envMapSupplier) {
+    public CGV19Config withEnvMapSupplier(Supplier<Map<String, String>> envMapSupplier) {
         this.envMapSupplier = envMapSupplier;
         return this;
     }
@@ -69,8 +82,8 @@ public class CGV19 {
                 LOGGER.warning("PropertyFile .cgv19.properties could not be read. Error: " + xc.getMessage());
             }
         }
-        LOGGER.info("Adding environment variable with prefix 'cgv19_' or 'CGV19_' to CGV19.definitions removing prefix.");
-        Map<String,String> envMap = this.envMapSupplier.get();
+        LOGGER.info("Adding environment variable with prefix 'cgv19_' or 'CGV19_' to CGV19Config.definitions removing prefix.");
+        Map<String, String> envMap = this.envMapSupplier.get();
         for (Map.Entry e : envMap.entrySet()) {
             String key = e.getKey().toString();
             if (key.toLowerCase().startsWith("cgv19_")) {

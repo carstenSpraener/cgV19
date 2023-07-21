@@ -44,7 +44,10 @@ List<CodeGeneratorMapping> mapGenerators(Model m);
 ```
 
 #### getName()
-This is just a name for logging and can return any string value.
+This is just a name for logging and can return any string value. When you use 
+cgv19 from the command line you can activate a cartridge by its name with the
+`-c <NAME>` option.
+
 #### List&lt;Transformation&gt; getTransformations()
 List all Transformations, that this Cartridge provides and needs
 to be executed.

@@ -2,10 +2,16 @@
 
 # Welcome to cgV19
 Last Update on: June the 14th 2023
-## [ Upcoming Release 23.1](docs/Release-23.1.md)
+## [Upcoming Release 23.1](docs/Release-23.1.md)
 __cgV19 Release 23.1 is in the pipeline. It will bring some exciting new features!__
 
-New concept of CodeTargets, support for JavaPoet and more
+This release will be a huge step and includes:
+* new concept of CodeTargets to make your generators reusable and enhanceable
+* [support for javapoet](https://github.com/square/javapoet), a framework to generate java code
+* [support for mustache templates](https://github.com/spullara/mustache.java)
+* [new blueprint concept](core/cgv19-cli/README.md) for easy generation of project setups and other logic free code frames
+* [annotation based generators](cartridges/doc/Cartridges.md), templates and cartridges
+* [new cli module](core/cgv19-cli/README.md) to use cgv19 directly on the terminal
 
 ## A code abstraction framework to
 * Implement rules that make your ideas real code

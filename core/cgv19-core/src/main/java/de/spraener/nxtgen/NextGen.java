@@ -5,9 +5,7 @@ import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ServiceLoader;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -42,7 +40,9 @@ public class NextGen implements Runnable {
     private String modelURI;
     private static String workingDir;
     private static ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
-
+    private static Set<String> cartridgeNames = new HashSet<>();
+    private static List<Cartridge> cartridgeList = new ArrayList<>();
+    private static List<ModelLoader> modelLoaderList = new ArrayList<>();
 
     private NextGen(String modelURI) {
         this.modelURI = modelURI;
@@ -73,6 +73,18 @@ public class NextGen implements Runnable {
         return protectionStrategie;
     }
 
+    public static void runCartridgeWithName(String cartridgeName) {
+        cartridgeNames.add(cartridgeName);
+    }
+
+    public static void addCartridge(Cartridge c) {
+        cartridgeList.add(c);
+    }
+
+    public static void addModelLoader(ModelLoader ml) {
+        modelLoaderList.add(ml);
+    }
+
     /**
      * Locate all implementations of the ModelLoader Interface with the Java ServiceLoader
      * mechanism. Each found ModelLoader is requested if it can handel a model
@@ -82,6 +94,7 @@ public class NextGen implements Runnable {
      */
     private List<ModelLoader> locateModelLoader() {
         List<ModelLoader> result = new ArrayList<>();
+        result.addAll(modelLoaderList);
         LOGGER.fine("Loading servcices for Interface " + ModelLoader.class.getName());
         ServiceLoader<ModelLoader> loaderServices = ServiceLoader.load(ModelLoader.class);
         if (!loaderServices.iterator().hasNext()) {
@@ -98,6 +111,7 @@ public class NextGen implements Runnable {
 
     private List<Cartridge> loadCartridges() {
         final List<Cartridge> result = new ArrayList<>();
+        result.addAll(cartridgeList);
         ServiceLoader<Cartridge> loaderServices = ServiceLoader.load(Cartridge.class);
         loaderServices.forEach(result::add);
         StringBuilder sb = new StringBuilder();
@@ -107,7 +121,7 @@ public class NextGen implements Runnable {
             }
             sb.append(c.getName());
         }
-        LOGGER.info(() -> "found " + result.size() + " cartridges ["+sb+"] as service.");
+        LOGGER.info(() -> "found " + result.size() + " cartridges ["+sb+"].");
         return result;
     }
 
@@ -116,11 +130,13 @@ public class NextGen implements Runnable {
             String fqWorkingDir = new File(getWorkingDir()).getAbsolutePath();
             LOGGER.info(() -> "starting codegen in working dir "+fqWorkingDir+" on model file " + modelURI);
             for (Cartridge c : loadCartridges()) {
-                List<Model> models = loadModels(this.modelURI);
-                for (Model m : models) {
-                    runTransformations(m, c);
-                    for (CodeBlock cb : runCodeGenerators(c, m)) {
-                        cb.writeOutput(getWorkingDir());
+                if( cartridgeNames.isEmpty() || cartridgeNames.contains(c.getName())) {
+                    List<Model> models = loadModels(this.modelURI);
+                    for (Model m : models) {
+                        runTransformations(m, c);
+                        for (CodeBlock cb : runCodeGenerators(c, m)) {
+                            cb.writeOutput(getWorkingDir());
+                        }
                     }
                 }
             }

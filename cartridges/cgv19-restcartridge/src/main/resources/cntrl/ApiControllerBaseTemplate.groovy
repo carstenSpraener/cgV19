@@ -1,15 +1,15 @@
 package cntrl
 
-import de.spraener.nxtgen.CGV19
-import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
+
+import de.spraener.nxtgen.CGV19Config
 import de.spraener.nxtgen.ProtectionStrategie
-import de.spraener.nxtgen.model.ModelElement
+import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
 
-def persistenceAPI = CGV19.definitionOf("javax.persistence");
+def persistenceAPI = CGV19Config.definitionOf("javax.persistence");
 
 def toLogicName(me) {
     return me.name.replace("Controller", "Logic").replace("Base", "");

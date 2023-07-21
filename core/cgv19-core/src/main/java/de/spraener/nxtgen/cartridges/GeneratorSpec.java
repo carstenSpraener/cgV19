@@ -3,6 +3,8 @@ package de.spraener.nxtgen.cartridges;
 import de.spraener.nxtgen.annotations.*;
 import de.spraener.nxtgen.model.ModelElement;
 
+import java.lang.annotation.Annotation;
+
 public class GeneratorSpec {
     private String requiredStereotype;
     private Class<? extends ModelElement> operatesOn;
@@ -39,6 +41,19 @@ public class GeneratorSpec {
         genSpec.templateName = cgv19MustacheGenerator.templateResource();
         genSpec.implementationKind = ImplementationKind.MUSTACHE;
         genSpec.outputFile = cgv19MustacheGenerator.value();
+        return genSpec;
+    }
+
+    public static GeneratorSpec from(CGV19Blueprint bpAnnotation) {
+        if( bpAnnotation == null ) {
+            return null;
+        }
+        GeneratorSpec genSpec = new GeneratorSpec();
+        genSpec.requiredStereotype = bpAnnotation.requiredStereotype();
+        genSpec.operatesOn = bpAnnotation.operatesOn();
+        genSpec.templateName = bpAnnotation.value();
+        genSpec.outputFile = bpAnnotation.outputDir();
+        genSpec.implementationKind = ImplementationKind.BLUEPRINT;
         return genSpec;
     }
 
