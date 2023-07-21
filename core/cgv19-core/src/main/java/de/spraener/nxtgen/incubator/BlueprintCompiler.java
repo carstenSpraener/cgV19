@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 /**
- * <p></p>A BlueprintCompiler copies a whole subtree from the resource classpath to the
+ * <p>A BlueprintCompiler copies a whole subtree from the resource classpath to the
  * given output path. Each file is processed by mustache with the scope defined in
  * the BlueprintCompiler. </p>
  * <p>
