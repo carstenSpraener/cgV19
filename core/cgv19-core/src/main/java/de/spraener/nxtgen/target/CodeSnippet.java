@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <h4>Responsibility</h4>
+ * <strong>Responsibility</strong>
  * A CodeSnippet is a atomar piece of code that can be referenced by an aspect
  * and an optional ModelElement. It can evaluate itself into a StringBuilder.
  * It always has an "aspect" this snippet is needed for, and it can have a ModelElement

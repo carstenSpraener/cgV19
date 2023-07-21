@@ -9,12 +9,15 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * <p>
  * This code section evaluates to an empty string if it contains no snippets.
  * If it contains a snippet, it will add the keyword "implements" to the
  * code and a "," between to snippets code. It also removes double implements
  * snippets.
- * <p/>
+ * </p>
+ * <p>
  * It is used to easily create a Java "implements"-List
+ * </p>
  */
 public class JavaImplementsCodeSection extends UniqueLineSection {
     @Override

@@ -1,7 +1,7 @@
 package de.spraener.nxtgen.target;
 
 /**
- * <h4>Responsibility</h4>
+ * <strong>Responsibility</strong>
  * A CodeTargetToCodeConverter converts a CodeTarget holding
  * CodeSections which holds CodeSnippets to a single String
  * of text. It reads all CodeSections from the target and from

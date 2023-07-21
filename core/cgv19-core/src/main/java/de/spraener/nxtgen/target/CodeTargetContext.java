@@ -5,18 +5,18 @@ import de.spraener.nxtgen.model.ModelElement;
 import java.util.Stack;
 
 /**
- * <h4>Responsibility</h4>
+ * <strong>Responsibility</strong>
  * The CodeTargetContext manages a Stack in a ThreadLocal variable to give access to the current
  * Aspect and ModelElement. With the use of the CodeTargetContext a Snippet can retrieve this
  * information automatically from the ThreadLocal. This makes the writing of ClassTarget-Creators
  * much more readable.
- * <p/>
+ * <p>
  * The CodeTargetContext is a Autocloseable and it is intended to be used in a try()-Header. Nesting
  * is possible. A nested ClassTargetContext will push its information on the stack and pop it
  * on close. The last close will empty the ThreadLocal variable.
- * <p>
+ * </p><p>
  * Access to the CodeTargetContext is possible to the static method getActiveContext
- *
+ *</p>
  */
 public class CodeTargetContext implements AutoCloseable {
     private static ThreadLocal<Stack<CodeTargetContext>> activeContext = new ThreadLocal<>();
