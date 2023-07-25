@@ -9,13 +9,14 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 /**
- * A BlueprintCompiler copies a whole subtree from the resource classpath to the
+ * <p>A BlueprintCompiler copies a whole subtree from the resource classpath to the
  * given output path. Each file is processed by mustache with the scope defined in
- * the BlueprintCompiler. <p/>
+ * the BlueprintCompiler. </p>
+ * <p>
  * A sub path in the blueprint can hold variable references them self. For example
  * a path like "{{appname}}/Dockerfile" will be translated to "myapp/Dockerfile" if
  * the value of 'appname' is 'myapp' in the current scope.
- * <p/>
+ * </p>
  *
  */
 public class BlueprintCompiler {
