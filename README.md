@@ -1,7 +1,10 @@
 ![cgv19-logo.png](docs/images/cgv19-logo.png)
 
 # Welcome to cgV19
-Last Update on: June the 14th 2023
+[Come to the Slack Group](https://join.slack.com/t/cgv19/shared_invite/zt-1zxm6hc9e-~~a9QFtk4yXy2COrX1TnAQ)
+
+Last Update on: July the 25th 2023
+
 ## [Upcoming Release 23.1](docs/Release-23.1.md)
 __cgV19 Release 23.1 is in the pipeline. It will bring some exciting new features!__
 
