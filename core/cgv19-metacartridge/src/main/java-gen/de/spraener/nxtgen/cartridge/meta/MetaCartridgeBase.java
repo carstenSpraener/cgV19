@@ -25,8 +25,8 @@ public class MetaCartridgeBase implements Cartridge {
         result.add( new de.spraener.nxtgen.cartridge.meta.RemoveModelRootPackage() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureGeneratorDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureTransformationDefinitionsTransformation() );
-        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeServicesLocatorTransformation() );
+        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
 
         return result;
     }
@@ -83,16 +83,6 @@ public class MetaCartridgeBase implements Cartridge {
                     }
                 }
             }
-            if( StereotypeHelper.hasStereotype(me, "StereotypeEnum") ) {
-                if( me instanceof MClass tME ) {
-                    CodeGeneratorMapping mapping = createMapping(tME, "StereotypeEnum");
-                    if (mapping != null) {
-                        result.add(mapping);
-                    } else {
-                        result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.StereotypeEnumGenerator()));
-                    }
-                }
-            }
             if( StereotypeHelper.hasStereotype(me, "cgV19CartridgeServiceDefinition") ) {
                 if( me instanceof MClass tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "cgV19CartridgeServiceDefinition");
@@ -100,6 +90,16 @@ public class MetaCartridgeBase implements Cartridge {
                         result.add(mapping);
                     } else {
                         result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.CartridgeServiceLocaterGenerator()));
+                    }
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "StereotypeEnum") ) {
+                if( me instanceof MClass tME ) {
+                    CodeGeneratorMapping mapping = createMapping(tME, "StereotypeEnum");
+                    if (mapping != null) {
+                        result.add(mapping);
+                    } else {
+                        result.add(CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.StereotypeEnumGenerator()));
                     }
                 }
             }
