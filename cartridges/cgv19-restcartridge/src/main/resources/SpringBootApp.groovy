@@ -36,12 +36,16 @@ class SpringBootAppCodeTarget {
                 .add(new SingleLineSnippet("import org.springframework.boot.SpringApplication;"))
                 .add(new SingleLineSnippet("import org.springframework.boot.autoconfigure.SpringBootApplication;"))
                 .add(new SingleLineSnippet("import org.springframework.context.annotation.Bean;"))
+                .add(new SingleLineSnippet("import org.springframework.security.config.annotation.web.builders.HttpSecurity;"))
+                .add(new SingleLineSnippet("import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;"))
+                .add(new SingleLineSnippet("import org.springframework.security.web.SecurityFilterChain;"))
     }
 
     void addSpringAnnotations(CodeTarget t) {
         t.getSection(JavaSections.CLASS_DECLARATION)
                 .getFirstSnippetForAspect(ClassFrameTargetCreator.CLAZZ_FRAME)
                 .insertBefore(new SingleLineSnippet("@SpringBootApplication"))
+                .insertBefore(new SingleLineSnippet("@EnableWebSecurity"))
     }
 
     void addMainImplementation(CodeTarget t) {
@@ -63,6 +67,17 @@ class SpringBootAppCodeTarget {
         return new GsonBuilder()
             .setDateFormat("dd.MM.yyyy").create();
     }
+    
+    
+    @Bean
+    public SecurityFilterChain configSecurity(HttpSecurity http ) throws Exception {
+        http
+        .authorizeHttpRequests(a -> a
+            .requestMatchers("**/ping").permitAll()
+        );
+        return http.build();
+    }
+
 """
                 ))
     }
