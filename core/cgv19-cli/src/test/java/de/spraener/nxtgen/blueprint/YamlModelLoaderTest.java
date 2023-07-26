@@ -1,18 +1,24 @@
 package de.spraener.nxtgen.blueprint;
 
+import de.spraener.nxtgen.incubator.BlueprintCompiler;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class YamlModelLoaderTest {
 
     @Test
     void loadModel() {
+        BlueprintCompiler bpcMock = mock(BlueprintCompiler.class);
+        when(bpcMock.getRequiredValues()).thenReturn(Collections.emptyList());
         String yaml = """
                 p1:
                     p2:
@@ -21,7 +27,7 @@ class YamlModelLoaderTest {
                 name: Name
                 """;
         InputStream is = new ByteArrayInputStream(yaml.getBytes());
-        YamlModelLoader loader = new YamlModelLoader("TEST", null, null);
+        YamlModelLoader loader = new YamlModelLoader("TEST", bpcMock, null);
         Model m = loader.loadModel(is);
         assertNotNull(m);
         ModelElement me = m.getModelElements().get(0);
