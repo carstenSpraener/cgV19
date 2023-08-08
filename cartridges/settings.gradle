@@ -1,3 +1,4 @@
 rootProject.name = 'cgv19-cartridges'
 
 include ':cgv19-restcartridge'
+include ':cgv19-cloud'

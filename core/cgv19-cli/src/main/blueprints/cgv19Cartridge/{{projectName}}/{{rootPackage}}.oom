@@ -4,8 +4,8 @@ ModelDSL.make {
     mPackage {
         name '{{rootPackage}}'
         mClass {
-            name 'App'
-            stereotype 'PoJo'
+            name '{{cartridgeName}}'
+            stereotype 'cgV19Cartridge'
         }
     }
 }
