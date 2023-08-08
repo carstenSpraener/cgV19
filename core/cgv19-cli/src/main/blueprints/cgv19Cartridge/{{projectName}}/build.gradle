@@ -22,7 +22,7 @@ repositories {
 cgV19 {
     model = '{{rootPackage}}.oom'
     // If you use VisualParadigm:
-    // model = http://localhost:7001/{{rootPackage}}
+    // model = 'http://localhost:7001/{{rootPackage}}'
 }
 
 sourceSets {
