@@ -52,9 +52,12 @@ public class CGV19 {
             if( blueprintDir == null ) {
                 blueprintDir=getInstallationDir()+"/cartridges/blueprints";
             }
+
             for(BlueprintDirectoryBasedCartridge c : BluePrintCartridgeCreator.createBlueprintCartridges(blueprintDir) ) {
                 NextGen.addCartridge(c);
-                NextGen.addModelLoader(c);
+                if( cartridgeName==null || c.getName().equals(cartridgeName)) {
+                    NextGen.addModelLoader(c);
+                }
             }
             NextGen.main(ngArgs);
         } catch (ParseException e) {
