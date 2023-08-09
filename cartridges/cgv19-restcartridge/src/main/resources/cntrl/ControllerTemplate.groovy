@@ -120,7 +120,7 @@ def logicName = toLogicName(modelElement);
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
 
-import ${CGV19Config.definitionOf("javax.persistence")}.*;
+import ${CGV19Config.definitionOf("jakarta.persistence")}.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

@@ -29,7 +29,6 @@ test {
     useJUnitPlatform()
 }
 
-
 jar {
     manifest {
         attributes 'Main-Class': "de.spraener.nxtgen.cli.CGV19"

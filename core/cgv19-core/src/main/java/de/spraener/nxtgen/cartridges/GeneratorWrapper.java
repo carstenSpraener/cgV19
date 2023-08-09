@@ -9,6 +9,7 @@ import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.function.Consumer;
 

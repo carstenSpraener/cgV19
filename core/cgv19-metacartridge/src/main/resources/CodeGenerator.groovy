@@ -16,11 +16,11 @@ String readTaggedValue( MClass mClass, String stereotype, String taggedValue, St
 }
 
 String getOutputType( MClass mClass) {
-    return readTaggedValue(mClass, "CodeGenerator", "outputType", "none")
+    return readTaggedValue(mClass, "CodeGenerator", "outputType", "OTHER")
 }
 
 String getOutputTypeEnum( MClass mClass) {
-    return readTaggedValue(mClass, "CodeGenerator", "outputType", "none").toUpperCase();
+    return readTaggedValue(mClass, "CodeGenerator", "outputType", "other").toUpperCase();
 }
 
 String getOutputTo( MClass mClass) {

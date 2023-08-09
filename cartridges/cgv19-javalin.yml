@@ -1,0 +1,17 @@
+app:
+  group: ''
+  version: ''
+cartridgeName: JavaLinCartridge
+javaSourceVersion: ''
+rootPackage: de.spreaener.nxtgen.javalin
+coordinates: ''
+timeZone: ''
+dockerProductionRunImage: ''
+'#implementationDependencies': ''
+springDependencyManagementVersion: ''
+/implementationDependencies: ''
+cgv19-Version: 23.1.1
+springBootVersion: ''
+projectName: cgv19-javalin
+applicationMainClass: ''
+dockerGradleBuildImage: ''

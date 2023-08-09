@@ -207,7 +207,7 @@ def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 def dbTable = findStereotype(RESTStereotypes.ENTITY).getTaggedValue("dbTable")
 def extendsStr = getExtendsRelation();
-def persistenceAPI = CGV19Config.definitionOf("javax.persistence");
+def persistenceAPI = CGV19Config.definitionOf("jakarta.persistence");
 
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};

@@ -112,6 +112,10 @@ public class CodeBlockImpl implements CodeBlock {
             if (outFile.exists() && checkProtected(outFile)) {
                 return;
             }
+            if( outFile.getParentFile() == null ){
+                NextGen.LOGGER.warning("missconfigured generator tries to open illegal file: "+this.getName());
+                return;
+            }
             outFile.getParentFile().mkdirs();
             PrintWriter pw = new PrintWriter(new FileWriter(outFile));
             pw.print(this.toCode());

@@ -7,6 +7,7 @@ import de.spraener.nxtgen.model.ModelElement;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +26,17 @@ public class MustacheGenerator implements CodeGenerator {
 
     @Override
     public CodeBlock resolve(ModelElement modelElement, String templateName) {
-        try {
             MustacheFactory mf = new DefaultMustacheFactory();
-            Mustache mustache = mf.compile(this.mustacheResourcePath);
+            Mustache  mustache;
+        try {
+            try {
+                mustache = mf.compile(this.mustacheResourcePath);
+            } catch( Exception e ) {
+            mustache = mf.compile(
+                    new InputStreamReader(getClass().getResourceAsStream(this.mustacheResourcePath)),
+                    this.mustacheResourcePath
+            );
+            }
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PrintWriter pw = new PrintWriter(baos);
             Map<String, Object> scope = new HashMap<>();

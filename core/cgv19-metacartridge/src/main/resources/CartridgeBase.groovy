@@ -40,7 +40,7 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
         String generatesOn = getGeneratesOn(codeGenerator)
         if( generatesOn!=null ) {
             sb.append(
-"""                if( ${meName} instanceof ${generatesOn} tME ) {
+"""                   if( ${meName} instanceof ${generatesOn} tME ) {
                     CodeGeneratorMapping mapping = createMapping(tME, "${sTypeName}");
                     if (mapping != null) {
                         ${listName}.add(mapping);
@@ -50,7 +50,15 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
                 }
 """)
         } else {
-            sb.append("                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));\n")
+            sb.append(
+"""                CodeGeneratorMapping mapping = createMapping(me, "${sTypeName}");
+                if (mapping != null) {
+                    ${listName}.add(mapping);
+                } else {
+                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));
+                }
+"""
+            )
         }
     }
     sb.append("            }\n");

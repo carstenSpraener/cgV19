@@ -1,6 +1,6 @@
 package de.spraener.nxtgen;
 
-import de.spraener.nxtgen.annotations.CGV19Cartridge;
+import de.spraener.nxtgen.invocation.NextGenInvocation;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 
@@ -8,7 +8,6 @@ import java.io.File;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * The begining of all the hacks...
@@ -44,23 +43,30 @@ public class NextGen implements Runnable {
     private static List<Cartridge> cartridgeList = new ArrayList<>();
     private static List<ModelLoader> modelLoaderList = new ArrayList<>();
 
+    private static List<NextGenInvocation> scheduledSubRuns = new ArrayList<>();
+    private static boolean inSubRun = false;
+
     private NextGen(String modelURI) {
         this.modelURI = modelURI;
-        if( this.workingDir == null ) {
+        if (this.workingDir == null) {
             this.workingDir = new File(".").getAbsolutePath();
         }
     }
 
+    public static synchronized void scheduleInvocation(NextGenInvocation invocation) {
+        scheduledSubRuns.add(invocation);
+    }
+
     public static void setWorkingDir(String workingDir) {
         File f = new File(workingDir);
-        if( !f.exists() || !f.isDirectory() ) {
-            throw new IllegalArgumentException("assigned working directory '"+workingDir+"' does not exists or is not a directory");
+        if (!f.exists() || !f.isDirectory()) {
+            throw new IllegalArgumentException("assigned working directory '" + workingDir + "' does not exists or is not a directory");
         }
         NextGen.workingDir = workingDir;
     }
 
     public static ProtectionStrategie getProtectionStrategie() {
-        if( protectionStrategie==null) {
+        if (protectionStrategie == null) {
             ServiceLoader<ProtectionStrategie> protectionServices = ServiceLoader.load(ProtectionStrategie.class);
             if (!protectionServices.iterator().hasNext()) {
                 LOGGER.fine("No ProtectionStrategie found. Using default.");
@@ -115,22 +121,22 @@ public class NextGen implements Runnable {
         ServiceLoader<Cartridge> loaderServices = ServiceLoader.load(Cartridge.class);
         loaderServices.forEach(result::add);
         StringBuilder sb = new StringBuilder();
-        for( Cartridge c : result ) {
-            if( sb.length()>0) {
+        for (Cartridge c : result) {
+            if (sb.length() > 0) {
                 sb.append(", ");
             }
             sb.append(c.getName());
         }
-        LOGGER.info(() -> "found " + result.size() + " cartridges ["+sb+"].");
+        LOGGER.info(() -> "found " + result.size() + " cartridges [" + sb + "].");
         return result;
     }
 
     public void run() {
         try {
             String fqWorkingDir = new File(getWorkingDir()).getAbsolutePath();
-            LOGGER.info(() -> "starting codegen in working dir "+fqWorkingDir+" on model file " + modelURI);
+            LOGGER.info(() -> "starting codegen in working dir " + fqWorkingDir + " on model file " + modelURI);
             for (Cartridge c : loadCartridges()) {
-                if( cartridgeNames.isEmpty() || cartridgeNames.contains(c.getName())) {
+                if (cartridgeNames.isEmpty() || cartridgeNames.contains(c.getName())) {
                     List<Model> models = loadModels(this.modelURI);
                     for (Model m : models) {
                         runTransformations(m, c);
@@ -143,6 +149,14 @@ public class NextGen implements Runnable {
         } catch (Exception e) {
             throw new NxtGenRuntimeException(e);
         }
+
+        if (!inSubRun) {
+            inSubRun = true;
+            while(!scheduledSubRuns.isEmpty()) {
+                cartridgeNames.clear();
+                scheduledSubRuns.remove(0).run();
+            }
+        }
     }
 
     public static String getWorkingDir() {
@@ -151,8 +165,8 @@ public class NextGen implements Runnable {
 
     private List<Model> loadModels(String modelURI) {
         List<Model> models = new ArrayList();
-        for( ModelLoader loader : locateModelLoader() ) {
-            if( loader.canHandle(modelURI) ) {
+        for (ModelLoader loader : locateModelLoader()) {
+            if (loader.canHandle(modelURI)) {
                 LOGGER.fine(() -> "loading model with loader " + loader.getClass().getName());
                 try {
                     setActiveLoader(loader);
@@ -168,7 +182,7 @@ public class NextGen implements Runnable {
         }
         if (models.isEmpty()) {
             LOGGER.warning(() -> "no loader could handel model " + modelURI + ". Terminating");
-            throw new NxtGenRuntimeException("Unable to find a model loader for the given model uri: "+ modelURI + ". Check your classpath");
+            throw new NxtGenRuntimeException("Unable to find a model loader for the given model uri: " + modelURI + ". Check your classpath");
         }
         return models;
     }
@@ -190,7 +204,7 @@ public class NextGen implements Runnable {
         List<CodeGeneratorMapping> mappings = cartridge.mapGenerators(model);
         if (mappings != null) {
             mappings.forEach(m ->
-                result.add(m.getCodeGen().resolve(m.getGeneratorBaseELement(), ""))
+                    result.add(m.getCodeGen().resolve(m.getGeneratorBaseELement(), ""))
             );
         }
         return result;
@@ -200,10 +214,10 @@ public class NextGen implements Runnable {
         List<Transformation> transformations = cartridge.getTransformations();
         if (transformations != null) {
             transformations.forEach(t -> {
-                LOGGER.fine(()->"Running transformation "+t.getClass().getName());
+                LOGGER.fine(() -> "Running transformation " + t.getClass().getName());
 
                 List<ModelElement> allElements = model.getModelElements();
-                for( ModelElement e : allElements ) {
+                for (ModelElement e : allElements) {
                     t.doTransformation(e);
                 }
             });
