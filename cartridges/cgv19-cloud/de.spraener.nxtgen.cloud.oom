@@ -3,10 +3,154 @@ import de.spraener.nxtgen.groovy.ModelDSL
 ModelDSL.make {
     mPackage {
         name 'de.spraener.nxtgen.cloud'
+        documentation ''
+        id 'wKYsC5GD.AAAARHf'
+        metaType 'Package'
         mClass {
+            stereotype 'Stereotype'
+            name 'Deployment'
+            documentation 'A package marked with this Stereotype will describe all deployment components in a component diagram.'
+            id 'wKYsC5GD.AAAARHf:aFqQq5GD.AAAARTF'
+            metaType 'Stereotype'
+            mAttribute {
+                name 'dockerRegistry'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:aFqQq5GD.AAAARTF$vaqwq5GD.AAAARUh$vaqwq5GD.AAAARUi'
+                metaType 'TaggedValueDefinition'
+            }
+            mAttribute {
+                name 'deploymentName'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:aFqQq5GD.AAAARTF$vaqwq5GD.AAAARUh$HIjpW5GD.AAAAS9t'
+                metaType 'TaggedValueDefinition'
+            }
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'CloudService'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:6odQq5GD.AAAART5'
+            metaType 'Stereotype'
+            mAttribute {
+                name 'replicas'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:6odQq5GD.AAAART5$IpYwq5GD.AAAARUT$IpYwq5GD.AAAARUU'
+                metaType 'TaggedValueDefinition'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
             name 'CloudCartridge'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:c57wq5GD.AAAARXI'
+            metaType 'Class'
             stereotype 'cgV19Cartridge'
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'MElementToComponentTransformation'
+            documentation 'Looks for ModelElements with metaType Component and converts them into a MComponent model element.\n\nAny mElement with metaType Port is added to the MComponent as\na MPort Element.'
+            id 'wKYsC5GD.AAAARHf:eb72q5GD.AAAARkL'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'priority', '0'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SDeploymentGenerator'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:ITQhq5GD.AAAARlN'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudDeployable'
+                taggedValue 'generatesOn', ''
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudStereotypes'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:4C3Jq5GD.AAAARmD'
+            metaType 'Class'
+            stereotype 'StereotypeEnum'
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SServiceGenerator'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:Lh0Tq5GD.AAAARnC'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudClusterIPService'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'CloudDeployable'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:1W7zq5GD.AAAARnt'
+            metaType 'Stereotype'
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'CloudClusterIPService'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:naqfq5GD.AAAARsI'
+            metaType 'Stereotype'
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudServiceToProjectModuleTransformation'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:iiZ4a5GD.AAAAR4o'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'priority', '10'
+            }
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'CloudModule'
+            documentation 'A package marked with this Stereotype will describe all deployment components in a component diagram.'
+            id 'wKYsC5GD.AAAARHf:lKwEa5GD.AAAAR59'
+            metaType 'Stereotype'
+            mAttribute {
+                name 'dockerRegistry'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$NKwEa5GD.AAAAR5_'
+                metaType 'TaggedValueDefinition'
+            }
+            mAttribute {
+                name 'cgv19Cartridge'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$MRRra5GD.AAAASsa'
+                metaType 'TaggedValueDefinition'
+            }
+            mAttribute {
+                name 'dockerImage'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$ZipdW5GD.AAAATEA'
+                metaType 'TaggedValueDefinition'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudModuleGenerator'
+            documentation ''
+            id 'wKYsC5GD.AAAARHf:Eh8Ea5GD.AAAAR6c'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'generatesOn', 'MClass'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'GradleSettingsGenerator'
+            documentation 'Generates a settings.gradle with a list of all Gradle build sub modules\nof this cloud project.'
+            id 'wKYsC5GD.AAAARHf:n6YBa5GD.AAAAR7O'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'GradleSettings'
+                taggedValue 'outputTo', 'other'
+            }
         }
     }
 }
-
