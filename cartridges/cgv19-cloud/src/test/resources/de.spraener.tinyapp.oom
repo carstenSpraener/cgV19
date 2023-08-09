@@ -1,0 +1,148 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.tinyapp'
+        documentation ''
+        id 'mVU0C5GD.AAAARDE'
+        metaType 'Package'
+        stereotype 'cgV19Project'
+        mPackage {  //Exported by PackageExporterBase
+            name 'fibonacci'
+            documentation ''
+            id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'JavaLinCartridge'
+                taggedValue 'dockerImage', 'fibonacci'
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'FibonacciApp'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Q07Ia5GD.AAAARwu'
+                metaType 'Class'
+                stereotype 'JavaLinApp'
+                mOperation {  //Exported by OperationExporterBase
+                    name 'valueOf'
+                    documentation ''
+                    id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Q07Ia5GD.AAAARwu$ToVPa5GD.AAAAS1.'
+                    metaType 'Operation'
+                    stereotype 'RequestHandler', {
+                        taggedValue 'Metod', 'GET'
+                        taggedValue 'path', '/'
+                    }
+                    mParameter {  //Exported by ParameterExporterBase
+                        name 'i'
+                        documentation ''
+                        id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Q07Ia5GD.AAAARwu$ToVPa5GD.AAAAS1.$IqdPa5GD.AAAAS2E'
+                        metaType 'Parameter'
+                        type 'Integer'
+                    }
+                }
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'cluster'
+            documentation ''
+            id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX'
+            metaType 'Package'
+            stereotype 'Deployment', {
+                taggedValue 'dockerRegistry', 'teneriffa:5080'
+            }
+            mElement {
+                name 'Frontend'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:0moQq5GD.AAAARSb'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '1'
+                }
+                mElement {
+                    name '80'
+                    documentation ''
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:0moQq5GD.AAAARSb$7y4Qq5GD.AAAARSm'
+                    metaType 'Port'
+                }
+            }
+            mElement {
+                name 'AppDatabase'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vvYIq5GD.AAAARYI'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '1'
+                    taggedValue 'dockerImage', 'mariadb:10.6.14-focal'
+                }
+                mElement {
+                    name '3306'
+                    documentation ''
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vvYIq5GD.AAAARYI$Ne6Iq5GD.AAAARYu'
+                    metaType 'Port'
+                }
+            }
+            mElement {
+                name 'DatabaseDir'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:IIqoq5GD.AAAARcC'
+                metaType 'InstanceSpecification'
+                stereotype 'PermanentVolume', {
+                    taggedValue 'path', 'frontendAppDatabase'
+                }
+            }
+            mElement {
+                name 'Fibonacci'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vqkIa5GD.AAAARtq'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '4'
+                }
+                mElement {
+                    name '8080'
+                    documentation ''
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vqkIa5GD.AAAARtq$JHMIa5GD.AAAARt5'
+                    metaType 'Port'
+                }
+            }
+        }
+        mElement {
+            name 'Deployment'
+            documentation ''
+            id 'mVU0C5GD.AAAARDE:pzjoa5GD.AAAAR0Q'
+            metaType 'DiagramOverview'
+        }
+        mElement {
+            name 'FibonacciModel'
+            documentation ''
+            id 'mVU0C5GD.AAAARDE:Z6zoa5GD.AAAAR0f'
+            metaType 'DiagramOverview'
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'frontend'
+            documentation ''
+            id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'REST-Cartridge'
+                taggedValue 'dockerImage', 'frontend'
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'FrontendApp'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:4ms4a5GD.AAAAR3K'
+                metaType 'Class'
+                stereotype 'SpringBootApp'
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'NumberResource'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:sai4a5GD.AAAAR3b'
+                metaType 'Class'
+                stereotype 'Ressource', {
+                }
+            }
+        }
+    }
+}
