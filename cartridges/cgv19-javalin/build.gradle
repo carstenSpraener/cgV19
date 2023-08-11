@@ -13,7 +13,7 @@ plugins {
     id 'application'
 }
 
-// apply plugin: 'de.spraener.nxtgen.cgV19'
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     maven {
