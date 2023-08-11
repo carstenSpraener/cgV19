@@ -61,6 +61,7 @@ ModelDSL.make {
             metaType 'Class'
             stereotype 'CodeGenerator', {
                 taggedValue 'requiredStereotype', 'CloudDeployable'
+                taggedValue 'outputType', 'Other'
                 taggedValue 'generatesOn', ''
                 taggedValue 'outputTo', 'other'
             }
@@ -130,6 +131,12 @@ ModelDSL.make {
                 id 'wKYsC5GD.AAAARHf:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$ZipdW5GD.AAAATEA'
                 metaType 'TaggedValueDefinition'
             }
+            mAttribute {
+                name 'port'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$vU4Dh5GGAqAACBDN'
+                metaType 'TaggedValueDefinition'
+            }
         }
         mClass {  //Exported by ClassExporterBase
             name 'CloudModuleGenerator'
@@ -151,6 +158,73 @@ ModelDSL.make {
                 taggedValue 'requiredStereotype', 'GradleSettings'
                 taggedValue 'outputTo', 'other'
             }
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'IngressService'
+            documentation 'Marks a Component as a ingress Service inside a K8S cluster.'
+            id 'wKYsC5GD.AAAARHf:X2juO5GGAqAoAQoH'
+            metaType 'Stereotype'
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'Routes'
+            documentation 'Marks a dependency between an IngressService and a Port on a CloudService as an Ingress route definition.\n\nThe tagged value path contains the path pattern for this route.'
+            id 'wKYsC5GD.AAAARHf:AfkeO5GGAqAoAQq6'
+            metaType 'Stereotype'
+            mAttribute {
+                name 'path'
+                documentation ''
+                id 'wKYsC5GD.AAAARHf:AfkeO5GGAqAoAQq6$wfkeO5GGAqAoAQq7$wfkeO5GGAqAoAQq8'
+                metaType 'TaggedValueDefinition'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SIngressGenerator'
+            documentation 'Generates an Ingress service descriptor for K8S from a Component marked with Stereotype IngressService.\n\nEach dependency from this Component to a Port of a CloudService will lead to a routing rule to the referenced service.\n\nThe dependency must have the stereotype Routes. The tagged value path contains the path pattern to be assigned.'
+            id 'wKYsC5GD.AAAARHf:iFA7e5GGAqAACAqv'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudIngressService'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'DockerComposeGenerator'
+            documentation 'Generates a docker compose file that contains all Services.'
+            id 'wKYsC5GD.AAAARHf:cupHe5GGAqAACAsK'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'DockerComposeFile'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'DockerComposeCreatorTransformation'
+            documentation 'Looks for all CloudModule Packages and generates an MClass with Stereotype Dockerfile which references all this CloudModules.\n\nThis MClass will be taken from the Dockerfile generator to build a global docker-compose file with all this CloudModules included.'
+            id 'wKYsC5GD.AAAARHf:USvHe5GGAqAACAtQ'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'transformedMetaType', 'MPackage'
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'priority', '100'
+            }
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'DockerComposeFile'
+            documentation 'Internal stereotype to mark the trigger class for the docker-compose.yml file.'
+            id 'wKYsC5GD.AAAARHf:7q73e5GGAqAACAnN'
+            metaType 'Stereotype'
+        }
+        mClass {
+            stereotype 'Stereotype'
+            name 'CloudIngressService'
+            documentation 'Marks a Component as a ingress Service inside a K8S cluster.'
+            id 'wKYsC5GD.AAAARHf:S3IZB5GGAqAACA5b'
+            metaType 'Stereotype'
         }
     }
 }
