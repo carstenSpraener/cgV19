@@ -1,11 +1,13 @@
 # You are here
 
-![cartridge-you-are-here.png](doc%2Fimages%2Fcartridge-you-are-here.png)
+![cartridge-you-are-here.png](doc/images/cartridge-you-are-here.png)
+
+### [See List of available cartridges](doc/Cartridges-Overview.md)
 
 # What is a cartridge
 __No! Not this. But the idea is very similar.__
 
-![cartridge-retro.png](doc%2Fimages%2Fcartridge-retro.png)
+![cartridge-retro.png](doc/images/cartridge-retro.png)
 
 CGV19 at it's core reads models and operates cartridges on them. That's the whole
 story in a nutshell. So the cartridges are the way to make CGV19 usable for your 
@@ -27,7 +29,7 @@ Let's start.
 
 ## The Cartridge itself
 
-![cartridge-model.png](doc%2Fimages%2Fcartridge-model.png)
+![cartridge-model.png](doc/images/cartridge-model.png)
 
 ```java
 @CGV19Cartridge("PoJo-Cartridge")
@@ -44,7 +46,7 @@ Cartridges interprets a model with its model elements and handle them
 according to some rules. Therefor they are providing:
 
 ## Transformations
-![transformation-model.png](doc%2Fimages%2Ftransformation-model.png)
+![transformation-model.png](doc/images/transformation-model.png)
 
 ```java
 @CGV19Transformation(
@@ -65,10 +67,10 @@ tool in a code generator.
 The shown transformtion `createGeneratorGapBaseClass` for example will do the 
 following transformation on every MClass with Stereotype &lt;&lt;PoJo&gt;&gt;:
 
-![generatorGapTransformation.png](doc%2Fimages%2FgeneratorGapTransformation.png)
+![generatorGapTransformation.png](doc/images/generatorGapTransformation.png)
 
 ## CodeGenerators
-![controller-model.png](doc%2Fimages%2Fcontroller-model.png)
+![controller-model.png](doc/images/controller-model.png)
 
 ```java
 @CGV19Generator(

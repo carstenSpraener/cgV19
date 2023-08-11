@@ -64,6 +64,21 @@ ModelDSL.make {
                     id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:0moQq5GD.AAAARSb$7y4Qq5GD.AAAARSm'
                     metaType 'Port'
                 }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:TwRIq5GD.AAAARa_'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.cluster.AppDatabase'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:zbo1W5GD.AAAATBS'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.frontend'
+                }
             }
             mElement {
                 name 'AppDatabase'
@@ -79,6 +94,13 @@ ModelDSL.make {
                     documentation ''
                     id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vvYIq5GD.AAAARYI$Ne6Iq5GD.AAAARYu'
                     metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:Q.boq5GD.AAAARc4'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.cluster.DatabaseDir'
                 }
             }
             mElement {
@@ -103,6 +125,47 @@ ModelDSL.make {
                     documentation ''
                     id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vqkIa5GD.AAAARtq$JHMIa5GD.AAAARt5'
                     metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:Z_A1W5GD.AAAATA6'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.fibonacci'
+                }
+            }
+            mElement {
+                name 'Ingress'
+                documentation ''
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:2OhuO5GGAqAoAQnr'
+                metaType 'Component'
+                stereotype 'IngressService'
+                mElement {
+                    name '8989'
+                    documentation ''
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:2OhuO5GGAqAoAQnr$AJrRO5GGAqAoARMh'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:z8nuO5GGAqAoAQpW'
+                    metaType 'Dependency'
+                    stereotype 'Routes', {
+                        taggedValue 'path', '/'
+                    }
+                    target 'de.spraener.tinyapp.cluster.Frontend.80'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:f03uO5GGAqAoAQpe'
+                    metaType 'Dependency'
+                    stereotype 'Routes', {
+                        taggedValue 'path', '/api'
+                    }
+                    target 'de.spraener.tinyapp.cluster.Fibonacci.8080'
                 }
             }
         }
@@ -134,6 +197,13 @@ ModelDSL.make {
                 id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:4ms4a5GD.AAAAR3K'
                 metaType 'Class'
                 stereotype 'SpringBootApp'
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'Depends'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:D99eO5GGAqAoAQuJ'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.frontend.NumberResource'
+                }
             }
             mClass {  //Exported by ClassExporterBase
                 name 'NumberResource'
@@ -141,6 +211,13 @@ ModelDSL.make {
                 id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:sai4a5GD.AAAAR3b'
                 metaType 'Class'
                 stereotype 'Ressource', {
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'Depends'
+                    documentation ''
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:D99eO5GGAqAoAQuJ'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.frontend.NumberResource'
                 }
             }
         }

@@ -23,6 +23,9 @@ public class MElementToComponentTransformation extends MElementToComponentTransf
                     comp.addStereotypes(new StereotypeImpl(CloudStereotypes.CLOUDDEPLOYABLE.getName()));
                     comp.addStereotypes(new StereotypeImpl(CloudStereotypes.CLOUDCLUSTERIPSERVICE.getName()));
                 }
+                if(StereotypeHelper.hasStereotype(comp, CloudStereotypes.INGRESSSERVICE.getName())) {
+                    comp.addStereotypes(new StereotypeImpl(CloudStereotypes.CLOUDINGRESSSERVICE.getName()));
+                }
             }
         }
     }

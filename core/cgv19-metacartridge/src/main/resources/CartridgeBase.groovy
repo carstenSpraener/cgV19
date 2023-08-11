@@ -36,12 +36,13 @@ String getGeneratesOn(MClass codeGenerator) {
 String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
     StringBuffer sb = new StringBuffer();
     sb.append("            if( StereotypeHelper.hasStereotype(me, \"${sTypeName}\") ) {\n");
+    sb.append("                CodeGeneratorMapping mapping = null;\n");
     for( MClass codeGenerator : mClasses ) {
-        String generatesOn = getGeneratesOn(codeGenerator)
-        if( generatesOn!=null ) {
+        String generatesOn = getGeneratesOn(codeGenerator);
+        if( generatesOn!=null && !"".equals(generatesOn.trim()) ) {
             sb.append(
 """                   if( ${meName} instanceof ${generatesOn} tME ) {
-                    CodeGeneratorMapping mapping = createMapping(tME, "${sTypeName}");
+                    mapping = createMapping(tME, "${sTypeName}");
                     if (mapping != null) {
                         ${listName}.add(mapping);
                     } else {
@@ -51,7 +52,7 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
 """)
         } else {
             sb.append(
-"""                CodeGeneratorMapping mapping = createMapping(me, "${sTypeName}");
+"""                mapping = createMapping(me, "${sTypeName}");
                 if (mapping != null) {
                     ${listName}.add(mapping);
                 } else {
@@ -68,7 +69,7 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
 """//${ProtectionStrategieDefaultImpl.GENERATED_LINE}
 package ${mClass.getPackage().getFQName()};
 
-import de.spraener.nxtgen.Cartridge;
+import de.spraener.nxtgen.cartridges.AnnotatedCartridgeImpl;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.Model;
@@ -79,7 +80,7 @@ import de.spraener.nxtgen.oom.model.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ${mClass.getName()} implements Cartridge {
+public class ${mClass.getName()} extends AnnotatedCartridgeImpl {
 
     @Override
     public String getName() {
@@ -88,14 +89,14 @@ public class ${mClass.getName()} implements Cartridge {
     
     @Override
     public List<Transformation> getTransformations() {
-        List<Transformation> result = new ArrayList<>();
+        List<Transformation> result = super.getTransformations();
 ${addTransformations(mClass, "result")}
         return result;
     }
 
     @Override
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
-        List<CodeGeneratorMapping> result = new ArrayList<>();
+        List<CodeGeneratorMapping> result = super.mapGenerators(m);
         for( ModelElement me : m.getModelElements() ) {
 ${listCodeGeneratorMappings(mClass, "me", "result")}
         }

@@ -75,8 +75,6 @@ public class OOMExporter implements Runnable {
                 if (mElement.getName().equals(rootPackageName)) {
                     return mElement;
                 }
-            } else {
-                CgV19Plugin.log("Child mit Namen '" + mElement.getName() + "' hat unbekannten ModelType " + mElement.getModelType() + ".");
             }
         }
         return null;
@@ -153,8 +151,16 @@ public class OOMExporter implements Runnable {
     }
 
     private void exportChilds(PrintWriter pw, String indentation, IModelElement mElement) {
+        CgV19Plugin.log(indentation+"Exporting childs of general element "+mElement.getModelType()+", name: "+mElement.getName());
         for (IModelElement child : mElement.toChildArray()) {
+            CgV19Plugin.log(indentation+"  Child-Export of element "+child.getModelType());
             exportElement(pw, indentation, child);
+        }
+        for (IRelationship rel : mElement.toFromRelationshipArray()) {
+            if( !"Generalization".equals(rel.getModelType()) ) {
+                CgV19Plugin.log(indentation+"  Replationship-Export of element "+rel.getModelType());
+                exportElement(pw, indentation, rel);
+            }
         }
     }
 
@@ -162,12 +168,12 @@ public class OOMExporter implements Runnable {
         Exporter exporter = findExporterByModelType(element.getModelType());
         if (exporter != null) {
             exporter.export(this, pw, indentation, element);
-            return;
+        } else {
+            pw.printf("%smElement {\n", indentation);
+            exportProperties(pw, indentation + "  ", element);
+            exportChilds(pw, indentation + "  ", element);
+            pw.printf("%s}\n", indentation);
         }
-        pw.printf("%smElement {\n", indentation);
-        exportProperties(pw, indentation + "  ", element);
-        exportChilds(pw, indentation + "  ", element);
-        pw.printf("%s}\n", indentation);
     }
 
     public static String getFQName(IModelElement modelElement) {

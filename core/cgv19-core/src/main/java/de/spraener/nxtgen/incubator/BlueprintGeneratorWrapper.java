@@ -10,7 +10,6 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class BlueprintGeneratorWrapper extends GeneratorWrapper {
-    private GeneratorSpec generatorSpec;
 
     public BlueprintGeneratorWrapper(Class<?> g, Method cgMethod) {
         super(g, cgMethod);

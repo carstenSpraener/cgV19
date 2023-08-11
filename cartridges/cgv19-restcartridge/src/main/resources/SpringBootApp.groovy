@@ -45,7 +45,7 @@ class SpringBootAppCodeTarget {
         t.getSection(JavaSections.CLASS_DECLARATION)
                 .getFirstSnippetForAspect(ClassFrameTargetCreator.CLAZZ_FRAME)
                 .insertBefore(new SingleLineSnippet("@SpringBootApplication"))
-                .insertBefore(new SingleLineSnippet("@EnableWebSecurity"))
+                .insertBefore(new SingleLineSnippet("//@EnableWebSecurity"))
     }
 
     void addMainImplementation(CodeTarget t) {
@@ -69,7 +69,7 @@ class SpringBootAppCodeTarget {
     }
     
     
-    @Bean
+    //@Bean
     public SecurityFilterChain configSecurity(HttpSecurity http ) throws Exception {
         http
         .authorizeHttpRequests(a -> a

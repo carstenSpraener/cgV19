@@ -13,7 +13,7 @@ plugins {
     id 'application'
 }
 
-// apply plugin: 'de.spraener.nxtgen.cgV19'
+apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     maven {
@@ -22,13 +22,11 @@ repositories {
     mavenCentral();
 }
 
-/*
 cgV19 {
     //model = 'de.spraener.nxtgen.cloud.oom'
     // If you use VisualParadigm:
     model = 'http://localhost:7001/de.spraener.nxtgen.cloud'
 }
-*/
 
 sourceSets {
     main {
@@ -39,12 +37,10 @@ sourceSets {
 }
 
 dependencies {
-/*
-    cartridge "de.spraener.nxtgen:cgv19-core:23.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-oom:23.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-metacartridge:23.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-pojo:23.1.0"
- */
+    cartridge "de.spraener.nxtgen:cgv19-core:23.1.1"
+    cartridge "de.spraener.nxtgen:cgv19-oom:23.1.1"
+    cartridge "de.spraener.nxtgen:cgv19-metacartridge:23.1.1"
+    cartridge "de.spraener.nxtgen:cgv19-pojo:23.1.1"
     // Add additional cartridges here
 
     implementation "de.spraener.nxtgen:cgv19-core:23.1.1"
@@ -52,6 +48,7 @@ dependencies {
     implementation "de.spraener.nxtgen:cgv19-pojo:23.1.1"
     implementation project(':cgv19-restcartridge')
     implementation project(':cgv19-javalin')
+    implementation project(':cgv19-angular')
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'

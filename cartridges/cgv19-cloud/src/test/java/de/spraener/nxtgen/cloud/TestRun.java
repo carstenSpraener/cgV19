@@ -13,6 +13,6 @@ public class TestRun {
         dir.mkdirs();
         NextGen.setWorkingDir("./build/source-gen");
         NextGen.runCartridgeWithName(uut.getName());
-        NextGen.main(new String[]{"/de.spraener.tinyapp"});
+        NextGen.main(new String[]{"http://localhost:7001/de.spraener.tinyapp"});
     }
 }

@@ -1,6 +1,8 @@
 package de.spraener.nxtgen;
 
 import de.spraener.nxtgen.model.Model;
+import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Stereotype;
 
 import java.util.List;
 
@@ -45,4 +47,18 @@ public interface Cartridge {
      * @return
      */
     List<CodeGeneratorMapping> mapGenerators(Model m);
+
+    /**
+     * Optional Method that enables other cartridges to evaluate a specific code block
+     * from this cartridge.
+     * @param m the Model to be used for evaluation
+     * @param me the ModelElement to be evaluated
+     * @param sType One of the ModelElements stereotype to be used for evaluation
+     * @param aspect an optional (maybe null) aspect to narrowing the desired evaluation
+     *
+     * @return A String containing block of code as the result of the evaluation.
+     */
+    default String evaluate(Model m, ModelElement me, Stereotype sType, String aspect ) {
+        return "This cartridge does not support evaluation.";
+    }
 }

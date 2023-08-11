@@ -45,22 +45,7 @@ public class ClassExporter extends ClassExporterBase {
         IRelationship rel = relEnd.getEndRelationship();
         if (rel instanceof IAssociation) {
             exportAssociation(exporter, pw, indent, (IAssociation) rel, relEnd.getOppositeEnd());
-        } else {
-            /*
-            pw.printf("%srelation {\n", indent);
-            PropertiesExporter.exportProperties(pw, indent + "  ", rel);
-            pw.printf("%s}\n", indent);
-             */
-            return;
         }
-    }
-
-
-    private void exportRelationship(PrintWriter pw, String indent, IRelationship rel) {
-        pw.printf("%mDependency {\n", indent);
-        PropertiesExporter.exportProperties(pw, indent + "  ", rel);
-        pw.printf("%s}\n", indent);
-        return;
     }
 
     private void exportAssociation(OOMExporter exporter, PrintWriter pw, String indent, IAssociation assoc, IRelationshipEnd relEnd) {

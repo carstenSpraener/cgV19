@@ -21,6 +21,7 @@ import java.util.List;
 
 @CGV19Cartridge("CloudCartridge")
 public class CloudCartridge extends CloudCartridgeBase{
+    public static final String NAME = "CloudCartridge";
     private AnnotatedCartridgeImpl annotatedCartridgeContent = new AnnotatedCartridgeImpl(CloudCartridge.class);
     private static MPackage deploymentPackage = null;
 
@@ -50,7 +51,7 @@ public class CloudCartridge extends CloudCartridgeBase{
 
     @Override
     public String getName() {
-        return "CloudCartridge";
+        return NAME;
     }
 
     @Override
@@ -86,7 +87,16 @@ public class CloudCartridge extends CloudCartridgeBase{
                     cb -> cb.setToFileStrategy(new GeneralFileStrategy(NextGen.getWorkingDir(),"settings","gradle"))
             ));
         }
-
+        if( me instanceof MClass mc && stereotypeName.equals(CloudStereotypes.DOCKERCOMPOSEFILE.getName())) {
+            return CodeGeneratorMapping.create(mc, new DockerComposeGenerator(
+                    cb -> cb.setToFileStrategy(new GeneralFileStrategy(NextGen.getWorkingDir(),"docker-compose","yml"))
+            ));
+        }
+        if( me instanceof MComponent mc && stereotypeName.equals(CloudStereotypes.CLOUDINGRESSSERVICE.getName())) {
+            return CodeGeneratorMapping.create(mc, new K8SIngressGenerator(
+                    cb -> cb.setToFileStrategy(new K8SConfigFileSpec(mc,"-service"))
+            ));
+        }
         return super.createMapping(me, stereotypeName);
     }
 
@@ -101,8 +111,6 @@ public class CloudCartridge extends CloudCartridgeBase{
         }
         return deploymentPackage;
     }
-
-
 
     public static String getDeploymentName(ModelElement me) {
         if( me instanceof MPackage pkg && StereotypeHelper.hasStereotype(pkg, CloudStereotypes.DEPLOYMENT.getName()) ) {

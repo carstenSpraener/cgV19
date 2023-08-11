@@ -1,0 +1,17 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'demoapp'
+        documentation ''
+        metaType 'Package'
+        stereotype '{{cartridgeName}}App'
+        mClass {
+            name 'DemoApp'
+            documentation ''
+            metaType 'Class'
+            stereotype '{{cartridgeName}}Main'
+        }
+    }
+}
+
