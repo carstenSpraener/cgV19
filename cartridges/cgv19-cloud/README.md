@@ -8,7 +8,7 @@
 * Ingress-Services
 * Deployments
 * TODO: PersistenceVolumaClaims
-* Dockefile
+* Dockerfiles (via _ICE_)
 * docker-compose.yml
 * bash-Script to upload docker images
 
