@@ -30,10 +30,23 @@ ${baseClassList}
 """
 }
 
-String documentation(ModelElement mElement) {
-    String doc = mElement.getProperty('documentation');
-    if( null == doc ) {
+String documentation(ModelElement attr) {
+    String doc = attr.getProperty('documentation');
+    if( null == doc || "".equals(doc) ) {
         doc = "There is no documentation yet."
+    }
+    if( attr.getProperty("defaultValue") != null ) {
+        doc +="\n\n_Default Value:_ '${attr.getProperty('defaultValue')}'"
+    }
+    if( attr.getProperty("enumValues") != null ) {
+        doc += "\n\n__Allowed values:__\n"
+        String[] enumValues = attr.getProperty('enumValues').split("\n");
+        for( String v : enumValues ) {
+            if( v.trim().equals("")) {
+                continue;
+            }
+            doc += "* '"+v.trim()+"'\n"
+        }
     }
     return doc;
 }

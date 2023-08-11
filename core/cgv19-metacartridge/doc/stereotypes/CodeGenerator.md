@@ -15,9 +15,9 @@ This stereotype is applicable to the following UML-ELements:
 ## Associated Tagged Values
 | Name | Type | Documentation |
 |------|-------|----------------------------------------|
-|__requiredStereotype__| Any |  |
-|__outputType__| Any |  |
-|__generatesOn__| Any |  |
-|__outputTo__| Any |  |
-|__templateScript__| Any |  |
+|__requiredStereotype__| Any | There is no documentation yet. |
+|__outputType__| Any | There is no documentation yet. |
+|__generatesOn__| Any | There is no documentation yet. |
+|__outputTo__| Any | There is no documentation yet. |
+|__templateScript__| Any | There is no documentation yet. |
 

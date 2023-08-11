@@ -26,7 +26,7 @@ This stereotype is applicable to the following UML-ELements:
 ## Associated Tagged Values
 | Name | Type | Documentation |
 |------|-------|----------------------------------------|
-|__transformedMetaType__| Any |  |
-|__requiredStereotype__| Any |  |
-|__priority__| Any |  |
+|__transformedMetaType__| Any | There is no documentation yet. |
+|__requiredStereotype__| Any | There is no documentation yet. |
+|__priority__| Any | There is no documentation yet. |
 

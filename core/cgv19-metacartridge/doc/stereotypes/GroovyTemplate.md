@@ -17,5 +17,5 @@ This stereotype is applicable to the following UML-ELements:
 ## Associated Tagged Values
 | Name | Type | Documentation |
 |------|-------|----------------------------------------|
-|__filePathURI__| Any |  |
+|__filePathURI__| Any | There is no documentation yet. |
 
