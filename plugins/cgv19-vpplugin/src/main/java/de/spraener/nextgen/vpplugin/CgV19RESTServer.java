@@ -15,7 +15,7 @@ public class CgV19RESTServer {
        app.get("/{rootPackage}", ctx -> {
             ctx.result(OOMExporter.exportByPackageName(ctx.pathParam("rootPackage")));
         });
-        app.post("/", OOMImport::imoprtOOM);
+        app.post("/", OOMImport::importOOM);
 
         CgV19Plugin.log("REST-Server initialized. Listening on port 7001.");
     }
