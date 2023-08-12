@@ -41,23 +41,23 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
         String generatesOn = getGeneratesOn(codeGenerator);
         if( generatesOn!=null && !"".equals(generatesOn.trim()) ) {
             sb.append(
-"""                   if( ${meName} instanceof ${generatesOn} tME ) {
+"""                if( ${meName} instanceof ${generatesOn} tME ) {
                     mapping = createMapping(tME, "${sTypeName}");
-                    if (mapping != null) {
-                        ${listName}.add(mapping);
-                    } else {
-                        ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}());
                     }
+                    mapping.setStereotype("${sTypeName}");
+                    result.add(mapping);
                 }
 """)
         } else {
             sb.append(
 """                mapping = createMapping(me, "${sTypeName}");
-                if (mapping != null) {
-                    ${listName}.add(mapping);
-                } else {
-                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));
+                if (mapping == null) {
+                    mapping = CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}());
                 }
+                mapping.setStereotype("${sTypeName}");
+                result.add(mapping);
 """
             )
         }
@@ -96,10 +96,21 @@ ${addTransformations(mClass, "result")}
 
     @Override
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
-        List<CodeGeneratorMapping> result = super.mapGenerators(m);
+        List<CodeGeneratorMapping> result = new ArrayList<>();
         for( ModelElement me : m.getModelElements() ) {
+            if( me.getStereotypes().isEmpty() ) {
+                continue;
+            }
 ${listCodeGeneratorMappings(mClass, "me", "result")}
         }
+
+        List<CodeGeneratorMapping> annotatedGeneratorMappings = super.mapGenerators(m);
+        for( CodeGeneratorMapping mapping : annotatedGeneratorMappings ) {
+            if( !result.contains(mapping) ) {
+                result.add(mapping);
+            }
+        }
+
         return result;
     }
 

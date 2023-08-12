@@ -1,10 +1,15 @@
 package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.CodeGeneratorMapping;
+import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
 import de.spraener.nxtgen.oom.model.MClass;
 
 import java.io.File;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class MetaCartridge extends MetaCartridgeBase {
     public static final String STEREOTYPE_NAME = "Stereotype";
@@ -24,6 +29,15 @@ public class MetaCartridge extends MetaCartridgeBase {
     public static final String TV_CARTRIDGE_CLASS = "cartridgeClass";
 
     @Override
+    public List<Transformation> getTransformations() {
+        List<Transformation> txList = super.getTransformations();
+        txList.add(new GeneratorGapTransformation(
+                (mc)->StereotypeHelper.hasStereotype(mc, STEREOTYPE_TRANSFORMATION)
+        ));
+        return txList;
+    }
+
+    @Override
     protected CodeGeneratorMapping createMapping(ModelElement me, String stereotypeName) {
         if (me instanceof MClass && ((MClass) me).hasStereotype(STEREOTYPE_NAME)) {
             return CodeGeneratorMapping.create(me,
@@ -33,8 +47,22 @@ public class MetaCartridge extends MetaCartridgeBase {
             );
         }
         if (me instanceof MClass && ((MClass) me).hasStereotype(STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION)) {
-            return CodeGeneratorMapping.create(me,new CartridgeServiceLocaterGenerator());
+            return CodeGeneratorMapping.create(me,new CartridgeServiceLocaterGenerator(
+                    c -> c.setToFileStrategy(
+                            () -> new File("src/main/resources/META-INF/services/de.spraener.nxtgen.Cartridge")
+                    )
+            ));
         }
+        if (me instanceof MClass mc && ((MClass) me).hasStereotype(STYPE_GROOVY_SCRIPT)) {
+            return CodeGeneratorMapping.create(me,new GroovyScriptGenerator(
+                    c -> c.setToFileStrategy(
+                            () -> {
+                                String groovyScriptName = mc.getTaggedValue(MetaCartridge.STYPE_GROOVY_SCRIPT, MetaCartridge.TV_SCRIPT_FILE);
+                                return new File("src/main/resources/"+groovyScriptName);
+                            })
+            ));
+        }
+
         return super.createMapping(me, stereotypeName);
     }
 }

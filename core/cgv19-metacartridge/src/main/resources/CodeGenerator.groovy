@@ -136,10 +136,6 @@ import de.spraener.nxtgen.annotations.*;
 public class ${mClass.getName()} implements CodeGenerator {
     private Consumer<CodeBlock>[] codeBlockModifiers;
 
-    public ${mClass.getName()}() {
-        this(null);
-    }
-
     public ${mClass.getName()}(Consumer<CodeBlock>... codeBlockModifiers) {
         this.codeBlockModifiers = codeBlockModifiers;
     }

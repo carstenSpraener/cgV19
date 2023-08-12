@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
 package de.spraener.nxtgen.cartridge.meta;
 
 import java.util.function.Consumer;
@@ -11,7 +12,7 @@ import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
 @CGV19Generator(
-        requiredStereotype = "Transformation",
+        requiredStereotype = "TransformationBase",
         operatesOn = MClass.class,
         outputType = OutputType.JAVA,
         outputTo = OutputTo.SRC_GEN,
@@ -27,10 +28,9 @@ public class TransformationBaseGenerator implements CodeGenerator {
 
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
-        MClass mClass = (MClass)element;
-        // TODO: Base postfix should not be set here!
-        JavaCodeBlock jcb = new JavaCodeBlock("src/main/java-gen", mClass.getPackage().getFQName(), mClass.getName()+"Base");
-        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("TransformationBase", mClass, "/TransformationBase.groovy");
+        MClass me = (MClass)element;
+        JavaCodeBlock jcb = new JavaCodeBlock("src/main/java-gen", me.getPackage().getFQName(), me.getName());
+        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("TransformationBaseGenerator", me, "/TransformationBase.groovy");
         jcb.addCodeBlock(gcb);
 
         if( codeBlockModifiers!=null ) {
@@ -42,4 +42,3 @@ public class TransformationBaseGenerator implements CodeGenerator {
         return jcb;
     }
 }
-

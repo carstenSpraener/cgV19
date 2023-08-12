@@ -20,13 +20,13 @@ String checkStereotype(MClass mClass) {
 }
 
 String getRequiresStereotype(MClass mClass) {
-    Stereotype sType = StereotypeHelper.getStereotype(mClass, "Transformation");
+    Stereotype sType = StereotypeHelper.getStereotype(mClass, "TransformationBase");
     String requiredStereotype = sType.getTaggedValue("requiredStereotype");
     requiredStereotype
 }
 
 String getMetaType(MClass mClass) {
-    Stereotype sType = StereotypeHelper.getStereotype(mClass, "Transformation");
+    Stereotype sType = StereotypeHelper.getStereotype(mClass, "TransformationBase");
     String metaType = sType.getTaggedValue("transformedMetaType");
     if( metaType==null || "".equals(metaType)) {
         metaType = "ModelElement";
@@ -48,7 +48,7 @@ import de.spraener.nxtgen.annotations.*;
         requiredStereotype = "${getRequiresStereotype(mClass)}",
         operatesOn = ${metaType}.class
 )
-public abstract class ${mClass.getName()}Base implements de.spraener.nxtgen.Transformation {
+public abstract class ${mClass.getName()} implements de.spraener.nxtgen.Transformation {
 
     @Override
     public void doTransformation(ModelElement element) {

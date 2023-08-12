@@ -3,7 +3,6 @@ package de.spraener.nxtgen.cartridge.meta;
 import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
