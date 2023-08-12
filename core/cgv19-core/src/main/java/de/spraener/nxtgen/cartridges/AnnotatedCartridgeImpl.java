@@ -98,7 +98,9 @@ public class AnnotatedCartridgeImpl implements Cartridge {
         for(ModelElement e : m.getModelElements() ) {
             for( GeneratorWrapper gw : this.generatorWrapperList ) {
                 if( gw.matches(e) ) {
-                    mappingList.add(CodeGeneratorMapping.create(e, gw));
+                    CodeGeneratorMapping mapping = CodeGeneratorMapping.create(e, gw);
+                    mapping.setStereotype(gw.requiredStereotype());
+                    mappingList.add(mapping);
                 }
             }
         }
