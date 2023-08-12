@@ -24,7 +24,7 @@ repositories {
 
 
 cgV19 {
-    model = 'de.spraener.nxtgen.javalin.oom'
+    model = 'http://localhost:7001/de.spraener.nxtgen.javalin.oom'
     // If you use VisualParadigm:
     //model = 'http://localhost:7001/de.spraener.nxtgen.javalin'
 }
