@@ -26,7 +26,7 @@ This stereotype is applicable to the following UML-ELements:
 ## Associated Tagged Values
 | Name | Type | Documentation |
 |------|-------|----------------------------------------|
-|__transformedMetaType__| Any | There is no documentation yet. |
-|__requiredStereotype__| Any | There is no documentation yet. |
-|__priority__| Any | There is no documentation yet. |
+|__transformedMetaType__| adhoc-enum | There is no documentation yet.<br/><br/>__Allowed values:__<br/>* 'MActivity'<br/>* 'MAttribute'<br/>* 'MClass'<br/>* 'MOperation'<br/>* 'MPackage'<br/> |
+|__requiredStereotype__| String | There is no documentation yet. |
+|__priority__| integer | There is no documentation yet.<br/><br/>_Default Value:_ '0' |
 

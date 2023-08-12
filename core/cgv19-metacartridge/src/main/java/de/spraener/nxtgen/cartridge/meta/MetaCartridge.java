@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.CodeGeneratorMapping;
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
@@ -62,7 +63,13 @@ public class MetaCartridge extends MetaCartridgeBase {
                             })
             ));
         }
-
+        if( me instanceof MClass && stereotypeName.equals(MetaStereotypes.STEREOTYPEDESCRIPTOR.getName())) {
+            return CodeGeneratorMapping.create(me, new StereotypeDescriptorJsonGenerator(
+                    (c)->c.setToFileStrategy(
+                            () -> new File(NextGen.getWorkingDir()+"/doc/stereotypes.json")
+                    )
+            ));
+        }
         return super.createMapping(me, stereotypeName);
     }
 }

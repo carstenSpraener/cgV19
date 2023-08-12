@@ -2,13 +2,15 @@
 package de.spraener.nxtgen.cartridge.meta;
 
 public enum MetaStereotypes {
+        STEREOTYPEENUM("StereotypeEnum"),
+        STEREOTYPE("Stereotype"),
+        TRANSFORMATION("Transformation"),
+        MODELROOT("ModelRoot"),
         CGV19CARTRIDGE("cgV19Cartridge"),
         CODEGENERATOR("CodeGenerator"),
         GROOVYTEMPLATE("GroovyTemplate"),
-        MODELROOT("ModelRoot"),
-        STEREOTYPE("Stereotype"),
-        STEREOTYPEENUM("StereotypeEnum"),
-        TRANSFORMATION("Transformation")
+        TRANSFORMATIONBASE("TransformationBase"),
+        STEREOTYPEDESCRIPTOR("StereotypeDescriptor")
     ;
 
     private String name;
