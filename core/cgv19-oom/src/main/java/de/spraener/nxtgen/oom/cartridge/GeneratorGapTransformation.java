@@ -8,12 +8,27 @@ import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MClassRef;
 
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 public class GeneratorGapTransformation implements Transformation {
     public static final String ORIGINAL_CLASS="originalClass";
+    private Predicate<MClass> shouldTransform = this::shouldTransform;
+
+    public GeneratorGapTransformation() {
+    }
+
+    public GeneratorGapTransformation(Predicate<MClass> shouldTransform ) {
+        this.shouldTransform = shouldTransform;
+    }
+
+    private boolean shouldTransform(MClass mc) {
+        return !mc.getStereotypes().isEmpty();
+    }
 
     @Override
     public void doTransformation(ModelElement element) {
-        if (element instanceof MClass mc  && !mc.getStereotypes().isEmpty() ) {
+        if ( element instanceof MClass mc  && this.shouldTransform.test(mc) ) {
             MClass baseClazz = mc.getPackage().createMClass(mc.getName()+"Base");
             for( Stereotype sType : mc.getStereotypes() ) {
                 Stereotype sTClone = cloneStereotype(sType, "Base");
