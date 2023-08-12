@@ -2,9 +2,12 @@ package de.spraener.nxtgen;
 
 import de.spraener.nxtgen.model.ModelElement;
 
+import java.util.Objects;
+
 public class CodeGeneratorMapping {
     private ModelElement generatorBaseElement;
     private CodeGenerator codeGen;
+    private String stereoptype = null;
 
     private CodeGeneratorMapping(ModelElement me, CodeGenerator cg) {
         this.generatorBaseElement = me;
@@ -19,7 +22,29 @@ public class CodeGeneratorMapping {
         return generatorBaseElement;
     }
 
+    public void setStereotype(String stereptype) {
+        this.stereoptype = stereptype;
+    }
+
     public CodeGenerator getCodeGen() {
         return codeGen;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CodeGeneratorMapping that)) return false;
+        if( this.stereoptype !=null ) {
+            return Objects.equals(generatorBaseElement, that.generatorBaseElement) &&
+                   Objects.equals(stereoptype, that.stereoptype);
+        }
+        return Objects.equals(generatorBaseElement, that.generatorBaseElement) &&
+                Objects.equals(codeGen, that.codeGen) &&
+                Objects.equals(stereoptype, that.stereoptype);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(generatorBaseElement, codeGen, stereoptype);
     }
 }
