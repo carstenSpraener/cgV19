@@ -94,7 +94,7 @@ ModelDSL.make {
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
                   taggedValue 'requiredStereotype', 'Stereotype'
-                  taggedValue 'outputType', 'MarkMown'
+                  taggedValue 'outputType', 'MarkDown'
                   taggedValue 'generatesOn', 'MClass'
                   taggedValue 'outputTo', 'other'
                   taggedValue 'templateScript', '/StereotypeDocumentation.groovy'
@@ -424,7 +424,7 @@ that matches this criteria."""
                     enumValues """
                       Java
                       PHP
-                      MarkMown
+                      MarkDown
                       TypeScript
                       GroovyScript
                       other
@@ -526,6 +526,36 @@ The meta cartridge will generate a GroovyTemplate as a template for implementati
                     id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:X9Tbl5GGAqAACBCJ$v9Tbl5GGAqAACBCK$_9Tbl5GGAqAACBCN'
                     metaType 'TaggedValueDefinition'
                   }
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'StereotypeDescriptor'
+                  documentation """"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:voV0V5GGAqAACBE.'
+                  metaType 'Stereotype'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'StereotypeDescriptorJsonGenerator'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:Hb9kV5GGAqAACBDi'
+                metaType 'Class'
+                stereotype 'CodeGenerator', {
+                  taggedValue 'requiredStereotype', 'StereotypeDescriptor'
+                  taggedValue 'outputType', 'other'
+                  taggedValue 'generatesOn', 'MClass'
+                  taggedValue 'outputTo', 'other'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'StereotypeEnumToDescriptorTransformation'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:GWMUV5GGAqAACBEV'
+                metaType 'Class'
+                stereotype 'Transformation', {
+                  taggedValue 'transformedMetaType', 'MClass'
+                  taggedValue 'requiredStereotype', 'StereotypeEnum'
+                  taggedValue 'priority', '100'
                 }
               }
             }
