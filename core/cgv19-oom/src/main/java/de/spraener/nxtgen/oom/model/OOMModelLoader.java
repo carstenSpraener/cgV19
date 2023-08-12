@@ -62,8 +62,8 @@ public class OOMModelLoader implements ModelLoader {
         } else if( getClass().getResourceAsStream(modelURI)!=null ) {
             return new InputStreamReader(getClass().getResourceAsStream(modelURI));
         } else {
-            URL url = new URL(modelURI);
             try {
+                URL url = new URL(modelURI);
                 return new InputStreamReader(url.openStream());
             } catch( IOException xc ) {
                 String fileNameFromURI = toFileName(modelURI);
