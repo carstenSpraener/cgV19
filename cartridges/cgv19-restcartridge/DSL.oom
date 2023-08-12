@@ -4,32 +4,34 @@ ModelDSL.make {
   mPackage {
     stereotype 'ModelRoot'
     name 'DSL'
-    documentation '<<ModelRoot>>'
+    documentation """<<ModelRoot>>"""
     id 'C0ieOuGGAqACRAma'
     metaType 'Profile'
     mClass {
       stereotype 'Stereotype'
       name 'cgV19Project'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:i0ieOuGGAqACRAmb'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'SpringBootApp'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:S0ieOuGGAqACRAmc'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'Ressource'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:y0ieOuGGAqACRAmd'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTable'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:y0ieOuGGAqACRAmd$tLB3JeGD.AAAAQ0E$tLB3JeGD.AAAAQ0F'
         metaType 'TaggedValueDefinition'
       }
@@ -37,12 +39,14 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'Entity'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:K0ieOuGGAqACRAmf'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:K0ieOuGGAqACRAmf$bqeEpeGD.AAAAQpG$HqeEpeGD.AAAAQpH'
         metaType 'TaggedValueDefinition'
       }
@@ -50,118 +54,141 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'Interactive'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:q0ieOuGGAqACRAmh'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'Flow'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:60ieOuGGAqACRAmj'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'PersistentField'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk'
       metaType 'Stereotype'
       mAttribute {
+        defaultValue """True"""
+        typeID 7
+        type 'boolean'
         name 'nullable'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$lhYPJeGD.AAAAQ0e'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
+        defaultValue """False"""
+        typeID 7
+        type 'boolean'
         name 'unique'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$bhYPJeGD.AAAAQ0z'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
+        typeID 2
+        type 'adhoc-enum'
+        enumValues [
+        'string',
+        'integer',
+        'boolean',
+        'decimal',
+        'blob',
+        'date',
+        ]
         name 'type'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$IRYPJeGD.AAAAQ0.'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
+        typeID 5
+        type 'integer'
         name 'length'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$lJCPJeGD.AAAAQ1Y'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
+        typeID 0
+        type 'String'
         name 'label'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$rJCPJeGD.AAAAQ1j'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
+        defaultValue """Unspecified"""
+        typeID 7
+        type 'boolean'
         name 'detailOnly'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$J7WvJeGD.AAAAQ3H'
         metaType 'TaggedValueDefinition'
       }
     }
     mClass {  //Exported by ClassExporterBase
       name 'PersistentFieldType'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv'
       metaType 'Class'
       stereotype 'enumeration'
       mDependency {  //Exported by DependencyExporterBase
         name ''
-        documentation ''
+        documentation """"""
         id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:D0ieOuGGAqACRAm8'
         metaType 'Dependency'
         target 'DSL.PersistentFieldType'
       }
       mElement {
         name 'string'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$J0ieOuGGAqACRAmx'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'text'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$p0ieOuGGAqACRAmy'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'integer'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$Z0ieOuGGAqACRAmz'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'decimal'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$Z0ieOuGGAqACRAm0'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'boolean'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$Z0ieOuGGAqACRAm1'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'date'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$50ieOuGGAqACRAm2'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'time'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$50ieOuGGAqACRAm3'
         metaType 'EnumerationLiteral'
       }
       mElement {
         name 'datetime'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$F0ieOuGGAqACRAm4'
         metaType 'EnumerationLiteral'
       }
@@ -169,50 +196,51 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'PhpSymfonyApplication'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:j0ieOuGGAqACRAm9'
       metaType 'Stereotype'
     }
     mPackage {  //Exported by PackageExporterBase
       name 'de'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB'
       metaType 'Package'
       mPackage {  //Exported by PackageExporterBase
         name 'spraener'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC'
         metaType 'Package'
         mPackage {  //Exported by PackageExporterBase
           name 'nxtgen'
-          documentation ''
+          documentation """"""
           id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD'
           metaType 'Package'
           mPackage {  //Exported by PackageExporterBase
             name 'cartridge'
-            documentation ''
+            documentation """"""
             id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE'
             metaType 'Package'
             mPackage {  //Exported by PackageExporterBase
               name 'rest'
-              documentation ''
+              documentation """"""
               id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF'
               metaType 'Package'
               mClass {  //Exported by ClassExporterBase
                 name 'RESTStereotypes'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnG'
                 metaType 'Class'
                 stereotype 'StereotypeEnum'
               }
               mPackage {  //Exported by PackageExporterBase
                 name 'transformations'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH'
                 metaType 'Package'
                 mClass {  //Exported by ClassExporterBase
                   name 'ResourceToEntity'
-                  documentation 'Creates an Entity for each resource so that it\ncan be stored in the database'
+                  documentation """Creates an Entity for each resource so that it
+can be stored in the database"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:70ieOuGGAqACRAnI'
                   metaType 'Class'
                   stereotype 'Transformation', {
@@ -223,7 +251,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ResourceToContoller'
-                  documentation 'Creates an Controller-Class for each resource. The Controller has CRUD-Operations in POST, PUT, GET and DELETE requests and a META-INF resource to request informations about the underlying data class. That is needed for an generic frontend.'
+                  documentation """Creates an Controller-Class for each resource. The Controller has CRUD-Operations in POST, PUT, GET and DELETE requests and a META-INF resource to request informations about the underlying data class. That is needed for an generic frontend."""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:70ieOuGGAqACRAnJ'
                   metaType 'Class'
                   stereotype 'Transformation', {
@@ -234,7 +262,10 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ControlledOperationToFSM'
-                  documentation 'Creates an FSM (Final State Machine) for each\nActivity with "ControlledOperation" Stereotype.\n\nThe FSM is needed to implement the Activity-Diagram'
+                  documentation """Creates an FSM (Final State Machine) for each
+Activity with "ControlledOperation" Stereotype.
+
+The FSM is needed to implement the Activity-Diagram"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:H0ieOuGGAqACRAnK'
                   metaType 'Class'
                   stereotype 'Transformation', {
@@ -245,7 +276,10 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ResourceToLogic'
-                  documentation 'Creates a __logic__ class for each resource. The logic implements code conversion or other stuff that\nshould not be placed in the controller.\n\nThe controller will get an instance of logic injected on creation.'
+                  documentation """Creates a __logic__ class for each resource. The logic implements code conversion or other stuff that
+should not be placed in the controller.
+
+The controller will get an instance of logic injected on creation."""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:n0ieOuGGAqACRAnL'
                   metaType 'Class'
                   stereotype 'Transformation', {
@@ -256,7 +290,8 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ResourceToTSType'
-                  documentation 'Creates a TypeSctipt Type for every Resource so\nit can be handled in an angualr frontend.'
+                  documentation """Creates a TypeSctipt Type for every Resource so
+it can be handled in an angualr frontend."""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:X0ieOuGGAqACRAnM'
                   metaType 'Class'
                   stereotype 'Transformation', {
@@ -267,7 +302,8 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'EnsureEntityDefeinitionsTransformation'
-                  documentation 'This transformation should run at the very last and ensures that all entities in the model will\nhave all necessary definitions.'
+                  documentation """This transformation should run at the very last and ensures that all entities in the model will
+have all necessary definitions."""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:X0ieOuGGAqACRAnN'
                   metaType 'Class'
                   stereotype 'Transformation', {
@@ -279,12 +315,12 @@ ModelDSL.make {
               }
               mPackage {  //Exported by PackageExporterBase
                 name 'entity'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO'
                 metaType 'Package'
                 mClass {  //Exported by ClassExporterBase
                   name 'EntityGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:30ieOuGGAqACRAnP'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -296,7 +332,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'PhpEntityGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:P0ieOuGGAqACRAnQ'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -308,7 +344,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'PhpRepositoryGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:P0ieOuGGAqACRAnR'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -320,7 +356,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'RepositoryGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:v0ieOuGGAqACRAnS'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -333,19 +369,19 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'RESTCartridge'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:f0ieOuGGAqACRAnT'
                 metaType 'Class'
                 stereotype 'cgV19Cartridge'
               }
               mPackage {  //Exported by PackageExporterBase
                 name 'cntrl'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU'
                 metaType 'Package'
                 mClass {  //Exported by ClassExporterBase
                   name 'LogicGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:AMieOuGGAqACRAnV'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -357,7 +393,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ControllerGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:AMieOuGGAqACRAnW'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -369,7 +405,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'PhpControllerGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:gMieOuGGAqACRAnX'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -381,7 +417,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ApiControllerGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:Slv9UhGGAqAAAyDx'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -393,7 +429,7 @@ ModelDSL.make {
                 }
                 mClass {  //Exported by ClassExporterBase
                   name 'ApiControllerBaseGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:brKDUhGGAqAAAyEP'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -406,12 +442,12 @@ ModelDSL.make {
               }
               mPackage {  //Exported by PackageExporterBase
                 name 'angular'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:gMieOuGGAqACRAnY'
                 metaType 'Package'
                 mClass {  //Exported by ClassExporterBase
                   name 'TSTypeGenerator'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:gMieOuGGAqACRAnY:QMieOuGGAqACRAnZ'
                   metaType 'Class'
                   stereotype 'CodeGenerator', {
@@ -425,7 +461,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'PoJoGenerator'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:QMieOuGGAqACRAna'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -438,7 +474,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'SpringBootAppGenerator'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:wMieOuGGAqACRAnb'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -451,24 +487,24 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'Class'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:w2zbOuGGAqACRAj6'
                 metaType 'Class'
               }
               mClass {  //Exported by ClassExporterBase
                 name 'SingletonClass'
-                documentation ''
+                documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD'
                 metaType 'Class'
                 mOperation {  //Exported by OperationExporterBase
                   name 'SingletonClass'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD$N2zbOuGGAqACRAkF'
                   metaType 'Operation'
                 }
                 mAttribute {  //Exported by AttributeExporterBase
                   name '_instance'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD$oOzbOuGGAqACRAkI'
                   metaType 'Attribute'
                   type 'SingletonClass'
@@ -477,9 +513,116 @@ ModelDSL.make {
                 }
                 mOperation {  //Exported by OperationExporterBase
                   name 'instance'
-                  documentation ''
+                  documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD$SOzbOuGGAqACRAkL'
                   metaType 'Operation'
+                }
+              }
+            }
+            mPackage {  //Exported by PackageExporterBase
+              name 'springBootComponents'
+              documentation """"""
+              id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h'
+              metaType 'Package'
+              mClass {  //Exported by ClassExporterBase
+                name 'OAuth2ResourceServer'
+                documentation """"""
+                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:yz8EtxGGAqAAAw1B'
+                metaType 'Class'
+                stereotype 'ExternalLibrary', {
+                  taggedValue 'group', 'org.springframework.boot'
+                  taggedValue 'artifact', 'spring-boot-starter-oauth2-resource-server'
+                  taggedValue 'scope', 'implementation'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'OAuth2Client'
+                documentation """"""
+                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:kAfEtxGGAqAAAw16'
+                metaType 'Class'
+                stereotype 'ExternalLibrary', {
+                  taggedValue 'group', 'org.springframework.boot'
+                  taggedValue 'artifact', 'spring-boot-starter-oauth2-client'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'StarterTest'
+                documentation """"""
+                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:kX30txGGAqAAAw24'
+                metaType 'Class'
+                stereotype 'ExternalLibrary', {
+                  taggedValue 'group', 'org.springframework.boot'
+                  taggedValue 'artifact', 'spring-boot-starter-test'
+                  taggedValue 'scope', 'testImplementation'
+                }
+              }
+              mClass {
+                stereotype 'Stereotype'
+                name 'ExternalLibrary'
+                documentation """"""
+                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S'
+                metaType 'Stereotype'
+                mAttribute {
+                  typeID 0
+                  type 'String'
+                  name 'group'
+                  documentation """"""
+                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$pFZEtxGGAqAAAw1U'
+                  metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                  typeID 0
+                  type 'String'
+                  name 'version'
+                  documentation """"""
+                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$ZFZEtxGGAqAAAw1V'
+                  metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                  typeID 0
+                  type 'String'
+                  name 'artifact'
+                  documentation """"""
+                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$ZFZEtxGGAqAAAw1W'
+                  metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                  defaultValue """implementation"""
+                  typeID 2
+                  type 'adhoc-enum'
+                  enumValues [
+                  'implementation',
+                  'testImplementation',
+                  'testRuntimeOnly',
+                  'annotationProcessor',
+                  'developmentOnly',
+                  ]
+                  name 'scope'
+                  documentation """"""
+                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$YE_MtxGGAqAAAw3m'
+                  metaType 'TaggedValueDefinition'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'DataJPA'
+                documentation """"""
+                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:jHTstxGGAqAAAw4V'
+                metaType 'Class'
+                stereotype 'ExternalLibrary', {
+                  taggedValue 'group', '<dependency>     <groupId>org.springframework.boot</groupId>     <artifactId>spring-boot-starter-data-jpa</artifactId>     <version>3.1.1</version> </dependency> '
+                  taggedValue 'artifact', 'spring-boot-starter-data-jpa'
+                  taggedValue 'scope', 'implementation'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'DataRest'
+                documentation """"""
+                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:DAwctxGGAqAAAw40'
+                metaType 'Class'
+                stereotype 'ExternalLibrary', {
+                  taggedValue 'group', 'org.springframework.boot'
+                  taggedValue 'artifact', 'spring-boot-starter-data-rest'
+                  taggedValue 'scope', 'implementation'
                 }
               }
             }
@@ -490,66 +633,56 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'Link'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:IMieOuGGAqACRAnc'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'Repository'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:IMieOuGGAqACRAnd'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'RESTController'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:oMieOuGGAqACRAne'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'Logic'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:YMieOuGGAqACRAnf'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       name 'AngularService'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:YMieOuGGAqACRAng'
       metaType 'Stereotype'
-    }
-    mElement {
-      name ''
-      documentation 'Author:casi.\nCreated:8/23/20 4:21 PM.\nTitle:.\nComment:.\n'
-      id 'C0ieOuGGAqACRAma:DMieOuGGAqACRAoa'
-      metaType 'NOTE'
     }
     mClass {
       stereotype 'Stereotype'
       name 'ControlledOperation'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:WCieOuGGAqACRAsT'
       metaType 'Stereotype'
-    }
-    mElement {
-      name ''
-      documentation 'A Property marked with this stereotype will end up in a new Field in the database\ntable.\n\nThe details of the database field can be specified in the associated tagged values.'
-      id 'C0ieOuGGAqACRAma:W0ieOuGGAqACRAmm'
-      metaType 'NOTE'
     }
     mClass {
       stereotype 'Stereotype'
       name 'ActivityImpl'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:KXWJveGGAqACRBUt'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:KXWJveGGAqACRBUt$2XWJveGGAqACRBUu$2XWJveGGAqACRBUv'
         metaType 'TaggedValueDefinition'
       }
@@ -557,12 +690,14 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'Impl'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:5bdVy.GGAqACRAqb'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:5bdVy.GGAqACRAqb$wHdVy.GGAqACRAqc$IHdVy.GGAqACRAqd'
         metaType 'TaggedValueDefinition'
       }
@@ -570,12 +705,14 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'DDL'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:wSfVy.GGAqACRArE'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:wSfVy.GGAqACRArE$4SfVy.GGAqACRArF$4SfVy.GGAqACRArG'
         metaType 'TaggedValueDefinition'
       }
@@ -583,12 +720,14 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'TSType'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:wFA1y.GGAqACRArQ'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:wFA1y.GGAqACRArQ$EFA1y.GGAqACRArR$EFA1y.GGAqACRArS'
         metaType 'TaggedValueDefinition'
       }
@@ -596,12 +735,14 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'DbField'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:lwY1y.GGAqACRArd'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:lwY1y.GGAqACRArd$dwY1y.GGAqACRAre$dwY1y.GGAqACRArf'
         metaType 'TaggedValueDefinition'
       }
@@ -609,12 +750,14 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'RsrcLink'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:o4y1y.GGAqACRArx'
       metaType 'Stereotype'
       mAttribute {
+        typeID 0
+        type 'String'
         name 'dbTableName'
-        documentation ''
+        documentation """"""
         id 'C0ieOuGGAqACRAma:o4y1y.GGAqACRArx$U4y1y.GGAqACRAry$04y1y.GGAqACRArz'
         metaType 'TaggedValueDefinition'
       }
@@ -622,9 +765,75 @@ ModelDSL.make {
     mClass {
       stereotype 'Stereotype'
       name 'ApiRessource'
-      documentation ''
+      documentation """"""
       id 'C0ieOuGGAqACRAma:CX69UhGGAqAAAyDO'
       metaType 'Stereotype'
+      mAttribute {
+        defaultValue """/"""
+        typeID 0
+        type 'String'
+        name 'path'
+        documentation """"""
+        id 'C0ieOuGGAqACRAma:CX69UhGGAqAAAyDO$UwhCC5GD.AAAARPM$UwhCC5GD.AAAARPN'
+        metaType 'TaggedValueDefinition'
+      }
+    }
+    mClass {
+      stereotype 'Stereotype'
+      name 'RequestHandler'
+      documentation """"""
+      id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym'
+      metaType 'Stereotype'
+      mAttribute {
+        typeID 2
+        type 'adhoc-enum'
+        enumValues [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        'OPTIONS',
+        'PATCH',
+        'TRACE',
+        'HEAD',
+        'CONNECT',
+        ]
+        name 'Metod'
+        documentation """"""
+        id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym$uhRmVxGGAqAAAwy1$uhRmVxGGAqAAAwy2'
+        metaType 'TaggedValueDefinition'
+      }
+    }
+    mClass {
+      stereotype 'Stereotype'
+      name 'RestCall'
+      documentation """"""
+      id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB'
+      metaType 'Stereotype'
+      mAttribute {
+        defaultValue """GET"""
+        typeID 0
+        type 'String'
+        enumValues [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        ]
+        name 'RESTMethod'
+        documentation """"""
+        id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB$OWSCC5GD.AAAAROY$uWSCC5GD.AAAAROZ'
+        metaType 'TaggedValueDefinition'
+      }
+      mAttribute {
+        defaultValue """/"""
+        typeID 0
+        type 'String'
+        name 'path'
+        documentation """"""
+        id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB$OWSCC5GD.AAAAROY$qx2CC5GD.AAAARO2'
+        metaType 'TaggedValueDefinition'
+      }
     }
   }
 }
