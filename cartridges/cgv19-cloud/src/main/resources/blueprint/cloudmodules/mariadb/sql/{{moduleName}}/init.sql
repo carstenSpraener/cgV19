@@ -1,0 +1,1 @@
+-- place initial SQL-Statements here (like creating users)

@@ -31,20 +31,12 @@ String getReplicas(MComponent c) {
 
 
 String getDockerImage(MComponent c) {
-    String dockerImage = c.getTaggedValue(CloudStereotypes.CLOUDSERVICE.name, "dockerImage");
-    if (dockerImage == null) {
-        MPackage module = c.getProvidedCloudModule();
-        if (module != null) {
-            dockerImage = module.getTaggedValue(CloudStereotypes.CLOUDMODULE.name, "dockerImage")
-            if (dockerImage == null) {
-                dockerImage = module.getName().toLowerCase();
-            }
-        } else {
-            dockerImage = c.getName().toLowerCase();
-        }
-        dockerImage = CloudCartridge.getDeploymentName(c)+"-"+dockerImage;
+    String dockerImage = c.getName().toLowerCase();
+    MPackage module = c.getProvidedCloudModule();
+    if (module != null) {
+        dockerImage = module.getName().toLowerCase();
     }
-    return dockerImage;
+    return CloudCartridge.getDeploymentName(c)+"-"+dockerImage;
 }
 
 String getDockerRegistry(MComponent c) {

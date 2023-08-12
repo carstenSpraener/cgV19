@@ -39,14 +39,16 @@ public class CloudServiceToProjectModuleTransformation extends CloudServiceToPro
         if( cartridgeName == null ) {
             cartridgeName = "REST-Cartridge";
         }
-        NextGen.scheduleInvocation(
+        if( !cartridgeName.equals(CloudCartridge.NAME) ) {
+            NextGen.scheduleInvocation(
                     NextGenInvocation
-                       .builder()
-                       .withWorkdir(NextGen.getWorkingDir()+"/"+toDirName(pkg))
-                       .withModel(toSubModel(pkg))
-                       .withCartridge(cartridgeName)
-                       .build()
-        );
+                            .builder()
+                            .withWorkdir(NextGen.getWorkingDir() + "/" + toDirName(pkg))
+                            .withModel(toSubModel(pkg))
+                            .withCartridge(cartridgeName)
+                            .build()
+            );
+        }
     }
 
     public static List<MPackage> getModuleList(MClass gradleSettings) {

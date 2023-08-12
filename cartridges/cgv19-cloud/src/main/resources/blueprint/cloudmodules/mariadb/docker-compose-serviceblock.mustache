@@ -1,0 +1,11 @@
+  # {{moduleName}} is a mariadb service
+  {{moduleName}}:
+    build:
+      context: ./{{moduleName}}
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: {{password}}
+    volumes:
+      - "./databases/{{moduleName}}:/var/lib/mysql"
+      - "./sql/{{moduleName}}:/docker-entrypoint-initdb.d"
+    restart: always

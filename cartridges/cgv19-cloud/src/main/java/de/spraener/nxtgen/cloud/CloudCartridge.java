@@ -6,16 +6,15 @@ import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
 import de.spraener.nxtgen.cartridges.AnnotatedCartridgeImpl;
-import de.spraener.nxtgen.cartridges.GeneratorWrapper;
 import de.spraener.nxtgen.cloud.model.MComponent;
 import de.spraener.nxtgen.filestrategies.GeneralFileStrategy;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +97,14 @@ public class CloudCartridge extends CloudCartridgeBase{
             ));
         }
         return super.createMapping(me, stereotypeName);
+    }
+
+    @Override
+    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
+        if( me instanceof MPackage pkg && sType.getName().equals(CloudStereotypes.CLOUDMODULE.getName()) && aspect.equals("docker-compose") ) {
+            return new GenericCloudModuleEvaluator(pkg).evaluate();
+        }
+        return super.evaluate(m, me, sType, aspect);
     }
 
     public static MPackage getDeploymentPackage(Model m) {

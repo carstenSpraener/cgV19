@@ -1,0 +1,3 @@
+sql/{{moduleName}}/init.sql
+{{moduleName}}/Dockerfile
+{{moduleName}}/mariadb-{{moduleName}}.cnf

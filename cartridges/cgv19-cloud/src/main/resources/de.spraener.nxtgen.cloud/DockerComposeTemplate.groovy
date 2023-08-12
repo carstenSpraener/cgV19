@@ -25,7 +25,6 @@ String generateServiceList(List<MPackage> pkgList) {
     StringBuilder sb = new StringBuilder();
     for( MPackage cloudModule : pkgList ) {
         sb.append( generateDockerService(cloudModule));
-        sb.append("\n");
     }
     return sb.toString();
 }

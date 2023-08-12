@@ -59,6 +59,6 @@ public interface Cartridge {
      * @return A String containing block of code as the result of the evaluation.
      */
     default String evaluate(Model m, ModelElement me, Stereotype sType, String aspect ) {
-        return "This cartridge does not support evaluation.";
+        return "The cartridge '"+getName()+"' does not support evaluation.";
     }
 }
