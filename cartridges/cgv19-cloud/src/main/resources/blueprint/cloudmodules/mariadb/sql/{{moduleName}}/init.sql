@@ -1,1 +1,2 @@
+-- THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
 -- place initial SQL-Statements here (like creating users)

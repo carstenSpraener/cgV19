@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.incubator;
 
+import de.spraener.nxtgen.NextGen;
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
@@ -83,7 +84,8 @@ public class BlueprintResourceLister implements BlueprintSupplier {
     public String getContent(String resourceName) {
         try (InputStreamReader isr = getInputStream(resourceName)) {
             return IOUtils.toString(isr);
-        } catch (IOException xc) {
+        } catch (Exception xc) {
+            NextGen.LOGGER.severe("Could not get content of resource: "+resourceName);
             throw new RuntimeException(xc);
         }
     }

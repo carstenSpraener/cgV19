@@ -1,6 +1,5 @@
 package de.spraener.nxtgen.cli;
 
-import de.spraener.nxtgen.Cartridge;
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.blueprint.BluePrintCartridgeCreator;
 import de.spraener.nxtgen.blueprint.BlueprintDirectoryBasedCartridge;
@@ -21,10 +20,14 @@ public class CGV19 {
         options.addOption(workdir);
 
         Option optModel = new Option("m", "model", true, "the model to operate on. Could be a file, a directory or a URL");
-        optModel.setRequired(true);
+        optModel.setRequired(false);
         options.addOption(optModel);
 
-        Option optCartridge = new Option("c", "cartridge", true, "the names of the cartridge to execute seperated by a colon. If not specified cgv19 will run all cartridges.");
+        Option optDelete = new Option("d", "delete-generated", false, "delete all files that are generated. Means: the files are not protected according to the current protection strategie.");
+        optDelete.setRequired(false);
+        options.addOption(optDelete);
+
+        Option optCartridge = new Option("c", "cartridge", true, "the names of the cartridges to run seperated by a colon. If not specified cgv19 will run all cartridges.");
         optCartridge.setRequired(false);
         options.addOption(optCartridge);
 
@@ -42,10 +45,23 @@ public class CGV19 {
             if( workDir!=null ) {
                 NextGen.setWorkingDir(workDir);
             }
+
+            if( cmd.hasOption(optDelete) ) {
+                if( workDir==null ) {
+                    workDir = ".";
+                }
+                new DirectoryTreeDeletion(workDir).run();
+            }
+
+            if( !cmd.hasOption(optModel) ) {
+                NextGen.LOGGER.info("No model was defined. Nothing to be done.");
+                System.exit(0);
+            }
             String cartridgeName = cmd.getOptionValue("cartridge");
             if( cartridgeName != null ) {
                 NextGen.runCartridgeWithName(cartridgeName);
             }
+
             String model = cmd.getOptionValue("model");
             String[] ngArgs = new String[]{model};
             String blueprintDir =cmd.getOptionValue("blueprints-dir");

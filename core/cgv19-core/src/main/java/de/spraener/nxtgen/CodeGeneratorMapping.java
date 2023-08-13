@@ -34,10 +34,6 @@ public class CodeGeneratorMapping {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CodeGeneratorMapping that)) return false;
-        if( this.stereoptype !=null ) {
-            return Objects.equals(generatorBaseElement, that.generatorBaseElement) &&
-                   Objects.equals(stereoptype, that.stereoptype);
-        }
         return Objects.equals(generatorBaseElement, that.generatorBaseElement) &&
                 Objects.equals(codeGen, that.codeGen) &&
                 Objects.equals(stereoptype, that.stereoptype);

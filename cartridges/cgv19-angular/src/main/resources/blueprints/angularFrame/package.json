@@ -1,4 +1,4 @@
-{
+{ "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
   "name": "{{appName}}",
   "version": "0.0.0",
   "scripts": {

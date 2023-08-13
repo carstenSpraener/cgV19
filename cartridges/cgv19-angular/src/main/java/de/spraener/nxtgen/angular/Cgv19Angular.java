@@ -1,6 +1,5 @@
 package de.spraener.nxtgen.angular;
 
-import de.spraener.nxtgen.CodeGenerator;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.MustacheGenerator;
 import de.spraener.nxtgen.annotations.CGV19Blueprint;
@@ -36,7 +35,9 @@ public class Cgv19Angular extends Cgv19AngularBase{
             requiredStereotype = "Cgv19AngularApp"
     )
     public Map<String,Object> fillAngularSetup(MPackage pkg) {
-        return new HashMap<>();
+        Map<String,Object> scope = new HashMap<>();
+        scope.put("appName", pkg.getName().toLowerCase());
+        return scope;
     }
 
     @CGV19MustacheGenerator(
@@ -46,8 +47,8 @@ public class Cgv19Angular extends Cgv19AngularBase{
             requiredStereotype = "Cgv19AngularApp"
     )
     public void fillDockerfileScope(ModelElement me, Map<String, Object> scope ) {
-        String prjName = me.getName();
-        scope.put("projectName", prjName);
+        String appName = me.getName().toLowerCase();
+        scope.put("appName", appName);
         scope.put("port", "80");
     }
 

@@ -1,0 +1,16 @@
+tsconfig.app.json
+README.md
+angular.json
+package.json
+tsconfig.json
+tsconfig.spec.json
+src/index.html
+src/app/app.component.html
+src/app/app-routing.module.ts
+src/app/app.component.spec.ts
+src/app/app.module.ts
+src/app/app.component.ts
+src/app/app.component.css
+src/main.ts
+src/styles.css
+src/assets/.gitkeep

@@ -1,3 +1,4 @@
+/* THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

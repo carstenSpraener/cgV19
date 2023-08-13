@@ -24,6 +24,7 @@ import java.util.Map;
  *     <li/>moduleName
  *     <li/>modulePort
  *     <li/>password
+ *     <li/>globalHostURL
  * </ul>
  * </p>
  * <p>
@@ -39,18 +40,27 @@ public class GenericCloudModuleEvaluator {
 
     public String evaluate() {
         String dockerImage = pkg.getTaggedValue("CloudModule", "dockerImage");
-        String dockerimageName = dockerImage.substring(0, dockerImage.indexOf(':'));
+        String blueprintSelector = toBlueprintSelector(dockerImage);
 
-        Blueprint.copyTo(NextGen.getWorkingDir(), "/blueprint/cloudmodules/" + dockerimageName, buildScope(pkg));
+        Blueprint.copyTo(NextGen.getWorkingDir(), "/blueprint/cloudmodules/" + blueprintSelector, buildScope(pkg));
 
         return CodeGeneratorMapping.create(pkg,
                 new MustacheGenerator(
-                        "/blueprint/cloudmodules/" + dockerimageName + "/docker-compose-serviceblock.mustache",
+                        "/blueprint/cloudmodules/" + blueprintSelector + "/docker-compose-serviceblock.mustache",
                         "docker-compose-serviceblock",
                         this::dockerComposeServiceBlock
                 )
         ).getCodeGen().resolve(pkg, "").toCode();
 
+    }
+
+    private String toBlueprintSelector(String dockerImage) {
+        String selector =  dockerImage.substring(0, dockerImage.indexOf(':'));
+        int idx = selector.lastIndexOf('/');
+        if( idx != -1 ) {
+            selector = selector.substring(idx+1);
+        }
+        return selector;
     }
 
     private void dockerComposeServiceBlock(ModelElement me, Map<String, Object> scope) {
@@ -75,6 +85,7 @@ public class GenericCloudModuleEvaluator {
         scope.put("modulePort", modulePort);
         scope.put("applPort", applPort);
         scope.put("password", moduleName + "pwd");
+        scope.put("globalHostURL", "http://localhost:"+applPort);
         return scope;
     }
 

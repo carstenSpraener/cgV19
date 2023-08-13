@@ -1,0 +1,3 @@
+{{moduleName}}/Dockerfile
+sql/keycloakdb/init.sh
+sql/keycloakdb/init.sql
