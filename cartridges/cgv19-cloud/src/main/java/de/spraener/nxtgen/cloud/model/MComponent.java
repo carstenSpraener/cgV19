@@ -4,17 +4,31 @@ import de.spraener.nxtgen.cloud.CloudStereotypes;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.ModelHelper;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
+import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MComponent extends MAbstractModelElement {
     private ModelElementImpl originalModelElement;
     private List<MPort> portList = new ArrayList<>();
     private List<MDependency> dependencies = new ArrayList<>();
+
+    public MComponent(String name, MPackage parent, Consumer<MComponent>... modifiers) {
+        setName(name);
+        setModel(parent.getModel());
+        parent.addChilds(this);
+        if( modifiers != null ) {
+            for( Consumer<MComponent> m : modifiers ) {
+                m.accept(this);
+            }
+        }
+        this.originalModelElement = this;
+    }
 
     public MComponent(ModelElementImpl meImpl) {
         setModel(meImpl.getModel());
@@ -32,6 +46,22 @@ public class MComponent extends MAbstractModelElement {
         this.originalModelElement = meImpl;
     }
 
+    public void addDependency(String fqTarget, String stereotype, Consumer<MDependency>... modifiers) {
+        MDependency d = new MDependency();
+        if( stereotype!=null ) {
+            d.addStereotypes(new StereotypeImpl(stereotype));
+        }
+        d.setProperty("target", fqTarget);
+        d.postDefinition();
+        d.setParent(this);
+        d.setModel(this.getModel());
+        if( modifiers!=null ) {
+            for( Consumer<MDependency> m : modifiers ) {
+                m.accept(d);
+            }
+        }
+        this.dependencies.add(d);
+    }
     public static String getServiceName(MDependency mDependency) {
         OOModel model = (OOModel)mDependency.getModel();
         ModelElement me = ModelHelper.findByFQName(model, mDependency.getTarget(), ".");
@@ -78,5 +108,12 @@ public class MComponent extends MAbstractModelElement {
         return this.dependencies.stream()
                 .filter( d -> StereotypeHelper.hasStereotype(d, s))
                 .collect(Collectors.toList());
+    }
+
+    public void addPort(String name) {
+        MPort port = new MPort(name);
+        this.portList.add(port);
+        port.setParent(this);
+        getChilds().add(port);
     }
 }

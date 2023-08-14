@@ -15,10 +15,16 @@ RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysi
 RUN /opt/keycloak/bin/kc.sh build
 
 # change these values to point to a running postgres instance
+
+# Database configuration
 ENV KC_DB=mariadb
 ENV KC_DB_URL=jdbc:mariadb://keycloakdb:3306/keycloakdb
-ENV KC_DB_USERNAME=keycloak
-ENV KC_DB_PASSWORD={{password}}
+ENV KC_DB_USERNAME=keycloakdb
+ENV KC_DB_PASSWORD=keycloakdbpwd
+# Admin access
+ENV KEYCLOAK_ADMIN=admin
+ENV KEYCLOAK_ADMIN_PASSWORD=admin1
+# Network related configuration
 ENV KC_PROXY=edge
 ENV KC_HOSTNAME_STRICT=false
 ENV KC_HOSTNAME_STRICT_BACKCHANNEL=false

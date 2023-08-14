@@ -4,8 +4,9 @@
       context: ./{{moduleName}}
       dockerfile: Dockerfile
     environment:
-      MYSQL_ROOT_PASSWORD: {{password}}
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_USER: mysql
     volumes:
       - "./databases/{{moduleName}}:/var/lib/mysql"
-      - "./sql/{{moduleName}}:/docker-entrypoint-initdb.d"
+      - "./{{moduleName}}/sql:/docker-entrypoint-initdb.d"
     restart: always

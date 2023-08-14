@@ -44,10 +44,12 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
+/*
 @CGV19Transformation(
         requiredStereotype = "${getRequiresStereotype(mClass)}",
         operatesOn = ${metaType}.class
 )
+*/
 public abstract class ${mClass.getName()} implements de.spraener.nxtgen.Transformation {
 
     @Override

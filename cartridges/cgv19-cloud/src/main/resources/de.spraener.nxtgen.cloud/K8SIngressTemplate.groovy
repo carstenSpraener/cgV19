@@ -24,7 +24,7 @@ String listPaths(MComponent mc) {
             pathType: Prefix
             backend:
               service:
-                name: ${serviceName}-service
+                name: ${serviceName}
                 port:
                   number: ${port}
 """);

@@ -22,7 +22,7 @@ String getSelector( MComponent c ) {
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${serviceName}-service
+  name: ${serviceName}
 spec:
   type: ClusterIP
   ports:

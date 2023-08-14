@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.cloud;
 
+import de.spraener.nxtgen.CGV19Config;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.MustacheGenerator;
 import de.spraener.nxtgen.NextGen;
@@ -85,7 +86,9 @@ public class GenericCloudModuleEvaluator {
         scope.put("modulePort", modulePort);
         scope.put("applPort", applPort);
         scope.put("password", moduleName + "pwd");
-        scope.put("globalHostURL", "http://localhost:"+applPort);
+        scope.put("userName", moduleName);
+        String globalHostURL = CGV19Config.definitionOf("globalHostURL", "http://localhost");
+        scope.put("globalHostURL", globalHostURL);
         return scope;
     }
 

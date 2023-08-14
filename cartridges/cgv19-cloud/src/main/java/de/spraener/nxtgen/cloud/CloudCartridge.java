@@ -96,6 +96,11 @@ public class CloudCartridge extends CloudCartridgeBase{
                     cb -> cb.setToFileStrategy(new K8SConfigFileSpec(mc,"-service"))
             ));
         }
+        if( stereotypeName.equals(CloudStereotypes.PERMANENTVOLUME.getName()) ) {
+            return CodeGeneratorMapping.create(me, new K8SPvcGenerator(
+                    cb -> cb.setToFileStrategy(new K8SConfigFileSpec(me, "-persistent-volume-claim"))
+            ));
+        }
         return super.createMapping(me, stereotypeName);
     }
 

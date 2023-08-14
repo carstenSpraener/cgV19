@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.oom.model;
 
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.ModelHelper;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
 public class MDependency extends MAbstractModelElement {
@@ -16,5 +17,9 @@ public class MDependency extends MAbstractModelElement {
 
     public String getTarget() {
         return target;
+    }
+
+    public ModelElement getTargetElement() {
+        return ModelHelper.findByFQName(getModel(), target, ".");
     }
 }

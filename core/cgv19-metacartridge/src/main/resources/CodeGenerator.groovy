@@ -125,6 +125,7 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
+/*
 @CGV19Generator(
         requiredStereotype = "${getRequiredStereotype(mClass)}",
         operatesOn = ${getGeneratesOn(mClass)}.class,
@@ -133,6 +134,7 @@ import de.spraener.nxtgen.annotations.*;
         templateName = "${getTemplateFileName(mClass)}",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
+*/
 public class ${mClass.getName()} implements CodeGenerator {
     private Consumer<CodeBlock>[] codeBlockModifiers;
 
