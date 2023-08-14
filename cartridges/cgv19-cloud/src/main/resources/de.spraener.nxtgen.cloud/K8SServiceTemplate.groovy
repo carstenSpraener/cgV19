@@ -6,16 +6,22 @@ import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.OOModel
 
 MComponent mComponent = this.getProperty("modelElement");
-OOModel model = mComponent.getModel();
 
 def serviceName = mComponent.getName().toLowerCase();
-def port = mComponent.getPortList().get(0).getName();
 
 String getSelector( MComponent c ) {
     String selector = c.getTaggedValue(CloudStereotypes.CLOUDSERVICE.name, "selector");
     if( selector == null ) {
         selector = c.getName().toLowerCase();
     }
+    return selector
+}
+
+String getPort(MComponent mc) {
+    if( mc.getPortList().isEmpty() ) {
+        retrun "8080";
+    }
+    return  mc.getPortList().get(0).getName();
 }
 
 """# ${ProtectionStrategieDefaultImpl.GENERATED_LINE}
@@ -26,8 +32,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: ${port}
-      targetPort: ${port}
+    - port: ${getPort(mComponent)}
+      targetPort: ${getPort(mComponent)}
   selector:
     component: ${getSelector(mComponent)}
 """

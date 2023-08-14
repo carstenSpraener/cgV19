@@ -116,7 +116,7 @@ public class NextGen implements Runnable {
         return result;
     }
 
-    private static List<Cartridge> loadCartridges() {
+    public static List<Cartridge> loadCartridges() {
         final List<Cartridge> result = new ArrayList<>();
         result.addAll(cartridgeList);
         ServiceLoader<Cartridge> loaderServices = ServiceLoader.load(Cartridge.class);

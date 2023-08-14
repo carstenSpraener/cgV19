@@ -154,7 +154,12 @@ This MClass will be taken from the Dockerfile generator to build a global docker
             mClass {
                 stereotype 'Stereotype'
                 name 'CloudModule'
-                documentation """A package marked with this Stereotype will describe all deployment components in a component diagram."""
+                documentation """A package marked with this Stereotype will describe all deployment components in a component diagram.
+
+If the CloudModule requires a database, a transformation will create a
+deployment, service and a PVC for that database.
+
+At the moment the only supported database type is MariaDB. More to come"""
                 id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59'
                 metaType 'Stereotype'
                 mAttribute {
@@ -190,6 +195,24 @@ This MClass will be taken from the Dockerfile generator to build a global docker
                     name 'port'
                     documentation """"""
                     id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$vU4Dh5GGAqAACBDN'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    defaultValue """none"""
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+            none
+            PostgreSQL
+            MariaDB
+            MySQL
+            DB/2
+            HSQL
+            Other
+"""
+                    name 'requiredDatabase'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$myZCL5GGAqACRBSj'
                     metaType 'TaggedValueDefinition'
                 }
             }
@@ -270,6 +293,87 @@ The tagged value path contains the path pattern for this route."""
                 documentation """A package with this stereotype, that is placed next to the other CloudMudule packages will be given to all CloudModules so they can extract payload and service descriptions for their use."""
                 id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:52EiJ5GGAqAACBKv'
                 metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'Mounts'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs'
+                metaType 'Stereotype'
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'mountPath'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs$W.38D5GGAqACRBMt$W.38D5GGAqACRBMu'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'subPath'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs$W.38D5GGAqACRBMt$2.38D5GGAqACRBMv'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'PermanentVolume'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:ZyDoq5GD.AAAARcl'
+                metaType 'Stereotype'
+                mAttribute {
+                    defaultValue """2Gi"""
+                    typeID 0
+                    type 'String'
+                    name 'size'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:ZyDoq5GD.AAAARcl$FyDoq5GD.AAAARcm$FmqCD5GGAqACRBN6'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'Provides'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:Weioa5GD.AAAARyL'
+                metaType 'Stereotype'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SPvcGenerator'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:VHxiD5GGAqACRBPw'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'PermanentVolume'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudModuleRequiredDatabaseTransformation'
+            documentation """A CloudModule, that requires a Database needs to get the following elements:
+
+* a Service to access the database
+* A deployment with an docker-image of the required database
+* a persistent volume claim to store the data.
+
+This transformation will create all this model elements with the following
+names:
+
+* the name of the deployment will be <moduleName>db
+* the name of  the service will be <moduleName>db
+* the name of the pvc will be <moduleName>db-persistent-volume-claim
+* the port is the standard port of the selected database
+* the image will be latest image of the given database"""
+            id 'wKYsC5GD.AAAARHf:naE8L5GGAqACRBRz'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'transformedMetaType', 'MPackage'
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'priority', '5'
             }
         }
     }

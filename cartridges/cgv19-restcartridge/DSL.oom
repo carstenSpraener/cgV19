@@ -92,14 +92,14 @@ ModelDSL.make {
       mAttribute {
         typeID 2
         type 'adhoc-enum'
-        enumValues [
-        'string',
-        'integer',
-        'boolean',
-        'decimal',
-        'blob',
-        'date',
-        ]
+        enumValues """
+          string
+          integer
+          boolean
+          decimal
+          blob
+          date
+"""
         name 'type'
         documentation """"""
         id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$IRYPJeGD.AAAAQ0.'
@@ -590,13 +590,13 @@ have all necessary definitions."""
                   defaultValue """implementation"""
                   typeID 2
                   type 'adhoc-enum'
-                  enumValues [
-                  'implementation',
-                  'testImplementation',
-                  'testRuntimeOnly',
-                  'annotationProcessor',
-                  'developmentOnly',
-                  ]
+                  enumValues """
+                    implementation
+                    testImplementation
+                    testRuntimeOnly
+                    annotationProcessor
+                    developmentOnly
+"""
                   name 'scope'
                   documentation """"""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$YE_MtxGGAqAAAw3m'
@@ -787,17 +787,17 @@ have all necessary definitions."""
       mAttribute {
         typeID 2
         type 'adhoc-enum'
-        enumValues [
-        'GET',
-        'POST',
-        'PUT',
-        'DELETE',
-        'OPTIONS',
-        'PATCH',
-        'TRACE',
-        'HEAD',
-        'CONNECT',
-        ]
+        enumValues """
+          GET
+          POST
+          PUT
+          DELETE
+          OPTIONS
+          PATCH
+          TRACE
+          HEAD
+          CONNECT
+"""
         name 'Metod'
         documentation """"""
         id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym$uhRmVxGGAqAAAwy1$uhRmVxGGAqAAAwy2'
@@ -814,12 +814,12 @@ have all necessary definitions."""
         defaultValue """GET"""
         typeID 0
         type 'String'
-        enumValues [
-        'GET',
-        'POST',
-        'PUT',
-        'DELETE',
-        ]
+        enumValues """
+          GET
+          POST
+          PUT
+          DELETE
+"""
         name 'RESTMethod'
         documentation """"""
         id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB$OWSCC5GD.AAAAROY$uWSCC5GD.AAAAROZ'
