@@ -17,6 +17,7 @@ ModelDSL.make {
                 taggedValue 'cgv19Cartridge', 'JavaLinCartridge'
                 taggedValue 'dockerImage', 'fibonacci'
                 taggedValue 'port', '7070'
+                taggedValue 'requiredDatabase', 'none'
             }
             mClass {  //Exported by ClassExporterBase
                 name 'WorkerApp'
@@ -99,6 +100,10 @@ ModelDSL.make {
                     documentation """"""
                     id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:Q.boq5GD.AAAARc4'
                     metaType 'Dependency'
+                    stereotype 'Mounts', {
+                        taggedValue 'mountPath', '/var/lib/mysql'
+                        taggedValue 'subPath', 'app-data'
+                    }
                     target 'de.spraener.tinyapp.k8s.DatabaseDir'
                 }
                 mDependency {  //Exported by DependencyExporterBase
@@ -117,6 +122,7 @@ ModelDSL.make {
                 metaType 'InstanceSpecification'
                 stereotype 'PermanentVolume', {
                     taggedValue 'path', 'frontendAppDatabase'
+                    taggedValue 'size', '2Gi'
                 }
             }
             mElement {
@@ -182,7 +188,7 @@ ModelDSL.make {
                     stereotype 'Routes', {
                         taggedValue 'path', '/kc-auth'
                     }
-                    target 'de.spraener.tinyapp.k8s.KeyCloak.8081'
+                    target 'de.spraener.tinyapp.k8s.KeyCloak.8080'
                 }
             }
             mElement {
@@ -214,6 +220,13 @@ ModelDSL.make {
                     metaType 'Dependency'
                     target 'de.spraener.tinyapp.k8s.Worker'
                 }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:TwRIq5GD.AAAARa_'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.k8s.AppDatabase.3306'
+                }
             }
             mElement {
                 name ''
@@ -236,7 +249,7 @@ ModelDSL.make {
                     taggedValue 'replicas', '1'
                 }
                 mElement {
-                    name '8081'
+                    name '8080'
                     documentation """"""
                     id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:mGF495GGAqACRBG_$hGd495GGAqACRBHW'
                     metaType 'Port'
@@ -260,7 +273,8 @@ ModelDSL.make {
                 taggedValue 'dockerRegistry', 'localhost:5080'
                 taggedValue 'cgv19Cartridge', 'REST-Cartridge'
                 taggedValue 'dockerImage', 'api'
-                taggedValue 'port', '8080'
+                taggedValue 'port', '8081'
+                taggedValue 'requiredDatabase', 'none'
             }
             mClass {  //Exported by ClassExporterBase
                 name 'FrontendApp'
@@ -301,13 +315,15 @@ ModelDSL.make {
                 taggedValue 'dockerRegistry', 'localhost:5080'
                 taggedValue 'cgv19Cartridge', 'Cgv19Angular'
                 taggedValue 'dockerImage', 'frontend'
-                taggedValue 'port', '80'
+                taggedValue 'port', '8080'
+                taggedValue 'requiredDatabase', 'none'
             }
             stereotype 'Cgv19AngularApp', {
                 taggedValue 'dockerRegistry', 'localhost:5080'
                 taggedValue 'cgv19Cartridge', 'Cgv19Angular'
                 taggedValue 'dockerImage', 'frontend'
-                taggedValue 'port', '80'
+                taggedValue 'port', '8080'
+                taggedValue 'requiredDatabase', 'none'
             }
             mClass {  //Exported by ClassExporterBase
                 name 'AngularApp'
@@ -450,6 +466,7 @@ ModelDSL.make {
                 taggedValue 'cgv19Cartridge', 'CloudCartridge'
                 taggedValue 'dockerImage', 'mariadb:10.9.5'
                 taggedValue 'port', '3306'
+                taggedValue 'requiredDatabase', 'none'
             }
         }
         mPackage {  //Exported by PackageExporterBase
@@ -461,7 +478,8 @@ ModelDSL.make {
                 taggedValue 'dockerRegistry', 'localhost:5080'
                 taggedValue 'cgv19Cartridge', 'CloudCartridge'
                 taggedValue 'dockerImage', 'quay.io/keycloak/keycloak:latest'
-                taggedValue 'port', '8081'
+                taggedValue 'port', '8080'
+                taggedValue 'requiredDatabase', 'MariaDB'
             }
         }
     }
