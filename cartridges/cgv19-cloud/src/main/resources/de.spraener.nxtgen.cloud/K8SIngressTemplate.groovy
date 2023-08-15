@@ -35,7 +35,7 @@ String listPaths(MComponent mc) {
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
+  name: ${mComponent.name.toLowerCase()}-service
   annotations:
     nginx.ingress.kubernetes.io/use-regex: 'true'
     nginx.ingress.kubernetes.io/rewrite-target: /\$1
