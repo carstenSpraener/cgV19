@@ -1,5 +1,7 @@
 package de.spraener.nxtgen.filestrategies;
 
+import de.spraener.nxtgen.NextGen;
+
 import java.io.File;
 
 public class GeneralFileStrategy implements ToFileStrategy {

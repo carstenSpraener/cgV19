@@ -1,6 +1,8 @@
 package de.spraener.nxtgen.cartridge.rest.php;
 
+import de.spraener.nxtgen.CGV19Config;
 import de.spraener.nxtgen.CodeBlockImpl;
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.NxtGenRuntimeException;
 
 import java.io.File;
@@ -51,7 +53,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
 
     public static String getOutputPath() {
         if( outputPath==null ) {
-            outputPath = System.getenv("php_project_dir");
+            outputPath = CGV19Config.definitionOf("phpProjectDir", NextGen.getWorkingDir()+"/php");
             if (outputPath == null || "".equals(outputPath)) {
                 outputPath = "./php";
             }
@@ -62,7 +64,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
 
     private static String getOutputPath(String workingDir) {
         if( outputPath==null ) {
-            outputPath = System.getenv("php_project_dir");
+            outputPath = CGV19Config.definitionOf("php_project_dir", NextGen.getWorkingDir()+"/src/php");
             if (outputPath == null || "".equals(outputPath)) {
                 outputPath = workingDir;
             }
