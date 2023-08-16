@@ -63,8 +63,21 @@ application {
                 include "cgv19*.jar"
     }.into("cartridges")
 
+    for( String cName in listCartridges() ) {
+        applicationDistribution.from(project(":cgv19-${cName}").buildDir.absolutePath+"/libs") {
+            include "cgv19*.jar"
+        }.into("cartridges")
+    }
+
     System.out.println("rootDir: "+project(":cgv19-cli").projectDir.getAbsolutePath());
     applicationDistribution.from(project(":cgv19-cli").projectDir.absolutePath+"/src/main/blueprints") {
         include "**/*"
     }.into("cartridges/blueprints")
+}
+
+def listCartridges() {
+    File cartridgeDir = new File(projectDir.getAbsolutePath()+"/../cartridges");
+    return cartridgeDir.list ((f,n)-> {
+        return n.startsWith("cgv19-") && !n.contains(".")
+    })
 }

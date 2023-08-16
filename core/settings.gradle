@@ -1,5 +1,11 @@
-include(':cgv19-core',':cgv19-gradle',':cgv19-oom',':cgv19-pojo')
-include(':cgv19-metacartridge')
-include(':cgv19-annotationprocessor')
-include(':cgv19-javapoet')
-include(':cgv19-cli')
+rootProject.name = 'cgv19-core'
+
+// Include all project in this directory according to naming-pattern
+for( p in new File(".").list((f,n)->n.startsWith("cgv19-")&&!n.contains("."))) {
+    include(":${p}")
+}
+// Include all project in the cartridges directory according to naming-pattern
+for( c in new File("../cartridge").list((f,n)->n.startsWith("gv19-") && !n.contains("."))) {
+    include(":${c}")
+    project(":${c}").projectDir = file("../cartridge/${c}")
+}

@@ -1,6 +1,5 @@
 rootProject.name = 'cgv19-cartridges'
 
-include ':cgv19-restcartridge'
-include ':cgv19-cloud'
-include ':cgv19-javalin'
-include ':cgv19-angular'
+for( p in new File(".").list((f,n)->n.startsWith("cgv19-")&&!n.contains("."))) {
+    include(":${p}")
+}

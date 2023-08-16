@@ -1,3 +1,5 @@
+rootProject.name = 'cgv19-plugins'
+
 include (":cgv19-vpplugin-cartridge")
 include (":cgv19-vpplugin")
 //include (":cgv19-MDPlugin")
