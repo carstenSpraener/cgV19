@@ -15,7 +15,7 @@ import java.util.Map;
  * <p>
  * This GenericCloudModuleEvaluator generates a service-definition from a CloudModule. The root
  * of the blueprint is taken directly from the CloudModules dockerImage - tagged value. It this
- * dockerImage is something like &lt;imagename&gt:version it will take the content of the blueprint
+ * dockerImage is something like &lt;imagename&gt;:version it will take the content of the blueprint
  * under blueprint/imagename and generates the output from that blueprint
  * </p>
  * <p>
