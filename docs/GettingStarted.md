@@ -76,7 +76,7 @@ setup your first cgv19 project! CGV19 has a __blueprint__ for this.
 Go into your project directory and enter the following command:
 
 ```bash
-cgv19 -m my-app.yml -c cgv19Project
+cgv19 -m my-app.yml -c cgv19Gradle
 ```
 
 The _-m_ options tells cgv19 to use the model _my-app.yml_. The second _-c_ option tells 
