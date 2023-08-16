@@ -36,6 +36,7 @@ sourceSets {
 dependencies {
     cartridge "de.spraener.nxtgen:cgv19-core:{{cgv19-Version}}"
     cartridge "de.spraener.nxtgen:cgv19-oom:{{cgv19-Version}}"
+    cartridge "de.spraener.nxtgen:cgv19-pojo:{{cgv19-Version}}"
     // Add additional cartridges here
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'

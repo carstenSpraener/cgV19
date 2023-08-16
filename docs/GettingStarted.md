@@ -9,158 +9,157 @@ application.
 
 You need to have:
 
-* A bash-like shell. Windows users should install git bash or similar.
+* A bash-like shell. Windows users could install _git bash_ or similar.
 * git
 * Java 17 or higher. Check with ```java -version```
 * Gradle 8.0 or higher. Check with ```gradle --version```
 * A text editor of your choice. vi, emacs, VSC, IntelliJ or whatever you want.
 
 
-### Installing cgv19-cli
+## Installing cgv19-cli
 
 Clone the project into a folder of your choice with:
 
 ```bash
 git clone https://github.com/carstenSpraener/cgV19.git
 ```
-This will create a copy of cgv19 in the sub directory cgv19. Now you have to change into the
+This will create a copy of cgv19 in the subdirectory cgv19. Now you have to change into the
 core-directory and build the cli project by:
-```java
+
+```bash
 cd cgV19/core
 gradle :cgv19-cli:installDist
 ```
 
-### Create a new directory
-
-Go to your favorite project directory and create a new sub directory
-lets say __my-cartridge__
+After the (hopefully) successfull build you shall copy the created cgv19-tool to a 
+location of your choice and add the `bin` subfolder to your PATH:
 
 ```bash
-mkdir my-cartridge
-cd my-cartridge
+cp cgv19-cli/build/install/cgv19-cli ~/tools
+export PATH=${PATH}:${HOME}/tools
 ```
 
-### Create a build.gradle file to use cgV19 from maven central
+To make the installation permanent, add the last export statement to your login script
+like `.bashrc`, `.zshrc` or what not.
 
-Open your favorite editor and create a new file __build.gradle__ and
-copy this content into that build.gradle file:
+You should now be able to call cgv19 like:
+```bash
+❯ cgv19 -l
+Aug. 16, 2023 1:40:06 PM de.spraener.nxtgen.cli.CGV19 main
+INFORMATION: Running in /Users/casi/tmp/cgV19/core/.
+Aug. 16, 2023 1:40:06 PM de.spraener.nxtgen.NextGen loadCartridges
+INFORMATION: found 9 cartridges [cgv19Cartridge, cgv19Gradle, JavaLinCartridge, PoJo-Cartridge, REST-Cartridge, Cgv19Angular, ObjectOrientedMetamodel-Cartridge, CloudCartridge, MetaCartridgeBase].
+The current cgv19 installation contains the following cartridges:
 
-```groovy
-buildscript {
-    repositories {
-        mavenCentral();
-    }
-    // add cgv19 to the build scripts classpath
-    dependencies {
-        classpath "de.spraener.nxtgen:cgv19-gradle:23.1.0"
-        classpath "de.spraener.nxtgen:cgv19-core:23.1.0"
-    }
-}
+    * 'cgv19Cartridge' (ModelLoader)
+    * 'cgv19Gradle' (ModelLoader)
+    * 'JavaLinCartridge'
+    * 'PoJo-Cartridge'
+    * 'REST-Cartridge'
+    * 'Cgv19Angular'
+    * 'ObjectOrientedMetamodel-Cartridge'
+    * 'CloudCartridge'
+    * 'MetaCartridgeBase'
 
-plugins {
-    id 'java'
-    id 'application'
-}
-
-// Apply cgV19 plugin to the build
-apply plugin: 'de.spraener.nxtgen.cgV19'
-
-// Configure cgV19 to read this model
-cgV19 {
-    model = "model.oom"
-}
-
-repositories {
-    mavenCentral()
-}
-
-// cgV19 will generate java sources into src/main/java
-// AND! src/main/java-gen
-sourceSets {
-    main {
-        java {
-            srcDir('src/main/java-gen')
-        }
-    }
-}
-
-dependencies {
-    // apply this cartridges to cgV19 so we can generate something
-    cartridge 'de.spraener.nxtgen:cgv19-core:23.1.0'
-    // oom-loader is responsible to load Object Oriented Models
-    cartridge 'de.spraener.nxtgen:cgv19-oom:23.1.0'
-    // to create your own cartridge, the meta-cartridge can help
-    cartridge 'de.spraener.nxtgen:cgv19-metacartridge:23.1.0'
-
-    // You also need this jars during implementing your cartridge
-    implementation 'de.spraener.nxtgen:cgv19-core:23.1.0'
-    implementation 'de.spraener.nxtgen:cgv19-oom:23.1.0'
-    implementation 'de.spraener.nxtgen:cgv19-metacartridge:23.1.0'
-
-}
+You can choose one of these with the -d <CartridgeName> option.
+Aug. 16, 2023 1:40:06 PM de.spraener.nxtgen.cli.CGV19 main
+INFORMATION: No model was defined. Nothing to be done.
 ```
 
-### Create a little model.oom
+## Build your first cgv19 project
 
-OOM stands for __O__ bject __O__ riented __M__ odel and means that you
-can specify Packages, Classes, Operations, Attributes, Inheritance...
+### Initialization with cgv19 
 
-But for the first Model we just want one class with a _stereotype_
-"cgv19Cartridge".
+Now, that you have cgv19 up and running let's make use of it. You can use cgv19 to 
+setup your first cgv19 project! CGV19 has a __blueprint__ for this. 
 
-The language to specify such a model is a Groovy-DSL. Here is the example:
-
-```groovy
-import de.spraener.nxtgen.groovy.ModelDSL
-
-ModelDSL.make {
-    mPackage {
-        name 'my.cartridge'
-        mClass {
-            name 'MyCartridge'
-            stereotype 'cgV19Cartridge'
-        }
-    }
-}
-```
-
-Store this model in a file model.oom in the project directory.
-
-Your directory should now look like this:
-
-![dirTree-beforeGeneration.png](images%2FdirTree-beforeGeneration.png)
-
-### Run the generator
-
-You can run the generator on its own by calling
+Go into your project directory and enter the following command:
 
 ```bash
-gradle cgV19
+cgv19 -m my-app.yml -c cgv19Project
 ```
 
-but the cgV19-Plugin defines a dependency so that the compile task requires
-a cgV19 run. So you can do a simple:
+The _-m_ options tells cgv19 to use the model _my-app.yml_. The second _-c_ option tells 
+cgv19 to start the cartridge __cgv19Project__. This cartridge can
+generate a new gradle project upon the model given.
+
+When you hit the enter key, the __cgv19Project__ cartridge tries to open the model
+_my-app.yml_. At this moment the model does not exsist and so the cartridge will ask
+you to enter some data like here:
+
+```bash
+❯ cgv19 -m my-app.yml -c cgv19Gradle
+
+
+Please give value for 'cgv19-Version':
+23.1.0
+Please give value for 'projectName':
+my-app
+Please give value for 'rootPackage':
+de.spraener.my.app
+```
+
+Cgv19 will create a new project directory `my-app` and inside you will find the following 
+content:
+
+```bash
+❯ cd my-app
+❯ tree .
+.
+├── build.gradle
+├── de.spraener.my.app.oom
+└── settings.gradle
+```
+
+You can start developing with gradle and your first generator run:
 
 ```bash
 gradle jar
 ```
+Even if there is no src, gradle will start cgv19 which wil generate your first PoJo and 
+build a jar file.
 
-After That your directory should now look like:
+__Congratulations! You set up your first cgv19 Project.__
 
-![dirTree-afterGeneration.png](images%2FdirTree-afterGeneration.png)
+# Behind the scenes
 
-Well done! You just created your first cartridge.
+## What is this oom-File?
+The Project created contains a `.oom` file. __OOM__ stands for __O__ bject __O__ riented __M__ odel
+and is in fact a _groovy_ script. It defines a package and a class. You can edit this script
+with any groovy editor. But there is another option to build such script with Visual Paradigm.
+The cgv19-plugin for Visual Paradigm will open a Port on 7001 and serve the oom-File upon 
+get requests to the projects root package.
 
-But maybe you want to dive into the next step...
+## How distinguish between generated and non-generated source?
+In the default behaviour all files with the String 
+_THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS_ somewhere at the top of the file
+are considered to be generated and can be overwritten. This may sound strange, but I have made
+good experiences with this approach. So, give it a try. You can change this behaviour by
+implementing your own protection strategy.
 
-* [Clone and build by yourself](CloneAndBuildYourself.md)
-* [building-VisualParadigm-Plugin.md](building-VisualParadigm-Plugin.md)
+The sources generated are all marked as _Generated_. When you call cgv19 with the _-d_ option
+it deletes all generated files.
 
-### Some notices for real projects
+## How to use more cartridges?
+Cartridges are the generator blocks for certain areas like JPA, REST or Cloud. Cgv19 comes 
+with som predefined cartridges to support some common tasks. You can create your
+own cartridge (of course with the use of cgv19 and the predefined meta-cartridge) and place
+the jar file in the catridge-folder of your cgv19 installation. 
+
+# Some notices for real projects
 
 This is a very, very tiny usage of a model driven development strategie,
 and it is definitive not worth the overhead. But in real projects
 when the complexity is growing you will benefit from the level of
-abstraction that MDD can reach. Especially when you make exhausted use
+abstraction that MDD can reach. Especially when you make exhaustive use
 of transformations.
 
+## Should i checkin genrated sources?
+Nearly always: __NO__! For the same reason why you don't checkin .class files. Think about it.
+Generated sources are a result of a compilation from the model to source code and only an 
+intermediate step. 
+
+There is (for me) only on exception. The _meta-cartridge_! This 
+cartridge is generated with the use of cgv19. But when you first don't have cgv19 available,
+you would not be able to build cgv19. So in such a situation, you need to checkin the 
+generated sources.
