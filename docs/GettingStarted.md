@@ -35,8 +35,8 @@ After the (hopefully) successfull build you shall copy the created cgv19-tool to
 location of your choice and add the `bin` subfolder to your PATH:
 
 ```bash
-cp cgv19-cli/build/install/cgv19-cli ~/tools
-export PATH=${PATH}:${HOME}/tools
+cp -r cgv19-cli/build/install/ ~/tools/
+export PATH=${PATH}:${HOME}/tools/cgv19-cli/bin
 ```
 
 To make the installation permanent, add the last export statement to your login script
