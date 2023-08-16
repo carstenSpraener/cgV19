@@ -113,7 +113,7 @@ public class CodeBlockImpl implements CodeBlock {
                 return;
             }
             if( outFile.getParentFile() == null ){
-                NextGen.LOGGER.warning("missconfigured generator tries to open illegal file: "+this.getName());
+                NextGen.LOGGER.fine("missconfigured generator tries to open illegal file: "+this.getName());
                 return;
             }
             outFile.getParentFile().mkdirs();
