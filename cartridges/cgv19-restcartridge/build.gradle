@@ -1,20 +1,35 @@
 buildscript {
     repositories {
         mavenCentral();
-        maven {
-            url = "${project.rootDir}/../repo"
-        }
     }
     dependencies {
-        classpath "${project.ext.group}:cgv19-core:${project.ext.version}"
-        classpath "${project.ext.group}:cgv19-gradle:${project.ext.version}"
+        classpath "de.spraener.nxtgen:cgv19-core:23.1.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:23.1.0"
     }
 }
 
 plugins {
-    id 'java-library'
+    id 'java'
+    id 'application'
 }
+
 apply plugin: 'de.spraener.nxtgen.cgV19'
+
+repositories {
+    maven {
+        url="${project.rootDir}/../../repo"
+        }
+    mavenCentral();
+}
+
+
+cgV19 {
+    dependsOn ':cgv19-core:jar'
+    dependsOn ':cgv19-oom:jar'
+    dependsOn ':cgv19-metacartridge:jar'
+    dependsOn ':cgv19-pojo:jar'
+    model = 'http://localhost:7001/DSL'
+}
 
 sourceSets {
     main {
@@ -24,18 +39,17 @@ sourceSets {
     }
 }
 
-cgV19 {
-    model = 'http://localhost:7001/DSL'
-}
-
 dependencies {
-    cartridge "${project.ext.group}:cgv19-core:${project.ext.version}"
-    cartridge "${project.ext.group}:cgv19-oom:${project.ext.version}"
-    cartridge "${project.ext.group}:cgv19-metacartridge:${project.ext.version}"
+    cartridge project(":cgv19-core")
+    cartridge project(":cgv19-oom")
+    cartridge project(":cgv19-metacartridge")
+    cartridge project(":cgv19-pojo")
+    // Add additional cartridges here
 
-    implementation "${project.ext.group}:cgv19-core:${project.ext.version}"
-    implementation "${project.ext.group}:cgv19-oom:${project.ext.version}"
-    implementation "${project.ext.group}:cgv19-pojo:${project.ext.version}"
+    implementation project(":cgv19-core")
+    implementation project(":cgv19-oom")
+    implementation project(":cgv19-pojo")
+
     implementation 'com.github.spullara.mustache.java:compiler:0.9.10'
     implementation 'commons-io:commons-io:2.13.0'
 
@@ -49,3 +63,4 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+

@@ -1,6 +1,6 @@
 #!/bin/bash
 (
   cd core;
-  gradle clean publish
+  gradle clean
   gradle :cgv19-cli:installDis
 )

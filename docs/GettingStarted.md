@@ -2,17 +2,33 @@
 
 ## Using cgv19 from maven repository
 
-The easiest way of getting started with cgV19 is by setting up a small
-gradle project, that uses cgV19 as a component from maven central.
+The easiest way of getting started with cgV19 is by installing the provided
+application.
 
 ### Requirements
 
 You need to have:
 
 * A bash-like shell. Windows users should install git bash or similar.
+* git
 * Java 17 or higher. Check with ```java -version```
 * Gradle 8.0 or higher. Check with ```gradle --version```
 * A text editor of your choice. vi, emacs, VSC, IntelliJ or whatever you want.
+
+
+### Installing cgv19-cli
+
+Clone the project into a folder of your choice with:
+
+```bash
+git clone https://github.com/carstenSpraener/cgV19.git
+```
+This will create a copy of cgv19 in the sub directory cgv19. Now you have to change into the
+core-directory and build the cli project by:
+```java
+cd cgV19/core
+gradle :cgv19-cli:installDist
+```
 
 ### Create a new directory
 

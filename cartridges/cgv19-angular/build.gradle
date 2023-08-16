@@ -20,8 +20,10 @@ repositories {
 }
 
 cgV19 {
-    // model = 'de.spraener.nxtgen.angular.oom'
-    // If you use VisualParadigm:
+    dependsOn ':cgv19-core:jar'
+    dependsOn ':cgv19-oom:jar'
+    dependsOn ':cgv19-metacartridge:jar'
+    dependsOn ':cgv19-pojo:jar'
     model = 'http://localhost:7001/de.spraener.nxtgen.angular'
 }
 
@@ -34,15 +36,15 @@ sourceSets {
 }
 
 dependencies {
-    cartridge "de.spraener.nxtgen:cgv19-core:23.1.1"
-    cartridge "de.spraener.nxtgen:cgv19-oom:23.1.1"
-    cartridge "de.spraener.nxtgen:cgv19-metacartridge:23.1.1"
-    cartridge "de.spraener.nxtgen:cgv19-pojo:23.1.1"
+    cartridge project(':cgv19-core')
+    cartridge project(':cgv19-oom')
+    cartridge project(':cgv19-metacartridge')
+    cartridge project(':cgv19-pojo')
     // Add additional cartridges here
 
-    implementation "de.spraener.nxtgen:cgv19-core:23.1.1"
-    implementation "de.spraener.nxtgen:cgv19-oom:23.1.1"
-    implementation "de.spraener.nxtgen:cgv19-pojo:23.1.1"
+    implementation project(':cgv19-core')
+    implementation project(':cgv19-oom')
+    implementation project(':cgv19-pojo')
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testImplementation 'org.mockito:mockito-core:5.3.1'
