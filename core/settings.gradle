@@ -5,7 +5,7 @@ for( p in new File(".").list((f,n)->n.startsWith("cgv19-")&&!n.contains("."))) {
     include(":${p}")
 }
 // Include all project in the cartridges directory according to naming-pattern
-for( c in new File("../cartridge").list((f,n)->n.startsWith("gv19-") && !n.contains("."))) {
+for( c in new File("../cartridges").list((f,n)->n.startsWith("cgv19-") && !n.contains("."))) {
     include(":${c}")
-    project(":${c}").projectDir = file("../cartridge/${c}")
+    project(":${c}").projectDir = file("../cartridges/${c}")
 }
