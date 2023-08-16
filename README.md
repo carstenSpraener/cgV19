@@ -3,7 +3,9 @@
 # Welcome to cgV19
 [Come to the Slack Group](https://join.slack.com/t/cgv19/shared_invite/zt-1zxm6hc9e-~~a9QFtk4yXy2COrX1TnAQ)
 
-Last Update on: August the 13th 2023
+Last Update on: August the 16th 2023
+
+### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md)
 
 ## [Upcoming Release 23.1.1](docs/Release-23.1.md)
 __cgV19 Release 23.1.1 is in the pipeline. It has its focus on cartridges__
@@ -217,3 +219,16 @@ You can use these cartridges as they are or copy and modify them for
 your own needs,
 
 ## [A brief history](docs/aBriefHistory.md)
+
+
+## [Release 23.1 is here!](docs/Release-23.1.md)
+__cgV19 Release 23.1 is available on mavenrepository. It brings some exciting new features!__
+
+This release will be a huge step and includes:
+* new concept of CodeTargets to make your generators reusable and enhanceable
+* [support for javapoet](https://github.com/square/javapoet), a framework to generate java code
+* [support for mustache templates](https://github.com/spullara/mustache.java)
+* [new blueprint concept](core/cgv19-cli/README.md) for easy generation of project setups and other logic free code frames
+* [annotation based generators](cartridges/doc/Cartridges.md), templates and cartridges
+* [new cli module](core/cgv19-cli/README.md) to use cgv19 directly on the terminal
+
