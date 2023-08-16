@@ -1,0 +1,23 @@
+# THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
+FROM node:lts-alpine as stage-env
+ARG KDP_FRONTEND_CONFIG
+
+WORKDIR /opt/{{appName}}
+RUN npm install -g @angular/cli;
+
+FROM stage-env as stage-{{appName}}
+WORKDIR /opt/app
+
+COPY ./package.json .
+RUN  npm install
+
+COPY . .
+run ng build --base-href=/
+
+FROM nginx:alpine3.17
+
+WORKDIR /usr/share/nginx/html
+
+COPY --from=stage-{{appName}} /opt/app/dist/{{appName}}/* /usr/share/nginx/html/
+
+EXPOSE {{port}}

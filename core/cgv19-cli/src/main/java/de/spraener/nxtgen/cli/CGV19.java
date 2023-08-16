@@ -1,12 +1,14 @@
 package de.spraener.nxtgen.cli;
 
 import de.spraener.nxtgen.Cartridge;
+import de.spraener.nxtgen.ModelLoader;
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.blueprint.BluePrintCartridgeCreator;
 import de.spraener.nxtgen.blueprint.BlueprintDirectoryBasedCartridge;
 import org.apache.commons.cli.*;
 
 import java.io.File;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class CGV19 {
@@ -20,11 +22,19 @@ public class CGV19 {
         workdir.setRequired(false);
         options.addOption(workdir);
 
+        Option optList = new Option("l", "list", false, "list all known cartridges of the installation");
+        optList.setRequired(false);
+        options.addOption(optList);
+
         Option optModel = new Option("m", "model", true, "the model to operate on. Could be a file, a directory or a URL");
-        optModel.setRequired(true);
+        optModel.setRequired(false);
         options.addOption(optModel);
 
-        Option optCartridge = new Option("c", "cartridge", true, "the names of the cartridge to execute seperated by a colon. If not specified cgv19 will run all cartridges.");
+        Option optDelete = new Option("d", "delete-generated", false, "delete all files that are generated. Means: the files are not protected according to the current protection strategie.");
+        optDelete.setRequired(false);
+        options.addOption(optDelete);
+
+        Option optCartridge = new Option("c", "cartridge", true, "the names of the cartridges to run seperated by a colon. If not specified cgv19 will run all cartridges.");
         optCartridge.setRequired(false);
         options.addOption(optCartridge);
 
@@ -42,20 +52,42 @@ public class CGV19 {
             if( workDir!=null ) {
                 NextGen.setWorkingDir(workDir);
             }
+
+            if( cmd.hasOption(optDelete) ) {
+                if( workDir==null ) {
+                    workDir = ".";
+                }
+                new DirectoryTreeDeletion(workDir).run();
+            }
+
             String cartridgeName = cmd.getOptionValue("cartridge");
             if( cartridgeName != null ) {
                 NextGen.runCartridgeWithName(cartridgeName);
             }
-            String model = cmd.getOptionValue("model");
-            String[] ngArgs = new String[]{model};
+
             String blueprintDir =cmd.getOptionValue("blueprints-dir");
             if( blueprintDir == null ) {
                 blueprintDir=getInstallationDir()+"/cartridges/blueprints";
             }
+
             for(BlueprintDirectoryBasedCartridge c : BluePrintCartridgeCreator.createBlueprintCartridges(blueprintDir) ) {
                 NextGen.addCartridge(c);
-                NextGen.addModelLoader(c);
+                if( cartridgeName==null || c.getName().equals(cartridgeName)) {
+                    NextGen.addModelLoader(c);
+                }
             }
+
+            if( cmd.hasOption(optList) ) {
+                listCartridges();
+            }
+
+            if( !cmd.hasOption(optModel) ) {
+                NextGen.LOGGER.info("No model was defined. Nothing to be done.");
+                System.exit(0);
+            }
+
+            String model = cmd.getOptionValue("model");
+            String[] ngArgs = new String[]{model};
             NextGen.main(ngArgs);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
@@ -63,6 +95,16 @@ public class CGV19 {
 
             System.exit(1);
         }
+    }
+
+    private static void listCartridges() {
+        List<Cartridge> cartridgeList = NextGen.loadCartridges();
+        System.out.println("The current cgv19 installation contains the following cartridges:\n");
+        for(Cartridge l : cartridgeList ) {
+            String isModelLoader = l instanceof ModelLoader ? " (ModelLoader)" : "";
+            System.out.printf("    * '%s'%s%n", l.getName(), isModelLoader);
+        }
+        System.out.println( "\nYou can choose one of these with the -d <CartridgeName> option.");
     }
 
     public static String getInstallationDir() {

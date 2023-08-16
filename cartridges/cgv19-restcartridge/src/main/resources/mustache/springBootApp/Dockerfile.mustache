@@ -6,7 +6,7 @@ WORKDIR /{{projectName}}
 COPY src ./src/
 COPY build.gradle ./
 
-RUN gradle --no-daemon bootJar
+RUN gradle bootJar
 
 FROM {{dockerProductionRunImage}} as prod
 ENV TZ={{timeZone}}

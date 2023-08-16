@@ -1,3 +1,4 @@
+import de.spraener.nxtgen.CGV19Config
 import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.pojo.ClassFrameTargetCreator
 import de.spraener.nxtgen.target.CodeBlockSnippet
@@ -13,6 +14,7 @@ def cName = modelElement.name;
 class SpringBootAppCodeTarget {
     static final String ASPECT_SPRING_BOOT_APP = "SpringBootApp"
     MClass mClass;
+    String globalHostURL =CGV19Config.definitionOf("globalHostURL", "http://localhost");
 
     SpringBootAppCodeTarget( MClass mClass ) {
         this.mClass = mClass;
@@ -33,12 +35,19 @@ class SpringBootAppCodeTarget {
         t.getSection(JavaSections.IMPORTS)
                 .add(new SingleLineSnippet("import com.google.gson.Gson;"))
                 .add(new SingleLineSnippet("import com.google.gson.GsonBuilder;"))
+                .add(new SingleLineSnippet("import jakarta.servlet.http.HttpServletRequest;"))
                 .add(new SingleLineSnippet("import org.springframework.boot.SpringApplication;"))
                 .add(new SingleLineSnippet("import org.springframework.boot.autoconfigure.SpringBootApplication;"))
                 .add(new SingleLineSnippet("import org.springframework.context.annotation.Bean;"))
                 .add(new SingleLineSnippet("import org.springframework.security.config.annotation.web.builders.HttpSecurity;"))
                 .add(new SingleLineSnippet("import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;"))
+                .add(new SingleLineSnippet("import org.springframework.security.config.http.SessionCreationPolicy;"))
                 .add(new SingleLineSnippet("import org.springframework.security.web.SecurityFilterChain;"))
+                .add(new SingleLineSnippet("import org.springframework.web.cors.CorsConfiguration;"))
+                .add(new SingleLineSnippet("import org.springframework.web.cors.CorsConfigurationSource;"))
+                .add(new SingleLineSnippet("import java.util.Arrays;"))
+                .add(new SingleLineSnippet("import java.util.Collections;"))
+                .add(new SingleLineSnippet("import java.util.List;"))
     }
 
     void addSpringAnnotations(CodeTarget t) {
@@ -71,10 +80,27 @@ class SpringBootAppCodeTarget {
     
     @Bean
     public SecurityFilterChain configSecurity(HttpSecurity http ) throws Exception {
-        http
-        .authorizeHttpRequests(a -> a
-            .requestMatchers("**/ping").permitAll()
-        );
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
+                @Override
+                public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(List.of(
+                        "http://localhost:8080",
+                        "${globalHostURL}"
+                        // TODO: Add additional CORS-URLs here
+                    ));
+                    config.addAllowedMethod(CorsConfiguration.ALL);
+                    config.setAllowCredentials(true);
+                    config.setAllowedHeaders(Collections.singletonList("*"));
+                    config.setExposedHeaders(Arrays.asList("Authorization"));
+                    config.setMaxAge(3600L);
+                    return config;
+                }
+            }))
+            .authorizeHttpRequests(a -> a
+                .requestMatchers("*/ping").permitAll()
+            );
         return http.build();
     }
 

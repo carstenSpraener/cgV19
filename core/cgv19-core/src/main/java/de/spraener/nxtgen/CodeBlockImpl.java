@@ -84,11 +84,11 @@ public class CodeBlockImpl implements CodeBlock {
     /**
      * <p>
      * Checks if the considered outputFile is maybe protected from overwriting. This does not mean
-     * that the file is write proteced on file system level. It just decides (some how) that the
+     * that the file is write protected on file system level. It just decides (some how) that the
      * considered file should no be overwritten.
      * </p>
      * <p>
-     *     This implementation delegeates the decission to a changeable ProtectionStrategy.
+     *     This implementation delegeates the decision to a changeable ProtectionStrategy.
      * </p>
      * @see ProtectionStrategie
      * @param outFile
@@ -110,6 +110,10 @@ public class CodeBlockImpl implements CodeBlock {
         try {
             File outFile = getToFileStrategy().open();
             if (outFile.exists() && checkProtected(outFile)) {
+                return;
+            }
+            if( outFile.getParentFile() == null ){
+                NextGen.LOGGER.fine("missconfigured generator tries to open illegal file: "+this.getName());
                 return;
             }
             outFile.getParentFile().mkdirs();

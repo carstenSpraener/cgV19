@@ -23,7 +23,7 @@ public class BlueprintCodeBlock extends CodeBlockImpl {
         if( this.outputDir.startsWith("/") ) {
             finalDir = outputDir;
         } else {
-            finalDir = outputDir + "/" + outputDir;
+            finalDir = workingDir + "/" + outputDir;
         }
         this.blueprintCompiler.evaluateTo(finalDir);
     }

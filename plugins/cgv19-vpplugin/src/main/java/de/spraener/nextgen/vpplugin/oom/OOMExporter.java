@@ -4,7 +4,6 @@ import com.vp.plugin.ApplicationManager;
 import com.vp.plugin.model.*;
 import com.vp.plugin.model.factory.IModelElementFactory;
 import de.spraener.nextgen.vpplugin.CgV19Plugin;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
@@ -41,7 +40,7 @@ public class OOMExporter implements Runnable {
 
     public static String exportByPackageName(String rootPackage) {
         try {
-            CgV19Plugin.log("OOM-Exporter called with rootPackage: '" + rootPackage+"'");
+            CgV19Plugin.log("OOM-Exporter called with rootPackage: '" + rootPackage + "'");
             IModelElement rootNode = findElementByPackageName(rootPackage);
             if (rootNode != null) {
                 OOMExporter export = new OOMExporter(rootPackage, rootNode);
@@ -61,9 +60,9 @@ public class OOMExporter implements Runnable {
                 IPackage pkg = (IPackage) mElement;
                 if (pkg.getName().equals(rootPackageName)) {
                     return pkg;
-                } else if( rootPackageName.startsWith(getFQName(pkg)) ) {
+                } else if (rootPackageName.startsWith(getFQName(pkg))) {
                     IPackage subPackage = findSubPackageByName(pkg, rootPackageName);
-                    if( subPackage != null ) {
+                    if (subPackage != null) {
                         return pkg;
                     }
                 }
@@ -75,22 +74,20 @@ public class OOMExporter implements Runnable {
                 if (mElement.getName().equals(rootPackageName)) {
                     return mElement;
                 }
-            } else {
-                CgV19Plugin.log("Child mit Namen '" + mElement.getName() + "' hat unbekannten ModelType " + mElement.getModelType() + ".");
             }
         }
         return null;
     }
 
     private static IPackage findSubPackageByName(IPackage pkg, String rootPackageName) {
-        if( getFQName(pkg).equals(rootPackageName) ) {
+        if (getFQName(pkg).equals(rootPackageName)) {
             return pkg;
         } else {
-            for( IModelElement child : pkg.toChildArray() ) {
-                if( child instanceof IPackage ) {
+            for (IModelElement child : pkg.toChildArray()) {
+                if (child instanceof IPackage) {
                     String childFQName = getFQName(child);
-                    if( rootPackageName.startsWith(childFQName) ) {
-                        return findSubPackageByName((IPackage)child, rootPackageName);
+                    if (rootPackageName.startsWith(childFQName)) {
+                        return findSubPackageByName((IPackage) child, rootPackageName);
                     }
                 }
             }
@@ -129,8 +126,9 @@ public class OOMExporter implements Runnable {
             exportModel(pw, "", rootPackageName, root);
             pw.flush();
             this.exportedModel = new String(baos.toByteArray(), StandardCharsets.UTF_8);
-        } catch( Exception e ) {
+        } catch (Throwable e) {
             e.printStackTrace(pw);
+            CgV19Plugin.log(e);
         }
     }
 
@@ -139,11 +137,11 @@ public class OOMExporter implements Runnable {
         pw.println(identation + "ModelDSL.make {");
         pw.printf("%s  mPackage {\n", identation);
         // Hack because in VP you can not assign a stereotype to a profile.
-        if( root.getModelType().equals(IModelElementFactory.MODEL_TYPE_PROFILE) && root.getDocumentation().contains("<<ModelRoot>>")) {
+        if (root.getModelType().equals(IModelElementFactory.MODEL_TYPE_PROFILE) && root.getDocumentation().contains("<<ModelRoot>>")) {
             pw.printf("%s    stereotype 'ModelRoot'\n", identation);
         }
         PropertiesExporter.exportProperties(
-                pw,identation+"    ",
+                pw, identation + "    ",
                 root,
                 PropertyOverwriter.overwrite("name", root.getName())
         );
@@ -153,8 +151,18 @@ public class OOMExporter implements Runnable {
     }
 
     private void exportChilds(PrintWriter pw, String indentation, IModelElement mElement) {
+        CgV19Plugin.log(indentation + "Exporting childs of general element " + mElement.getModelType() + ", name: " + mElement.getName());
         for (IModelElement child : mElement.toChildArray()) {
+            CgV19Plugin.log(indentation + "  Child-Export of element " + child.getModelType());
             exportElement(pw, indentation, child);
+        }
+        if (mElement.toFromRelationshipArray() != null) {
+            for (IRelationship rel : mElement.toFromRelationshipArray()) {
+                if (!"Generalization".equals(rel.getModelType())) {
+                    CgV19Plugin.log(indentation + "  Relationship-Export of element " + rel.getModelType());
+                    exportElement(pw, indentation, rel);
+                }
+            }
         }
     }
 
@@ -162,12 +170,12 @@ public class OOMExporter implements Runnable {
         Exporter exporter = findExporterByModelType(element.getModelType());
         if (exporter != null) {
             exporter.export(this, pw, indentation, element);
-            return;
+        } else {
+            pw.printf("%smElement {\n", indentation);
+            exportProperties(pw, indentation + "  ", element);
+            exportChilds(pw, indentation + "  ", element);
+            pw.printf("%s}\n", indentation);
         }
-        pw.printf("%smElement {\n", indentation);
-        exportProperties(pw, indentation + "  ", element);
-        exportChilds(pw, indentation + "  ", element);
-        pw.printf("%s}\n", indentation);
     }
 
     public static String getFQName(IModelElement modelElement) {

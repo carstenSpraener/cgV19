@@ -1,0 +1,18 @@
+# THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
+FROM {{dockerGradleBuildImage}} as build
+
+WORKDIR /{{projectName}}
+
+COPY build.gradle ./
+RUN gradle dependencies
+
+COPY src ./src/
+RUN gradle installDist
+
+FROM {{dockerProductionRunImage}} as prod
+ENV TZ={{timeZone}}
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+WORKDIR /opt/{{projectName}}
+
+COPY --from=build /{{projectName}}/build/install/{{projectName}}/  /opt/{{projectName}}/
+CMD ["bin/{{projectName}}"]

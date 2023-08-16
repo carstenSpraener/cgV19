@@ -1,0 +1,25 @@
+  keycloakdb:
+    container_name: "keycloakdb"
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_DATABASE: keycloakdb
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: {{password}}
+    restart: on-failure
+    volumes:
+      - "./databases/keycloakdb:/var/lib/mysql"
+      - "./sql/keycloakdb:/docker-entrypoint-initdb.d"
+    command: mysqld --lower_case_table_names=1
+
+  keycloak:
+    container_name: "keycloak"
+    build:
+      context: ./{{moduleName}}
+      dockerfile: Dockerfile
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: {{password}}
+    restart: always
+    ports:
+      - "{{modulePort}}:{{applPort}}"

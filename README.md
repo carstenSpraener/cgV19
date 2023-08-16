@@ -3,18 +3,31 @@
 # Welcome to cgV19
 [Come to the Slack Group](https://join.slack.com/t/cgv19/shared_invite/zt-1zxm6hc9e-~~a9QFtk4yXy2COrX1TnAQ)
 
-Last Update on: Aug the 9th 2023
+Last Update on: August the 16th 2023
 
-## [Release 23.1 is here!](docs/Release-23.1.md)
-__cgV19 Release 23.1 is available on mavenrepository. It brings some exciting new features!__
+### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md)
 
-This release will be a huge step and includes:
-* new concept of CodeTargets to make your generators reusable and enhanceable
-* [support for javapoet](https://github.com/square/javapoet), a framework to generate java code
-* [support for mustache templates](https://github.com/spullara/mustache.java)
-* [new blueprint concept](core/cgv19-cli/README.md) for easy generation of project setups and other logic free code frames
-* [annotation based generators](cartridges/doc/Cartridges.md), templates and cartridges
-* [new cli module](core/cgv19-cli/README.md) to use cgv19 directly on the terminal
+## [Upcoming Release 23.1.1](docs/Release-23.1.md)
+__cgV19 Release 23.1.1 is in the pipeline. It has its focus on cartridges__
+
+The 23.1.1 release makes massive use of the enhancements, that came with 23.1.0 
+especially __mustache__ and __blueprints__ are used to generate basic cloud nodes
+and docker-compose files.
+
+This release will include:
+* Introducing [__ICE__: Inter Cartridge Evaluation](cartridges%2Fdoc%2FInter-Cartridge-Evaluation.md) making it possible to trigger 
+  one cartridge from another or requesting code snippets from another cartridge
+* splitting the REST-Cartridge in several smaler cartridges making it:
+    * abstract rest-Cartridge
+    * spring-boot cartridge
+    * php-symfony cartridge
+    * NestJS cartridge
+* a new basic JavaLin cartridge used for worker tasks in a cloud
+* a new basic Angular cartridge
+* a Cloud cartridge supporting docker-compose and K8S and in addition
+  * Database-Nodes for MariaDB (PostgreSQL and other will follow)
+  * KeyCloak as an IDP
+* of course further enhancements/bug-fixes of cgv19-core as they are needed
 
 ## A code abstraction framework to
 * Implement rules that make your ideas real code
@@ -206,3 +219,16 @@ You can use these cartridges as they are or copy and modify them for
 your own needs,
 
 ## [A brief history](docs/aBriefHistory.md)
+
+
+## [Release 23.1 is here!](docs/Release-23.1.md)
+__cgV19 Release 23.1 is available on mavenrepository. It brings some exciting new features!__
+
+This release will be a huge step and includes:
+* new concept of CodeTargets to make your generators reusable and enhanceable
+* [support for javapoet](https://github.com/square/javapoet), a framework to generate java code
+* [support for mustache templates](https://github.com/spullara/mustache.java)
+* [new blueprint concept](core/cgv19-cli/README.md) for easy generation of project setups and other logic free code frames
+* [annotation based generators](cartridges/doc/Cartridges.md), templates and cartridges
+* [new cli module](core/cgv19-cli/README.md) to use cgv19 directly on the terminal
+

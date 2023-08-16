@@ -13,7 +13,9 @@ import de.spraener.nxtgen.cartridge.rest.filestrategies.PhpFileStrategy;
 import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.model.MPackage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +80,28 @@ public class RESTCartridge extends  RESTCartridgeBase {
             }
         }
         return result;
+    }
+
+    protected CodeGeneratorMapping createMapping(ModelElement me, String stereotypeName, String aspect) {
+        if( me instanceof MPackage && "CloudModule".equals(stereotypeName) && aspect.equals("docker-compose")) {
+            return CodeGeneratorMapping.create(me,
+                    new MustacheGenerator(
+                            "/mustache/springBootApp/docker-compose-serviceblock.mustache",
+                            "docker-compose-service-block",
+                            SpringBootApp::dockerComposeServiceBlock
+                    )
+            );
+        }
+        return super.createMapping(me, stereotypeName);
+    }
+
+    @Override
+    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
+        CodeGeneratorMapping mapping = this.createMapping(me, sType.getName(), aspect);
+        if( mapping == null ) {
+            return "Unsupported evaluation request for ModelElement '" + me.getName() + " with aspect: '" + aspect + "'";
+        }
+        return mapping.getCodeGen().resolve(me, "").toCode();
     }
 
     private boolean isSprintBootApplication(ModelElement me) {

@@ -1,3 +1,5 @@
 rootProject.name = 'cgv19-cartridges'
 
-include ':cgv19-restcartridge'
+for( p in new File(".").list((f,n)->n.startsWith("cgv19-")&&!n.contains("."))) {
+    include(":${p}")
+}

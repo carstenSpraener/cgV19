@@ -17,6 +17,9 @@ dependencies {
     compileOnly project(":cgv19-javapoet")
     compileOnly project(":cgv19-metacartridge")
     compileOnly project(":cgv19-pojo")
+    for( String cName in listCartridges() ) {
+        compileOnly project(":${cName}")
+    }
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testImplementation 'org.mockito:mockito-core:5.3.1'
@@ -28,7 +31,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
 
 jar {
     manifest {
@@ -64,8 +66,24 @@ application {
                 include "cgv19*.jar"
     }.into("cartridges")
 
-    System.out.println("rootDir: "+project(":cgv19-cli").projectDir.getAbsolutePath());
+    for( String cName in listCartridges() ) {
+        applicationDistribution.from(project(":${cName}").buildDir.absolutePath+"/libs") {
+            include "*.jar"
+        }.into("cartridges")
+    }
+
     applicationDistribution.from(project(":cgv19-cli").projectDir.absolutePath+"/src/main/blueprints") {
         include "**/*"
     }.into("cartridges/blueprints")
+}
+
+def listCartridges() {
+    File cartridgeDir = new File(projectDir.getAbsolutePath()+"/../../cartridges");
+    return cartridgeDir.list ((f,n)-> {
+        if(n.startsWith("cgv19-") && !n.contains(".") ) {
+            return true;
+        } else {
+            return false;
+        }
+    })
 }

@@ -1,0 +1,380 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.nxtgen.cloud'
+        documentation """"""
+        id 'wKYsC5GD.AAAARHf'
+        metaType 'Package'
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudCartridge'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:c57wq5GD.AAAARXI'
+            metaType 'Class'
+            stereotype 'cgV19Cartridge'
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'MElementToComponentTransformation'
+            documentation """Looks for ModelElements with metaType Component and converts them into a MComponent model element.
+
+Any mElement with metaType Port is added to the MComponent as
+a MPort Element."""
+            id 'wKYsC5GD.AAAARHf:eb72q5GD.AAAARkL'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'priority', '0'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SDeploymentGenerator'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:ITQhq5GD.AAAARlN'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudDeployable'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'generatesOn', ''
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudStereotypes'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:4C3Jq5GD.AAAARmD'
+            metaType 'Class'
+            stereotype 'StereotypeEnum'
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SServiceGenerator'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:Lh0Tq5GD.AAAARnC'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudClusterIPService'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudServiceToProjectModuleTransformation'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:iiZ4a5GD.AAAAR4o'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'priority', '10'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudModuleGenerator'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:Eh8Ea5GD.AAAAR6c'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'generatesOn', 'MClass'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'GradleSettingsGenerator'
+            documentation """Generates a settings.gradle with a list of all Gradle build sub modules
+of this cloud project."""
+            id 'wKYsC5GD.AAAARHf:n6YBa5GD.AAAAR7O'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'GradleSettings'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SIngressGenerator'
+            documentation """Generates an Ingress service descriptor for K8S from a Component marked with Stereotype IngressService.
+
+Each dependency from this Component to a Port of a CloudService will lead to a routing rule to the referenced service.
+
+The dependency must have the stereotype Routes. The tagged value path contains the path pattern to be assigned."""
+            id 'wKYsC5GD.AAAARHf:iFA7e5GGAqAACAqv'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'CloudIngressService'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'DockerComposeGenerator'
+            documentation """Generates a docker compose file that contains all Services."""
+            id 'wKYsC5GD.AAAARHf:cupHe5GGAqAACAsK'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'DockerComposeFile'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'DockerComposeCreatorTransformation'
+            documentation """Looks for all CloudModule Packages and generates an MClass with Stereotype Dockerfile which references all this CloudModules.
+
+This MClass will be taken from the Dockerfile generator to build a global docker-compose file with all this CloudModules included."""
+            id 'wKYsC5GD.AAAARHf:USvHe5GGAqAACAtQ'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'transformedMetaType', 'MPackage'
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'priority', '100'
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'stereotypes'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg'
+            metaType 'Package'
+            mClass {
+                stereotype 'Stereotype'
+                name 'CloudClusterIPService'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:naqfq5GD.AAAARsI'
+                metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'CloudDeployable'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:1W7zq5GD.AAAARnt'
+                metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'CloudIngressService'
+                documentation """Marks a Component as a ingress Service inside a K8S cluster."""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:S3IZB5GGAqAACA5b'
+                metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'CloudModule'
+                documentation """A package marked with this Stereotype will describe all deployment components in a component diagram.
+
+If the CloudModule requires a database, a transformation will create a
+deployment, service and a PVC for that database.
+
+At the moment the only supported database type is MariaDB. More to come"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59'
+                metaType 'Stereotype'
+                mAttribute {
+                    defaultValue """localhost:5080"""
+                    typeID 0
+                    type 'String'
+                    name 'dockerRegistry'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$NKwEa5GD.AAAAR5_'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    defaultValue """REST-Cartridge"""
+                    typeID 0
+                    type 'String'
+                    name 'cgv19Cartridge'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$MRRra5GD.AAAASsa'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'dockerImage'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$ZipdW5GD.AAAATEA'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    defaultValue """8080"""
+                    typeID 5
+                    type 'integer'
+                    name 'port'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$vU4Dh5GGAqAACBDN'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    defaultValue """none"""
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+            none
+            PostgreSQL
+            MariaDB
+            MySQL
+            DB/2
+            HSQL
+            Other
+"""
+                    name 'requiredDatabase'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:lKwEa5GD.AAAAR59$NKwEa5GD.AAAAR5.$myZCL5GGAqACRBSj'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'CloudService'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:6odQq5GD.AAAART5'
+                metaType 'Stereotype'
+                mAttribute {
+                    defaultValue """1"""
+                    typeID 5
+                    type 'integer'
+                    name 'replicas'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:6odQq5GD.AAAART5$IpYwq5GD.AAAARUT$IpYwq5GD.AAAARUU'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'Deployment'
+                documentation """A package marked with this Stereotype will describe all deployment components in a component diagram."""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:aFqQq5GD.AAAARTF'
+                metaType 'Stereotype'
+                mAttribute {
+                    defaultValue """localhost:5080"""
+                    typeID 0
+                    type 'String'
+                    name 'dockerRegistry'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:aFqQq5GD.AAAARTF$vaqwq5GD.AAAARUh$vaqwq5GD.AAAARUi'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'deploymentName'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:aFqQq5GD.AAAARTF$vaqwq5GD.AAAARUh$HIjpW5GD.AAAAS9t'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'IngressService'
+                documentation """Marks a Component as a ingress Service inside a K8S cluster."""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:X2juO5GGAqAoAQoH'
+                metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'Routes'
+                documentation """Marks a dependency between an IngressService and a Port on a CloudService as an Ingress route definition.
+
+The tagged value path contains the path pattern for this route."""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:AfkeO5GGAqAoAQq6'
+                metaType 'Stereotype'
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'path'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:AfkeO5GGAqAoAQq6$wfkeO5GGAqAoAQq7$wfkeO5GGAqAoAQq8'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'DockerComposeFile'
+                documentation """Internal stereotype to mark the trigger class for the docker-compose.yml file."""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:7q73e5GGAqAACAnN'
+                metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'CloudShare'
+                documentation """A package with this stereotype, that is placed next to the other CloudMudule packages will be given to all CloudModules so they can extract payload and service descriptions for their use."""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:52EiJ5GGAqAACBKv'
+                metaType 'Stereotype'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'Mounts'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs'
+                metaType 'Stereotype'
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'mountPath'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs$W.38D5GGAqACRBMt$W.38D5GGAqACRBMu'
+                    metaType 'TaggedValueDefinition'
+                }
+                mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'subPath'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs$W.38D5GGAqACRBMt$2.38D5GGAqACRBMv'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'PermanentVolume'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:ZyDoq5GD.AAAARcl'
+                metaType 'Stereotype'
+                mAttribute {
+                    defaultValue """2Gi"""
+                    typeID 0
+                    type 'String'
+                    name 'size'
+                    documentation """"""
+                    id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:ZyDoq5GD.AAAARcl$FyDoq5GD.AAAARcm$FmqCD5GGAqACRBN6'
+                    metaType 'TaggedValueDefinition'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'Provides'
+                documentation """"""
+                id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:Weioa5GD.AAAARyL'
+                metaType 'Stereotype'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'K8SPvcGenerator'
+            documentation """"""
+            id 'wKYsC5GD.AAAARHf:VHxiD5GGAqACRBPw'
+            metaType 'Class'
+            stereotype 'CodeGenerator', {
+                taggedValue 'requiredStereotype', 'PermanentVolume'
+                taggedValue 'outputType', 'Other'
+                taggedValue 'outputTo', 'other'
+            }
+        }
+        mClass {  //Exported by ClassExporterBase
+            name 'CloudModuleRequiredDatabaseTransformation'
+            documentation """A CloudModule, that requires a Database needs to get the following elements:
+
+* a Service to access the database
+* A deployment with an docker-image of the required database
+* a persistent volume claim to store the data.
+
+This transformation will create all this model elements with the following
+names:
+
+* the name of the deployment will be <moduleName>db
+* the name of  the service will be <moduleName>db
+* the name of the pvc will be <moduleName>db-persistent-volume-claim
+* the port is the standard port of the selected database
+* the image will be latest image of the given database"""
+            id 'wKYsC5GD.AAAARHf:naE8L5GGAqACRBRz'
+            metaType 'Class'
+            stereotype 'Transformation', {
+                taggedValue 'transformedMetaType', 'MPackage'
+                taggedValue 'requiredStereotype', 'CloudModule'
+                taggedValue 'priority', '5'
+            }
+        }
+    }
+}

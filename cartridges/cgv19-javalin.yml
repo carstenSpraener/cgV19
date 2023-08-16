@@ -1,0 +1,4 @@
+cartridgeName: JavaLinCartridge
+rootPackage: de.spreaener.nxtgen.javalin
+cgv19-Version: 23.1.0
+projectName: cgv19-javalin

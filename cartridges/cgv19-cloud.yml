@@ -1,0 +1,4 @@
+rootPackage: de.spraener.nxtgen.cloud
+cgv19-Version: 23.1.0
+projectName: cgv19-cloud
+cartridgeName: CloudCartridge

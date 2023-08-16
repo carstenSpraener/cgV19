@@ -1,0 +1,10 @@
+  # {{moduleName}} is an Angular driven module
+  {{moduleName}}:
+    container_name: "{{containerName}}"
+    build:
+      context: ./{{moduleName}}
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "{{modulePort}}:{{applPort}}"
+

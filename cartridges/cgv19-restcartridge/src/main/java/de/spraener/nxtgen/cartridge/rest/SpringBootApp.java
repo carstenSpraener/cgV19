@@ -60,4 +60,28 @@ public class SpringBootApp {
         }
         return scope;
     }
+
+    @CGV19MustacheGenerator(
+            value="docker-compose-service-block",
+            requiredStereotype="CloudModule",
+            operatesOn= MPackage.class,
+            templateResource="/mustache/springBootApp/docker-compose-serviceblock.mustache"
+    )
+    public static void dockerComposeServiceBlock(ModelElement me,  Map<String, Object> scope) {
+        MPackage module = (MPackage) me;
+        String containerName = module.getTaggedValue("CloudModule", "dockerImage");
+        String moduleName = module.getName().toLowerCase();
+        if( containerName==null ) {
+            containerName = moduleName;
+        }
+        String applPort = "8080";
+        String modulePort = module.getTaggedValue("CloudModule", "port");
+        if( modulePort == null ) {
+            modulePort = applPort;
+        }
+        scope.put("containerName",containerName);
+        scope.put("moduleName",moduleName);
+        scope.put("modulePort",modulePort);
+        scope.put("applPort",applPort);
+    }
 }

@@ -1,0 +1,46 @@
+// THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = '{{app.group}}'
+version = '{{app.version}}'
+
+java {
+    sourceCompatibility = '{{javaSourceVersion}}'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.javalin:javalin:5.6.1'
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java-gen'
+        }
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = '{{applicationMainClass}}'
+}

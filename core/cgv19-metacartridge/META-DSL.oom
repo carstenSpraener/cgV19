@@ -3,38 +3,38 @@ import de.spraener.nxtgen.groovy.ModelDSL
 ModelDSL.make {
   mPackage {
     name 'META-DSL'
-    documentation ''
+    documentation """"""
     id 'FTbH6hGGAqAAAw0Y'
     metaType 'Model'
     stereotype 'ModelRoot'
     mPackage {  //Exported by PackageExporterBase
       name 'de'
-      documentation ''
+      documentation """"""
       id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF'
       metaType 'Package'
       mPackage {  //Exported by PackageExporterBase
         name 'spraener'
-        documentation ''
+        documentation """"""
         id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG'
         metaType 'Package'
         mPackage {  //Exported by PackageExporterBase
           name 'nxtgen'
-          documentation ''
+          documentation """"""
           id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH'
           metaType 'Package'
           mPackage {  //Exported by PackageExporterBase
             name 'cartridge'
-            documentation ''
+            documentation """"""
             id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI'
             metaType 'Package'
             mPackage {  //Exported by PackageExporterBase
               name 'meta'
-              documentation ''
+              documentation """"""
               id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ'
               metaType 'Package'
               mClass {  //Exported by ClassExporterBase
                 name 'RemoveModelRootPackage'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:RMieOuGGAqACRAoL'
                 metaType 'Class'
                 stereotype 'Transformation', {
@@ -45,7 +45,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'EnsureGeneratorDefinitionsTransformation'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:xMieOuGGAqACRAoM'
                 metaType 'Class'
                 stereotype 'Transformation', {
@@ -56,7 +56,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'EnsureTransformationDefinitionsTransformation'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:JMieOuGGAqACRAoN'
                 metaType 'Class'
                 stereotype 'Transformation', {
@@ -67,7 +67,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'CartridgeBaseForCartridgeTransformation'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:pMieOuGGAqACRAoO'
                 metaType 'Class'
                 stereotype 'Transformation', {
@@ -78,7 +78,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'CartridgeServicesLocatorTransformation'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:ZMieOuGGAqACRAoP'
                 metaType 'Class'
                 stereotype 'Transformation', {
@@ -89,7 +89,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'StereotypeDocGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:5MieOuGGAqACRAoQ'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -102,7 +102,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'StereotypeEnumGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:FMieOuGGAqACRAoR'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -115,11 +115,11 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'TransformationBaseGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:lMieOuGGAqACRAoS'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
-                  taggedValue 'requiredStereotype', 'Transformation'
+                  taggedValue 'requiredStereotype', 'TransformationBase'
                   taggedValue 'outputType', 'Java'
                   taggedValue 'generatesOn', 'MClass'
                   taggedValue 'outputTo', 'src-gen'
@@ -128,7 +128,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'TransformationGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:VMieOuGGAqACRAoT'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -141,7 +141,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'CodeGeneratorGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:1MieOuGGAqACRAoU'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -154,12 +154,12 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'GroovyScriptGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:NMieOuGGAqACRAoV'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
                   taggedValue 'requiredStereotype', 'GroovyScript'
-                  taggedValue 'outputType', 'Java'
+                  taggedValue 'outputType', 'other'
                   taggedValue 'generatesOn', 'MClass'
                   taggedValue 'outputTo', 'other'
                   taggedValue 'templateScript', '/GroovyScriptTemplate.groovy'
@@ -167,7 +167,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'CartridgeBaseGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:tMieOuGGAqACRAoW'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -180,7 +180,7 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'CartridgeServiceLocaterGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:tMieOuGGAqACRAoX'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -192,182 +192,104 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'MetaStereotypes'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:zqLjyhGGAqAAAxun'
                 metaType 'Class'
                 stereotype 'StereotypeEnum'
               }
-              mClass {
-                stereotype 'Stereotype'
-                name 'cgV19Cartridge'
-                documentation ''
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:mMieOuGGAqACRAoA'
-                metaType 'Stereotype'
-              }
-              mClass {
-                stereotype 'Stereotype'
-                name 'CodeGenerator'
-                documentation 'This Stereotype marks classes that are used to generate code.  The marked class will be generated as a CodeGenerator and added to the cartridges codeBlockMapping.  If you specify a outputType like Java, PHP or DOC, the generated code will set the appropriate output file strategy. If you do not specify the value you have to set the strategy on you own. '
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:cSieOuGGAqACRAsf'
-                metaType 'Stereotype'
-                mAttribute {
-                  name 'requiredStereotype'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$RTEx5uGGAqACRAwx'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  name 'outputType'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$P_lx5uGGAqACRAxf'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  name 'generatesOn'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$TiWJ5uGGAqACRAx.'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  name 'outputTo'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$XiWJ5uGGAqACRAyS'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  name 'templateScript'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$gSWJ5uGGAqACRAym'
-                  metaType 'TaggedValueDefinition'
-                }
-              }
-              mClass {
-                stereotype 'Stereotype'
-                name 'GroovyTemplate'
-                documentation '\nA property marked with this stereotype inside a CodeGenerator defines the Groovy Script, that is used by the containing CodeGenerator. \nThe meta cartridge will generate a GroovyTemplate as a template for implementation. If you specified the outputType, the generated groovy script could be enhanced. '
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:yMieOuGGAqACRAn4'
-                metaType 'Stereotype'
-                mAttribute {
-                  name 'filePathURI'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:yMieOuGGAqACRAn4$ODQL6hGGAqAAAwp6$ODQL6hGGAqAAAwp7'
-                  metaType 'TaggedValueDefinition'
-                }
-              }
-              mClass {
-                stereotype 'Stereotype'
-                name 'ModelRoot'
-                documentation 'A Package marked with this stereotype, tells the generator, that this is the root of a namespace. '
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:kMieOuGGAqACRAnk'
-                metaType 'Stereotype'
-              }
-              mClass {
-                stereotype 'Stereotype'
-                name 'Stereotype'
-                documentation ''
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:9MieOuGGAqACRAoZ'
-                metaType 'Stereotype'
-              }
-              mClass {
-                stereotype 'Stereotype'
-                name 'StereotypeEnum'
-                documentation 'A class marked with this stereotype will hold a constant for all your Stereotype in the root of your DSL-Model.\n\nThis is very handy when implementing Templates and Generators '
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:EMieOuGGAqACRAni'
-                metaType 'Stereotype'
-              }
               mClass {  //Exported by ClassExporterBase
                 name 'MetaTypes'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:sMieOuGGAqACRAnr'
                 metaType 'Class'
                 mElement {
                   name 'MClass'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:sMieOuGGAqACRAnr$sMieOuGGAqACRAns'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'MOperation'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:sMieOuGGAqACRAnr$cMieOuGGAqACRAnt'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'MPackage'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:sMieOuGGAqACRAnr$cMieOuGGAqACRAnu'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'MAttribute'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:sMieOuGGAqACRAnr$8MieOuGGAqACRAnv'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'MActivity'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:sMieOuGGAqACRAnr$8MieOuGGAqACRAnw'
                   metaType 'EnumerationLiteral'
                 }
               }
               mClass {  //Exported by ClassExporterBase
                 name 'OutputToEnum'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:WMieOuGGAqACRAoB'
                 metaType 'Class'
                 mElement {
                   name 'src'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:WMieOuGGAqACRAoB$WMieOuGGAqACRAoC'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'src-gen'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:WMieOuGGAqACRAoB$2MieOuGGAqACRAoD'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'other'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:WMieOuGGAqACRAoB$2MieOuGGAqACRAoE'
                   metaType 'EnumerationLiteral'
                 }
               }
               mClass {  //Exported by ClassExporterBase
                 name 'OutputTypeEnum'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:qMieOuGGAqACRAn7'
                 metaType 'Class'
                 mElement {
                   name 'Java'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:qMieOuGGAqACRAn7$aMieOuGGAqACRAn8'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'PHP'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:qMieOuGGAqACRAn7$aMieOuGGAqACRAn9'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'TypeScript'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:qMieOuGGAqACRAn7$6MieOuGGAqACRAn.'
                   metaType 'EnumerationLiteral'
                 }
                 mElement {
                   name 'MarkDown'
-                  documentation ''
+                  documentation """"""
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:qMieOuGGAqACRAn7$GMieOuGGAqACRAn_'
                   metaType 'EnumerationLiteral'
                 }
               }
               mClass {  //Exported by ClassExporterBase
                 name 'CartridgeImplGenerator'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:rYUYKhGGAqAAAwqS'
                 metaType 'Class'
                 stereotype 'CodeGenerator', {
@@ -379,47 +301,261 @@ ModelDSL.make {
               }
               mClass {  //Exported by ClassExporterBase
                 name 'MetaCartridge'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:ZieWKhGGAqAAAwmP'
                 metaType 'Class'
                 stereotype 'cgV19Cartridge'
               }
               mElement {
                 name 'meta Stereotypes'
-                documentation ''
+                documentation """"""
                 id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:VwVb6hGGAqAAAwyN'
                 metaType 'DiagramOverview'
               }
-              mClass {
-                stereotype 'Stereotype'
-                name 'ModelRoot'
-                documentation ''
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:IAPn6hGGAqAAAw1q'
-                metaType 'Stereotype'
+              mPackage {  //Exported by PackageExporterBase
+                name 'stereotypes'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV'
+                metaType 'Package'
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'StereotypeEnum'
+                  documentation """A class marked with this stereotype will hold a constant for all your Stereotype in the root of your DSL-Model.
+
+This is very handy when implementing Templates and Generators """
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:EMieOuGGAqACRAni'
+                  metaType 'Stereotype'
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'Stereotype'
+                  documentation """"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:9MieOuGGAqACRAoZ'
+                  metaType 'Stereotype'
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'Transformation'
+                  documentation """
+
+A Transformation runs on an input Model M and enhances this model to a M\'.
+
+Transformations can act an any kind of model
+elements. But mostly they do transformations on
+a special kind of model elements.
+
+You can specify this elements with the tagged
+values metaType and requiredStereotype. The
+generated code will run only on model elements
+that matches this criteria."""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:3iieOuGGAqACRAsd'
+                  metaType 'Stereotype'
+                  mAttribute {
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+                      MActivity
+                      MAttribute
+                      MClass
+                      MOperation
+                      MPackage
+"""
+                    name 'transformedMetaType'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:3iieOuGGAqACRAsd$pIrp5uGGAqACRA0P$pIrp5uGGAqACRA0Q'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'requiredStereotype'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:3iieOuGGAqACRAsd$pIrp5uGGAqACRA0P$VIrp5uGGAqACRA0p'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    defaultValue """0"""
+                    typeID 5
+                    type 'integer'
+                    name 'priority'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:3iieOuGGAqACRAsd$pIrp5uGGAqACRA0P$dIrp5uGGAqACRA02'
+                    metaType 'TaggedValueDefinition'
+                  }
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'ModelRoot'
+                  documentation """A Package marked with this stereotype, tells the generator, that this is the root of a namespace. """
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:kMieOuGGAqACRAnk'
+                  metaType 'Stereotype'
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'ModelRoot'
+                  documentation """"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:IAPn6hGGAqAAAw1q'
+                  metaType 'Stereotype'
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'cgV19Cartridge'
+                  documentation """"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:mMieOuGGAqACRAoA'
+                  metaType 'Stereotype'
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'CodeGenerator'
+                  documentation """This Stereotype marks classes that are used to generate code.  The marked class will be generated as a CodeGenerator and added to the cartridges codeBlockMapping.  If you specify a outputType like Java, PHP or DOC, the generated code will set the appropriate output file strategy. If you do not specify the value you have to set the strategy on you own. """
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cSieOuGGAqACRAsf'
+                  metaType 'Stereotype'
+                  mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'requiredStereotype'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$RTEx5uGGAqACRAwx'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+                      Java
+                      PHP
+                      MarkDown
+                      TypeScript
+                      GroovyScript
+                      other
+"""
+                    name 'outputType'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$P_lx5uGGAqACRAxf'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+                      MActivity
+                      MAttribute
+                      MClass
+                      MOperation
+                      MPackage
+"""
+                    name 'generatesOn'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$TiWJ5uGGAqACRAx.'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+                      other
+                      src
+                      src-gen
+"""
+                    name 'outputTo'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$XiWJ5uGGAqACRAyS'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'templateScript'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cSieOuGGAqACRAsf$KTEx5uGGAqACRAwB$gSWJ5uGGAqACRAym'
+                    metaType 'TaggedValueDefinition'
+                  }
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'GroovyTemplate'
+                  documentation """
+A property marked with this stereotype inside a CodeGenerator defines the Groovy Script, that is used by the containing CodeGenerator. 
+The meta cartridge will generate a GroovyTemplate as a template for implementation. If you specified the outputType, the generated groovy script could be enhanced. """
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:yMieOuGGAqACRAn4'
+                  metaType 'Stereotype'
+                  mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'filePathURI'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:yMieOuGGAqACRAn4$ODQL6hGGAqAAAwp6$ODQL6hGGAqAAAwp7'
+                    metaType 'TaggedValueDefinition'
+                  }
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'TransformationBase'
+                  documentation """Internal stereotype to mark the generator gap of a transformation"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:X9Tbl5GGAqAACBCJ'
+                  metaType 'Stereotype'
+                  mAttribute {
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+                      MActivity
+                      MAttribute
+                      MClass
+                      MOperation
+                      MPackage
+"""
+                    name 'transformedMetaType'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:X9Tbl5GGAqAACBCJ$v9Tbl5GGAqAACBCK$f9Tbl5GGAqAACBCL'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'requiredStereotype'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:X9Tbl5GGAqAACBCJ$v9Tbl5GGAqAACBCK$f9Tbl5GGAqAACBCM'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    defaultValue """0"""
+                    typeID 5
+                    type 'integer'
+                    name 'priority'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:X9Tbl5GGAqAACBCJ$v9Tbl5GGAqAACBCK$_9Tbl5GGAqAACBCN'
+                    metaType 'TaggedValueDefinition'
+                  }
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'StereotypeDescriptor'
+                  documentation """"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:voV0V5GGAqAACBE.'
+                  metaType 'Stereotype'
+                }
               }
-              mClass {
-                stereotype 'Stereotype'
-                name 'Transformation'
-                documentation '\n\nA Transformation runs on an input Model M and enhances this model to a M\'.\n\nTransformations can act an any kind of model\nelements. But mostly they do transformations on\na special kind of model elements.\n\nYou can specify this elements with the tagged\nvalues metaType and requiredStereotype. The\ngenerated code will run only on model elements\nthat matches this criteria.'
-                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:3iieOuGGAqACRAsd'
-                metaType 'Stereotype'
-                mAttribute {
-                  name 'transformedMetaType'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:3iieOuGGAqACRAsd$pIrp5uGGAqACRA0P$pIrp5uGGAqACRA0Q'
-                  metaType 'TaggedValueDefinition'
+              mClass {  //Exported by ClassExporterBase
+                name 'StereotypeDescriptorJsonGenerator'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:Hb9kV5GGAqAACBDi'
+                metaType 'Class'
+                stereotype 'CodeGenerator', {
+                  taggedValue 'requiredStereotype', 'StereotypeDescriptor'
+                  taggedValue 'outputType', 'other'
+                  taggedValue 'generatesOn', 'MClass'
+                  taggedValue 'outputTo', 'other'
                 }
-                mAttribute {
-                  name 'requiredStereotype'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:3iieOuGGAqACRAsd$pIrp5uGGAqACRA0P$VIrp5uGGAqACRA0p'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  name 'priority'
-                  documentation ''
-                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:3iieOuGGAqACRAsd$pIrp5uGGAqACRA0P$dIrp5uGGAqACRA02'
-                  metaType 'TaggedValueDefinition'
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'StereotypeEnumToDescriptorTransformation'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:GWMUV5GGAqAACBEV'
+                metaType 'Class'
+                stereotype 'Transformation', {
+                  taggedValue 'transformedMetaType', 'MClass'
+                  taggedValue 'requiredStereotype', 'StereotypeEnum'
+                  taggedValue 'priority', '100'
                 }
               }
             }

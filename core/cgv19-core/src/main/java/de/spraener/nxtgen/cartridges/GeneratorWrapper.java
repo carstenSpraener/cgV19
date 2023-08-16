@@ -9,6 +9,7 @@ import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.function.Consumer;
 
@@ -82,7 +83,18 @@ public class GeneratorWrapper implements CodeGenerator {
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
         try {
-            Object generatorInstance = this.generatorClass.getConstructor().newInstance();
+            Object generatorInstance = null;
+            for( Constructor<?> c : this.generatorClass.getConstructors() ) {
+                                if( c.getParameterCount()==0) {
+                                    generatorInstance = c.newInstance();
+                                } else if( c.getParameterCount()==1) {
+                                    Consumer<CodeBlock>[] arg = new Consumer[]{};
+                                    generatorInstance = c.newInstance(new Object[]{new Consumer[]{}});
+                                }
+            }
+            if( generatorInstance == null ) {
+                throw new IllegalStateException("Unable to instantiate generator of class "+this.generatorClass.getName());
+            }
             CodeBlock cb = (CodeBlock) this.cgMethod.invoke(generatorInstance, element, templateName);
             return cb;
         } catch( ReflectiveOperationException roXC ) {

@@ -36,21 +36,30 @@ String getGeneratesOn(MClass codeGenerator) {
 String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String meName, String listName) {
     StringBuffer sb = new StringBuffer();
     sb.append("            if( StereotypeHelper.hasStereotype(me, \"${sTypeName}\") ) {\n");
+    sb.append("                CodeGeneratorMapping mapping = null;\n");
     for( MClass codeGenerator : mClasses ) {
-        String generatesOn = getGeneratesOn(codeGenerator)
-        if( generatesOn!=null ) {
+        String generatesOn = getGeneratesOn(codeGenerator);
+        if( generatesOn!=null && !"".equals(generatesOn.trim()) ) {
             sb.append(
 """                if( ${meName} instanceof ${generatesOn} tME ) {
-                    CodeGeneratorMapping mapping = createMapping(tME, "${sTypeName}");
-                    if (mapping != null) {
-                        ${listName}.add(mapping);
-                    } else {
-                        ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));
+                    mapping = createMapping(tME, "${sTypeName}");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}());
                     }
+                    mapping.setStereotype("${sTypeName}");
+                    result.add(mapping);
                 }
 """)
         } else {
-            sb.append("                    ${listName}.add(CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}()));\n")
+            sb.append(
+"""                mapping = createMapping(me, "${sTypeName}");
+                if (mapping == null) {
+                    mapping = CodeGeneratorMapping.create(${meName}, new ${codeGenerator.getFQName()}());
+                }
+                mapping.setStereotype("${sTypeName}");
+                result.add(mapping);
+"""
+            )
         }
     }
     sb.append("            }\n");
@@ -60,7 +69,7 @@ String printCodeGeneratorMapping(String sTypeName, List<MClass> mClasses, String
 """//${ProtectionStrategieDefaultImpl.GENERATED_LINE}
 package ${mClass.getPackage().getFQName()};
 
-import de.spraener.nxtgen.Cartridge;
+import de.spraener.nxtgen.cartridges.AnnotatedCartridgeImpl;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.model.Model;
@@ -71,7 +80,7 @@ import de.spraener.nxtgen.oom.model.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ${mClass.getName()} implements Cartridge {
+public class ${mClass.getName()} extends AnnotatedCartridgeImpl {
 
     @Override
     public String getName() {
@@ -80,7 +89,7 @@ public class ${mClass.getName()} implements Cartridge {
     
     @Override
     public List<Transformation> getTransformations() {
-        List<Transformation> result = new ArrayList<>();
+        List<Transformation> result = super.getTransformations();
 ${addTransformations(mClass, "result")}
         return result;
     }
@@ -89,8 +98,19 @@ ${addTransformations(mClass, "result")}
     public List<CodeGeneratorMapping> mapGenerators(Model m) {
         List<CodeGeneratorMapping> result = new ArrayList<>();
         for( ModelElement me : m.getModelElements() ) {
+            if( me.getStereotypes().isEmpty() ) {
+                continue;
+            }
 ${listCodeGeneratorMappings(mClass, "me", "result")}
         }
+
+        List<CodeGeneratorMapping> annotatedGeneratorMappings = super.mapGenerators(m);
+        for( CodeGeneratorMapping mapping : annotatedGeneratorMappings ) {
+            if( !result.contains(mapping) ) {
+                result.add(mapping);
+            }
+        }
+
         return result;
     }
 

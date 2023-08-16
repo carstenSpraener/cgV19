@@ -16,5 +16,10 @@ public class EnsureTransformationDefinitionsTransformation extends EnsureTransfo
             Stereotype sType = StereotypeHelper.getStereotype(mc, MetaCartridge.STEREOTYPE_TRANSFORMATION);
             sType.setTaggedValue(MetaCartridge.TV_PRIORITY, priority);
         }
+        String requiredSType = mc.getTaggedValue(MetaCartridge.STEREOTYPE_TRANSFORMATION, MetaCartridge.TV_REQUIRED_STEREOTYPE);
+        if( requiredSType == null ) {
+            Stereotype sType = StereotypeHelper.getStereotype(mc, MetaCartridge.STEREOTYPE_TRANSFORMATION);
+            sType.setTaggedValue(MetaCartridge.TV_REQUIRED_STEREOTYPE, "");
+        }
     }
 }

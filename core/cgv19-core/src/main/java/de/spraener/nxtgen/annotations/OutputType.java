@@ -6,5 +6,6 @@ public enum OutputType {
     PHP,
     MARKDOWN,
     XML,
+    MARKMOWN,
     OTHER
 }

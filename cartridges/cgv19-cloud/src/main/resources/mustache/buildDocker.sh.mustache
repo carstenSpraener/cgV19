@@ -1,0 +1,17 @@
+# THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
+function buildDockerImage() {
+  (
+    cd $1
+    docker build -t $2/$3 .
+    docker push $2/$3
+  )
+}
+
+
+kubectl delete -f k8s
+
+{{#dockerprojects}}
+buildDockerImage {{prjName}} {{registry}} {{deploymentName}}-{{prjName}}:latest
+{{/dockerprojects}}
+
+kubectl apply -f k8s

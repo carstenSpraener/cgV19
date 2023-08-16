@@ -12,6 +12,7 @@ import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,15 @@ public class AnnotatedCartridgeImpl implements Cartridge {
     private List<GeneratorWrapper> generatorWrapperList = new ArrayList<>();
 
     public AnnotatedCartridgeImpl() {
-        String pkgName = getClass().getPackage().getName();
+        init(getClass());
+    }
+
+    public AnnotatedCartridgeImpl(Class<?> cartridgeClass) {
+        init(cartridgeClass);
+    }
+
+    private void init(Class<?> clazz) {
+        String pkgName = clazz.getPackage().getName();
         Reflections reflections = new Reflections(
                 new ConfigurationBuilder()
                         .forPackage(pkgName)
@@ -46,15 +55,31 @@ public class AnnotatedCartridgeImpl implements Cartridge {
                 }
             }
         }
-        Set<Class<?>> transformationClasses = reflections.getTypesAnnotatedWith(CGV19Transformation.class);
+        Set<Class<?>> transformationClasses = reflections.getTypesAnnotatedWith(CGV19Transformation.class, false);
         for( Class<?> t : transformationClasses ) {
+            if(Modifier.isAbstract(t.getModifiers()) ) {
+                continue;
+            }
+            if( !t.isAnnotationPresent(CGV19Transformation.class) ) {
+                continue;
+            }
             this.transformationList.add( new TransformationWrapper(t));
         }
-        Set<Class<?>> generatorClasses = reflections.getTypesAnnotatedWith(CGV19Generator.class);
+        Set<Class<?>> generatorClasses = reflections.getTypesAnnotatedWith(CGV19Generator.class, false);
         for( Class<?> g : generatorClasses ) {
+            if(Modifier.isAbstract(g.getModifiers()) ) {
+                continue;
+            }
+            if( !g.isAnnotationPresent(CGV19Generator.class) ) {
+                continue;
+            }
             this.generatorWrapperList.add(new GeneratorWrapper(g));
         }
-        this.name = getClass().getAnnotation(CGV19Cartridge.class).value();
+        if( clazz.isAnnotationPresent(CGV19Cartridge.class)) {
+            this.name = clazz.getAnnotation(CGV19Cartridge.class).value();
+        } else {
+            this.name = "UNDEFINED";
+        }
     }
 
     @Override
@@ -73,7 +98,9 @@ public class AnnotatedCartridgeImpl implements Cartridge {
         for(ModelElement e : m.getModelElements() ) {
             for( GeneratorWrapper gw : this.generatorWrapperList ) {
                 if( gw.matches(e) ) {
-                    mappingList.add(CodeGeneratorMapping.create(e, gw));
+                    CodeGeneratorMapping mapping = CodeGeneratorMapping.create(e, gw);
+                    mapping.setStereotype(gw.requiredStereotype());
+                    mappingList.add(mapping);
                 }
             }
         }

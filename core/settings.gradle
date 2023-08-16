@@ -1,5 +1,20 @@
-include(':cgv19-core',':cgv19-gradle',':cgv19-oom',':cgv19-pojo')
-include(':cgv19-metacartridge')
-include(':cgv19-annotationprocessor')
-include(':cgv19-javapoet')
-include(':cgv19-cli')
+def includeCartridge(String name) {
+    include(":cgv19-${name}")
+    project(":cgv19-${name}").projectDir = file("../cartridges/cgv19-${name}")
+}
+
+rootProject.name = 'cgv19-core'
+
+include(":cgv19-core")
+include(":cgv19-gradle")
+include(":cgv19-oom")
+include(":cgv19-javapoet")
+include(":cgv19-metacartridge")
+include(":cgv19-pojo")
+include(":cgv19-annotationprocessor")
+include(":cgv19-cli")
+
+includeCartridge("restcartridge")
+includeCartridge("angular")
+includeCartridge("javalin")
+includeCartridge("cloud")

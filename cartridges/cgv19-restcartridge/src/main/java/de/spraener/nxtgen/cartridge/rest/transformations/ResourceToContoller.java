@@ -41,7 +41,6 @@ public class ResourceToContoller implements Transformation {
         cntrlImpl.setProperty("constructorArgs", mClass.getPackage().getFQName()+".logic."+mClass.getName()+"Logic logic");
         cntrlImpl.setProperty("superCallArgs","logic");
         cntrlImpl.setProperty("annotations",
-                "@CrossOrigin(origins = \"*\")\n"+
                 "@RestController\n"+
                 "@RequestMapping(\"/"+mClass.getName().toLowerCase()+"s\")\n"
         );

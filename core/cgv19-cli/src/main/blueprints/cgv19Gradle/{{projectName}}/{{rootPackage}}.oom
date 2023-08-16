@@ -5,7 +5,7 @@ ModelDSL.make {
         name '{{rootPackage}}'
         mClass {
             name 'App'
-            stereotypes 'PoJo'
+            stereotype 'PoJo'
         }
     }
 }

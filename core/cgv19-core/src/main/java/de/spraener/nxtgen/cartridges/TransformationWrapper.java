@@ -40,6 +40,9 @@ public class TransformationWrapper implements Transformation {
 
     @Override
     public void doTransformation(ModelElement element) {
+        if( this.transformationSpec == null || this.transformationSpec.operatesOn()!=null) {
+            return;
+        }
         if( this.transformationSpec.operatesOn().isAssignableFrom(element.getClass()) ) {
             if( hasStereotype(element, transformationSpec.requiredStereotype()) ) {
                 try {

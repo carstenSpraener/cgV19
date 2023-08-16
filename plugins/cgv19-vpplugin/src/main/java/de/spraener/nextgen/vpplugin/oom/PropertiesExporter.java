@@ -69,14 +69,15 @@ public class PropertiesExporter {
 
     private static void exportProperty(PrintWriter pw, String indentation, Set<String> overwrittenProps, String propName, String value) {
         if( !overwrittenProps.contains(propName) ) {
-            pw.printf("%s%s '%s'\n", indentation, propName, value);
+            if( value != null && value.startsWith("\"\"\"")) {
+                pw.printf("%s%s %s%n", indentation, propName, value);
+            } else {
+                pw.printf("%s%s '%s'%n", indentation, propName, value);
+            }
         }
     }
 
     private static String toStringValue(String str) {
-        return str
-                .replaceAll("\'", "\\\'")
-                .replaceAll("\n", "\\\\n")
-                .replaceAll("\"", "\\\"");
+        return "\"\"\""+str+"\"\"\"";
     }
 }

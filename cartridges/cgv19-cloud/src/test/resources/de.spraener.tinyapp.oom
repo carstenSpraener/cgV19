@@ -1,0 +1,486 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.tinyapp'
+        documentation """"""
+        id 'mVU0C5GD.AAAARDE'
+        metaType 'Package'
+        stereotype 'cgV19Project'
+        mPackage {  //Exported by PackageExporterBase
+            name 'worker'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'JavaLinCartridge'
+                taggedValue 'dockerImage', 'fibonacci'
+                taggedValue 'port', '7070'
+                taggedValue 'requiredDatabase', 'none'
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'WorkerApp'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Q07Ia5GD.AAAARwu'
+                metaType 'Class'
+                stereotype 'JavaLinApp'
+                mOperation {  //Exported by OperationExporterBase
+                    name 'performComplexOperation'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Q07Ia5GD.AAAARwu$ToVPa5GD.AAAAS1.'
+                    metaType 'Operation'
+                    stereotype 'RequestHandler', {
+                        taggedValue 'Metod', 'GET'
+                        taggedValue 'path', '/'
+                    }
+                    mParameter {  //Exported by ParameterExporterBase
+                        name 'i'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Q07Ia5GD.AAAARwu$ToVPa5GD.AAAAS1.$IqdPa5GD.AAAAS2E'
+                        metaType 'Parameter'
+                        type 'Integer'
+                    }
+                }
+            }
+            mElement {
+                name 'WorkerModel'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:XvZsC5GD.AAAARJd:Z6zoa5GD.AAAAR0f'
+                metaType 'DiagramOverview'
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'k8s'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX'
+            metaType 'Package'
+            stereotype 'Deployment', {
+                taggedValue 'dockerRegistry', 'teneriffa:5080'
+            }
+            mElement {
+                name 'Frontend'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:0moQq5GD.AAAARSb'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '1'
+                }
+                mElement {
+                    name '80'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:0moQq5GD.AAAARSb$7y4Qq5GD.AAAARSm'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:zbo1W5GD.AAAATBS'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.frontend'
+                }
+            }
+            mElement {
+                name 'AppDatabase'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vvYIq5GD.AAAARYI'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '1'
+                }
+                mElement {
+                    name '3306'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vvYIq5GD.AAAARYI$Ne6Iq5GD.AAAARYu'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:Q.boq5GD.AAAARc4'
+                    metaType 'Dependency'
+                    stereotype 'Mounts', {
+                        taggedValue 'mountPath', '/var/lib/mysql'
+                        taggedValue 'subPath', 'app-data'
+                    }
+                    target 'de.spraener.tinyapp.k8s.DatabaseDir'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:n4sq15GGAqACRBB7'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.appdb'
+                }
+            }
+            mElement {
+                name 'DatabaseDir'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:IIqoq5GD.AAAARcC'
+                metaType 'InstanceSpecification'
+                stereotype 'PermanentVolume', {
+                    taggedValue 'path', 'frontendAppDatabase'
+                    taggedValue 'size', '2Gi'
+                }
+            }
+            mElement {
+                name 'Worker'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vqkIa5GD.AAAARtq'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '4'
+                }
+                mElement {
+                    name '8080'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:vqkIa5GD.AAAARtq$JHMIa5GD.AAAARt5'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:Z_A1W5GD.AAAATA6'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.worker'
+                }
+            }
+            mElement {
+                name 'Ingress'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:2OhuO5GGAqAoAQnr'
+                metaType 'Component'
+                stereotype 'IngressService'
+                mElement {
+                    name '8989'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:2OhuO5GGAqAoAQnr$AJrRO5GGAqAoARMh'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:z8nuO5GGAqAoAQpW'
+                    metaType 'Dependency'
+                    stereotype 'Routes', {
+                        taggedValue 'path', '/'
+                    }
+                    target 'de.spraener.tinyapp.k8s.Frontend.80'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:f03uO5GGAqAoAQpe'
+                    metaType 'Dependency'
+                    stereotype 'Routes', {
+                        taggedValue 'path', '/api'
+                    }
+                    target 'de.spraener.tinyapp.k8s.Api.8080'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name ''
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:hYT495GGAqACRBHh'
+                    metaType 'Dependency'
+                    stereotype 'Routes', {
+                        taggedValue 'path', '/kc-auth'
+                    }
+                    target 'de.spraener.tinyapp.k8s.KeyCloak.8080'
+                }
+            }
+            mElement {
+                name 'Api'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:ptYFB5GGAqAACA63'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '1'
+                }
+                mElement {
+                    name '8080'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:ptYFB5GGAqAACA63$VRSFB5GGAqAACA7m'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:TgsFB5GGAqAACA7E'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.api'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:yTa9h5GGAqAACBB5'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.k8s.Worker'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:TwRIq5GD.AAAARa_'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.k8s.AppDatabase.3306'
+                }
+            }
+            mElement {
+                name ''
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:y8QfV5GGAqACRA73'
+                metaType 'ImageShape'
+            }
+            mElement {
+                name 'Deployment'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:pzjoa5GD.AAAAR0Q'
+                metaType 'DiagramOverview'
+            }
+            mElement {
+                name 'KeyCloak'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:mGF495GGAqACRBG_'
+                metaType 'Component'
+                stereotype 'CloudService', {
+                    taggedValue 'replicas', '1'
+                }
+                mElement {
+                    name '8080'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:cE7gq5GD.AAAARRX:mGF495GGAqACRBG_$hGd495GGAqACRBHW'
+                    metaType 'Port'
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'null'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:0FIE95GGAqACRBIs'
+                    metaType 'Dependency'
+                    stereotype 'Provides'
+                    target 'de.spraener.tinyapp.keycloak'
+                }
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'api'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'REST-Cartridge'
+                taggedValue 'dockerImage', 'api'
+                taggedValue 'port', '8081'
+                taggedValue 'requiredDatabase', 'none'
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'FrontendApp'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:4ms4a5GD.AAAAR3K'
+                metaType 'Class'
+                stereotype 'SpringBootApp'
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'Depends'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:D99eO5GGAqAoAQuJ'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.api.NumberResource'
+                }
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'NumberResource'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:sai4a5GD.AAAAR3b'
+                metaType 'Class'
+                stereotype 'Ressource', {
+                }
+                mDependency {  //Exported by DependencyExporterBase
+                    name 'Depends'
+                    documentation """"""
+                    id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:D99eO5GGAqAoAQuJ'
+                    metaType 'Dependency'
+                    target 'de.spraener.tinyapp.api.NumberResource'
+                }
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'frontend'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:Yzy9.5GGAqAACAva'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'Cgv19Angular'
+                taggedValue 'dockerImage', 'frontend'
+                taggedValue 'port', '8080'
+                taggedValue 'requiredDatabase', 'none'
+            }
+            stereotype 'Cgv19AngularApp', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'Cgv19Angular'
+                taggedValue 'dockerImage', 'frontend'
+                taggedValue 'port', '8080'
+                taggedValue 'requiredDatabase', 'none'
+            }
+            mClass {  //Exported by ClassExporterBase
+                name 'AngularApp'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:Yzy9.5GGAqAACAva:Q2uyB5GGAqAACAzZ'
+                metaType 'Class'
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'common'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5'
+            metaType 'Package'
+            stereotype 'CloudShare'
+            mPackage {  //Exported by PackageExporterBase
+                name 'payload'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_'
+                metaType 'Package'
+                mClass {  //Exported by ClassExporterBase
+                    name 'MazeRequest'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:OpuiJ5GGAqAACBLK'
+                    metaType 'Class'
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'shape'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:OpuiJ5GGAqAACBLK$9niSJ5GGAqAACBOQ'
+                        metaType 'Attribute'
+                        type 'Integer'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'size'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:OpuiJ5GGAqAACBLK$zDSSJ5GGAqAACBOU'
+                        metaType 'Attribute'
+                        type 'Integer'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'rounded'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:OpuiJ5GGAqAACBLK$5oqSJ5GGAqAACBOY'
+                        metaType 'Attribute'
+                        type 'Boolean'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                }
+                mClass {  //Exported by ClassExporterBase
+                    name 'MazeResponse'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:UiRiJ5GGAqAACBLb'
+                    metaType 'Class'
+                    relation {
+                        type='extends'
+                        targetXmID='mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:x_PiJ5GGAqAACBNI'
+                        targetType 'de.spraener.tinyapp.common.payload.PuzzleResponse'
+                    }
+                }
+                mClass {  //Exported by ClassExporterBase
+                    name 'PuzzleResponse'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:x_PiJ5GGAqAACBNI'
+                    metaType 'Class'
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'solutionSVGURL'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:x_PiJ5GGAqAACBNI$4UgSJ5GGAqAACBNY'
+                        metaType 'Attribute'
+                        type 'String'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'puzzleSVGURL'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:x_PiJ5GGAqAACBNI$pVwSJ5GGAqAACBNc'
+                        metaType 'Attribute'
+                        type 'String'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'puzzleID'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:x_PiJ5GGAqAACBNI$XgoSJ5GGAqAACBNg'
+                        metaType 'Attribute'
+                        type 'Integer'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                    mAttribute {  //Exported by AttributeExporterBase
+                        name 'downloadURL'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:sPJCJ5GGAqAACBJ_:x_PiJ5GGAqAACBNI$x60SJ5GGAqAACBN1'
+                        metaType 'Attribute'
+                        type 'String'
+                        visibility 'private'
+                        multiplicity 'Unspecified'
+                    }
+                }
+            }
+            mPackage {  //Exported by PackageExporterBase
+                name 'service'
+                documentation """"""
+                id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:23FCJ5GGAqAACBKF'
+                metaType 'Package'
+                mClass {  //Exported by ClassExporterBase
+                    name 'MazeService'
+                    documentation """"""
+                    id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:23FCJ5GGAqAACBKF:zmViJ5GGAqAACBL5'
+                    metaType 'Class'
+                    stereotype 'Interface'
+                    mOperation {  //Exported by OperationExporterBase
+                        name 'createMaze'
+                        documentation """"""
+                        id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:23FCJ5GGAqAACBKF:zmViJ5GGAqAACBL5$lb9iJ5GGAqAACBMX'
+                        metaType 'Operation'
+                        mParameter {  //Exported by ParameterExporterBase
+                            name 'req'
+                            documentation """"""
+                            id 'mVU0C5GD.AAAARDE:6euCJ5GGAqAACBJ5:23FCJ5GGAqAACBKF:zmViJ5GGAqAACBL5$lb9iJ5GGAqAACBMX$4ObiJ5GGAqAACBMa'
+                            metaType 'Parameter'
+                            type 'MazeRequest'
+                        }
+                    }
+                }
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'appdb'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:kJ0A15GGAqACRA99'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'cgv19Cartridge', 'CloudCartridge'
+                taggedValue 'dockerImage', 'mariadb:10.9.5'
+                taggedValue 'port', '3306'
+                taggedValue 'requiredDatabase', 'none'
+            }
+        }
+        mPackage {  //Exported by PackageExporterBase
+            name 'keycloak'
+            documentation """"""
+            id 'mVU0C5GD.AAAARDE:FuZed5GGAqACRBDp'
+            metaType 'Package'
+            stereotype 'CloudModule', {
+                taggedValue 'dockerRegistry', 'localhost:5080'
+                taggedValue 'cgv19Cartridge', 'CloudCartridge'
+                taggedValue 'dockerImage', 'quay.io/keycloak/keycloak:latest'
+                taggedValue 'port', '8080'
+                taggedValue 'requiredDatabase', 'MariaDB'
+            }
+        }
+    }
+}

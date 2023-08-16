@@ -3,10 +3,12 @@ package de.spraener.nxtgen.incubator;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+import de.spraener.nxtgen.NextGen;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * <p>A BlueprintCompiler copies a whole subtree from the resource classpath to the
@@ -49,10 +51,15 @@ public class BlueprintCompiler {
     }
 
     private void initScope() {
-        for( String resource : this.fileList ) {
-            for( String varName : listVarNames(resource) ) {
-                scope.put(varName, "undefined");
+        try {
+            for (String resource : this.fileList) {
+                for (String varName : listVarNames(resource)) {
+                    scope.put(varName, "undefined");
+                }
             }
+        } catch( RuntimeException rtx ) {
+            NextGen.LOGGER.log(Level.SEVERE, "Error in init of Blueprint: "+this.name, rtx);
+            throw rtx;
         }
     }
 
@@ -77,8 +84,11 @@ public class BlueprintCompiler {
     public void evaluateTo(String outDir) {
         for( String fromResource : this.fileList ) {
             String toResource = outDir + "/" + toOutputFilePath(fromResource);
-            String content = toOutputContent(fromResource);
             File outFile = new File(toResource);
+            if( NextGen.getProtectionStrategie().isProtected(outFile) ) {
+                continue;
+            }
+            String content = toOutputContent(fromResource);
             outFile.getParentFile().mkdirs();
             try (PrintWriter pw = new PrintWriter(toResource) ) {
                 pw.println(content);

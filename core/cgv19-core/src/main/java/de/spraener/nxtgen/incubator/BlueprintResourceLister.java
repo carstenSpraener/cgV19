@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.incubator;
 
+import de.spraener.nxtgen.NextGen;
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
@@ -37,6 +38,10 @@ public class BlueprintResourceLister implements BlueprintSupplier {
     }
 
     private List<String> getResourceFiles(List<String> filenames, String root, String path) throws IOException {
+        if(getClass().getResourceAsStream(root+"/_bpFileList") != null ) {
+            readBpFileList(getClass().getResourceAsStream(root+"/_bpFileList"), filenames);
+            return filenames;
+        }
         try (InputStream in = getResourceAsStream(root+path);
              BufferedReader br = new BufferedReader(new InputStreamReader(in))
         ) {
@@ -57,6 +62,19 @@ public class BlueprintResourceLister implements BlueprintSupplier {
         return filenames;
     }
 
+    private List<String> readBpFileList(InputStream is, List<String> filenames) throws IOException {
+        try( BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+            String line = null;
+            while( (line = br.readLine()) != null ) {
+                line = line.trim();
+                if( !"".equals(line) && !line.startsWith("#") ) {
+                    filenames.add(line.trim());
+                }
+            }
+        }
+        return filenames;
+    }
+
     private InputStream getResourceAsStream(String resource) {
         final InputStream in = getClass().getClassLoader().getResourceAsStream(resource);
         return in == null ? getClass().getResourceAsStream(resource) : in;
@@ -66,13 +84,18 @@ public class BlueprintResourceLister implements BlueprintSupplier {
     public String getContent(String resourceName) {
         try (InputStreamReader isr = getInputStream(resourceName)) {
             return IOUtils.toString(isr);
-        } catch (IOException xc) {
+        } catch (Exception xc) {
+            NextGen.LOGGER.severe("Could not get content of resource: "+resourceName);
             throw new RuntimeException(xc);
         }
     }
 
     @Override
     public InputStreamReader getInputStream(String resource) {
-        return new InputStreamReader(getClass().getResourceAsStream(this.rsrcPath + "/" + resource));
+        InputStream is = getClass().getResourceAsStream(this.rsrcPath + "/" + resource);
+        if( is == null ) {
+            return null;
+        }
+        return new InputStreamReader(is);
     }
 }

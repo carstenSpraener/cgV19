@@ -1,6 +1,8 @@
 import de.spraener.nxtgen.NextGen;
 import org.junit.Test;
 
+import java.io.File;
+
 public class MetaCartridgeStartGenerator {
 
     @Test
@@ -9,13 +11,17 @@ public class MetaCartridgeStartGenerator {
     }
 
     @Test
-    public void testMetaCartridgeSelfGenerator() {
-        NextGen.main(new String[]{"http://localhost:7001/" +
-                "de.spraener.nxtgen.cartridge.meta"});
+    public void testMetaCartridgeSelfOnline() {
+        new File("./build/test-gen").mkdirs();
+        NextGen.setWorkingDir("./build/test-gen");
+        NextGen.main(new String[]{"http://localhost:7001/DSL"});
     }
 
     @Test
-    public void testMetaCartridgeSelfGeneratorOnline() {
-        NextGen.main(new String[]{"http://localhost:7000/META-DSL"});
+    public void testMetaCartridgeSelfOffline() {
+        new File("./build/test-gen").mkdirs();
+        NextGen.setWorkingDir("./build/test-gen");
+        NextGen.main(new String[]{"META-DSL.oom"});
     }
+
 }

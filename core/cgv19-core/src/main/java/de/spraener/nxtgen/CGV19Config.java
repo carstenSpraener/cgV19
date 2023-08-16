@@ -91,10 +91,21 @@ public class CGV19Config {
                 props.setProperty(key.substring(6), value);
             }
         }
+        LOGGER.info("Adding system properties with prefix 'cgv19_' or 'CGV19_' to CGV19Config.definitions removing prefix.");
+        for( Map.Entry e : System.getProperties().entrySet()) {
+            String key = ""+e.getKey();
+            if( key.toLowerCase().startsWith("cgv19_") ) {
+                props.setProperty(key.substring(6), ""+e.getValue());
+            }
+        }
         return props;
     }
 
     public static String definitionOf(String key) {
         return getInstance().getProperties().getProperty(key, key);
+    }
+
+    public static String definitionOf(String key, String defaultValue) {
+        return getInstance().getProperties().getProperty(key, defaultValue);
     }
 }

@@ -9,7 +9,7 @@ import de.spraener.nxtgen.oom.model.MClass
 import de.spraener.nxtgen.oom.model.MOperation
 import de.spraener.nxtgen.oom.model.MParameter
 
-def persistenceAPI = CGV19Config.definitionOf("javax.persistence");
+def persistenceAPI = CGV19Config.definitionOf("jakarta.persistence");
 
 def toLogicName(me) {
     return me.name.replace("Controller", "Logic").replace("Base", "");
@@ -49,7 +49,7 @@ def toRequestMethod(MOperation op) {
 def requestMethodsDelegate(MClass mc) {
     StringBuilder sb = new StringBuilder();
     for( MOperation op : mc.getOperations() ) {
-        if( StereotypeHelper.hasStereotype(op, RESTStereotypes.REQUEST.getName()) ) {
+        if( StereotypeHelper.hasStereotype(op, RESTStereotypes.REQUESTHANDLER.getName()) ) {
             sb.append(toRequestMethod(op));
         }
     }
