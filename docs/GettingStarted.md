@@ -163,3 +163,13 @@ There is (for me) only on exception. The _meta-cartridge_! This
 cartridge is generated with the use of cgv19. But when you first don't have cgv19 available,
 you would not be able to build cgv19. So in such a situation, you need to checkin the 
 generated sources.
+
+## Where to go next?
+
+To get deeper into model driven development, try to follow the [use VisualParadigm to
+model your project](building-VisualParadigm-Plugin.md) guide.
+
+After that you may start using more advanced cartridges like the
+provided REST- or Cloud-Catridge or even
+[start developing your own cartridge](CartridgeDevelopment.md) for adapting
+the model driven development to your project.

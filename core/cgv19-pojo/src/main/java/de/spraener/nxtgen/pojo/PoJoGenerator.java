@@ -5,6 +5,7 @@ import de.spraener.nxtgen.annotations.*;
 import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
+import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MClassRef;
 import de.spraener.nxtgen.target.CodeTargetCodeBlockAdapter;
@@ -26,13 +27,7 @@ public class PoJoGenerator {
             operatesOn = MClass.class
     )
     public void doTransformation(ModelElement me) {
-        MClass mc = (MClass)me;
-        MClass baseClazz = mc.getPackage().createMClass(mc.getName()+"Base");
-        baseClazz.addStereotypes(new StereotypeImpl(PoJoCartridge.ST_POJO+"Base"));
-        baseClazz.setModel(mc.getModel());
-        baseClazz.setInheritsFrom(mc.getInheritsFrom());
-        mc.setInheritsFrom(new MClassRef(baseClazz.getFQName()));
-        baseClazz.putObject(ORIGINAL_CLASS, mc);
+        new GeneratorGapTransformation().doTransformation(me);
     }
 
     @CGV19Generator(
