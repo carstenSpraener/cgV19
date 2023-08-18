@@ -46,5 +46,5 @@ if [ -d "$VP_PLUGIN_DIR/${PLUGIN}" ]; then
     rm -rf "$VP_PLUGIN_DIR/${PLUGIN}"
 fi
 
-mkdir "$VP_PLUGIN_DIR/${PLUGIN}"
+mkdir -p "$VP_PLUGIN_DIR/${PLUGIN}"
 cp -r build/${PLUGIN}/* "$VP_PLUGIN_DIR/${PLUGIN}/"

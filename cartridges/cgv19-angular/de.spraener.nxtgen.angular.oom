@@ -1,50 +1,50 @@
 import de.spraener.nxtgen.groovy.ModelDSL
 
 ModelDSL.make {
-    mPackage {
-        name 'de.spraener.nxtgen.angular'
-        documentation """"""
-        id 'Cft9.5GGAqAACAwY'
-        metaType 'Package'
-        mClass {  //Exported by ClassExporterBase
-            name 'Cgv19Angular'
-            documentation """"""
-            id 'Cft9.5GGAqAACAwY:vfL9.5GGAqAACAwh'
-            metaType 'Class'
-            stereotype 'cgV19Cartridge'
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'TSTypeGenerator'
-            documentation """"""
-            id 'Cft9.5GGAqAACAwY:6vniB5GGAqAACAxo'
-            metaType 'Class'
-            stereotype 'CodeGenerator', {
-                taggedValue 'requiredStereotype', 'TSType'
-                taggedValue 'outputType', 'TypeScript'
-                taggedValue 'generatesOn', 'MClass'
-                taggedValue 'outputTo', 'other'
-                taggedValue 'templateScript', '/ts/TSType.groovy'
-            }
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'Angular'
-            documentation """"""
-            id 'Cft9.5GGAqAACAwY:Zo7yB5GGAqAACA0f'
-            metaType 'Class'
-            stereotype 'StereotypeEnum'
-        }
-        mPackage {  //Exported by PackageExporterBase
-            name 'stereotypes'
-            documentation """"""
-            id 'Cft9.5GGAqAACAwY:KbyBJ5GGAqAACAtZ'
-            metaType 'Package'
-            mClass {
-                stereotype 'Stereotype'
-                name 'Cgv19AngularApp'
-                documentation """"""
-                id 'Cft9.5GGAqAACAwY:KbyBJ5GGAqAACAtZ:j8dyB5GGAqAACAz9'
-                metaType 'Stereotype'
-            }
-        }
+  mPackage {
+    name 'de.spraener.nxtgen.angular'
+    documentation """"""
+    id 'Cft9.5GGAqAACAwY'
+    metaType 'Package'
+    mClass {  //Exported by ClassExporterBase
+      name 'Cgv19Angular'
+      documentation """"""
+      id 'Cft9.5GGAqAACAwY:vfL9.5GGAqAACAwh'
+      metaType 'Class'
+      stereotype 'cgV19Cartridge'
     }
+    mClass {  //Exported by ClassExporterBase
+      name 'TSTypeGenerator'
+      documentation """"""
+      id 'Cft9.5GGAqAACAwY:6vniB5GGAqAACAxo'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'TSType'
+        taggedValue 'outputType', 'TypeScript'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'other'
+        taggedValue 'templateScript', '/ts/TSType.groovy'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'Angular'
+      documentation """"""
+      id 'Cft9.5GGAqAACAwY:Zo7yB5GGAqAACA0f'
+      metaType 'Class'
+      stereotype 'StereotypeEnum'
+    }
+    mPackage {  //Exported by PackageExporterBase
+      name 'stereotypes'
+      documentation """"""
+      id 'Cft9.5GGAqAACAwY:KbyBJ5GGAqAACAtZ'
+      metaType 'Package'
+      mClass {
+        stereotype 'Stereotype'
+        name 'Cgv19AngularApp'
+        documentation """"""
+        id 'Cft9.5GGAqAACAwY:KbyBJ5GGAqAACAtZ:j8dyB5GGAqAACAz9'
+        metaType 'Stereotype'
+      }
+    }
+  }
 }

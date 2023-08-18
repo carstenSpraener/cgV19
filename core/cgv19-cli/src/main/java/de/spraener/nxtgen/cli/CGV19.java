@@ -9,6 +9,9 @@ import org.apache.commons.cli.*;
 
 import java.io.File;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class CGV19 {
@@ -42,47 +45,63 @@ public class CGV19 {
         optBPDir.setRequired(false);
         options.addOption(optBPDir);
 
+        Option logLevel = new Option(null, "log-level", true, "set the default log level. Possible values: 'ALL', 'FINER', 'FINE', 'INFO', 'WARNING', 'SEVERE' and 'OFF'. Default: 'SEVERE'");
+        logLevel.setRequired(false);
+        options.addOption(logLevel);
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
 
         try {
-            LOGGER.info("Running in "+new File(".").getAbsolutePath());
             CommandLine cmd = parser.parse(options, args);
+            Level l = Level.SEVERE;
+            if (cmd.hasOption(logLevel)) {
+                l = java.util.logging.Level.parse(cmd.getOptionValue(logLevel));
+            }
+            Logger rootLogger = LogManager.getLogManager().getLogger("");
+            rootLogger.setLevel(l);
+            LOGGER.setLevel(l);
+            NextGen.LOGGER.setLevel(l);
+            for (Handler h : rootLogger.getHandlers()) {
+                h.setLevel(l);
+            }
+
+            LOGGER.info("Running in " + new File(".").getAbsolutePath());
             String workDir = cmd.getOptionValue("work-directory");
-            if( workDir!=null ) {
+            if (workDir != null) {
                 NextGen.setWorkingDir(workDir);
             }
 
-            if( cmd.hasOption(optDelete) ) {
-                if( workDir==null ) {
+            if (cmd.hasOption(optDelete)) {
+                if (workDir == null) {
                     workDir = ".";
                 }
                 new DirectoryTreeDeletion(workDir).run();
             }
 
             String cartridgeName = cmd.getOptionValue("cartridge");
-            if( cartridgeName != null ) {
+            if (cartridgeName != null) {
                 NextGen.runCartridgeWithName(cartridgeName);
             }
 
-            String blueprintDir =cmd.getOptionValue("blueprints-dir");
-            if( blueprintDir == null ) {
-                blueprintDir=getInstallationDir()+"/cartridges/blueprints";
+            String blueprintDir = cmd.getOptionValue("blueprints-dir");
+            if (blueprintDir == null) {
+                blueprintDir = getInstallationDir() + "/cartridges/blueprints";
             }
 
-            for(BlueprintDirectoryBasedCartridge c : BluePrintCartridgeCreator.createBlueprintCartridges(blueprintDir) ) {
+            for (BlueprintDirectoryBasedCartridge c : BluePrintCartridgeCreator.createBlueprintCartridges(blueprintDir)) {
                 NextGen.addCartridge(c);
-                if( cartridgeName==null || c.getName().equals(cartridgeName)) {
+                if (cartridgeName == null || c.getName().equals(cartridgeName)) {
                     NextGen.addModelLoader(c);
                 }
             }
 
-            if( cmd.hasOption(optList) ) {
+            if (cmd.hasOption(optList)) {
                 listCartridges();
             }
 
-            if( !cmd.hasOption(optModel) ) {
-                NextGen.LOGGER.info("No model was defined. Nothing to be done.");
+            if (!cmd.hasOption(optModel)) {
+                NextGen.LOGGER.severe("No model was defined. Nothing to be done.");
                 System.exit(0);
             }
 
@@ -90,7 +109,7 @@ public class CGV19 {
             String[] ngArgs = new String[]{model};
             NextGen.main(ngArgs);
         } catch (ParseException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             formatter.printHelp("utility-name", options);
 
             System.exit(1);
@@ -100,16 +119,16 @@ public class CGV19 {
     private static void listCartridges() {
         List<Cartridge> cartridgeList = NextGen.loadCartridges();
         System.out.println("The current cgv19 installation contains the following cartridges:\n");
-        for(Cartridge l : cartridgeList ) {
+        for (Cartridge l : cartridgeList) {
             String isModelLoader = l instanceof ModelLoader ? " (ModelLoader)" : "";
             System.out.printf("    * '%s'%s%n", l.getName(), isModelLoader);
         }
-        System.out.println( "\nYou can choose one of these with the -d <CartridgeName> option.");
+        System.out.println("\nYou can choose one of these with the -d <CartridgeName> option.");
     }
 
     public static String getInstallationDir() {
         String fqAppPath = System.getProperty("app.path");
-        String binDir = fqAppPath.substring(0, fqAppPath.lastIndexOf('/')-1);
+        String binDir = fqAppPath.substring(0, fqAppPath.lastIndexOf('/') - 1);
         return binDir.substring(0, binDir.lastIndexOf('/'));
     }
 }
