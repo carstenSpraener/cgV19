@@ -182,7 +182,7 @@ public class NextGen implements Runnable {
             }
         }
         if (models.isEmpty()) {
-            LOGGER.warning(() -> "no loader could handel model " + modelURI + ". Terminating");
+            LOGGER.severe(() -> "no loader could handel model " + modelURI + ". Terminating");
             throw new NxtGenRuntimeException("Unable to find a model loader for the given model uri: " + modelURI + ". Check your classpath");
         }
         return models;

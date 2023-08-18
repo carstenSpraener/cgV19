@@ -76,7 +76,7 @@ public class TestRun {
         NextGen.setWorkingDir("./build/source-gen");
         System.setProperty("cgv19_globalHostURL", "http://192.168.0.201");
         NextGen.runCartridgeWithName(uut.getName());
-        NextGen.main(new String[]{"/de.spraener.tinyapp.oom"});
+        NextGen.main(new String[]{"http://localhost:7001/de.spraener.tinyapp"});
 
         FileLister lister = new FileLister(dir.getAbsolutePath());
         lister.asserContentEquals(EXPEXCTED_FILES);

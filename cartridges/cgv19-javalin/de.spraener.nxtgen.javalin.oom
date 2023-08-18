@@ -1,121 +1,121 @@
 import de.spraener.nxtgen.groovy.ModelDSL
 
 ModelDSL.make {
-    mPackage {
-        name 'de.spraener.nxtgen.javalin'
-        documentation """"""
-        id 'wWina5GD.AAAASwG'
-        metaType 'Package'
-        mClass {  //Exported by ClassExporterBase
-            name 'JavaLinCartridge'
-            documentation """"""
-            id 'wWina5GD.AAAASwG:qNuna5GD.AAAASwt'
-            metaType 'Class'
-            stereotype 'cgV19Cartridge'
-        }
-        mClass {
-            stereotype 'Stereotype'
-            name 'JavaLinApp'
-            documentation """This Stereotype marks a class as the main-class for a JavaLin application. Each method specified in that class can be marked with a RequestHandler stereotype in order to full fill incoming requests.
+  mPackage {
+    name 'de.spraener.nxtgen.javalin'
+    documentation """"""
+    id 'wWina5GD.AAAASwG'
+    metaType 'Package'
+    mClass {  //Exported by ClassExporterBase
+      name 'JavaLinCartridge'
+      documentation """"""
+      id 'wWina5GD.AAAASwG:qNuna5GD.AAAASwt'
+      metaType 'Class'
+      stereotype 'cgV19Cartridge'
+    }
+    mClass {
+      stereotype 'Stereotype'
+      name 'JavaLinApp'
+      documentation """This Stereotype marks a class as the main-class for a JavaLin application. Each method specified in that class can be marked with a RequestHandler stereotype in order to full fill incoming requests.
 
 JavaLin in this cartridge is intended to implement small but time consuming scalable business cases that can be executed parallel.
 
 Each JavaLin app will create a complete project module with its own
 build file and docker image. The foot print of JavaLin is very small so you should be able to start many replicas of such an docker container."""
-            id 'wWina5GD.AAAASwG:FDsXa5GD.AAAASxA'
-            metaType 'Stereotype'
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'JavaLinStereotypes'
-            documentation """"""
-            id 'wWina5GD.AAAASwG:2HSXa5GD.AAAASxj'
-            metaType 'Class'
-            stereotype 'StereotypeEnum'
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'JavaLinAppGenerator'
-            documentation """"""
-            id 'wWina5GD.AAAASwG:jUmXa5GD.AAAASyC'
-            metaType 'Class'
-            stereotype 'CodeGenerator', {
-                taggedValue 'requiredStereotype', 'JavaLinApp'
-                taggedValue 'outputType', 'Java'
-                taggedValue 'generatesOn', 'MClass'
-                taggedValue 'outputTo', 'src-gen'
-            }
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'JavaLinHandlerGenerator'
-            documentation """"""
-            id 'wWina5GD.AAAASwG:uT5Xa5GD.AAAASyq'
-            metaType 'Class'
-            stereotype 'CodeGenerator', {
-                taggedValue 'requiredStereotype', 'RequestHandler'
-                taggedValue 'outputType', 'Java'
-                taggedValue 'generatesOn', 'MClass'
-                taggedValue 'outputTo', 'src'
-            }
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'MethodToRequestHandlerTransformation'
-            documentation """"""
-            id 'wWina5GD.AAAASwG:AOUPa5GD.AAAAS0W'
-            metaType 'Class'
-            stereotype 'Transformation', {
-                taggedValue 'transformedMetaType', 'MOperation'
-                taggedValue 'requiredStereotype', 'RequestHandler'
-                taggedValue 'priority', '0'
-            }
-        }
-        mClass {
-            stereotype 'Stereotype'
-            name 'RequestHandler'
-            documentation """A method marked with this stereotype will be translated to a handler
+      id 'wWina5GD.AAAASwG:FDsXa5GD.AAAASxA'
+      metaType 'Stereotype'
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'JavaLinStereotypes'
+      documentation """"""
+      id 'wWina5GD.AAAASwG:2HSXa5GD.AAAASxj'
+      metaType 'Class'
+      stereotype 'StereotypeEnum'
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'JavaLinAppGenerator'
+      documentation """"""
+      id 'wWina5GD.AAAASwG:jUmXa5GD.AAAASyC'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'JavaLinApp'
+        taggedValue 'outputType', 'Java'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src-gen'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'JavaLinHandlerGenerator'
+      documentation """"""
+      id 'wWina5GD.AAAASwG:uT5Xa5GD.AAAASyq'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'RequestHandler'
+        taggedValue 'outputType', 'Java'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'MethodToRequestHandlerTransformation'
+      documentation """"""
+      id 'wWina5GD.AAAASwG:AOUPa5GD.AAAAS0W'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MOperation'
+        taggedValue 'requiredStereotype', 'RequestHandler'
+        taggedValue 'priority', '0'
+      }
+    }
+    mClass {
+      stereotype 'Stereotype'
+      name 'RequestHandler'
+      documentation """A method marked with this stereotype will be translated to a handler
 class that receives the context from JavaLin and has a method to place
 the business logic.
 
 Each request will create a new instance of this request handler.
 
 In the tagged values of the requst handler stereotype you can specify the requests parameters like path and method."""
-            id 'wWina5GD.AAAASwG:SxJfa5GD.AAAAS4f'
-            metaType 'Stereotype'
-            mAttribute {
-                defaultValue """GET"""
-                typeID 2
-                type 'adhoc-enum'
-                enumValues """
+      id 'wWina5GD.AAAASwG:SxJfa5GD.AAAAS4f'
+      metaType 'Stereotype'
+      mAttribute {
+        defaultValue """GET"""
+        typeID 2
+        type 'adhoc-enum'
+        enumValues """
           GET
           POST
           PUT
           DELETE
           PATCH
 """
-                name 'Metod'
-                documentation """"""
-                id 'wWina5GD.AAAASwG:SxJfa5GD.AAAAS4f$KxJfa5GD.AAAAS4g$KxJfa5GD.AAAAS4h'
-                metaType 'TaggedValueDefinition'
-            }
-            mAttribute {
-                defaultValue """/"""
-                typeID 0
-                type 'String'
-                name 'path'
-                documentation """"""
-                id 'wWina5GD.AAAASwG:SxJfa5GD.AAAAS4f$KxJfa5GD.AAAAS4g$lkmm25GD.AAAATJl'
-                metaType 'TaggedValueDefinition'
-            }
-        }
-        mClass {  //Exported by ClassExporterBase
-            name 'JavaLinHandlerBaseGenerator'
-            documentation """"""
-            id 'wWina5GD.AAAASwG:I0PoW5GD.AAAAS7C'
-            metaType 'Class'
-            stereotype 'CodeGenerator', {
-                taggedValue 'requiredStereotype', 'RequestHandlerBase'
-                taggedValue 'outputType', 'Java'
-                taggedValue 'generatesOn', 'MClass'
-                taggedValue 'outputTo', 'src-gen'
-            }
-        }
+        name 'Metod'
+        documentation """"""
+        id 'wWina5GD.AAAASwG:SxJfa5GD.AAAAS4f$KxJfa5GD.AAAAS4g$KxJfa5GD.AAAAS4h'
+        metaType 'TaggedValueDefinition'
+      }
+      mAttribute {
+        defaultValue """/"""
+        typeID 0
+        type 'String'
+        name 'path'
+        documentation """"""
+        id 'wWina5GD.AAAASwG:SxJfa5GD.AAAAS4f$KxJfa5GD.AAAAS4g$lkmm25GD.AAAATJl'
+        metaType 'TaggedValueDefinition'
+      }
     }
+    mClass {  //Exported by ClassExporterBase
+      name 'JavaLinHandlerBaseGenerator'
+      documentation """"""
+      id 'wWina5GD.AAAASwG:I0PoW5GD.AAAAS7C'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'RequestHandlerBase'
+        taggedValue 'outputType', 'Java'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src-gen'
+      }
+    }
+  }
 }

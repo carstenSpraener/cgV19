@@ -11,6 +11,10 @@ import groovy.lang.GroovyShell;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class OOMModelLoader implements ModelLoader {
 
@@ -30,6 +34,11 @@ public class OOMModelLoader implements ModelLoader {
             e.printStackTrace();
             throw new NxtGenRuntimeException(e);
         }
+    }
+
+    private void updateLocalCopy(String url, String outputFileName) throws IOException {
+        NextGen.LOGGER.fine(String.format("updating local copy of URL '%s' to file '%s'", url, outputFileName));
+        Files.copy(new URL(url).openStream(), Path.of(NextGen.getWorkingDir()+"/"+outputFileName), StandardCopyOption.REPLACE_EXISTING);
     }
 
     @Override
@@ -63,11 +72,12 @@ public class OOMModelLoader implements ModelLoader {
             return new InputStreamReader(getClass().getResourceAsStream(modelURI));
         } else {
             try {
+                updateLocalCopy(modelURI, toFileName(modelURI));
                 URL url = new URL(modelURI);
                 return new InputStreamReader(url.openStream());
             } catch( IOException xc ) {
                 String fileNameFromURI = toFileName(modelURI);
-                NextGen.LOGGER.info(String.format("Error loading model via URL '%s'. Try to load file '%s'.", modelURI, fileNameFromURI));
+                NextGen.LOGGER.fine(String.format("Error loading model via URL '%s'. Try to load file '%s'.", modelURI, fileNameFromURI));
                 f = new File(fileNameFromURI);
                 if( f.exists() ) {
                     return new InputStreamReader(new FileInputStream(f));

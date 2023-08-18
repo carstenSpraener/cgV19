@@ -20,6 +20,7 @@ dependencies {
     for( String cName in listCartridges() ) {
         compileOnly project(":${cName}")
     }
+    implementation 'org.slf4j:slf4j-jdk14:1.7.36'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testImplementation 'org.mockito:mockito-core:5.3.1'
