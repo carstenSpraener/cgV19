@@ -8,8 +8,6 @@ import de.spraener.nxtgen.blueprint.BlueprintDirectoryBasedCartridge;
 import org.apache.commons.cli.*;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -56,15 +54,16 @@ public class CGV19 {
 
         try {
             CommandLine cmd = parser.parse(options, args);
-            if(cmd.hasOption(logLevel)) {
-                Logger rootLogger = LogManager.getLogManager().getLogger("");
-                Level l = java.util.logging.Level.parse(cmd.getOptionValue(logLevel, "SEVERE"));
-                rootLogger.setLevel(l);
-                LOGGER.setLevel(l);
-                NextGen.LOGGER.setLevel(l);
-                for (Handler h : rootLogger.getHandlers()) {
-                    h.setLevel(l);
-                }
+            Level l = Level.SEVERE;
+            if (cmd.hasOption(logLevel)) {
+                l = java.util.logging.Level.parse(cmd.getOptionValue(logLevel));
+            }
+            Logger rootLogger = LogManager.getLogManager().getLogger("");
+            rootLogger.setLevel(l);
+            LOGGER.setLevel(l);
+            NextGen.LOGGER.setLevel(l);
+            for (Handler h : rootLogger.getHandlers()) {
+                h.setLevel(l);
             }
 
             LOGGER.info("Running in " + new File(".").getAbsolutePath());
