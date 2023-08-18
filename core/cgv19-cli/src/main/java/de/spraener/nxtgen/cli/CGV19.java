@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -19,8 +21,6 @@ public class CGV19 {
     public static final Logger LOGGER = Logger.getLogger(CGV19.class.getName());
 
     public static void main(String[] args) {
-        configLogging();
-
         Options options = new Options();
 
         Option workdir = new Option("w", "work-directory", true, "the directory in which cgv19 should run. Default is current directory");
@@ -47,12 +47,27 @@ public class CGV19 {
         optBPDir.setRequired(false);
         options.addOption(optBPDir);
 
+        Option logLevel = new Option(null, "log-level", true, "set the default log level. Possible values: 'ALL', 'FINER', 'FINE', 'INFO', 'WARNING', 'SEVERE' and 'OFF'. Default: 'SEVERE'");
+        logLevel.setRequired(false);
+        options.addOption(logLevel);
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
 
         try {
-            LOGGER.info("Running in " + new File(".").getAbsolutePath());
             CommandLine cmd = parser.parse(options, args);
+            if(cmd.hasOption(logLevel)) {
+                Logger rootLogger = LogManager.getLogManager().getLogger("");
+                Level l = java.util.logging.Level.parse(cmd.getOptionValue(logLevel, "SEVERE"));
+                rootLogger.setLevel(l);
+                LOGGER.setLevel(l);
+                NextGen.LOGGER.setLevel(l);
+                for (Handler h : rootLogger.getHandlers()) {
+                    h.setLevel(l);
+                }
+            }
+
+            LOGGER.info("Running in " + new File(".").getAbsolutePath());
             String workDir = cmd.getOptionValue("work-directory");
             if (workDir != null) {
                 NextGen.setWorkingDir(workDir);
@@ -87,7 +102,7 @@ public class CGV19 {
             }
 
             if (!cmd.hasOption(optModel)) {
-                NextGen.LOGGER.info("No model was defined. Nothing to be done.");
+                NextGen.LOGGER.severe("No model was defined. Nothing to be done.");
                 System.exit(0);
             }
 
@@ -100,37 +115,6 @@ public class CGV19 {
 
             System.exit(1);
         }
-    }
-
-    private static void configLogging() {
-        System.out.println("Configuring logging");
-        String userHome = System.getProperty("user.home");
-        System.out.println("    Home directory is "+userHome);
-        boolean loggingPropsFound = false;
-        for (String path : new String[]{"logging.properties", ".cgv19/logging.properties", userHome + "/.cgv19/logging.properties"}) {
-            System.out.println("Trying "+path);
-            try {
-                File f = new File(path);
-                if (f.exists() && f.isFile()) {
-                    System.out.println("Reading Logging configuration from "+path);
-                    LogManager.getLogManager().readConfiguration(new FileInputStream(f));
-                    loggingPropsFound = true;
-                    break;
-                }
-            } catch (IOException xc) {
-                xc.printStackTrace();
-            }
-        }
-
-        if( !loggingPropsFound ) {
-            try {
-                System.out.println("No logging configuration found. Reading default.");
-                LogManager.getLogManager().readConfiguration(CGV19.class.getResourceAsStream("/cgv19-logging.properties"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("Configuring logging system finished.");
     }
 
     private static void listCartridges() {
