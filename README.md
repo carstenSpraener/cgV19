@@ -3,10 +3,9 @@
 # Welcome to cgV19
 [Come to the Slack Group](https://join.slack.com/t/cgv19/shared_invite/zt-1zxm6hc9e-~~a9QFtk4yXy2COrX1TnAQ)
 
-Last Update on: August the 16th 2023
+Last Update on: August the 19th 2023
 
-### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md)
-
+### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md), [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
 ## [Upcoming Release 23.1.1](docs/Release-23.1.md)
 __cgV19 Release 23.1.1 is in the pipeline. It has its focus on cartridges__
 
