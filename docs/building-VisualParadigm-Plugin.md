@@ -78,7 +78,7 @@ into __Visual Paradigm__.
 ![vp-openFirstProject.png](images%2Fvp-openFirstProject.png)
 
 You may have to click on the red __X__ to close the selection
-dialog.
+dialog or on any diagram symbol.
 
 ![vp-projectOpend.png](images%2Fvp-projectOpend.png)
 
