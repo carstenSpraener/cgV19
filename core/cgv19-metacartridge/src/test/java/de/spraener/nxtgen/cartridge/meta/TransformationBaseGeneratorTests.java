@@ -17,19 +17,21 @@ public class TransformationBaseGeneratorTests extends AbstractOOModelTest {
             import de.spraener.nxtgen.oom.StereotypeHelper;
             import de.spraener.nxtgen.oom.model.*;
             import de.spraener.nxtgen.annotations.*;
-                        
+            
+            /*            
             @CGV19Transformation(
                     requiredStereotype = "null",
                     operatesOn = {{MODEL_ELEMENT}}
             )
-            public abstract class ATransformationBase implements de.spraener.nxtgen.Transformation {
+            */
+            public abstract class ATransformation implements de.spraener.nxtgen.Transformation {
                         
                 @Override
                 public void doTransformation(ModelElement element) {
             """;
 
     private TransformationBaseGenerator uut = new TransformationBaseGenerator();
-    private StereotypeImpl stGen = new StereotypeImpl(MetaCartridge.STEREOTYPE_TRANSFORMATION);
+    private StereotypeImpl stGen = new StereotypeImpl(MetaCartridge.STEREOTYPE_TRANSFORMATION+"Base");
 
     @Before
     public void setup() {

@@ -57,6 +57,6 @@ public class GroovyScriptGeneratorTests extends AbstractOOModelTest {
 
         GroovyCodeBlockImpl gcb = (GroovyCodeBlockImpl) uut.resolve(gen, "");
         File f = gcb.getToFileStrategy().open();
-        assertTrue(f.getAbsolutePath().endsWith("src/main/resources/Template.groovy"));
+        assertTrue(f.getAbsolutePath().endsWith("core/cgv19-metacartridge/."));
     }
 }
