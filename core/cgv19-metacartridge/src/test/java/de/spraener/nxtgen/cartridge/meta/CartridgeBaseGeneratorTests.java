@@ -15,7 +15,7 @@ public class CartridgeBaseGeneratorTests extends AbstractOOModelTest {
             //THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
             package pkg;
                         
-            import de.spraener.nxtgen.Cartridge;
+            import de.spraener.nxtgen.cartridges.AnnotatedCartridgeImpl;
             import de.spraener.nxtgen.CodeGeneratorMapping;
             import de.spraener.nxtgen.Transformation;
             import de.spraener.nxtgen.model.Model;
@@ -26,7 +26,7 @@ public class CartridgeBaseGeneratorTests extends AbstractOOModelTest {
             import java.util.List;
             import java.util.ArrayList;
                         
-            public class ACgv19Cartridge implements Cartridge {
+            public class ACgv19Cartridge extends AnnotatedCartridgeImpl {
                         
                 @Override
                 public String getName() {
@@ -44,7 +44,7 @@ public class CartridgeBaseGeneratorTests extends AbstractOOModelTest {
     public static final String EMPTY_TRANSFORMATION_MAPPING = """
                 @Override
                 public List<Transformation> getTransformations() {
-                    List<Transformation> result = new ArrayList<>();
+                    List<Transformation> result = super.getTransformations();
                         
                     return result;
                 }
@@ -58,6 +58,7 @@ public class CartridgeBaseGeneratorTests extends AbstractOOModelTest {
     public static final String GENERATOR_MAPPING_END = """
                         
                     }
+            
                     return result;
                 }
             """;
@@ -89,13 +90,14 @@ public class CartridgeBaseGeneratorTests extends AbstractOOModelTest {
                 .contains(OVERWRITEABLE_MAPPING_METHOD)
                 .contains("""
                                     if( StereotypeHelper.hasStereotype(me, "AStereoType") ) {
+                                        CodeGeneratorMapping mapping = null;
                                         if( me instanceof MClass tME ) {
-                                            CodeGeneratorMapping mapping = createMapping(tME, "AStereoType");
-                                            if (mapping != null) {
-                                                result.add(mapping);
-                                            } else {
-                                                result.add(CodeGeneratorMapping.create(me, new pkg.ACgv19Cartridge()));
+                                            mapping = createMapping(tME, "AStereoType");
+                                            if (mapping == null) {
+                                                mapping = CodeGeneratorMapping.create(me, new pkg.ACgv19Cartridge());
                                             }
+                                            mapping.setStereotype("AStereoType");
+                                            result.add(mapping);
                                         }
                                     }
                         """)

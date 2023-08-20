@@ -5,7 +5,7 @@
 
 Last Update on: August the 19th 2023
 
-### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md), [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
+### Quick start: See [Getting-Started](docs/GettingStarted.md), [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
 ## [Upcoming Release 23.1.1](docs/Release-23.1.md)
 __cgV19 Release 23.1.1 is in the pipeline. It has its focus on cartridges__
 
