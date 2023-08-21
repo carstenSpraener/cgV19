@@ -123,7 +123,7 @@ public class CGV19 {
             String isModelLoader = l instanceof ModelLoader ? " (ModelLoader)" : "";
             System.out.printf("    * '%s'%s%n", l.getName(), isModelLoader);
         }
-        System.out.println("\nYou can choose one of these with the -d <CartridgeName> option.");
+        System.out.println("\nYou can choose one of these with the -c <CartridgeName> option.");
     }
 
     public static String getInstallationDir() {
