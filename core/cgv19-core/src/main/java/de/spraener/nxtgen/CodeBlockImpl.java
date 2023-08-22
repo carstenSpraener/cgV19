@@ -107,13 +107,17 @@ public class CodeBlockImpl implements CodeBlock {
      */
     @Override
     public void writeOutput(String workingDir) {
+        if( getToFileStrategy()==null ) {
+            NextGen.LOGGER.fine(String.format("No toFileStrategy set. Skipping generation of %s",this.getName()));
+            return;
+        }
         try {
             File outFile = getToFileStrategy().open();
             if (outFile.exists() && checkProtected(outFile)) {
                 return;
             }
             if( outFile.getParentFile() == null ){
-                NextGen.LOGGER.fine("missconfigured generator tries to open illegal file: "+this.getName());
+                NextGen.LOGGER.fine(String.format("missconfigured generator %s tries to open illegal file: '%s'", this.getName(), outFile.getAbsolutePath()));
                 return;
             }
             outFile.getParentFile().mkdirs();

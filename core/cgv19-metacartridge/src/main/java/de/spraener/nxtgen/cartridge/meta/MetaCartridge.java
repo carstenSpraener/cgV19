@@ -3,6 +3,7 @@ package de.spraener.nxtgen.cartridge.meta;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
+import de.spraener.nxtgen.annotations.CGV19Cartridge;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
@@ -12,7 +13,11 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Predicate;
 
+@CGV19Cartridge("MetaCartridge")
 public class MetaCartridge extends MetaCartridgeBase {
+
+    public static final String NAME = "MetaCartridge";
+
     public static final String STEREOTYPE_NAME = "Stereotype";
     public static final String STEREOTYPE_MODEL_ROOT = "ModelRoot";
     public static final String STEREOTYPE_ENUM = "StereotypeEnum";
@@ -28,6 +33,12 @@ public class MetaCartridge extends MetaCartridgeBase {
     public static final String TV_PRIORITY = "priority";
     public static final String STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION = "cgV19CartridgeServiceDefinition";
     public static final String TV_CARTRIDGE_CLASS = "cartridgeClass";
+
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
 
     @Override
     public List<Transformation> getTransformations() {
@@ -50,7 +61,7 @@ public class MetaCartridge extends MetaCartridgeBase {
         if (me instanceof MClass && ((MClass) me).hasStereotype(STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION)) {
             return CodeGeneratorMapping.create(me,new CartridgeServiceLocaterGenerator(
                     c -> c.setToFileStrategy(
-                            () -> new File("src/main/resources/META-INF/services/de.spraener.nxtgen.Cartridge")
+                            () -> new File(NextGen.getWorkingDir()+"/src/main/resources/META-INF/services/de.spraener.nxtgen.Cartridge")
                     )
             ));
         }

@@ -1,9 +1,9 @@
-// THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS
 package de.spraener.nxtgen.cartridge.meta;
 
 import java.util.function.Consumer;
 
 import de.spraener.nxtgen.CodeBlock;
+import de.spraener.nxtgen.CodeBlockImpl;
 import de.spraener.nxtgen.CodeGenerator;
 import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.java.JavaCodeBlock;
@@ -28,18 +28,17 @@ public class CartridgeServiceLocaterGenerator implements CodeGenerator {
 
     @Override
     public CodeBlock resolve(ModelElement element, String templateName) {
-        MClass me = (MClass)element;
-        JavaCodeBlock jcb = new JavaCodeBlock("src/main/java-gen", me.getPackage().getFQName(), me.getName());
-        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("CartridgeServiceLocaterGenerator", me, "/meta/CartridgeServiceLocaterTemplate.groovy");
-        jcb.addCodeBlock(gcb);
-
-        if( codeBlockModifiers!=null ) {
-            for (Consumer<CodeBlock> codeBlockModifier: this.codeBlockModifiers) {
-                codeBlockModifier.accept(jcb);
+        CodeBlockImpl genericCB = new CodeBlockImpl("ServiceLocator");
+        if( codeBlockModifiers!= null ) {
+            for(Consumer<CodeBlock> m : codeBlockModifiers ) {
+                m.accept(genericCB);
             }
         }
+        MClass mClass = ((MClass)element);
+        String catridgeClass = mClass.getTaggedValue(MetaCartridge.STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION, MetaCartridge.TV_CARTRIDGE_CLASS);
+        genericCB.println(catridgeClass);
+        return genericCB;
+        }
 
-        return jcb;
-    }
 }
 
