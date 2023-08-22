@@ -1,12 +1,10 @@
 package de.spraener.nxtgen.oom;
 
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
-import de.spraener.nxtgen.oom.model.MAssociation;
-import de.spraener.nxtgen.oom.model.MClass;
-import de.spraener.nxtgen.oom.model.MPackage;
-import de.spraener.nxtgen.oom.model.OOModel;
+import de.spraener.nxtgen.oom.model.*;
 
 import java.util.function.Consumer;
 
@@ -64,6 +62,43 @@ public class OOModelBuilder {
         return assoc;
     }
 
+    public static MClass createOperation(MClass mc, String name, String returnType, Consumer<MOperation>... modifiers) {
+        MOperation operation = mc.createOperation(name);
+        operation.setModel(mc.getModel());
+        operation.setType(returnType);
+        applyModifiers(operation, modifiers);
+        return mc;
+    }
+
+    public static MOperation addParameter(MOperation op, String name, String type, Consumer<MParameter>... modifiers) {
+        MParameter p = new MParameter(type);
+        p.setName(name);
+        p.setModel(op.getModel());
+        op.getParameters().add(p);
+        op.addChilds(p);
+        p.setParent(op);
+        applyModifiers(p, modifiers);
+        return op;
+    }
+
+    public static <T extends ModelElement> T  addStereotype(T me, String stName, String... taggedValueSpecs) {
+        StereotypeImpl sType = new StereotypeImpl(stName);
+        if( taggedValueSpecs!= null ) {
+            for( String tvSpec : taggedValueSpecs ) {
+                String[] keyValue = tvSpec.split("=");
+                if( keyValue.length != 2 ) {
+                    NextGen.LOGGER.warning("Illegal taggedvalue specification: "+tvSpec+". should by key=value");
+                    continue;
+                }
+                if( "<null>".equals(keyValue[1]) ) {
+                    keyValue[1] = null;
+                }
+                sType.setTaggedValue(keyValue[0], keyValue[1]);
+            }
+        }
+        me.getStereotypes().add(sType);
+        return me;
+    }
     private static void applyModifiers(Object obj, Consumer<? extends Object>[] modifiers) {
         if( modifiers != null ) {
             for( Consumer<? extends Object> modifier : modifiers ) {

@@ -15,10 +15,13 @@ public class StereotypeImpl extends StereotypeImplBase {
     }
     @Override
     public void setTaggedValue(String name, String value) {
-        TaggedValueImpl tv = new TaggedValueImpl();
-        tv.setName(name);
+        TaggedValueImpl tv = (TaggedValueImpl)getTaggedValues().stream().filter(v -> v.getName().equals(name)).findFirst().orElse(null);
+        if( tv == null ) {
+            tv = new TaggedValueImpl();
+            tv.setName(name);
+            super.getTaggedValues().add(tv);
+        }
         tv.setValue(value);
-        super.getTaggedValues().add(tv);
     }
 
     @Override
@@ -29,5 +32,13 @@ public class StereotypeImpl extends StereotypeImplBase {
             }
         }
         return null;
+    }
+
+    public StereotypeImpl removeTaggedValue(String name) {
+        TaggedValue tv = getTaggedValues().stream().filter( v -> v.getName().equals(name)).findFirst().orElse(null);
+        if( tv!=null ) {
+            getTaggedValues().remove(tv);
+        }
+        return this;
     }
 }

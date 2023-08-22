@@ -52,6 +52,7 @@ dependencies {
     implementation project(':cgv19-restcartridge')
     implementation project(':cgv19-javalin')
     implementation project(':cgv19-angular')
+    implementation project(':cgv19-symfony')
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'

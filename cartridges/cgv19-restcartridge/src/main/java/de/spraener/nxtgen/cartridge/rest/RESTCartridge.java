@@ -55,9 +55,8 @@ public class RESTCartridge extends  RESTCartridgeBase {
                 )));
             } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new ApiControllerGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new ApiControllerBaseGenerator(
-                        cb -> ((JavaCodeBlock)cb).setClassName(me.getName()+"Base")
-                )));
+            } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName()+"Base", me) ) {
+                result.add(CodeGeneratorMapping.create(me, new ApiControllerBaseGenerator()));
             } else if( hasStereotype(RESTStereotypes.IMPL.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
             } else if( hasStereotype(RESTStereotypes.ACTIVITYIMPL.getName(), me) ) {

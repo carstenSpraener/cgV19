@@ -6,7 +6,9 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -134,12 +136,17 @@ public class NextGen implements Runnable {
 
     public void run() {
         try {
-            String fqWorkingDir = new File(getWorkingDir()).getAbsolutePath();
+            File rootDir = new File(getWorkingDir());
+            boolean rootDirIsEmpty = rootDir.list().length==0;
+            String fqWorkingDir = rootDir.getAbsolutePath();
             LOGGER.info(() -> "starting codegen in working dir " + fqWorkingDir + " on model file " + modelURI);
             for (Cartridge c : loadCartridges()) {
                 if (cartridgeNames.isEmpty() || cartridgeNames.contains(c.getName())) {
                     List<Model> models = loadModels(this.modelURI);
                     for (Model m : models) {
+                        if( rootDirIsEmpty && c instanceof OnEmptyRootDir pcl ) {
+                            pcl.onEmptyRootDir(this, rootDir, m);
+                        }
                         runTransformations(m, c);
                         for (CodeBlock cb : runCodeGenerators(c, m)) {
                             cb.writeOutput(getWorkingDir());
@@ -158,6 +165,25 @@ public class NextGen implements Runnable {
                 scheduledSubRuns.remove(0).run();
             }
         }
+    }
+
+    public void executeCommand(File dir, Consumer<ProcessBuilder> processBuilderModifier, String... cmdAndArgs) throws IOException, InterruptedException {
+            ProcessBuilder pb = new ProcessBuilder(cmdAndArgs);
+            pb.directory(dir.getAbsoluteFile());
+            if( processBuilderModifier!=null ) {
+                processBuilderModifier.accept(pb);
+            }
+            Process p = pb.start();
+            Scanner s = new Scanner(p.getInputStream());
+            StringBuilder text = new StringBuilder();
+            while (s.hasNextLine()) {
+                NextGen.LOGGER.info(s.nextLine());
+            }
+            s.close();
+            int result = p.waitFor();
+            if( result != 0 ) {
+                throw new RuntimeException("Could not initialize new symfony project");
+            }
     }
 
     public static String getWorkingDir() {
