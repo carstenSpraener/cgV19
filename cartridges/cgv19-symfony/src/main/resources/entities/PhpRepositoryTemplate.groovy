@@ -1,17 +1,17 @@
-package entity
+package entites
 
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
 import de.spraener.nxtgen.ProtectionStrategie
-import de.spraener.nxtgen.oom.model.MAttribute
 import de.spraener.nxtgen.oom.model.MClass
+import de.spraener.nxtgen.php.PhpHelper
 
 def pkgName = "App\\Repository";
 def cName = modelElement.name;
-def dataType = de.spraener.nxtgen.cartridge.rest.php.PhpHelper.toClassName(modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'dataType'));
+def dataType = PhpHelper.toClassName(modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'dataType'));
 
 def generateSetterList() {
     MClass mc = (MClass) modelElement;
-    attrList = "${de.spraener.nxtgen.cartridge.rest.php.PhpHelper.toClassName(modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'attrList'))}";
+    attrList = "${PhpHelper.toClassName(modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'attrList'))}";
     String[] attrs = attrList.split(";");
     String result = "";
     for (String attr : attrs) {
@@ -23,7 +23,7 @@ def generateSetterList() {
 
 def phpAttrList() {
     MClass mc = (MClass) modelElement;
-    attrList = "${de.spraener.nxtgen.cartridge.rest.php.PhpHelper.toClassName(modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'attrList'))}";
+    attrList = "${PhpHelper.toClassName(modelElement.getTaggedValue(RESTStereotypes.REPOSITORY.name, 'attrList'))}";
     String[] attrs = attrList.split(";");
     String result = "";
     for (String attrName : attrs) {
@@ -47,6 +47,8 @@ use Doctrine\\ORM\\EntityManagerInterface;
 use Doctrine\\Persistence\\ManagerRegistry;
 
 /**
+ * @extends ServiceEntityRepository<${dataType}>
+ *
  * @method ${dataType}|null find(\$id, \$lockMode = null, \$lockVersion = null)
  * @method ${dataType}|null findOneBy(array \$criteria, array \$orderBy = null)
  * @method ${dataType}[]    findAll()
@@ -57,35 +59,16 @@ class ${cName} extends ServiceEntityRepository {
     private \$manager;
 
     public function __construct(ManagerRegistry \$registry, EntityManagerInterface \$manager) {
-        parent::__construct(\$registry, User::class);
+        parent::__construct(\$registry, ${dataType}::class);
         \$this->manager = \$manager;
-    }
-
-    public function saveUser(\$entity): ${dataType} {
-        \$newEntity = \$this->manager->persist(\$entity);
-        \$this->manager->flush();
-
-        return \$newEntity;
-    }
-
-    public function update${dataType}(${dataType} \$entity): ${dataType} {
-        \$this->manager->persist(\$entity);
-        \$this->manager->flush();
-
-        return \$entity;
     }
 
     public function findLike(\$property, \$value): array {
         return \$this->createQueryBuilder('e')
-            ->andWhere('e.' . \$property . ' like :value')
-            ->setParameter('value', \$value . '%')
+            ->andWhere('e.' . \$property . ' like :\$property')
+            ->setParameter('\$property', \$value . '%')
             ->getQuery()
             ->execute();
-    }
-
-    public function remove${dataType}(${dataType} \$entity) {
-        \$this->manager->remove(\$entity);
-        \$this->manager->flush();
     }
 }
 """

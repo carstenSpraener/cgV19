@@ -1,0 +1,138 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+  mPackage {
+    name 'de.spraener.nxtgen.symfony'
+    documentation """"""
+    id 'Sd6zmFGGAqAACjXl'
+    metaType 'Package'
+    mClass {  //Exported by ClassExporterBase
+      name 'SymfonyCartridge'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:6guzmFGGAqAACjX7'
+      metaType 'Class'
+      stereotype 'cgV19Cartridge'
+    }
+    mPackage {  //Exported by PackageExporterBase
+      name 'stereotypes'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS'
+      metaType 'Package'
+      mClass {
+        stereotype 'Stereotype'
+        name 'SymfonyApp'
+        documentation """A package marked with this stereotype creates a symfony project under this package. With the taggedValue "requiresList" you can specify a comma seperated list of requirements to be installed with composer. For example: 'make, twig'"""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:JG_qWFGGAqAACjY_'
+        metaType 'Stereotype'
+        mAttribute {
+          typeID 0
+          type 'String'
+          name 'requiresList'
+          documentation """"""
+          id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:JG_qWFGGAqAACjY_$2tOaWFGGAqAACjZh$OtOaWFGGAqAACjZi'
+          metaType 'TaggedValueDefinition'
+        }
+      }
+    }
+    mPackage {  //Exported by PackageExporterBase
+      name 'entities'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:.Ct4eFGGAqAACjli'
+      metaType 'Package'
+      mClass {  //Exported by ClassExporterBase
+        name 'PhpEntityGenerator'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:.Ct4eFGGAqAACjli:P0ieOuGGAqACRAnQ'
+        metaType 'Class'
+        stereotype 'CodeGenerator', {
+          taggedValue 'requiredStereotype', 'Entity'
+          taggedValue 'outputType', 'PHP'
+          taggedValue 'generatesOn', 'MClass'
+          taggedValue 'outputTo', 'src'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'PhpRepositoryGenerator'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:.Ct4eFGGAqAACjli:P0ieOuGGAqACRAnR'
+        metaType 'Class'
+        stereotype 'CodeGenerator', {
+          taggedValue 'requiredStereotype', 'Repository'
+          taggedValue 'outputType', 'PHP'
+          taggedValue 'generatesOn', 'MClass'
+          taggedValue 'outputTo', 'src-gen'
+        }
+      }
+    }
+    mPackage {  //Exported by PackageExporterBase
+      name 'controller'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:Of94eFGGAqAACjl1'
+      metaType 'Package'
+      mClass {  //Exported by ClassExporterBase
+        name 'PhpControllerGenerator'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:Of94eFGGAqAACjl1:gMieOuGGAqACRAnX'
+        metaType 'Class'
+        stereotype 'CodeGenerator', {
+          taggedValue 'requiredStereotype', 'RESTController'
+          taggedValue 'outputType', 'PHP'
+          taggedValue 'generatesOn', 'MClass'
+          taggedValue 'outputTo', 'src'
+        }
+      }
+      mClass {  //Exported by ClassExporterBase
+        name 'PhpControllerBaseGenerator'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:Of94eFGGAqAACjl1:5bnheFGGAqAACju1'
+        metaType 'Class'
+        stereotype 'CodeGenerator', {
+          taggedValue 'requiredStereotype', 'RESTControllerBase'
+          taggedValue 'outputType', 'PHP'
+          taggedValue 'generatesOn', 'MClass'
+          taggedValue 'outputTo', 'src'
+        }
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'BaseControllerForRESTController'
+      documentation """Create a Base-Controller for the RESTController with the GeneratorGap Transformation and moves the BaseController into the Base sub package."""
+      id 'Sd6zmFGGAqAACjXl:HbVJeFGGAqAACjxU'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'RESTController'
+        taggedValue 'priority', '0'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'EnsureRepositoryForControlledEntity'
+      documentation """Ensures that there is a <<Repository>> for every Entitie, that is referenced by a <<ControlledEntity>> dependency."""
+      id 'Sd6zmFGGAqAACjXl:5UYdeFGGAqAACjy_'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'RESTController'
+        taggedValue 'priority', '0'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'SymfonyStereotypes'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:Z_udxFGGAqAACj3z'
+      metaType 'Class'
+      stereotype 'StereotypeEnum'
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'PhpEnsureEntityDefinitions'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:9wQxFFGGAqAACj5Y'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'Entity'
+        taggedValue 'priority', '0'
+      }
+    }
+  }
+}

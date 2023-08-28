@@ -1,8 +1,11 @@
+package controller
+
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
+import de.spraener.nxtgen.cartridge.rest.cntrl.ApiControllerComponent
 
 def getDataType(me) {
-    def fqName= me.getTaggedValue(RESTStereotypes.RESTCONTROLLER.name, "dataType");
+    def fqName= ApiControllerComponent.getDataType(me)
     if( fqName == null ) {
         return me.name;
     }
