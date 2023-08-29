@@ -22,12 +22,13 @@ namespace App\\Controller;
 
 use App\\Controller\\Base\\${eName}ControllerBase;
 use App\\Repository\\${eName}Repository;
+use Doctrine\\ORM\\EntityManagerInterface;
 
 class ${eName}Controller extends ${eName}ControllerBase {
     private \$classRepository;
 
-    public function __construct(${eName}Repository \$classRepository) {
-        parent::__construct(\$classRepository);
+    public function __construct(${eName}Repository \$classRepository, EntityManagerInterface \$manager ) {
+        parent::__construct(\$classRepository, \$manager);
     }
 }
 """

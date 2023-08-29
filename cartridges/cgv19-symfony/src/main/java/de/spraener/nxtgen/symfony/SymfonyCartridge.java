@@ -3,21 +3,19 @@ package de.spraener.nxtgen.symfony;
 import de.spraener.nxtgen.*;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
-import de.spraener.nxtgen.cartridge.rest.transformations.EnsureEntityDefinitionsTransformation;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
 import de.spraener.nxtgen.oom.StereotypeHelper;
-import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.php.PhpFileStrategy;
 import de.spraener.nxtgen.symfony.controller.PhpControllerBaseGenerator;
 import de.spraener.nxtgen.symfony.entities.PhpRepositoryGenerator;
+import de.spraener.nxtgen.symfony.php.PhpCodeHelper;
 
 import java.io.File;
-import java.util.List;
 
 @CGV19Cartridge("Symfony")
 public class SymfonyCartridge extends SymfonyCartridgeBase implements OnEmptyRootDir, AfterEmptyDir {
@@ -43,6 +41,28 @@ public class SymfonyCartridge extends SymfonyCartridgeBase implements OnEmptyRoo
         if( me instanceof MClass mc && RESTStereotypes.REPOSITORY.getName().equals(stereotypeName) ) {
             return CodeGeneratorMapping.create(me, new PhpRepositoryGenerator(
                     cb -> cb.setToFileStrategy( new PhpFileStrategy("Repository", mc.getName()+".php"))
+            ));
+        }
+
+        if( me instanceof MClass mc && SymfonyStereotypes.TWIGCOMPONENT.getName().equals(stereotypeName) ) {
+            return CodeGeneratorMapping.create(me, new TwigComponentGenerator(
+                    cb -> cb.setToFileStrategy(new TwigToFileStrtegy(mc, "components"))
+            ));
+        }
+
+        if( me instanceof MClass mc && SymfonyStereotypes.FORMTYPECOMPONENT.getName().equals(stereotypeName) ) {
+            return CodeGeneratorMapping.create(me, new FormTypeComponentGenerator(
+                    cb -> cb.setToFileStrategy(new PhpFileStrategy(
+                            PhpCodeHelper.toPhpOutputDir(mc), mc.getName()+".php")
+                    )
+            ));
+        }
+
+        if( me instanceof MClass mc && SymfonyStereotypes.FORMTYPECOMPONENTBASE.getName().equals(stereotypeName) ) {
+            return CodeGeneratorMapping.create(me, new FormTypeComponentBaseGenerator(
+                    cb -> cb.setToFileStrategy(new PhpFileStrategy(
+                            PhpCodeHelper.toPhpOutputDir(mc), mc.getName()+".php")
+                    )
             ));
         }
 

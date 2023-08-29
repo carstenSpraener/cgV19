@@ -247,7 +247,7 @@ codeTarget.inContext("ENTITY", modelElement,
         ct -> ct.getSection(PhpSections.CLASS_DECLARATION)
                 .getFirstSnippetForAspect(PhpClassFrameTargetCreator.CLAZZ_FRAME)
                 .insertBefore(new CodeBlockSnippet(
-"""#[ORM\\Entity(repositoryClass: ${cName}Repository::class)]
+"""#[ORM\\Entity()]
 """
                 )),
         ct -> ct.getSection(PhpSections.METHODS)

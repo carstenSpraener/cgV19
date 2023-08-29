@@ -33,6 +33,49 @@ ModelDSL.make {
           metaType 'TaggedValueDefinition'
         }
       }
+      mClass {
+        stereotype 'Stereotype'
+        name 'PhpPackage'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:igsuvFGD.AAAAQvu'
+        metaType 'Stereotype'
+        mAttribute {
+          typeID 0
+          type 'String'
+          name 'namespace'
+          documentation """"""
+          id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:igsuvFGD.AAAAQvu$KgsuvFGD.AAAAQvv$qgsuvFGD.AAAAQvw'
+          metaType 'TaggedValueDefinition'
+        }
+      }
+      mClass {
+        stereotype 'Stereotype'
+        name 'TwigComponent'
+        documentation """Marks a class to generate a twig component from the attributes in the class."""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:qCCpvFGD.AAAAQ3_'
+        metaType 'Stereotype'
+      }
+      mClass {
+        stereotype 'Stereotype'
+        name 'PhpComponent'
+        documentation """Marks a class as a Component for a Twig-Component with the attributes of the class."""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:esCpvFGD.AAAAQ3.'
+        metaType 'Stereotype'
+      }
+      mClass {
+        stereotype 'Stereotype'
+        name 'FormTypeComponent'
+        documentation """Marks a class to generate a formtype component from the attributes in the class."""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:LtLYglGD.AAAAQ58'
+        metaType 'Stereotype'
+      }
+      mClass {
+        stereotype 'Stereotype'
+        name 'FormTypeComponentBase'
+        documentation """Internal Stereotype: Marks a class to generate a formtype component base-class from the attributes in the class."""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:n7lEglGD.AAAAQ7z'
+        metaType 'Stereotype'
+      }
     }
     mPackage {  //Exported by PackageExporterBase
       name 'entities'
@@ -132,6 +175,101 @@ ModelDSL.make {
         taggedValue 'transformedMetaType', 'MClass'
         taggedValue 'requiredStereotype', 'Entity'
         taggedValue 'priority', '0'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'SingletonClass'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p'
+      metaType 'Class'
+      mOperation {  //Exported by OperationExporterBase
+        name 'SingletonClass'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p$8a3RvFGD.AAAAQ1q'
+        metaType 'Operation'
+      }
+      mAttribute {  //Exported by AttributeExporterBase
+        name '_instance'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p$pG3RvFGD.AAAAQ1s'
+        metaType 'Attribute'
+        type 'SingletonClass'
+        visibility 'private'
+        multiplicity 'Unspecified'
+      }
+      mOperation {  //Exported by OperationExporterBase
+        name 'instance'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p$Em3RvFGD.AAAAQ1u'
+        metaType 'Operation'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'ComponentsForEntity'
+      documentation """Creates a set of components for each entity. The components are:
+
+* <<Entity>>LgViewComponent
+* <<Entity>>SmViewComponent
+* <<Entity>>FormTypeComponent
+* <<Entity>>RowComponent
+
+For viewing, editing and display in (table) row. The ViewComponents are in a Large (LG) with all attributes and in a small (Sm) format. The Sm Component only contains the fields with detail==false.
+
+Each Component gets the stereotypes <<TwigComponent>>, <<FormTypeComponent>> and <<PhpComponent>>"""
+      id 'Sd6zmFGGAqAACjXl:IZfRvFGD.AAAAQ17'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'Entity'
+        taggedValue 'priority', '5'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'TwigComponentGenerator'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:mcYJvFGD.AAAAQ2b'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'TwigComponent'
+        taggedValue 'outputType', 'Other'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'other'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'PhpComponentGenerator'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:g8WJvFGD.AAAAQ27'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'PhpComponent'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'FormTypeComponentGenerator'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:06kEglGD.AAAAQ6W'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'FormTypeComponent'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'FormTypeComponentBaseGenerator'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:JfKEglGD.AAAAQ6y'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'FormTypeComponentBase'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src-gen'
       }
     }
   }

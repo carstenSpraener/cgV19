@@ -26,6 +26,7 @@ namespace App\\Controller\\Base;
 
 use App\\Entity\\${eName};
 use App\\Repository\\${eName}Repository;
+use Doctrine\\ORM\\EntityManagerInterface;
 use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;
 use Symfony\\Component\\HttpFoundation\\JsonResponse;
 use Symfony\\Component\\HttpFoundation\\Request;
@@ -35,7 +36,10 @@ use Symfony\\Component\\Routing\\Annotation\\Route;
 
 class ${modelElement.getName()} extends AbstractController {
 
-    public function __construct(private ${eName}Repository \$repository) {
+    public function __construct(
+        private ${eName}Repository \$repository,
+        private EntityManagerInterface \$manager
+    ) {
     }
 
     #[Route('${route}/ping', name: '${routeNamePrefix}ping', methods: ['GET'])]
@@ -134,11 +138,9 @@ class ${modelElement.getName()} extends AbstractController {
         );
     }
 
-    public function save${eName}(${eName} \$entity): ${eName} {
+    public function save${eName}(${eName} \$entity) {
         \$newEntity = \$this->manager->persist(\$entity);
         \$this->manager->flush();
-
-        return \$newEntity;
     }
 
     public function update${eName}(${eName} \$entity): ${eName} {

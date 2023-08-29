@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.symfony.php;
 
+import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.MAssociation;
@@ -92,5 +93,41 @@ public class PhpCodeHelper {
             return "DateTime";
         }
         return type;
+    }
+
+    public static String readLabel(MAttribute mAttribute) {
+        String label = de.spraener.nxtgen.oom.cartridge.JavaHelper.firstToUpperCase(mAttribute.getName());
+        if (StereotypeHelper.hasStereotype(mAttribute, RESTStereotypes.PERSISTENTFIELD.getName())) {
+            String modelLabel = mAttribute.getTaggedValue(RESTStereotypes.PERSISTENTFIELD.getName(), "label");
+            if (modelLabel != null && !"".equals(modelLabel)) {
+                label = modelLabel;
+            }
+        }
+        return label;
+    }
+
+    public static String toFormTypa(MAttribute mAttribute) {
+        String type = toPhpType(mAttribute);
+        switch (type) {
+            case "int":
+                return "IntegerType::class";
+            case "DateTime":
+                return "DateType::class";
+            default:
+                return "TextType::class";
+        }
+    }
+
+    public static String toPhpOutputDir(MClass mc) {
+        MPackage pkg = mc.getPackage();
+        String dirName = "";
+        while( !StereotypeHelper.hasStereotype(pkg, SymfonyStereotypes.SYMFONYAPP.getName())) {
+            dirName = firstToUpperCase(pkg.getName())+"/"+dirName;
+            pkg = (MPackage) pkg.getParent();
+        }
+        if(dirName.endsWith("/")) {
+            dirName = dirName.substring(0, dirName.length()-1);
+        }
+        return dirName;
     }
 }
