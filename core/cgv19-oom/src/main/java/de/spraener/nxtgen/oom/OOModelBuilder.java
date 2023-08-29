@@ -2,6 +2,7 @@ package de.spraener.nxtgen.oom;
 
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.ModelHelper;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.*;
@@ -57,6 +58,7 @@ public class OOModelBuilder {
         assoc.setName(fromName);
         assoc.setMultiplicity(multiplicity);
         assoc.setParent(from);
+        assoc.setType(to.getFQName());
         from.getAssociations().add(assoc);
         applyModifiers(assoc, modifiers);
         return assoc;
@@ -99,6 +101,7 @@ public class OOModelBuilder {
         me.getStereotypes().add(sType);
         return me;
     }
+
     private static void applyModifiers(Object obj, Consumer<? extends Object>[] modifiers) {
         if( modifiers != null ) {
             for( Consumer<? extends Object> modifier : modifiers ) {
@@ -116,5 +119,15 @@ public class OOModelBuilder {
                 )
         );
         return model.findClassByName("de.testapp."+className);
+    }
+
+    public static MDependency createDependency(ModelElement from, ModelElement to, Consumer<MDependency>...modifiers) {
+        MDependency dep = new MDependency();
+        dep.setModel(from.getModel());
+        dep.setParent(from);
+        dep.setProperty("target",ModelHelper.getFQName(to, "."));
+        applyModifiers(dep, modifiers);
+        dep.postDefinition();
+        return dep;
     }
 }

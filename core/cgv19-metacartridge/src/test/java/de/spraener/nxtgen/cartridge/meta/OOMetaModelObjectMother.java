@@ -5,7 +5,7 @@ import de.spraener.nxtgen.oom.model.*;
 
 import java.util.function.Consumer;
 
-public class OOMetaModelObjetctMother {
+public class OOMetaModelObjectMother {
     final OOModel oom = new OOModel();
 
     public OOModel getModel() {

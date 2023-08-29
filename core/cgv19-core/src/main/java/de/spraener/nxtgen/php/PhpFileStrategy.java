@@ -1,10 +1,6 @@
-package de.spraener.nxtgen.cartridge.rest.filestrategies;
+package de.spraener.nxtgen.php;
 
-import de.spraener.nxtgen.CodeBlock;
-import de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock;
 import de.spraener.nxtgen.filestrategies.ToFileStrategy;
-import de.spraener.nxtgen.model.ModelElement;
-import de.spraener.nxtgen.oom.model.MClass;
 
 import java.io.File;
 

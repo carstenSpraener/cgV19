@@ -4,8 +4,11 @@ import de.spraener.nxtgen.model.ModelElement;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public interface CodeSection {
+    String getId();
+    void setId(Object id);
     List<CodeSnippetRef> getSnippetsForAspect(Object aspect);
     CodeSnippetRef getLastSnippetForAspect(Object aspect);
     CodeSnippetRef getFirstSnippetForAspect(Object aspect);

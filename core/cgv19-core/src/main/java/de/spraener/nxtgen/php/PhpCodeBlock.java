@@ -1,4 +1,4 @@
-package de.spraener.nxtgen.cartridge.rest.php;
+package de.spraener.nxtgen.php;
 
 import de.spraener.nxtgen.CGV19Config;
 import de.spraener.nxtgen.CodeBlockImpl;
@@ -24,6 +24,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
         String phpProjectDir = getOutputPath();
         this.srcDir = phpProjectDir+"/"+srcDir;
     }
+
     @Override
     public void writeOutput(String workingDir) {
         try {
@@ -53,18 +54,14 @@ public class PhpCodeBlock extends CodeBlockImpl {
 
     public static String getOutputPath() {
         if( outputPath==null ) {
-            outputPath = CGV19Config.definitionOf("phpProjectDir", NextGen.getWorkingDir()+"/php");
-            if (outputPath == null || "".equals(outputPath)) {
-                outputPath = "./php";
-            }
-            LOGGER.fine("Writing PHP_Files to "+outputPath);
+            outputPath = CGV19Config.definitionOf("phpProjectDir", NextGen.getWorkingDir());
         }
         return outputPath;
     }
 
     private static String getOutputPath(String workingDir) {
         if( outputPath==null ) {
-            outputPath = CGV19Config.definitionOf("php_project_dir", NextGen.getWorkingDir()+"/src/php");
+            outputPath = CGV19Config.definitionOf("phpProjectDir", NextGen.getWorkingDir());
             if (outputPath == null || "".equals(outputPath)) {
                 outputPath = workingDir;
             }

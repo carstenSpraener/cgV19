@@ -7,6 +7,16 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractCodeSection implements CodeSection {
     Map<Object, List<CodeSnippet>> mySnippets = new LinkedHashMap<>();
+    private Object id = UUID.randomUUID();
+
+    @Override
+    public String getId() {
+        return this.id.toString();
+    }
+
+    public void setId(Object id) {
+        this.id = id;
+    }
 
     private List<CodeSnippet> getCodeSnippetList(Object key) {
         List<CodeSnippet> list = mySnippets.get(key);

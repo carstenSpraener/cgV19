@@ -142,10 +142,13 @@ public class NextGen implements Runnable {
             LOGGER.info(() -> "starting codegen in working dir " + fqWorkingDir + " on model file " + modelURI);
             for (Cartridge c : loadCartridges()) {
                 if (cartridgeNames.isEmpty() || cartridgeNames.contains(c.getName())) {
+                    if( rootDirIsEmpty && c instanceof OnEmptyRootDir oed ) {
+                        oed.onEmptyRootDir(this, rootDir);
+                    }
                     List<Model> models = loadModels(this.modelURI);
                     for (Model m : models) {
-                        if( rootDirIsEmpty && c instanceof OnEmptyRootDir pcl ) {
-                            pcl.onEmptyRootDir(this, rootDir, m);
+                        if( rootDirIsEmpty && c instanceof AfterEmptyDir aed ) {
+                            aed.afterEmptyRootDir(this, rootDir, m);
                         }
                         runTransformations(m, c);
                         for (CodeBlock cb : runCodeGenerators(c, m)) {
@@ -177,11 +180,12 @@ public class NextGen implements Runnable {
             Scanner s = new Scanner(p.getInputStream());
             StringBuilder text = new StringBuilder();
             while (s.hasNextLine()) {
-                NextGen.LOGGER.info(s.nextLine());
+                text.append(s.nextLine()).append("\n");
             }
             s.close();
             int result = p.waitFor();
             if( result != 0 ) {
+                System.err.println(text);
                 throw new RuntimeException("Could not initialize new symfony project");
             }
     }

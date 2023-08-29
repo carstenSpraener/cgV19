@@ -301,7 +301,7 @@ it can be handled in an angualr frontend."""
                   }
                 }
                 mClass {  //Exported by ClassExporterBase
-                  name 'EnsureEntityDefeinitionsTransformation'
+                  name 'EnsureEntityDefinitionsTransformation'
                   documentation """This transformation should run at the very last and ensures that all entities in the model will
 have all necessary definitions."""
                   id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:X0ieOuGGAqACRAnN'
@@ -326,30 +326,6 @@ have all necessary definitions."""
                   stereotype 'CodeGenerator', {
                     taggedValue 'requiredStereotype', 'Entity'
                     taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'PhpEntityGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:P0ieOuGGAqACRAnQ'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'Entity'
-                    taggedValue 'outputType', 'PHP'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'PhpRepositoryGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:P0ieOuGGAqACRAnR'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'Repository'
-                    taggedValue 'outputType', 'PHP'
                     taggedValue 'generatesOn', 'MClass'
                     taggedValue 'outputTo', 'src-gen'
                   }
@@ -399,18 +375,6 @@ have all necessary definitions."""
                   stereotype 'CodeGenerator', {
                     taggedValue 'requiredStereotype', 'RESTController'
                     taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'PhpControllerGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:gMieOuGGAqACRAnX'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'PhpControllerGenerator'
-                    taggedValue 'outputType', 'PHP'
                     taggedValue 'generatesOn', 'MClass'
                     taggedValue 'outputTo', 'src-gen'
                   }
@@ -834,6 +798,20 @@ have all necessary definitions."""
         id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB$OWSCC5GD.AAAAROY$qx2CC5GD.AAAARO2'
         metaType 'TaggedValueDefinition'
       }
+    }
+    mClass {
+      stereotype 'Stereotype'
+      name 'ControlledEntity'
+      documentation """A denpendcy between a << RESTController >> and a << Entity >> makes the Controller a CRUD-Controller for the target entity"""
+      id 'C0ieOuGGAqACRAma:_GW.eFGGAqAACjsx'
+      metaType 'Stereotype'
+    }
+    mClass {
+      stereotype 'Stereotype'
+      name 'RESTControllerBase'
+      documentation """"""
+      id 'C0ieOuGGAqACRAma:omXReFGGAqAACjvl'
+      metaType 'Stereotype'
     }
   }
 }
