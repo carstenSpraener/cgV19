@@ -1,0 +1,69 @@
+<?php
+// {{GENERATED_LINE}}
+namespace App\Controller\Service;
+
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+trait ControllerServiceTrait {
+
+    abstract public function getRepository(): ServiceEntityRepository;
+    public function findByRequestQuery(Request $request) {
+        $queryBuilder = $this->getRepository()->createQueryBuilder('e');
+        $firstWhere = true;
+        foreach($request->query->keys() as $key ) {
+            $value = $request->query->get($key);
+            if( $key==='order_by') {
+                $queryBuilder->orderBy($value, 'ASC');
+                continue;
+            }
+            if( $key==='order_by_desc') {
+                $queryBuilder->orderBy($value, 'DESC');
+                continue;
+            }
+            $operator = '=';
+            if( str_ends_with($key, '_like') ) {
+                $operator = 'like';
+                $key = stristr($key, '_like', true);
+                $value = '%'.$value.'%';
+            }
+            if( str_ends_with($key, '_gt') ) {
+                $operator = '>';
+                $key = stristr($key, '_gt', true);
+            }
+            if( str_ends_with($key, '_lt') ) {
+                $operator = '<';
+                $key = stristr($key, '_lt', true);
+            }
+            if( $firstWhere ) {
+                $queryBuilder->where('e.'.$key.' '.$operator.' :'.$key);
+                $firstWhere = false;
+            } else {
+                $queryBuilder->andWhere('e.'.$key.' '.$operator.' :'.$key);
+            }
+            $queryBuilder->setParameter($key, $value);
+        }
+        return $queryBuilder->getQuery()->execute();
+    }
+
+    public function listToJsonResponse($entityList): JsonResponse {
+        if( count($entityList)===0 ) {
+            return new JsonResponse("{}", Response::HTTP_NO_CONTENT, [], true);
+        }
+
+        $dataList = [];
+        foreach( $entityList as $entity) {
+            $dataList[] = $entity->jsonSerialize();
+        }
+
+        return new JsonResponse('[' . implode(',', $dataList) . ']'
+            , Response::HTTP_OK, [], true
+        );
+    }
+
+    public function getAll() {
+        return $this->getRepository()->findAll();
+    }
+}

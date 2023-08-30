@@ -95,7 +95,7 @@ String generateORMMapping(OOModel model, MAssociation a) {
     String kind = "OneToOne";
     if( PhpCodeHelper.isOneToMany(a) ) {
         kind = "OneToMany"
-        return"    #[ORM\\${kind}(targetEntity: ${target.getName()}::class, mappedBy: '${mappedBy}')]\n"
+        return"    #[ORM\\${kind}(targetEntity: ${target.getName()}::class, mappedBy: '${mappedBy}', cascade: ['persist'])]\n"
     }
     if( PhpCodeHelper.isManyToOne(a) ) {
         kind = "ManyToOne"
@@ -104,11 +104,11 @@ String generateORMMapping(OOModel model, MAssociation a) {
     if( PhpCodeHelper.isManyToMany(a)) {
         kind = "ManyToMany"
         mapKind = "from".equals(a.getProperty("direction")) ? "mappedBy" : "inversedBy"
-        return"    #[ORM\\${kind}(targetEntity: ${target.getName()}::class, ${mapKind}: '${mappedBy}')]\n"
+        return"    #[ORM\\${kind}(targetEntity: ${target.getName()}::class, ${mapKind}: '${mappedBy}', cascade: ['persist'])]\n"
     }
     if( PhpCodeHelper.isOneToOne(a)) {
         kind = "OneToOne"
-        return"    #[ORM\\${kind}(targetEntity: ${target.getName()}::class, mappedBy: '${mappedBy}')]\n"
+        return"    #[ORM\\${kind}(targetEntity: ${target.getName()}::class, mappedBy: '${mappedBy}', cascade: ['persist'])]\n"
     }
     return "";
 }

@@ -12,6 +12,7 @@ import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.php.PhpFileStrategy;
 import de.spraener.nxtgen.symfony.controller.PhpControllerBaseGenerator;
+import de.spraener.nxtgen.symfony.controller.PhpServiceGenerator;
 import de.spraener.nxtgen.symfony.entities.PhpRepositoryGenerator;
 import de.spraener.nxtgen.symfony.php.PhpCodeHelper;
 
@@ -66,6 +67,24 @@ public class SymfonyCartridge extends SymfonyCartridgeBase implements OnEmptyRoo
             ));
         }
 
+
+        if( me instanceof MClass mc && SymfonyStereotypes.PHPCNTRLSERVICE.getName().equals(stereotypeName) ) {
+            return CodeGeneratorMapping.create(me, new PhpServiceGenerator(
+                    cb -> cb.setToFileStrategy(new PhpFileStrategy(
+                            PhpCodeHelper.toPhpOutputDir(mc), mc.getName()+".php")
+                    )
+            ));
+        }
+        if( me instanceof MClass mc && SymfonyStereotypes.PHPCNTRLSERVICETRAIT.getName().equals(stereotypeName) ) {
+            return  CodeGeneratorMapping.create(mc, new MustacheGenerator(
+                    "/mustache/ControllerServiceTrait.php.mustache",
+                    "src/Controller/Service/"+me.getName()+".php",
+                    (mElement, map) -> {
+                        map.put("GENERATED_LINE", ProtectionStrategieDefaultImpl.GENERATED_LINE);
+                    }
+                    )
+            );
+        }
         return null;
     }
 

@@ -57,7 +57,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
-        name 'PhpComponent'
+        name 'PhpCntrlService'
         documentation """Marks a class as a Component for a Twig-Component with the attributes of the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:esCpvFGD.AAAAQ3.'
         metaType 'Stereotype'
@@ -74,6 +74,20 @@ ModelDSL.make {
         name 'FormTypeComponentBase'
         documentation """Internal Stereotype: Marks a class to generate a formtype component base-class from the attributes in the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:n7lEglGD.AAAAQ7z'
+        metaType 'Stereotype'
+      }
+      mClass {
+        stereotype 'Stereotype'
+        name 'PhpComponent'
+        documentation """Marks a class as a Component for a Twig-Component with the attributes of the class."""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:aqW9YlGD.AAAAQyv'
+        metaType 'Stereotype'
+      }
+      mClass {
+        stereotype 'Stereotype'
+        name 'PhpCntrlServiceTrait'
+        documentation """Marks a single class as a ControllerServiceTrait used by all ControllerSerivce-Classes"""
+        id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:YuBzYlGD.AAAAQ1S'
         metaType 'Stereotype'
       }
     }
@@ -136,16 +150,17 @@ ModelDSL.make {
           taggedValue 'outputTo', 'src'
         }
       }
-    }
-    mClass {  //Exported by ClassExporterBase
-      name 'BaseControllerForRESTController'
-      documentation """Create a Base-Controller for the RESTController with the GeneratorGap Transformation and moves the BaseController into the Base sub package."""
-      id 'Sd6zmFGGAqAACjXl:HbVJeFGGAqAACjxU'
-      metaType 'Class'
-      stereotype 'Transformation', {
-        taggedValue 'transformedMetaType', 'MClass'
-        taggedValue 'requiredStereotype', 'RESTController'
-        taggedValue 'priority', '0'
+      mClass {  //Exported by ClassExporterBase
+        name 'PhpServiceGenerator'
+        documentation """"""
+        id 'Sd6zmFGGAqAACjXl:Of94eFGGAqAACjl1:l_P1YlGD.AAAAQup'
+        metaType 'Class'
+        stereotype 'CodeGenerator', {
+          taggedValue 'requiredStereotype', 'PhpCntrlService'
+          taggedValue 'outputType', 'PHP'
+          taggedValue 'generatesOn', 'MClass'
+          taggedValue 'outputTo', 'src'
+        }
       }
     }
     mClass {  //Exported by ClassExporterBase
@@ -270,6 +285,40 @@ Each Component gets the stereotypes <<TwigComponent>>, <<FormTypeComponent>> and
         taggedValue 'outputType', 'PHP'
         taggedValue 'generatesOn', 'MClass'
         taggedValue 'outputTo', 'src-gen'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'CntrlServiceForRESTController'
+      documentation """Creates a CntrlService for each RESTController in the sub package Service"""
+      id 'Sd6zmFGGAqAACjXl:_7U9YlGD.AAAAQyK'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'RESTController'
+        taggedValue 'priority', '0'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'CreateServiceTrait'
+      documentation """Creates a CntrlService for each RESTController in the sub package Service"""
+      id 'Sd6zmFGGAqAACjXl:IKsTYlGD.AAAAQ0E'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'RESTController'
+        taggedValue 'priority', '0'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'ControllerServiceTraitGenerator'
+      documentation """"""
+      id 'Sd6zmFGGAqAACjXl:A0T7YlGD.AAAAQ3S'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'PhpCntrlServiceTrait'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
       }
     }
   }
