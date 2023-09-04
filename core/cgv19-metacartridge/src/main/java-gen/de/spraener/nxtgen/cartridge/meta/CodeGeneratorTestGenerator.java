@@ -13,18 +13,18 @@ import de.spraener.nxtgen.annotations.*;
 
 /*
 @CGV19Generator(
-        requiredStereotype = "CodeGenerator",
+        requiredStereotype = "CodeGeneratorTest",
         operatesOn = MClass.class,
         outputType = OutputType.JAVA,
-        outputTo = OutputTo.SRC_GEN,
-        templateName = "/CodeGenerator.groovy",
+        outputTo = OutputTo.OTHER,
+        templateName = "/meta/CodeGeneratorTestTemplate.groovy",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
 */
-public class CodeGeneratorGenerator implements CodeGenerator {
+public class CodeGeneratorTestGenerator implements CodeGenerator {
     private Consumer<CodeBlock>[] codeBlockModifiers;
 
-    public CodeGeneratorGenerator(Consumer<CodeBlock>... codeBlockModifiers) {
+    public CodeGeneratorTestGenerator(Consumer<CodeBlock>... codeBlockModifiers) {
         this.codeBlockModifiers = codeBlockModifiers;
     }
 
@@ -32,7 +32,7 @@ public class CodeGeneratorGenerator implements CodeGenerator {
     public CodeBlock resolve(ModelElement element, String templateName) {
         MClass me = (MClass)element;
         JavaCodeBlock jcb = new JavaCodeBlock("src/main/java-gen", me.getPackage().getFQName(), me.getName());
-        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("CodeGeneratorGenerator", me, "/CodeGenerator.groovy");
+        GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("CodeGeneratorTestGenerator", me, "/meta/CodeGeneratorTestTemplate.groovy");
         jcb.addCodeBlock(gcb);
 
         if( codeBlockModifiers!=null ) {

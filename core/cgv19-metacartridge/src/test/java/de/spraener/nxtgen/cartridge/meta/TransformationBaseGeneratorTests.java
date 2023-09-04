@@ -2,8 +2,8 @@ package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,7 +33,7 @@ public class TransformationBaseGeneratorTests extends AbstractOOModelTest {
     private TransformationBaseGenerator uut = new TransformationBaseGenerator();
     private StereotypeImpl stGen = new StereotypeImpl(MetaCartridge.STEREOTYPE_TRANSFORMATION+"Base");
 
-    @Before
+    @BeforeEach
     public void setup() {
         super.setup();
     }

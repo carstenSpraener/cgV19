@@ -1,20 +1,58 @@
 package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.Transformation;
+import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
+import de.spraener.nxtgen.oom.OOModelBuilder;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
 import de.spraener.nxtgen.oom.model.MClass;
+import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.oom.model.MUsage;
 import de.spraener.nxtgen.oom.model.OOModel;
 
 public class EnsureGeneratorDefinitionsTransformation extends EnsureGeneratorDefinitionsTransformationBase {
+    public static final String OO_MODEL_MOTHER = "OOModelMother";
+    private static MPackage rootPkg = null;
 
     @Override
     public void doTransformationIntern(MClass mc) {
         ensureCodeGeneratorDefinition(mc);
+        if( "MClass".equals(mc.getTaggedValue(MetaStereotypes.CODEGENERATOR.getName(), "generatesOn")) ) {
+            MClass modelMother = createOrFindModelMother(mc);
+            OOModelBuilder.createMClass(mc.getPackage(), mc.getName() + "Test",
+                    c -> OOModelBuilder.createStereotype(c, MetaStereotypes.CODEGENERATORTEST.getName()),
+                    c -> GeneratorGapTransformation.setOriginalClass(c, mc),
+                    c -> c.putObject(OO_MODEL_MOTHER, modelMother)
+            );
+        }
+    }
+
+    private MClass createOrFindModelMother(MClass mc) {
+        OOModel model = (OOModel)mc.getModel();
+        MPackage pkg = getRootPkg(model);
+        MClass modelMother = model.findClassByName(rootPkg.getFQName()+"."+OO_MODEL_MOTHER);
+        if( modelMother == null ) {
+            OOModelBuilder.createMClass(pkg, OO_MODEL_MOTHER,
+                    c -> OOModelBuilder.createStereotype(c, "ObjectModelMother")
+            );
+        }
+        return modelMother;
+    }
+
+    private static MPackage getRootPkg(OOModel model) {
+        if( rootPkg == null ) {
+            MClass cartridge = model.getClassesByStereotype(MetaStereotypes.CGV19CARTRIDGE.getName()).get(0);
+            if (cartridge != null) {
+                rootPkg = cartridge.getPackage();
+            } else {
+                rootPkg = (MPackage) model.getChilds().stream().filter(me -> me instanceof MPackage).findFirst().orElse(null);
+            }
+        }
+        return rootPkg;
     }
 
     private void ensureCodeGeneratorDefinition(MClass mc) {
@@ -52,5 +90,9 @@ public class EnsureGeneratorDefinitionsTransformation extends EnsureGeneratorDef
                         .setTaggedValue(MetaCartridge.TV_REQUIRED_STEREOTYPE, targetUsage.getName());
             }
         }
+    }
+
+    public static MClass getOOModelMother(MClass mc) {
+        return (MClass)mc.getObject(OO_MODEL_MOTHER);
     }
 }

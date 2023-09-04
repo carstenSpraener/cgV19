@@ -3,20 +3,20 @@ package de.spraener.nxtgen.cartridge.meta;
 import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GroovyScriptGeneratorTests extends AbstractOOModelTest {
     private GroovyScriptGenerator uut = new GroovyScriptGenerator();
     private StereotypeImpl stGen = new StereotypeImpl(MetaCartridge.STYPE_GROOVY_SCRIPT);
 
-    @Before
+    @BeforeEach
     public void setup() {
         super.setup();
         stGen.setTaggedValue(MetaCartridge.TV_SCRIPT_FILE, "/Template.groovy");

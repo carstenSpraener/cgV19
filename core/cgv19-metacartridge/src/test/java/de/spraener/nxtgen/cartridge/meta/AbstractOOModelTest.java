@@ -1,12 +1,13 @@
 package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.oom.model.OOModel;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public class AbstractOOModelTest {
     protected OOMetaModelObjectMother oomObjectMother;
     protected OOModel model;
-    @Before
+
+    @BeforeEach
     public void setup() {
         oomObjectMother = new OOMetaModelObjectMother();
         oomObjectMother.createDefaultOOModel();

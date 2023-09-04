@@ -1,9 +1,10 @@
 package de.spraener.nxtgen.cartridge.meta;
 
-import org.junit.Ignore;
-import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnnotationBasedMetaCartridgeTests {
     AnnotationBasedMetaCartridge uut = new AnnotationBasedMetaCartridge();
@@ -15,7 +16,7 @@ public class AnnotationBasedMetaCartridgeTests {
     }
 
     @Test
-    @Ignore("Annotated generators are mapped twice!")
+    @Disabled("Annotated generators are mapped twice!")
     public void testDefaultMappings() {
         MetaCartridgeGeneratorMappingTests.assertDefaultMappings(uut);
     }

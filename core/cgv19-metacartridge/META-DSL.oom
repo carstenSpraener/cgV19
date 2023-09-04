@@ -534,6 +534,59 @@ The meta cartridge will generate a GroovyTemplate as a template for implementati
                   id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:voV0V5GGAqAACBE.'
                   metaType 'Stereotype'
                 }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'TransformationTest'
+                  documentation """Internal Stereotype to generate a TestCase for each Transformation"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:iBXkBlGGAqAACQ8Z'
+                  metaType 'Stereotype'
+                  mAttribute {
+                    typeID 2
+                    type 'adhoc-enum'
+                    enumValues """
+                      MActivity
+                      MAttribute
+                      MClass
+                      MOperation
+                      MPackage
+"""
+                    name 'transformedMetaType'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:iBXkBlGGAqAACQ8Z$aBXkBlGGAqAACQ8a$aBXkBlGGAqAACQ8b'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    typeID 0
+                    type 'String'
+                    name 'requiredStereotype'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:iBXkBlGGAqAACQ8Z$aBXkBlGGAqAACQ8a$6BXkBlGGAqAACQ8c'
+                    metaType 'TaggedValueDefinition'
+                  }
+                  mAttribute {
+                    defaultValue """0"""
+                    typeID 5
+                    type 'integer'
+                    name 'priority'
+                    documentation """"""
+                    id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:iBXkBlGGAqAACQ8Z$aBXkBlGGAqAACQ8a$GBXkBlGGAqAACQ8d'
+                    metaType 'TaggedValueDefinition'
+                  }
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'CodeGeneratorTest'
+                  documentation """Internal Stereotype to generate a TestCase for each CodeGenerator"""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:cjYUBlGGAqAACQ80'
+                  metaType 'Stereotype'
+                }
+                mClass {
+                  stereotype 'Stereotype'
+                  name 'ObjectModelMother'
+                  documentation """ObjectModelMother is a Singleton for building the test model for the test classes."""
+                  id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:KPubl5GGAqAACBBV:MWprBlGGAqAACRlG'
+                  metaType 'Stereotype'
+                }
               }
               mClass {  //Exported by ClassExporterBase
                 name 'StereotypeDescriptorJsonGenerator'
@@ -556,6 +609,42 @@ The meta cartridge will generate a GroovyTemplate as a template for implementati
                   taggedValue 'transformedMetaType', 'MClass'
                   taggedValue 'requiredStereotype', 'StereotypeEnum'
                   taggedValue 'priority', '100'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'CodeGeneratorTestGenerator'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:0muIBlGGAqAACQ5m'
+                metaType 'Class'
+                stereotype 'CodeGenerator', {
+                  taggedValue 'requiredStereotype', 'CodeGeneratorTest'
+                  taggedValue 'outputType', 'Java'
+                  taggedValue 'generatesOn', 'MClass'
+                  taggedValue 'outputTo', 'other'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'TransformationTestGenerator'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:lbDIBlGGAqAACQ6X'
+                metaType 'Class'
+                stereotype 'CodeGenerator', {
+                  taggedValue 'requiredStereotype', 'TransformationTest'
+                  taggedValue 'outputType', 'Java'
+                  taggedValue 'generatesOn', 'MClass'
+                  taggedValue 'outputTo', 'other'
+                }
+              }
+              mClass {  //Exported by ClassExporterBase
+                name 'ObjectModelMotherGenerator'
+                documentation """"""
+                id 'FTbH6hGGAqAAAw0Y:OMieOuGGAqACRAoF:uMieOuGGAqACRAoG:eMieOuGGAqACRAoH:.MieOuGGAqACRAoI:BMieOuGGAqACRAoJ:PejrBlGGAqAACRll'
+                metaType 'Class'
+                stereotype 'CodeGenerator', {
+                  taggedValue 'requiredStereotype', 'ObjectModelMother'
+                  taggedValue 'outputType', 'Java'
+                  taggedValue 'generatesOn', 'MClass'
+                  taggedValue 'outputTo', 'other'
                 }
               }
             }

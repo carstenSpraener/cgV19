@@ -4,11 +4,11 @@ import de.spraener.nxtgen.*;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MetaCartridgeGeneratorMappingTests extends AbstractOOModelTest {
     private MetaCartridge uut = new MetaCartridge();
