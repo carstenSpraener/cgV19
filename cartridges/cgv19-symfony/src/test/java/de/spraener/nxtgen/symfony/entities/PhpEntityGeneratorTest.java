@@ -17,8 +17,8 @@ class PhpEntityGeneratorTest {
         PhpEntityGenerator uut = new PhpEntityGenerator();
         String code = uut.resolve(entity, "").toCode();
         Assertions.assertThat(code)
-                .contains("private $results;")
-                .contains("#[ORM\\OneToMany(targetEntity: Result::class, mappedBy: 'null')]")
+                .contains("private Collection $results;")
+                .contains("#[ORM\\OneToMany(targetEntity: Result::class, mappedBy: 'test', cascade: ['persist'])]")
         ;
     }
 }

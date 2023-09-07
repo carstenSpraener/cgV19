@@ -31,7 +31,7 @@ public class EnsureGeneratorDefinitionsTransformation extends EnsureGeneratorDef
         }
     }
 
-    private MClass createOrFindModelMother(MClass mc) {
+    private static MClass createOrFindModelMother(MClass mc) {
         OOModel model = (OOModel)mc.getModel();
         MPackage pkg = getRootPkg(model);
         MClass modelMother = model.findClassByName(rootPkg.getFQName()+"."+OO_MODEL_MOTHER);
@@ -93,6 +93,11 @@ public class EnsureGeneratorDefinitionsTransformation extends EnsureGeneratorDef
     }
 
     public static MClass getOOModelMother(MClass mc) {
-        return (MClass)mc.getObject(OO_MODEL_MOTHER);
+        MClass ooM = (MClass)mc.getObject(OO_MODEL_MOTHER);
+        if( ooM==null ) {
+            ooM = createOrFindModelMother(mc);
+            mc.putObject(OO_MODEL_MOTHER, ooM);
+        }
+        return ooM;
     }
 }

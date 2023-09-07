@@ -6,6 +6,7 @@ import de.spraener.nxtgen.model.ModelHelper;
 import de.spraener.nxtgen.oom.OOModelBuilder;
 import de.spraener.nxtgen.oom.model.MAssociation;
 import de.spraener.nxtgen.oom.model.MClass;
+import de.spraener.nxtgen.oom.model.OOModel;
 
 public class PhpEnsureEntityDefinitions extends PhpEnsureEntityDefinitionsBase {
 
@@ -26,6 +27,10 @@ public class PhpEnsureEntityDefinitions extends PhpEnsureEntityDefinitionsBase {
                         a -> a.setAssociationType("ManyToOne")
                 );
             }
+        }
+        MClass repository = ((OOModel)model).findClassByName(me.getFQName()+"Repository");
+        if( repository == null ) {
+            ResourceToEntity.createReporitoryForEntity(me);
         }
     }
 

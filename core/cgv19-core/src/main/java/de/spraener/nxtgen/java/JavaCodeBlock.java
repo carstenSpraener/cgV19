@@ -57,6 +57,10 @@ public class JavaCodeBlock extends CodeBlockImpl {
         return srcDir;
     }
 
+    public void setSrcDir(String srcDir) {
+        this.srcDir = srcDir;
+    }
+
     private String toFilePath() {
         return this.pkgName.replaceAll("\\.", "/")+"/"+this.className;
     }

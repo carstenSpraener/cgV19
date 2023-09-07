@@ -20,6 +20,7 @@ ModelDSL.make {
       metaType 'Package'
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Package'
         name 'SymfonyApp'
         documentation """A package marked with this stereotype creates a symfony project under this package. With the taggedValue "requiresList" you can specify a comma seperated list of requirements to be installed with composer. For example: 'make, twig'"""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:JG_qWFGGAqAACjY_'
@@ -35,6 +36,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Package'
         name 'PhpPackage'
         documentation """"""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:igsuvFGD.AAAAQvu'
@@ -50,6 +52,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'TwigComponent'
         documentation """Marks a class to generate a twig component from the attributes in the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:qCCpvFGD.AAAAQ3_'
@@ -57,6 +60,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'PhpCntrlService'
         documentation """Marks a class as a Component for a Twig-Component with the attributes of the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:esCpvFGD.AAAAQ3.'
@@ -64,6 +68,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'FormTypeComponent'
         documentation """Marks a class to generate a formtype component from the attributes in the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:LtLYglGD.AAAAQ58'
@@ -71,6 +76,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'FormTypeComponentBase'
         documentation """Internal Stereotype: Marks a class to generate a formtype component base-class from the attributes in the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:n7lEglGD.AAAAQ7z'
@@ -78,6 +84,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'PhpComponent'
         documentation """Marks a class as a Component for a Twig-Component with the attributes of the class."""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:aqW9YlGD.AAAAQyv'
@@ -85,6 +92,7 @@ ModelDSL.make {
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'PhpCntrlServiceTrait'
         documentation """Marks a single class as a ControllerServiceTrait used by all ControllerSerivce-Classes"""
         id 'Sd6zmFGGAqAACjXl:pkwaWFGGAqAACjZS:YuBzYlGD.AAAAQ1S'
@@ -211,6 +219,7 @@ ModelDSL.make {
         type 'SingletonClass'
         visibility 'private'
         multiplicity 'Unspecified'
+        typeModifier ''
       }
       mOperation {  //Exported by OperationExporterBase
         name 'instance'
@@ -320,6 +329,13 @@ Each Component gets the stereotypes <<TwigComponent>>, <<FormTypeComponent>> and
         taggedValue 'generatesOn', 'MClass'
         taggedValue 'outputTo', 'src'
       }
+    }
+    mDependency {  //Exported by DependencyExporterBase
+      name 'null'
+      documentation """"""
+      id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:NTVG9lGGAqAAAxG.'
+      metaType 'Dependency'
+      target 'DSL.de.spraener.nxtgen.cartridge.rest'
     }
   }
 }

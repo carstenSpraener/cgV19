@@ -26,6 +26,7 @@ String generateTaggedValuesJSON(List<MAttribute> attrs ) {
         sb.append( """        {
           "name": "${attr.getName()}",
           "type": "${attr.getType()}",
+          "defaultValue": "${attr.getProperty("defaultValue")}",
 """
         )
         String enumValues = attr.getProperty("enumValues")
@@ -34,6 +35,9 @@ String generateTaggedValuesJSON(List<MAttribute> attrs ) {
             boolean firstValue = true;
             for( String value: enumValues.split("\n")) {
                 value = value.trim()
+                if( "".equals(value) ) {
+                    continue;
+                }
                 if( !firstValue ) {
                     sb.append(",\n");
                 }
@@ -50,8 +54,13 @@ String generateTaggedValuesJSON(List<MAttribute> attrs ) {
 }
 
 String generateSTypeJSON(MClass sType ) {
+    String baseClass = sType.getProperty("baseClass");
+    if( baseClass == null ) {
+        baseClass = "Class";
+    }
     return """  {
     "name": "${sType.getName()}",
+    "baseClass": "${baseClass}",
     "taggedValues": [${generateTaggedValuesJSON(sType.getAttributes())}    ]
   }
 """

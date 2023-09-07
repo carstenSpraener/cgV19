@@ -24,7 +24,7 @@ public class LogicGeneratedTest {
         p.setName("pkg");
         p.setModel(m);
         MClass c = p.createMClass("ARessource");
-        c.addStereotypes(new StereotypeImpl(RESTStereotypes.RESSOURCE.getName()));
+        c.addStereotypes(new StereotypeImpl(RESTStereotypes.RESOURCE.getName()));
         c.setModel(m);
 
         RESTCartridge cartridge = new RESTCartridge();

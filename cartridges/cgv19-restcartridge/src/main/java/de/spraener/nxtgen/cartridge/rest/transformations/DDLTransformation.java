@@ -12,7 +12,7 @@ public class DDLTransformation implements Transformation {
             return;
         }
         MClass mClass = (MClass)modelElement;
-        if( mClass.hasStereotype(RESTStereotypes.RESSOURCE.getName()) ) {
+        if( mClass.hasStereotype(RESTStereotypes.RESOURCE.getName()) ) {
             MClass entity = addEntity(mClass);
             addDDL(entity);
             MClass restController = addRESTController(mClass);

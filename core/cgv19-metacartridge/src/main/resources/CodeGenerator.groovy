@@ -78,7 +78,8 @@ ${applyModifiers("jcb")}
             break;
         case "PHP":
             return """${metaType} me = (${metaType})element;
-        ${PhpCodeBlock.class.getName()} phpCB = new ${PhpCodeBlock.class.getName()}("src", 
+        String outDir = de.spraener.nxtgen.php.PhpHelper.readOutDirFromModelElement(element, "src");
+        ${PhpCodeBlock.class.getName()} phpCB = new ${PhpCodeBlock.class.getName()}(outDir, 
                                                     PhpHelper.toPhpPackageName(me), 
                                                     me.getName()
                                                 );

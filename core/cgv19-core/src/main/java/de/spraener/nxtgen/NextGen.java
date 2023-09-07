@@ -147,12 +147,12 @@ public class NextGen implements Runnable {
                     }
                     List<Model> models = loadModels(this.modelURI);
                     for (Model m : models) {
-                        if( rootDirIsEmpty && c instanceof AfterEmptyDir aed ) {
-                            aed.afterEmptyRootDir(this, rootDir, m);
-                        }
                         runTransformations(m, c);
                         for (CodeBlock cb : runCodeGenerators(c, m)) {
                             cb.writeOutput(getWorkingDir());
+                        }
+                        if( rootDirIsEmpty && c instanceof AfterEmptyDir aed ) {
+                            aed.afterEmptyRootDir(this, rootDir, m);
                         }
                     }
                 }
@@ -170,23 +170,21 @@ public class NextGen implements Runnable {
         }
     }
 
+    public void executeCommand(File dir, Consumer<ProcessBuilder> processBuilderModifier, String cmd) throws IOException, InterruptedException {
+        this.executeCommand(dir, processBuilderModifier, cmd.split(" "));
+    }
+
     public void executeCommand(File dir, Consumer<ProcessBuilder> processBuilderModifier, String... cmdAndArgs) throws IOException, InterruptedException {
             ProcessBuilder pb = new ProcessBuilder(cmdAndArgs);
             pb.directory(dir.getAbsoluteFile());
             if( processBuilderModifier!=null ) {
                 processBuilderModifier.accept(pb);
             }
+            pb.inheritIO();
             Process p = pb.start();
-            Scanner s = new Scanner(p.getInputStream());
-            StringBuilder text = new StringBuilder();
-            while (s.hasNextLine()) {
-                text.append(s.nextLine()).append("\n");
-            }
-            s.close();
             int result = p.waitFor();
             if( result != 0 ) {
-                System.err.println(text);
-                throw new RuntimeException("Could not initialize new symfony project");
+                throw new RuntimeException("Could not execute command: "+Arrays.toString(cmdAndArgs));
             }
     }
 

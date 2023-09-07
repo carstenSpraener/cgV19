@@ -15,7 +15,7 @@ public class ResourceToContoller implements Transformation {
         if( !(element instanceof MClass) ) {
             return;
         }
-        if( !((MClass) element).hasStereotype(RESTStereotypes.RESSOURCE.getName()) ) {
+        if( !((MClass) element).hasStereotype(RESTStereotypes.RESOURCE.getName()) ) {
             return;
         }
         create((MClass)element);

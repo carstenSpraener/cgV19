@@ -29,18 +29,28 @@ public class PhpCodeHelper {
     }
 
     private static boolean isRootPackage(ModelElement e) {
-        return e instanceof MPackage pkg && StereotypeHelper.hasStereotype(e, SymfonyStereotypes.SYMFONYAPP.getName());
+        return e instanceof MPackage pkg &&
+                (StereotypeHelper.hasStereotype(e, SymfonyStereotypes.SYMFONYAPP.getName())
+                        || pkg.getParent() == null
+                )
+
+                ;
     }
 
     public static String toNameSpace(MClass mc) {
         MPackage root = getProjectRootPackage(mc);
         MPackage cPkg = mc.getPackage();
-        String path = cPkg.getFQName().substring(root.getFQName().length()+1);
+        String path = cPkg.getFQName().substring(root.getFQName().length());
+        if( path.startsWith(".") ) {
+            path = path.substring(1);
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("App");
-        for( String pkgName : path.split("\\.")) {
-            sb.append("\\");
-            sb.append(firstToUpperCase(pkgName));
+        if( !"".equals(path) ) {
+            for (String pkgName : path.split("\\.")) {
+                sb.append("\\");
+                sb.append(firstToUpperCase(pkgName));
+            }
         }
         return sb.toString();
     }

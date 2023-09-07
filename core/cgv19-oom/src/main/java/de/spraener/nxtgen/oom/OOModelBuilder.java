@@ -128,6 +128,7 @@ public class OOModelBuilder {
         dep.setProperty("target",ModelHelper.getFQName(to, "."));
         applyModifiers(dep, modifiers);
         dep.postDefinition();
+        from.getChilds().add(dep);
         return dep;
     }
 }

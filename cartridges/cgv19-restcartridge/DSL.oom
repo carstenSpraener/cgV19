@@ -9,6 +9,7 @@ ModelDSL.make {
     metaType 'Profile'
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Package'
       name 'cgV19Project'
       documentation """"""
       id 'C0ieOuGGAqACRAma:i0ieOuGGAqACRAmb'
@@ -16,6 +17,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'SpringBootApp'
       documentation """"""
       id 'C0ieOuGGAqACRAma:S0ieOuGGAqACRAmc'
@@ -23,7 +25,8 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
-      name 'Ressource'
+      baseClass 'Class'
+      name 'Resource'
       documentation """"""
       id 'C0ieOuGGAqACRAma:y0ieOuGGAqACRAmd'
       metaType 'Stereotype'
@@ -38,6 +41,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'Entity'
       documentation """"""
       id 'C0ieOuGGAqACRAma:K0ieOuGGAqACRAmf'
@@ -53,6 +57,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Action'
       name 'Interactive'
       documentation """"""
       id 'C0ieOuGGAqACRAma:q0ieOuGGAqACRAmh'
@@ -60,6 +65,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Activity'
       name 'Flow'
       documentation """"""
       id 'C0ieOuGGAqACRAma:60ieOuGGAqACRAmj'
@@ -67,6 +73,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Attribute'
       name 'PersistentField'
       documentation """"""
       id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk'
@@ -195,6 +202,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'PhpSymfonyApplication'
       documentation """"""
       id 'C0ieOuGGAqACRAma:j0ieOuGGAqACRAm9'
@@ -474,6 +482,7 @@ have all necessary definitions."""
                   type 'SingletonClass'
                   visibility 'private'
                   multiplicity 'Unspecified'
+                  typeModifier ''
                 }
                 mOperation {  //Exported by OperationExporterBase
                   name 'instance'
@@ -522,6 +531,7 @@ have all necessary definitions."""
               }
               mClass {
                 stereotype 'Stereotype'
+                baseClass 'Class'
                 name 'ExternalLibrary'
                 documentation """"""
                 id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S'
@@ -596,6 +606,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Element'
       name 'Link'
       documentation """"""
       id 'C0ieOuGGAqACRAma:IMieOuGGAqACRAnc'
@@ -603,6 +614,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Classifier'
       name 'Repository'
       documentation """"""
       id 'C0ieOuGGAqACRAma:IMieOuGGAqACRAnd'
@@ -610,6 +622,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'RESTController'
       documentation """"""
       id 'C0ieOuGGAqACRAma:oMieOuGGAqACRAne'
@@ -617,6 +630,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Element'
       name 'Logic'
       documentation """"""
       id 'C0ieOuGGAqACRAma:YMieOuGGAqACRAnf'
@@ -624,6 +638,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'AngularService'
       documentation """"""
       id 'C0ieOuGGAqACRAma:YMieOuGGAqACRAng'
@@ -631,6 +646,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Activity'
       name 'ControlledOperation'
       documentation """"""
       id 'C0ieOuGGAqACRAma:WCieOuGGAqACRAsT'
@@ -638,6 +654,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'ActivityImpl'
       documentation """"""
       id 'C0ieOuGGAqACRAma:KXWJveGGAqACRBUt'
@@ -653,6 +670,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'Impl'
       documentation """"""
       id 'C0ieOuGGAqACRAma:5bdVy.GGAqACRAqb'
@@ -668,6 +686,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'DDL'
       documentation """"""
       id 'C0ieOuGGAqACRAma:wSfVy.GGAqACRArE'
@@ -683,6 +702,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'TSType'
       documentation """"""
       id 'C0ieOuGGAqACRAma:wFA1y.GGAqACRArQ'
@@ -698,6 +718,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'DbField'
       documentation """"""
       id 'C0ieOuGGAqACRAma:lwY1y.GGAqACRArd'
@@ -713,6 +734,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'RsrcLink'
       documentation """"""
       id 'C0ieOuGGAqACRAma:o4y1y.GGAqACRArx'
@@ -728,6 +750,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'ApiRessource'
       documentation """"""
       id 'C0ieOuGGAqACRAma:CX69UhGGAqAAAyDO'
@@ -744,6 +767,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Element'
       name 'RequestHandler'
       documentation """"""
       id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym'
@@ -762,7 +786,7 @@ have all necessary definitions."""
           HEAD
           CONNECT
 """
-        name 'Metod'
+        name 'Method'
         documentation """"""
         id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym$uhRmVxGGAqAAAwy1$uhRmVxGGAqAAAwy2'
         metaType 'TaggedValueDefinition'
@@ -770,6 +794,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Operation'
       name 'RestCall'
       documentation """"""
       id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB'
@@ -801,6 +826,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Dependency'
       name 'ControlledEntity'
       documentation """A denpendcy between a << RESTController >> and a << Entity >> makes the Controller a CRUD-Controller for the target entity"""
       id 'C0ieOuGGAqACRAma:_GW.eFGGAqAACjsx'
@@ -808,6 +834,7 @@ have all necessary definitions."""
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'RESTControllerBase'
       documentation """"""
       id 'C0ieOuGGAqACRAma:omXReFGGAqAACjvl'

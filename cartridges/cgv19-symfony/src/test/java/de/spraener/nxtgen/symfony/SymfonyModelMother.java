@@ -65,8 +65,13 @@ public class SymfonyModelMother {
                         c -> c.getStereotypes().add(new StereotypeImpl(RESTStereotypes.ENTITY.getName())),
                         c -> c.createAttribute("description", "String"),
                         c -> c.createAttribute("isOK", "boolean"),
-                        c -> OOModelBuilder.createAssociation(entity, c, "results", "0..*"),
-                        c -> OOModelBuilder.createAssociation(entity, c, "lastResult", "0..1")
+                        c -> OOModelBuilder.createAssociation(entity, c, "results", "0..*",
+                                a -> a.setAssociationType("OneToMany"),
+                                a -> a.setOpositeAttribute("test")
+                                ),
+                        c -> OOModelBuilder.createAssociation(entity, c, "lastResult", "0..1",
+                                a -> a.setAssociationType("OneToOne")
+                        )
                 )
         );
         OOModelBuilder.createPackage(p, "controller",

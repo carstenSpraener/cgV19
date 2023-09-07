@@ -22,7 +22,7 @@ class PhpClassFrameTargetCreatorTest {
                 .contains("<?php")
                 .contains("namespace App\\Entity;")
                 .contains("class Test")
-                .contains("public __construct() {")
+                .contains("public function __construct() {")
                 ;
     }
 
@@ -36,17 +36,18 @@ class PhpClassFrameTargetCreatorTest {
                 .withCommentPrefix("//")
                 .toCode();
         Assertions.assertThat(code)
-                .contains("private $title;")
+                .contains("private String $title;")
                 .contains("public function getTitle() {")
                 .contains("   return $this->title;")
                 .contains("public function setTitle( $value ) {")
                 .contains("   $this->title = $value;")
 
-                .contains("private $results;")
+                .contains("private Collection $results;")
                 .contains("public function addToResults( $value ) {")
-                .contains("  array_push($this->results, $value);")
+                .contains("  $this->results[] = $value;")
                 .contains("public function removeFromResults( $value ) {")
                 .contains("  unset($this->results[$key]);")
+                .contains("  $this->results = array_values($this->results);")
                 ;
     }
 

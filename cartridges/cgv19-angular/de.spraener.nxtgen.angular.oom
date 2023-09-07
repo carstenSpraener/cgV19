@@ -40,6 +40,7 @@ ModelDSL.make {
       metaType 'Package'
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Package'
         name 'Cgv19AngularApp'
         documentation """"""
         id 'Cft9.5GGAqAACAwY:KbyBJ5GGAqAACAtZ:j8dyB5GGAqAACAz9'

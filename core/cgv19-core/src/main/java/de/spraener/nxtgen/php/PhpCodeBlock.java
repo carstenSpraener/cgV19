@@ -21,8 +21,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
         super(pkg+"."+className);
         this.pkgName = pkg;
         this.className = className;
-        String phpProjectDir = getOutputPath();
-        this.srcDir = phpProjectDir+"/"+srcDir;
+        this.srcDir = srcDir;
     }
 
     @Override
@@ -47,7 +46,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
             return getToFileStrategy().open();
         } else {
             String phpProjectDir = getOutputPath(workingDir);
-            String filePath = phpProjectDir + "/src/" + toFilePath() + ".php";
+            String filePath = phpProjectDir + "/"+this.srcDir + toFilePath() + ".php";
             return new File(filePath);
         }
     }
@@ -71,7 +70,9 @@ public class PhpCodeBlock extends CodeBlockImpl {
     }
 
     private String toFilePath() {
-        return this.pkgName.replaceAll("\\.", "/")+"/"+this.className;
+        return this.pkgName.replaceAll("\\.", "/")
+                .replaceAll("\\\\", "/")
+                +"/"+this.className;
     }
 
     public static void setOutputPath(String outputPath) {

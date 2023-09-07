@@ -12,8 +12,8 @@ public class EnsureRepositoryForControlledEntity extends EnsureRepositoryForCont
         String entityName = ApiControllerComponent.getDataType(me);
         OOModel model = (OOModel) me.getModel();
         MClass entityClass = model.findClassByName(entityName);
-        MClass repisitory = model.findClassByName(entityClass.getFQName()+"Repository");
-        if( repisitory == null ) {
+        MClass repository = model.findClassByName(entityClass.getFQName()+"Repository");
+        if( repository == null ) {
             ResourceToEntity.createReporitoryForEntity(entityClass);
         }
     }

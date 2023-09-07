@@ -5,7 +5,7 @@ import de.spraener.nxtgen.model.ModelHelper;
 import de.spraener.nxtgen.oom.OOModelBuilder;
 import de.spraener.nxtgen.oom.model.*;
 
-public class CreateServiceTrait extends CreateSericeTraitBase {
+public class CreateServiceTrait extends CreateServiceTraitBase {
 
     @Override
     public void doTransformationIntern(MClass me) {
