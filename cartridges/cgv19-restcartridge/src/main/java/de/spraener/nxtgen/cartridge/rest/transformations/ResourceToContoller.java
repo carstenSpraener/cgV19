@@ -9,6 +9,7 @@ import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MOperation;
 
 public class ResourceToContoller implements Transformation {
+    public static final String ORIGINAL_CLASS="OriginalClass";
 
     @Override
     public void doTransformation(ModelElement element) {
@@ -25,6 +26,7 @@ public class ResourceToContoller implements Transformation {
         MClass cntrl = mClass.getPackage().createMClass(mClass.getName()+"ControllerBase");
         Stereotype stType = new StereotypeImpl(RESTStereotypes.RESTCONTROLLER.getName());
         cntrl.getStereotypes().add(stType);
+        cntrl.putObject(ORIGINAL_CLASS, mClass);
         stType.setTaggedValue("dataType", mClass.getFQName());
         for(MOperation op : mClass.getOperations() ) {
             MOperation opClone = op.cloneTo(cntrl);

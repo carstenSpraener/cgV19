@@ -4,6 +4,8 @@ package cntrl
 import de.spraener.nxtgen.CGV19Config
 import de.spraener.nxtgen.ProtectionStrategie
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes
+import de.spraener.nxtgen.cartridge.rest.transformations.ResourceToContoller
+import de.spraener.nxtgen.cartridge.rest.transformations.ResourceToContollerBase
 import de.spraener.nxtgen.model.ModelElement
 import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
@@ -48,7 +50,7 @@ def toRequestMethod(MOperation op) {
 def requestMethodsDelegate(MClass mc) {
     StringBuilder sb = new StringBuilder();
     for( MOperation op : mc.getOperations() ) {
-        if( StereotypeHelper.hasStereotype(op, RESTStereotypes.REQUEST.getName()) ) {
+        if( StereotypeHelper.hasStereotype(op, RESTStereotypes.REQUESTHANDLER.getName()) ) {
             sb.append(toRequestMethod(op));
         }
     }
@@ -113,9 +115,30 @@ def projectImports(ModelElement me, String pkgName ) {
 import ${pkgName}.logic.*;
 """
 }
+
+
+String defineLogicAndConstructor(MClass orgClazz, MClass clazz, String logicName) {
+    if( orgClazz == null ) {
+        return """
+    public ${clazz.getName()}() {
+    }
+""";
+    }
+
+    return """
+    private ${logicName} logic;
+
+    public ${clazz.getName()}(${logicName} logic) {
+        this.logic = logic;
+    }
+"""
+}
+
+def clazz = (MClass)modelElement;
 def pkgName = ((MClass)modelElement).getPackage().getFQName()
 def cName = modelElement.name;
 def logicName = toLogicName(modelElement);
+def orgClazz = ((MClass)modelElement).getObject(ResourceToContoller.ORIGINAL_CLASS);
 
 return """// ${ProtectionStrategie.GENERATED_LINE}
 package ${pkgName};
@@ -132,11 +155,8 @@ ${projectImports(modelElement, pkgName)}
 public abstract class ${cName} {
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(${cName}.class.getName());
 
-    private ${logicName} logic;
+    ${defineLogicAndConstructor(orgClazz, clazz, logicName)}
 
-    public ${cName}(${logicName} logic) {
-        this.logic = logic;
-    }
     
     @GetMapping(path = "/ping")
     @ResponseBody

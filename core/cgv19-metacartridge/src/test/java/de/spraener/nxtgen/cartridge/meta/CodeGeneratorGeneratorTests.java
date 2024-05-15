@@ -95,8 +95,14 @@ public class CodeGeneratorGeneratorTests extends AbstractOOModelTest {
         );
         String code = uut.resolve(gen, "").toCode();
         assertThat(code)
-                .contains("de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock(\"src\", \"\", me.getName());\n")
-        ;
+                .containsIgnoringWhitespaces(
+            """
+                            String outDir = de.spraener.nxtgen.php.PhpHelper.readOutDirFromModelElement(element, "src");
+                            de.spraener.nxtgen.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.php.PhpCodeBlock(outDir,
+                                                                        PhpHelper.toPhpPackageName(me),
+                                                                        me.getName()
+            """
+                );
     }
 
     @Test
