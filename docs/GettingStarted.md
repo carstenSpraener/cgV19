@@ -80,10 +80,10 @@ cgv19 -m my-app.yml -c cgv19Gradle
 ```
 
 The _-m_ options tells cgv19 to use the model _my-app.yml_. The second _-c_ option tells 
-cgv19 to start the cartridge __cgv19Project__. This cartridge can
+cgv19 to start the cartridge __cgv19Gradle__. This cartridge can
 generate a new gradle project upon the model given.
 
-When you hit the enter key, the __cgv19Project__ cartridge tries to open the model
+When you hit the enter key, the __cgv19Gradle__ cartridge tries to open the model
 _my-app.yml_. At this moment the model does not exsist and so the cartridge will ask
 you to enter some data like here:
 
@@ -142,7 +142,7 @@ it deletes all generated files.
 
 ## How to use more cartridges?
 Cartridges are the generator blocks for certain areas like JPA, REST or Cloud. Cgv19 comes 
-with som predefined cartridges to support some common tasks. You can create your
+with some predefined cartridges to support some common tasks. You can create your
 own cartridge (of course with the use of cgv19 and the predefined meta-cartridge) and place
 the jar file in the catridge-folder of your cgv19 installation. 
 
