@@ -1,0 +1,744 @@
+POST http://localhost:7001/dsl
+Content-Type: application/json
+
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "SymfonyCartridge",
+  "stereotypes": [
+    {
+      "name": "SymfonyApp",
+      "baseClass": "Package",
+      "taggedValues": [        {
+        "name": "requiresList",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "PhpPackage",
+      "baseClass": "Package",
+      "taggedValues": [        {
+        "name": "namespace",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "TwigComponent",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "PhpCntrlService",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "FormTypeComponent",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "FormTypeComponentBase",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "PhpComponent",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "PhpCntrlServiceTrait",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+
+  ]
+}
+###
+POST http://localhost:7001/dsl
+Content-Type: application/json
+
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "RESTCartridge",
+  "stereotypes": [
+    {
+      "name": "cgV19Project",
+      "baseClass": "Package",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "SpringBootApp",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Ressource",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTable",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "Entity",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "Interactive",
+      "baseClass": "Action",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Flow",
+      "baseClass": "Activity",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "PersistentField",
+      "baseClass": "Attribute",
+      "taggedValues": [        {
+        "name": "nullable",
+        "type": "boolean",
+        "defaultValue": "True",
+        "typeID": "boolean"
+      },
+        {
+          "name": "unique",
+          "type": "boolean",
+          "defaultValue": "False",
+          "typeID": "boolean"
+        },
+        {
+          "name": "type",
+          "type": "adhoc-enum",
+          "defaultValue": "null",
+          "allowedValues": [
+            "string",
+            "integer",
+            "boolean",
+            "decimal",
+            "blob",
+            "date"        ],
+          "typeID": "adhoc-enum"
+        },
+        {
+          "name": "length",
+          "type": "integer",
+          "defaultValue": "null",
+          "typeID": "integer"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "detailOnly",
+          "type": "boolean",
+          "defaultValue": "Unspecified",
+          "typeID": "boolean"
+        }
+      ]
+    }
+  ,
+    {
+      "name": "PhpSymfonyApplication",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Link",
+      "baseClass": "Element",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Repository",
+      "baseClass": "Classifier",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "RESTController",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Logic",
+      "baseClass": "Element",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "AngularService",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "ControlledOperation",
+      "baseClass": "Activity",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "ActivityImpl",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "Impl",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "DDL",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "TSType",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "DbField",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "RsrcLink",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "ApiRessource",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "path",
+        "type": "String",
+        "defaultValue": "/",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "RequestHandler",
+      "baseClass": "Element",
+      "taggedValues": [        {
+        "name": "Method",
+        "type": "adhoc-enum",
+        "defaultValue": "null",
+        "allowedValues": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS",
+          "PATCH",
+          "TRACE",
+          "HEAD",
+          "CONNECT"        ],
+        "typeID": "adhoc-enum"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "RestCall",
+      "baseClass": "Operation",
+      "taggedValues": [        {
+        "name": "RESTMethod",
+        "type": "String",
+        "defaultValue": "GET",
+        "allowedValues": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"        ],
+        "typeID": "String"
+      },
+        {
+          "name": "path",
+          "type": "String",
+          "defaultValue": "/",
+          "typeID": "String"
+        }
+      ]
+    }
+  ,
+    {
+      "name": "ControlledEntity",
+      "baseClass": "Dependency",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "RESTControllerBase",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "ExternalLibrary",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "group",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      },
+        {
+          "name": "version",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "artifact",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "scope",
+          "type": "adhoc-enum",
+          "defaultValue": "implementation",
+          "allowedValues": [
+            "implementation",
+            "testImplementation",
+            "testRuntimeOnly",
+            "annotationProcessor",
+            "developmentOnly"        ],
+          "typeID": "adhoc-enum"
+        }
+      ]
+    }
+  ,
+    {
+      "name": "cgV19Project",
+      "baseClass": "Package",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "SpringBootApp",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Ressource",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTable",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "Entity",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "Interactive",
+      "baseClass": "Action",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Flow",
+      "baseClass": "Activity",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "PersistentField",
+      "baseClass": "Attribute",
+      "taggedValues": [        {
+        "name": "nullable",
+        "type": "boolean",
+        "defaultValue": "True",
+        "typeID": "boolean"
+      },
+        {
+          "name": "unique",
+          "type": "boolean",
+          "defaultValue": "False",
+          "typeID": "boolean"
+        },
+        {
+          "name": "type",
+          "type": "adhoc-enum",
+          "defaultValue": "null",
+          "allowedValues": [
+            "string",
+            "integer",
+            "boolean",
+            "decimal",
+            "blob",
+            "date"        ],
+          "typeID": "adhoc-enum"
+        },
+        {
+          "name": "length",
+          "type": "integer",
+          "defaultValue": "null",
+          "typeID": "integer"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "detailOnly",
+          "type": "boolean",
+          "defaultValue": "Unspecified",
+          "typeID": "boolean"
+        }
+      ]
+    }
+  ,
+    {
+      "name": "PhpSymfonyApplication",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "ExternalLibrary",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "group",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      },
+        {
+          "name": "version",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "artifact",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "scope",
+          "type": "adhoc-enum",
+          "defaultValue": "implementation",
+          "allowedValues": [
+            "implementation",
+            "testImplementation",
+            "testRuntimeOnly",
+            "annotationProcessor",
+            "developmentOnly"        ],
+          "typeID": "adhoc-enum"
+        }
+      ]
+    }
+  ,
+    {
+      "name": "Link",
+      "baseClass": "Element",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Repository",
+      "baseClass": "Classifier",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "RESTController",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "Logic",
+      "baseClass": "Element",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "AngularService",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "ControlledOperation",
+      "baseClass": "Activity",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "ActivityImpl",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "Impl",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "DDL",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "TSType",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "DbField",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "RsrcLink",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "dbTableName",
+        "type": "String",
+        "defaultValue": "null",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "ApiRessource",
+      "baseClass": "Class",
+      "taggedValues": [        {
+        "name": "path",
+        "type": "String",
+        "defaultValue": "/",
+        "typeID": "String"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "RequestHandler",
+      "baseClass": "Element",
+      "taggedValues": [        {
+        "name": "Method",
+        "type": "adhoc-enum",
+        "defaultValue": "null",
+        "allowedValues": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "OPTIONS",
+          "PATCH",
+          "TRACE",
+          "HEAD",
+          "CONNECT"        ],
+        "typeID": "adhoc-enum"
+      }
+      ]
+    }
+  ,
+    {
+      "name": "RestCall",
+      "baseClass": "Operation",
+      "taggedValues": [        {
+        "name": "RESTMethod",
+        "type": "String",
+        "defaultValue": "GET",
+        "allowedValues": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"        ],
+        "typeID": "String"
+      },
+        {
+          "name": "path",
+          "type": "String",
+          "defaultValue": "/",
+          "typeID": "String"
+        }
+      ]
+    }
+  ,
+    {
+      "name": "ControlledEntity",
+      "baseClass": "Dependency",
+      "taggedValues": [
+      ]
+    }
+  ,
+    {
+      "name": "RESTControllerBase",
+      "baseClass": "Class",
+      "taggedValues": [
+      ]
+    }
+
+  ]
+}
+###

@@ -7,10 +7,12 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
+/*
 @CGV19Transformation(
         requiredStereotype = "ModelRoot",
         operatesOn = MPackage.class
 )
+*/
 public abstract class RemoveModelRootPackageBase implements de.spraener.nxtgen.Transformation {
 
     @Override

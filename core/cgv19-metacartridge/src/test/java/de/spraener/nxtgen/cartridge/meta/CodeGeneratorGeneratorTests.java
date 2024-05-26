@@ -2,9 +2,8 @@ package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -51,7 +50,7 @@ public class CodeGeneratorGeneratorTests extends AbstractOOModelTest {
     private CodeGeneratorGenerator uut = new CodeGeneratorGenerator();
     private StereotypeImpl stGen = new StereotypeImpl(MetaCartridge.STEREOTYPE_CODE_GENERATOR);
 
-    @Before
+    @BeforeEach
     public void setup() {
         super.setup();
         stGen.setTaggedValue("generatesOn", "MClass");
@@ -96,8 +95,14 @@ public class CodeGeneratorGeneratorTests extends AbstractOOModelTest {
         );
         String code = uut.resolve(gen, "").toCode();
         assertThat(code)
-                .contains("de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock(\"src\", \"\", me.getName());\n")
-        ;
+                .containsIgnoringWhitespaces(
+            """
+                            String outDir = de.spraener.nxtgen.php.PhpHelper.readOutDirFromModelElement(element, "src");
+                            de.spraener.nxtgen.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.php.PhpCodeBlock(outDir,
+                                                                        PhpHelper.toPhpPackageName(me),
+                                                                        me.getName()
+            """
+                );
     }
 
     @Test

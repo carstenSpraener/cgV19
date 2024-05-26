@@ -4,6 +4,7 @@ import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.cartridge.rest.RESTStereotypes;
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.model.ModelHelper;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
@@ -21,21 +22,30 @@ public class ResourceToEntity extends ResourceToEntityBase {
     }
 
     public static void ensureEntityDefinition(MClass mClass) {
-        Stereotype sType = StereotypeHelper.getStereotype(mClass, RESTStereotypes.ENTITY.getName());
-        String tableName = sType.getTaggedValue("dbTable");
-        if (tableName == null) {
-            sType.setTaggedValue("dbTable", toTableName(mClass));
-        } else {
-            sType.setTaggedValue("dbTable", tableName);
-        }
+        ensureTableDefinition(mClass);
         ensureHasId(mClass);
         for( MAttribute a : mClass.getAttributes() ) {
             ensureEntityDefinition(a);
         }
         for( MAssociation a : mClass.getAssociations() ) {
-            convertToEntityType(a);
+            MClass target = (MClass)ModelHelper.findByFQName(mClass.getModel(), a.getType(), ".");
+            if( !StereotypeHelper.hasStereotype(target, RESTStereotypes.ENTITY.getName())) {
+                convertToEntityType(a);
+            }
         }
         ensureSuperClassIsEntity(mClass);
+    }
+
+    public static void ensureTableDefinition(MClass mClass) {
+        Stereotype sType = StereotypeHelper.getStereotype(mClass, RESTStereotypes.ENTITY.getName());
+        if( sType == null ) {
+            sType = new StereotypeImpl(RESTStereotypes.ENTITY.getName());
+            mClass.getStereotypes().add(sType);
+        }
+        String tableName = sType.getTaggedValue("dbTable");
+        if (tableName == null) {
+            sType.setTaggedValue("dbTable", toTableName(mClass));
+        }
     }
 
     private static void ensureSuperClassIsEntity(MClass mClass) {
@@ -92,21 +102,26 @@ public class ResourceToEntity extends ResourceToEntityBase {
         }
         ensureHasId(entity);
 
+        createReporitoryForEntity(entity);
+        return entity;
+    }
+
+    public static void createReporitoryForEntity(MClass entity) {
         // Create the Repository to access the Entity from the DB
-        MClass repo = entityPkg.createMClass(mClass.getName() + "Repository");
+        MPackage entityPkg = entity.getPackage();
+        MClass repo = entityPkg.createMClass(entity.getName() + "Repository");
         Stereotype repoSType = new StereotypeImpl(RESTStereotypes.REPOSITORY.getName());
         repo.addStereotypes(repoSType);
         repoSType.setTaggedValue("keyType", "Long");
         repoSType.setTaggedValue("dataType", entity.getFQName());
         StringBuffer attrList = new StringBuffer();
-        for( MAttribute attr : mClass.getAttributes() ) {
+        for( MAttribute attr : entity.getAttributes() ) {
             if( attrList.length()>0 ) {
                 attrList.append(";");
             }
             attrList.append(attr.getName());
         }
         repoSType.setTaggedValue("attrList", attrList.toString());
-        return entity;
     }
 
     private MAssociation createFrom(MAssociation assoc) {

@@ -10,7 +10,10 @@ public enum MetaStereotypes {
         CODEGENERATOR("CodeGenerator"),
         GROOVYTEMPLATE("GroovyTemplate"),
         TRANSFORMATIONBASE("TransformationBase"),
-        STEREOTYPEDESCRIPTOR("StereotypeDescriptor")
+        STEREOTYPEDESCRIPTOR("StereotypeDescriptor"),
+        TRANSFORMATIONTEST("TransformationTest"),
+        CODEGENERATORTEST("CodeGeneratorTest"),
+        OBJECTMODELMOTHER("ObjectModelMother")
     ;
 
     private String name;

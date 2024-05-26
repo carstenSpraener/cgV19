@@ -7,6 +7,7 @@ import de.spraener.nxtgen.model.TaggedValue;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MClassRef;
+import de.spraener.nxtgen.oom.model.MPackage;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -14,12 +15,22 @@ import java.util.function.Supplier;
 public class GeneratorGapTransformation implements Transformation {
     public static final String ORIGINAL_CLASS="originalClass";
     private Predicate<MClass> shouldTransform = this::shouldTransform;
+    private Supplier<MPackage> targetPackageSupplier = null;
 
     public GeneratorGapTransformation() {
     }
 
     public GeneratorGapTransformation(Predicate<MClass> shouldTransform ) {
         this.shouldTransform = shouldTransform;
+    }
+
+    public GeneratorGapTransformation(Supplier<MPackage> targetPackageSupplier) {
+        this.targetPackageSupplier = targetPackageSupplier;
+    }
+
+    public GeneratorGapTransformation(Supplier<MPackage> targetPackageSupplier, Predicate<MClass> shouldTransform ) {
+        this.shouldTransform = shouldTransform;
+        this.targetPackageSupplier = targetPackageSupplier;
     }
 
     private boolean shouldTransform(MClass mc) {
@@ -29,7 +40,8 @@ public class GeneratorGapTransformation implements Transformation {
     @Override
     public void doTransformation(ModelElement element) {
         if ( element instanceof MClass mc  && this.shouldTransform.test(mc) ) {
-            MClass baseClazz = mc.getPackage().createMClass(mc.getName()+"Base");
+            MPackage targetPkg = targetPackageSupplier != null ? targetPackageSupplier.get() :  mc.getPackage();
+            MClass baseClazz = targetPkg.createMClass(mc.getName()+"Base");
             for( Stereotype sType : mc.getStereotypes() ) {
                 Stereotype sTClone = cloneStereotype(sType, "Base");
                 baseClazz.addStereotypes(sTClone);

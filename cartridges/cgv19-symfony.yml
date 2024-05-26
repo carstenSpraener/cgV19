@@ -1,0 +1,4 @@
+cartridgeName: Symfony
+rootPackage: de.spraener.nxtgen.symfony
+cgv19-Version: 23.1.1
+projectName: cgv19-symfony

@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        mavenCentral();
+    }
+    dependencies {
+        classpath "de.spraener.nxtgen:cgv19-core:23.1.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:23.1.0"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+apply plugin: 'de.spraener.nxtgen.cgV19'
+
+repositories {
+    mavenCentral();
+}
+
+cgV19 {
+    //model = 'de.spraener.nxtgen.symfony.oom'
+    // If you use VisualParadigm:
+    model = 'http://localhost:7001/de.spraener.nxtgen.symfony'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir('src/main/java-gen')
+        }
+    }
+}
+
+dependencies {
+    cartridge project(":cgv19-core")
+    cartridge project(":cgv19-oom")
+    cartridge project(":cgv19-metacartridge")
+    cartridge project(":cgv19-pojo")
+    // Add additional cartridges here
+
+    implementation project(":cgv19-core")
+    implementation project(":cgv19-oom")
+    implementation project(":cgv19-pojo")
+    implementation project(":cgv19-restcartridge")
+
+    implementation 'com.github.spullara.mustache.java:compiler:0.9.10'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+

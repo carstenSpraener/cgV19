@@ -17,6 +17,7 @@ public class AttributeExporter extends AttributeExporterBase {
         pw.printf("%stype '%s'\n", indentation, formatType(attr.getTypeAsString()) );
         pw.printf("%svisibility '%s'\n", indentation, attr.getVisibility());
         pw.printf("%smultiplicity '%s'\n", indentation, attr.getMultiplicity());
+        pw.printf("%stypeModifier '%s'\n", indentation, attr.getTypeModifier());
         if( "1".equals(attr.getMultiplicity()) ) {
             pw.printf("%srequired 'true'\n", indentation);
         }

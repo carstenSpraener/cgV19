@@ -47,7 +47,7 @@ public class MAttribute extends MAbstractModelElement {
 
     public MAttribute cloneTo(MClass target) {
         MAttribute attr = target.createAttribute(getName(),getType());
-        StereotypeHelper.cloneStereotypes(this, target);
+        StereotypeHelper.cloneStereotypes(this, attr);
         ModelHelper.cloneProperties(this,target);
         return attr;
     }

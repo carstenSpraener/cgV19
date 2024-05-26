@@ -12,6 +12,7 @@ public class ModelImpl implements Model {
     private List<ModelElement> elements = new ArrayList<>();
 
     public void addModelElement(ModelElement e) {
+        e.setModel(this);
         elements.add(e);
     }
 
@@ -25,6 +26,7 @@ public class ModelImpl implements Model {
     }
 
     public void collectElements(ModelElement e, List<ModelElement> flattenElements) {
+        e.setModel(this);
         flattenElements.add(e);
         for( ModelElement child : e.getChilds() ) {
             collectElements(child,flattenElements);

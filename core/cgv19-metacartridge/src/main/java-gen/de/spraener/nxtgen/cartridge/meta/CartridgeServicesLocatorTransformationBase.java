@@ -7,10 +7,12 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
+/*
 @CGV19Transformation(
         requiredStereotype = "cgV19Cartridge",
         operatesOn = MClass.class
 )
+*/
 public abstract class CartridgeServicesLocatorTransformationBase implements de.spraener.nxtgen.Transformation {
 
     @Override

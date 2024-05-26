@@ -15,6 +15,7 @@ ModelDSL.make {
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Class'
       name 'JavaLinApp'
       documentation """This Stereotype marks a class as the main-class for a JavaLin application. Each method specified in that class can be marked with a RequestHandler stereotype in order to full fill incoming requests.
 
@@ -69,6 +70,7 @@ build file and docker image. The foot print of JavaLin is very small so you shou
     }
     mClass {
       stereotype 'Stereotype'
+      baseClass 'Operation'
       name 'RequestHandler'
       documentation """A method marked with this stereotype will be translated to a handler
 class that receives the context from JavaLin and has a method to place

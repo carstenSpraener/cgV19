@@ -1,5 +1,5 @@
 import de.spraener.nxtgen.NextGen;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ public class MetaCartridgeStartGenerator {
     public void testMetaCartridgeSelfOnline() {
         new File("./build/test-gen").mkdirs();
         NextGen.setWorkingDir("./build/test-gen");
-        NextGen.main(new String[]{"http://localhost:7001/DSL"});
+        NextGen.main(new String[]{"http://localhost:7001/META-DSL"});
     }
 
     @Test

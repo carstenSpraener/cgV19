@@ -13,10 +13,10 @@ public class ClassExporter extends ClassExporterBase {
         super.exportBody(exporter, pw, indentation, element);
         IClass clazz = (IClass) element;
         for (IRelationshipEnd rel : clazz.toToRelationshipEndArray()) {
-            exportRelationshipEnd(exporter, pw, indentation, rel);
+            exportRelationshipEnd(exporter, pw, indentation, rel, "to");
         }
         for (IRelationshipEnd rel : clazz.toFromRelationshipEndArray()) {
-            exportRelationshipEnd(exporter, pw, indentation, rel);
+            exportRelationshipEnd(exporter, pw, indentation, rel, "from");
         }
         for (IRelationship rel : clazz.toFromRelationshipArray()) {
             if( !"Generalization".equals(rel.getModelType()) ) {
@@ -41,14 +41,14 @@ public class ClassExporter extends ClassExporterBase {
     }
 
 
-    private void exportRelationshipEnd(OOMExporter exporter,PrintWriter pw, String indent, IRelationshipEnd relEnd) {
+    private void exportRelationshipEnd(OOMExporter exporter,PrintWriter pw, String indent, IRelationshipEnd relEnd, String direction) {
         IRelationship rel = relEnd.getEndRelationship();
         if (rel instanceof IAssociation) {
-            exportAssociation(exporter, pw, indent, (IAssociation) rel, relEnd.getOppositeEnd());
+            exportAssociation(exporter, pw, indent, (IAssociation) rel, relEnd.getOppositeEnd(), direction);
         }
     }
 
-    private void exportAssociation(OOMExporter exporter, PrintWriter pw, String indent, IAssociation assoc, IRelationshipEnd relEnd) {
+    private void exportAssociation(OOMExporter exporter, PrintWriter pw, String indent, IAssociation assoc, IRelationshipEnd relEnd, String direction) {
         if (relEnd instanceof IAssociationEnd) {
             IAssociationEnd assocEnd = (IAssociationEnd) relEnd;
             if( assocEnd.getNavigable()==2 ) {
@@ -59,6 +59,7 @@ public class ClassExporter extends ClassExporterBase {
             IAssociationEnd opposite = (IAssociationEnd)assocEnd.getOppositeEnd();
 
             pw.printf("%s  assocId '%s'\n", indent, assocEnd.getAddress());
+            pw.printf("%s  direction '%s'\n", indent, direction);
             pw.printf("%s  opositeAttribute '%s'\n", indent, opposite.getName());
             pw.printf("%s  opositeMultiplicity '%s'\n", indent, opposite.getMultiplicity());
             pw.printf("%s  associationType '%s'\n", indent, toAssociationType(assocEnd));

@@ -1,0 +1,333 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+  mPackage {
+    name 'de.spraener.nxtgen.laravel'
+    documentation """Cartridge for developing Laravel applications"""
+    id 'ncmDJlGGAqAAAwss'
+    metaType 'Package'
+    mClass {  //Exported by ClassExporterBase
+      name 'Laravel'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:_x5DJlGGAqAAAwtN'
+      metaType 'Class'
+      stereotype 'cgV19Cartridge'
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'ModelGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:HkDDJlGGAqAAAwtt'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'LaravelModel'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'CreateModelInfrastructureTransformation'
+      documentation """Each Model (Entity) needs a Factory, a Model-Class, a Seeder and a Migration to create the table."""
+      id 'ncmDJlGGAqAAAwss:oegAplGGAqAAAwv_'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'Entity'
+        taggedValue 'priority', '0'
+      }
+      mDependency {  //Exported by DependencyExporterBase
+        name 'null'
+        documentation """"""
+        id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:x32t1lGGAqAAAwy8'
+        metaType 'Dependency'
+        target 'de.spraener.nxtgen.laravel.CreateModelInfrastructureTransformation'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'FactoryGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:8M5AplGGAqAAAww1'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'LaravelFactory'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'SeederGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:bu9AplGGAqAAAwxL'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'LaravelSeeder'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mPackage {  //Exported by PackageExporterBase
+      name 'stereotypes'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk'
+      metaType 'Package'
+      mPackage {  //Exported by PackageExporterBase
+        name 'intern'
+        documentation """"""
+        id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq'
+        metaType 'Package'
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'LaravelFactory'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:dZsgplGGAqAAAwyc'
+          metaType 'Stereotype'
+        }
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'LaravelMigration'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:zZsgplGGAqAAAwyd'
+          metaType 'Stereotype'
+        }
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'LaravelModel'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:7ZsgplGGAqAAAwye'
+          metaType 'Stereotype'
+        }
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'LaravelSeeder'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:3ZsgplGGAqAAAwyf'
+          metaType 'Stereotype'
+        }
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'FilamentResource'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:3cyd1lGGAqAAAwzn'
+          metaType 'Stereotype'
+        }
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'FilamentPage'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:nnmd1lGGAqAAAwz2'
+          metaType 'Stereotype'
+        }
+        mClass {
+          stereotype 'Stereotype'
+          baseClass 'Class'
+          name 'FilamentRelationManager'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:eOHAplGGAqAAAwxq:PSHaDlGGAqAAAxSS'
+          metaType 'Stereotype'
+        }
+      }
+      mClass {
+        stereotype 'Stereotype'
+        baseClass 'Package'
+        name 'LaravelApplication'
+        documentation """A package marked as << LaravelApplication >> builds the root of a
+laravel application"""
+        id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d'
+        metaType 'Stereotype'
+        mAttribute {
+          defaultValue """laravel-db"""
+          typeID 0
+          type 'String'
+          name 'dbName'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d$6uxK9lGGAqAAAw8m$GuxK9lGGAqAAAw8n'
+          metaType 'TaggedValueDefinition'
+        }
+        mAttribute {
+          defaultValue """root"""
+          typeID 0
+          type 'String'
+          name 'dbUser'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d$6uxK9lGGAqAAAw8m$rugq9lGGAqAAAw8p'
+          metaType 'TaggedValueDefinition'
+        }
+        mAttribute {
+          typeID 0
+          type 'String'
+          name 'dbPassword'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d$6uxK9lGGAqAAAw8m$bugq9lGGAqAAAw8r'
+          metaType 'TaggedValueDefinition'
+        }
+        mAttribute {
+          defaultValue """localhost"""
+          typeID 0
+          type 'String'
+          name 'dbHost'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d$6uxK9lGGAqAAAw8m$7ugq9lGGAqAAAw8t'
+          metaType 'TaggedValueDefinition'
+        }
+        mAttribute {
+          defaultValue """3306"""
+          typeID 5
+          type 'integer'
+          name 'dbPort'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d$6uxK9lGGAqAAAw8m$nugq9lGGAqAAAw8v'
+          metaType 'TaggedValueDefinition'
+        }
+        mAttribute {
+          defaultValue """mysql"""
+          typeID 2
+          type 'adhoc-enum'
+          enumValues """
+            mysql
+            postgresql
+"""
+          name 'dbConnection'
+          documentation """"""
+          id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:FAJQplGGAqAAAw1d$6uxK9lGGAqAAAw8m$Xugq9lGGAqAAAw8x'
+          metaType 'TaggedValueDefinition'
+        }
+      }
+      mClass {
+        stereotype 'Stereotype'
+        baseClass 'Class'
+        name 'LaravelController'
+        documentation """"""
+        id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:6pFDZlGGAqAAAxDi'
+        metaType 'Stereotype'
+      }
+      mClass {
+        stereotype 'Stereotype'
+        baseClass 'Association'
+        name 'ManagedRelation'
+        documentation """Cerate a Relation-Manager for this relation. The Manager will be created for all "to-N" ends that can be navigated."""
+        id 'ncmDJlGGAqAAAwss:ZLbAplGGAqAAAwxk:rspqDlGGAqAAAxOD'
+        metaType 'Stereotype'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'MigrationGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:CkWgplGGAqAAAwzZ'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'LaravelMigration'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'src'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'LaravelStereotypes'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:22DcplGGAqAAAw9k'
+      metaType 'Class'
+      stereotype 'StereotypeEnum'
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'CreateResourceInfrastructure'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:SXUt1lGGAqAAAwyk'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'Resource'
+        taggedValue 'priority', '1'
+      }
+      mDependency {  //Exported by DependencyExporterBase
+        name 'null'
+        documentation """"""
+        id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:x32t1lGGAqAAAwy8'
+        metaType 'Dependency'
+        target 'de.spraener.nxtgen.laravel.CreateModelInfrastructureTransformation'
+      }
+      mDependency {  //Exported by DependencyExporterBase
+        name 'null'
+        documentation """"""
+        id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:3PCaDlGGAqAAAxQm'
+        metaType 'Dependency'
+        target 'de.spraener.nxtgen.laravel.CreateResourceInfrastructure'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'FilamentResourceGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:xVzn1lGGAqAAAw1W'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'FilamentResource'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'other'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'FilamentPageGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:jBoX1lGGAqAAAw11'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'FilamentPage'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'other'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'CreateRelationManager'
+      documentation """Works on MClass with Stereotype FIlamentResource. It takes the underlying Model and seraches for assocations that have the stereotype <<ManagedRelation>>. It than creates an RelationManger for the Association if its target is a to-N realtion."""
+      id 'ncmDJlGGAqAAAwss:1RAaDlGGAqAAAxQH'
+      metaType 'Class'
+      stereotype 'Transformation', {
+        taggedValue 'transformedMetaType', 'MClass'
+        taggedValue 'requiredStereotype', 'FilamentResource'
+        taggedValue 'priority', '2'
+      }
+      mDependency {  //Exported by DependencyExporterBase
+        name 'null'
+        documentation """"""
+        id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:3PCaDlGGAqAAAxQm'
+        metaType 'Dependency'
+        target 'de.spraener.nxtgen.laravel.CreateResourceInfrastructure'
+      }
+    }
+    mClass {  //Exported by ClassExporterBase
+      name 'FilamentRelationManagerGenerator'
+      documentation """"""
+      id 'ncmDJlGGAqAAAwss:4QxaDlGGAqAAAxRh'
+      metaType 'Class'
+      stereotype 'CodeGenerator', {
+        taggedValue 'requiredStereotype', 'FilamentRelationManager'
+        taggedValue 'outputType', 'PHP'
+        taggedValue 'generatesOn', 'MClass'
+        taggedValue 'outputTo', 'other'
+      }
+    }
+    mDependency {  //Exported by DependencyExporterBase
+      name 'null'
+      documentation """"""
+      id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:T_1G9lGGAqAAAxHC'
+      metaType 'Dependency'
+      target 'DSL.de.spraener.nxtgen.cartridge.rest'
+    }
+    mDependency {  //Exported by DependencyExporterBase
+      name 'null'
+      documentation """"""
+      id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:kmdG9lGGAqAAAxHI'
+      metaType 'Dependency'
+      target 'de.spraener.nxtgen.symfony'
+    }
+  }
+}

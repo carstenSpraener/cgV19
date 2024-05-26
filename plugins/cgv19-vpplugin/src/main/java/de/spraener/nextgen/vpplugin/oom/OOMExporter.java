@@ -63,7 +63,7 @@ public class OOMExporter implements Runnable {
                 } else if (rootPackageName.startsWith(getFQName(pkg))) {
                     IPackage subPackage = findSubPackageByName(pkg, rootPackageName);
                     if (subPackage != null) {
-                        return pkg;
+                        return subPackage;
                     }
                 }
             } else if (IModelElementFactory.MODEL_TYPE_MODEL.equals(mElement.getModelType())) {
@@ -143,7 +143,7 @@ public class OOMExporter implements Runnable {
         PropertiesExporter.exportProperties(
                 pw, identation + "    ",
                 root,
-                PropertyOverwriter.overwrite("name", root.getName())
+                PropertyOverwriter.overwrite("name", rootPackageName)
         );
         exportChilds(pw, identation + "    ", root);
         pw.printf("%s  }\n", identation);

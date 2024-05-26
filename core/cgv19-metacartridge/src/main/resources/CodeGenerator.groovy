@@ -4,6 +4,8 @@ import de.spraener.nxtgen.cartridge.meta.MetaCartridge
 import de.spraener.nxtgen.model.Stereotype
 import de.spraener.nxtgen.oom.StereotypeHelper
 import de.spraener.nxtgen.oom.model.MClass
+import de.spraener.nxtgen.php.PhpCodeBlock
+import de.spraener.nxtgen.php.PhpHelper
 
 
 String readTaggedValue( MClass mClass, String stereotype, String taggedValue, String defaultValue) {
@@ -76,7 +78,11 @@ ${applyModifiers("jcb")}
             break;
         case "PHP":
             return """${metaType} me = (${metaType})element;
-        de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock phpCB = new de.spraener.nxtgen.cartridge.rest.php.PhpCodeBlock("src", "", me.getName());
+        String outDir = de.spraener.nxtgen.php.PhpHelper.readOutDirFromModelElement(element, "src");
+        ${PhpCodeBlock.class.getName()} phpCB = new ${PhpCodeBlock.class.getName()}(outDir, 
+                                                    PhpHelper.toPhpPackageName(me), 
+                                                    me.getName()
+                                                );
         GroovyCodeBlockImpl gcb = new GroovyCodeBlockImpl("${mClass.getPackage().getName()}", me, "${getTemplateFileName(mClass)}");
         phpCB.addCodeBlock(gcb);
 ${applyModifiers("phpCB")}
@@ -124,6 +130,7 @@ import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
+import de.spraener.nxtgen.php.PhpHelper;
 
 /*
 @CGV19Generator(

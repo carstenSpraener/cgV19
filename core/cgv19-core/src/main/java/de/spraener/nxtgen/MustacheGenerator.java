@@ -5,10 +5,7 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import de.spraener.nxtgen.model.ModelElement;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -46,10 +43,15 @@ public class MustacheGenerator implements CodeGenerator {
                 }
             }
             mustache.execute(pw, scope).flush();
-
+            ensurePathExists(this.outputFile);
             return new SimpleFileWriterCodeBlock(new String(baos.toByteArray()), this.outputFile);
         } catch( IOException ioXC ) {
             throw new RuntimeException(ioXC);
         }
+    }
+
+    private void ensurePathExists(String outputFile) {
+        File of = new File(outputFile);
+        of.getParentFile().mkdirs();
     }
 }

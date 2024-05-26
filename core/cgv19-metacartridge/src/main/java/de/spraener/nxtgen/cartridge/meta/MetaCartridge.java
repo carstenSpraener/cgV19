@@ -4,6 +4,8 @@ import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
+import de.spraener.nxtgen.filestrategies.GeneralFileStrategy;
+import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
@@ -79,6 +81,21 @@ public class MetaCartridge extends MetaCartridgeBase {
                     (c)->c.setToFileStrategy(
                             () -> new File(NextGen.getWorkingDir()+"/doc/stereotypes.json")
                     )
+            ));
+        }
+        if( me instanceof MClass && stereotypeName.equals(MetaStereotypes.CODEGENERATORTEST.getName())) {
+            return CodeGeneratorMapping.create(me, new CodeGeneratorTestGenerator(
+                    (c)-> ((JavaCodeBlock) c).setSrcDir("src/test/java")
+            ));
+        }
+        if( me instanceof MClass && stereotypeName.equals(MetaStereotypes.TRANSFORMATIONTEST.getName())) {
+            return CodeGeneratorMapping.create(me, new TransformationTestGenerator(
+                    (c)-> ((JavaCodeBlock) c).setSrcDir("src/test/java")
+            ));
+        }
+        if( me instanceof MClass && stereotypeName.equals(MetaStereotypes.OBJECTMODELMOTHER.getName())) {
+            return CodeGeneratorMapping.create(me, new ObjectModelMotherGenerator(
+                    (c)-> ((JavaCodeBlock) c).setSrcDir("src/test/java")
             ));
         }
         return super.createMapping(me, stereotypeName);

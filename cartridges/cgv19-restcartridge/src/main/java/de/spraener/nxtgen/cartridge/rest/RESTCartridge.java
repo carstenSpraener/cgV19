@@ -9,8 +9,6 @@ import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.cartridge.rest.angular.TSTypeGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.*;
 import de.spraener.nxtgen.cartridge.rest.entity.*;
-import de.spraener.nxtgen.cartridge.rest.filestrategies.PhpFileStrategy;
-import de.spraener.nxtgen.java.JavaCodeBlock;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
@@ -33,31 +31,18 @@ public class RESTCartridge extends  RESTCartridgeBase {
             NextGen.LOGGER.finer("handling model element "+me.getName());
             if( isEntity(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new EntityGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpEntityGenerator(
-                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Entity", me.getName()+".php"))
-                )));
             } else if( isDDL(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new DDLGenerator()));
             } else if( isTSType(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new TSTypeGenerator()));
             } else if( isRepository(me) ) {
                 result.add(CodeGeneratorMapping.create(me, new RepositoryGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpRepositoryGenerator(
-                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Repository", me.getName()+".php"))
-                )));
             } else if( hasStereotype(RESTStereotypes.RESTCONTROLLER.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new ControllerGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new PhpControllerBaseGenerator(
-                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Controller/Base", me.getName()+".php"))
-                )));
-                result.add(CodeGeneratorMapping.create(me, new PhpControllerGenerator(
-                        cb -> cb.setToFileStrategy(new PhpFileStrategy("Controller", me.getName().replace("Base", "")+".php"))
-                )));
             } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new ApiControllerGenerator()));
-                result.add(CodeGeneratorMapping.create(me, new ApiControllerBaseGenerator(
-                        cb -> ((JavaCodeBlock)cb).setClassName(me.getName()+"Base")
-                )));
+            } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName()+"Base", me) ) {
+                result.add(CodeGeneratorMapping.create(me, new ApiControllerBaseGenerator()));
             } else if( hasStereotype(RESTStereotypes.IMPL.getName(), me) ) {
                 result.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
             } else if( hasStereotype(RESTStereotypes.ACTIVITYIMPL.getName(), me) ) {

@@ -1,17 +1,14 @@
 package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.*;
-import de.spraener.nxtgen.filestrategies.GeneralFileStrategy;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import de.spraener.nxtgen.oom.model.OOModel;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MetaCartridgeGeneratorMappingTests extends AbstractOOModelTest {
     private MetaCartridge uut = new MetaCartridge();
@@ -66,7 +63,7 @@ public class MetaCartridgeGeneratorMappingTests extends AbstractOOModelTest {
     }
 
     public static void assertDefaultMapping(Cartridge uut, String stereotype, int nofMappingsExpected) {
-        OOMetaModelObjetctMother objectMother = new OOMetaModelObjetctMother();
+        OOMetaModelObjectMother objectMother = new OOMetaModelObjectMother();
         objectMother.createDefaultOOModel();
         objectMother.createClass("Test"+stereotype+"Mapping",
             c -> c.addStereotypes(new StereotypeImpl(stereotype))

@@ -132,6 +132,7 @@ This MClass will be taken from the Dockerfile generator to build a global docker
       metaType 'Package'
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'CloudClusterIPService'
         documentation """"""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:naqfq5GD.AAAARsI'
@@ -139,6 +140,7 @@ This MClass will be taken from the Dockerfile generator to build a global docker
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'CloudDeployable'
         documentation """"""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:1W7zq5GD.AAAARnt'
@@ -146,6 +148,7 @@ This MClass will be taken from the Dockerfile generator to build a global docker
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Component'
         name 'CloudIngressService'
         documentation """Marks a Component as a ingress Service inside a K8S cluster."""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:S3IZB5GGAqAACA5b'
@@ -153,6 +156,7 @@ This MClass will be taken from the Dockerfile generator to build a global docker
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Package'
         name 'CloudModule'
         documentation """A package marked with this Stereotype will describe all deployment components in a component diagram.
 
@@ -218,6 +222,7 @@ At the moment the only supported database type is MariaDB. More to come"""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Component'
         name 'CloudService'
         documentation """"""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:6odQq5GD.AAAART5'
@@ -234,6 +239,7 @@ At the moment the only supported database type is MariaDB. More to come"""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Package'
         name 'Deployment'
         documentation """A package marked with this Stereotype will describe all deployment components in a component diagram."""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:aFqQq5GD.AAAARTF'
@@ -258,6 +264,7 @@ At the moment the only supported database type is MariaDB. More to come"""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Component'
         name 'IngressService'
         documentation """Marks a Component as a ingress Service inside a K8S cluster."""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:X2juO5GGAqAoAQoH'
@@ -265,6 +272,7 @@ At the moment the only supported database type is MariaDB. More to come"""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Dependency'
         name 'Routes'
         documentation """Marks a dependency between an IngressService and a Port on a CloudService as an Ingress route definition.
 
@@ -282,6 +290,7 @@ The tagged value path contains the path pattern for this route."""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Class'
         name 'DockerComposeFile'
         documentation """Internal stereotype to mark the trigger class for the docker-compose.yml file."""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:7q73e5GGAqAACAnN'
@@ -289,6 +298,7 @@ The tagged value path contains the path pattern for this route."""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Package'
         name 'CloudShare'
         documentation """A package with this stereotype, that is placed next to the other CloudMudule packages will be given to all CloudModules so they can extract payload and service descriptions for their use."""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:52EiJ5GGAqAACBKv'
@@ -296,6 +306,7 @@ The tagged value path contains the path pattern for this route."""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Dependency'
         name 'Mounts'
         documentation """"""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:q.38D5GGAqACRBMs'
@@ -319,6 +330,7 @@ The tagged value path contains the path pattern for this route."""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'InstanceSpecification'
         name 'PermanentVolume'
         documentation """"""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:ZyDoq5GD.AAAARcl'
@@ -335,6 +347,7 @@ The tagged value path contains the path pattern for this route."""
       }
       mClass {
         stereotype 'Stereotype'
+        baseClass 'Dependency'
         name 'Provides'
         documentation """"""
         id 'wKYsC5GD.AAAARHf:8DoBJ5GGAqAACAsg:Weioa5GD.AAAARyL'

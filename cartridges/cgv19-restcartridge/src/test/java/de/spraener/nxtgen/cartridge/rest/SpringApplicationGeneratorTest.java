@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.cartridge.rest;
 
 import de.spraener.nxtgen.CodeBlock;
+import de.spraener.nxtgen.oom.OOModelBuilder;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.OOModel;
 import org.junit.jupiter.api.Test;
@@ -12,10 +13,10 @@ public class SpringApplicationGeneratorTest {
     @Test
     void testSpringBootApplicationGeneration() {
         SpringBootAppGenerator uut = new SpringBootAppGenerator();
-        OOModel model = OOMObjectMother.createModel(
-                m->OOMObjectMother.createPackage(m, "app",
-                        pkg -> OOMObjectMother.createMClass(pkg, "MyApp",
-                                mc -> OOMObjectMother.createStereotype(mc, "SpringBootApp")
+        OOModel model = OOModelBuilder.createModel(
+                m->OOModelBuilder.createPackage(m, "app",
+                        pkg -> OOModelBuilder.createMClass(pkg, "MyApp",
+                                mc -> OOModelBuilder.createStereotype(mc, "SpringBootApp")
                         )
                 )
         );

@@ -23,10 +23,10 @@ public class MetaCartridgeBase extends AnnotatedCartridgeImpl {
     public List<Transformation> getTransformations() {
         List<Transformation> result = super.getTransformations();
         result.add( new de.spraener.nxtgen.cartridge.meta.RemoveModelRootPackage() );
-        result.add( new de.spraener.nxtgen.cartridge.meta.EnsureGeneratorDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.EnsureTransformationDefinitionsTransformation() );
-        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeServicesLocatorTransformation() );
+        result.add( new de.spraener.nxtgen.cartridge.meta.EnsureGeneratorDefinitionsTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeBaseForCartridgeTransformation() );
+        result.add( new de.spraener.nxtgen.cartridge.meta.CartridgeServicesLocatorTransformation() );
         result.add( new de.spraener.nxtgen.cartridge.meta.StereotypeEnumToDescriptorTransformation() );
 
         return result;
@@ -38,28 +38,6 @@ public class MetaCartridgeBase extends AnnotatedCartridgeImpl {
         for( ModelElement me : m.getModelElements() ) {
             if( me.getStereotypes().isEmpty() ) {
                 continue;
-            }
-            if( StereotypeHelper.hasStereotype(me, "GroovyScript") ) {
-                CodeGeneratorMapping mapping = null;
-                if( me instanceof MClass tME ) {
-                    mapping = createMapping(tME, "GroovyScript");
-                    if (mapping == null) {
-                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.GroovyScriptGenerator());
-                    }
-                    mapping.setStereotype("GroovyScript");
-                    result.add(mapping);
-                }
-            }
-            if( StereotypeHelper.hasStereotype(me, "cgV19CartridgeBase") ) {
-                CodeGeneratorMapping mapping = null;
-                if( me instanceof MClass tME ) {
-                    mapping = createMapping(tME, "cgV19CartridgeBase");
-                    if (mapping == null) {
-                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.CartridgeBaseGenerator());
-                    }
-                    mapping.setStereotype("cgV19CartridgeBase");
-                    result.add(mapping);
-                }
             }
             if( StereotypeHelper.hasStereotype(me, "Transformation") ) {
                 CodeGeneratorMapping mapping = null;
@@ -83,28 +61,6 @@ public class MetaCartridgeBase extends AnnotatedCartridgeImpl {
                     result.add(mapping);
                 }
             }
-            if( StereotypeHelper.hasStereotype(me, "StereotypeDescriptor") ) {
-                CodeGeneratorMapping mapping = null;
-                if( me instanceof MClass tME ) {
-                    mapping = createMapping(tME, "StereotypeDescriptor");
-                    if (mapping == null) {
-                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.StereotypeDescriptorJsonGenerator());
-                    }
-                    mapping.setStereotype("StereotypeDescriptor");
-                    result.add(mapping);
-                }
-            }
-            if( StereotypeHelper.hasStereotype(me, "StereotypeEnum") ) {
-                CodeGeneratorMapping mapping = null;
-                if( me instanceof MClass tME ) {
-                    mapping = createMapping(tME, "StereotypeEnum");
-                    if (mapping == null) {
-                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.StereotypeEnumGenerator());
-                    }
-                    mapping.setStereotype("StereotypeEnum");
-                    result.add(mapping);
-                }
-            }
             if( StereotypeHelper.hasStereotype(me, "cgV19CartridgeServiceDefinition") ) {
                 CodeGeneratorMapping mapping = null;
                 if( me instanceof MClass tME ) {
@@ -113,6 +69,17 @@ public class MetaCartridgeBase extends AnnotatedCartridgeImpl {
                         mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.CartridgeServiceLocaterGenerator());
                     }
                     mapping.setStereotype("cgV19CartridgeServiceDefinition");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "StereotypeDescriptor") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "StereotypeDescriptor");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.StereotypeDescriptorJsonGenerator());
+                    }
+                    mapping.setStereotype("StereotypeDescriptor");
                     result.add(mapping);
                 }
             }
@@ -135,6 +102,72 @@ public class MetaCartridgeBase extends AnnotatedCartridgeImpl {
                         mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.CodeGeneratorGenerator());
                     }
                     mapping.setStereotype("CodeGenerator");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "cgV19CartridgeBase") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "cgV19CartridgeBase");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.CartridgeBaseGenerator());
+                    }
+                    mapping.setStereotype("cgV19CartridgeBase");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "GroovyScript") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "GroovyScript");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.GroovyScriptGenerator());
+                    }
+                    mapping.setStereotype("GroovyScript");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "CodeGeneratorTest") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "CodeGeneratorTest");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.CodeGeneratorTestGenerator());
+                    }
+                    mapping.setStereotype("CodeGeneratorTest");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "TransformationTest") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "TransformationTest");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.TransformationTestGenerator());
+                    }
+                    mapping.setStereotype("TransformationTest");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "StereotypeEnum") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "StereotypeEnum");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.StereotypeEnumGenerator());
+                    }
+                    mapping.setStereotype("StereotypeEnum");
+                    result.add(mapping);
+                }
+            }
+            if( StereotypeHelper.hasStereotype(me, "ObjectModelMother") ) {
+                CodeGeneratorMapping mapping = null;
+                if( me instanceof MClass tME ) {
+                    mapping = createMapping(tME, "ObjectModelMother");
+                    if (mapping == null) {
+                        mapping = CodeGeneratorMapping.create(me, new de.spraener.nxtgen.cartridge.meta.ObjectModelMotherGenerator());
+                    }
+                    mapping.setStereotype("ObjectModelMother");
                     result.add(mapping);
                 }
             }

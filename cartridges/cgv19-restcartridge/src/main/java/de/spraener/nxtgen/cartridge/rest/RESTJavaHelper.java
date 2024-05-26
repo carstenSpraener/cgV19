@@ -20,4 +20,14 @@ public class RESTJavaHelper extends de.spraener.nxtgen.oom.model.JavaHelper {
         OOModel ooModel = (OOModel) mClass.getModel();
         return ooModel.findClassByName(originalClassName);
     }
+
+    public static String removePostfix(String postFix, String name) {
+        if( name == null || postFix==null ) {
+            return name;
+        }
+        if( !name.endsWith(postFix) ) {
+            return name;
+        }
+        return name.substring(0, name.length()-postFix.length());
+    }
 }

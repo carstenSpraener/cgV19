@@ -9,4 +9,8 @@ public class JavaHelper {
     public static boolean isEmpty(String str) {
         return str==null || "".equals(str.trim());
     }
+
+    public static boolean isBaseType(String type) {
+        return type.indexOf('.') == -1;
+    }
 }

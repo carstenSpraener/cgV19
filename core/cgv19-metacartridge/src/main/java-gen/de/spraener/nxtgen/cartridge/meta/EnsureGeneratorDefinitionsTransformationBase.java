@@ -7,10 +7,12 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
+/*
 @CGV19Transformation(
         requiredStereotype = "CodeGenerator",
         operatesOn = MClass.class
 )
+*/
 public abstract class EnsureGeneratorDefinitionsTransformationBase implements de.spraener.nxtgen.Transformation {
 
     @Override

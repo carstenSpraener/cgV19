@@ -13,6 +13,7 @@ public class StereotypeExporter  implements Exporter {
         IStereotype sType = (IStereotype)element;
         pw.printf("%smClass {\n",indentation);
         pw.printf("%s  stereotype 'Stereotype'\n", indentation);
+        pw.printf("%s  baseClass '%s'\n", indentation, sType.getBaseType());
         PropertiesExporter.exportProperties(pw,indentation+"  ", element);
         if( sType.getTaggedValueDefinitions() != null ) {
             for (ITaggedValueDefinition tv : sType.getTaggedValueDefinitions().toTaggedValueDefinitionArray()) {
@@ -50,7 +51,7 @@ public class StereotypeExporter  implements Exporter {
     }
 
     // See https://www.visual-paradigm.com/support/documents/pluginjavadoc/ chapter ITaggedValue
-    private static final String[] TAGGED_VALUE_TYPE = new String[]{
+    public static final String[] TAGGED_VALUE_TYPE = new String[]{
             "String",       // 0
             "modelElement", // 1
             "adhoc-enum",   // 2

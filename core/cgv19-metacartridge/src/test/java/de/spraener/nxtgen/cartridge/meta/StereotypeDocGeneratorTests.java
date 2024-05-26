@@ -7,12 +7,12 @@ import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MAttribute;
 import de.spraener.nxtgen.oom.model.MClass;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StereotypeDocGeneratorTests extends AbstractOOModelTest {
     private StereotypeDocGenerator uut = new StereotypeDocGenerator();

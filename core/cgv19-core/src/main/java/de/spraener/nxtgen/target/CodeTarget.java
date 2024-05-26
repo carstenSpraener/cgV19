@@ -34,6 +34,7 @@ public class CodeTarget {
         if (this.mySectionMap.get(key) != null) {
             throw new IllegalArgumentException("CodeSection with key " + key + " already added.");
         }
+        aSection.setId(key);
         this.mySectionMap.put(key, aSection);
     }
 

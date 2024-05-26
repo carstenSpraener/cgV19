@@ -7,9 +7,9 @@ import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.OOModelBuilder;
 import de.spraener.nxtgen.oom.model.OOModel;
 import org.assertj.core.api.Assertions;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.*;
@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 public class CartridgeServiceLocatorTest {
     public static final String WORKING_DIR = "./build/tmp/test-cartridge";
 
-    @Before
+    @BeforeEach
     public void setUp() {
         File f = new File(WORKING_DIR);
         f.mkdirs();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         File wd = new File(WORKING_DIR);
         deleteDir(wd);

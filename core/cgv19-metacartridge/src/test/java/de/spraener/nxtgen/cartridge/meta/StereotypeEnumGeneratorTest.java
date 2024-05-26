@@ -2,11 +2,11 @@ package de.spraener.nxtgen.cartridge.meta;
 
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.MClass;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StereotypeEnumGeneratorTest extends AbstractOOModelTest {
     private static final String ENUM_IMPL = """
@@ -35,7 +35,7 @@ public class StereotypeEnumGeneratorTest extends AbstractOOModelTest {
     private StereotypeEnumGenerator uut = new StereotypeEnumGenerator();
     private StereotypeImpl stGen = new StereotypeImpl(MetaCartridge.STEREOTYPE_CODE_GENERATOR);
 
-    @Before
+    @BeforeEach
     public void setup() {
         super.setup();
         stGen.setTaggedValue("generatesOn", "MClass");

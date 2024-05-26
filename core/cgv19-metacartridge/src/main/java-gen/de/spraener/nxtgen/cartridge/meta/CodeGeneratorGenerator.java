@@ -11,6 +11,7 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.oom.model.*;
 import de.spraener.nxtgen.annotations.*;
 
+/*
 @CGV19Generator(
         requiredStereotype = "CodeGenerator",
         operatesOn = MClass.class,
@@ -19,6 +20,7 @@ import de.spraener.nxtgen.annotations.*;
         templateName = "/CodeGenerator.groovy",
         implementationKind = ImplementationKind.GROOVY_TEMPLATE
 )
+*/
 public class CodeGeneratorGenerator implements CodeGenerator {
     private Consumer<CodeBlock>[] codeBlockModifiers;
 
