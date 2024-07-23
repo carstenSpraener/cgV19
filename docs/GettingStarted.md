@@ -92,7 +92,7 @@ you to enter some data like here:
 
 
 Please give value for 'cgv19-Version':
-23.1.0
+23.1.2
 Please give value for 'projectName':
 my-app
 Please give value for 'rootPackage':
