@@ -46,6 +46,10 @@ startScripts {
         def scriptFile = file "${outputDir}/${applicationName}"
         scriptFile.text = scriptFile.text.replace('CLASSPATH=$APP_HOME/lib', 'CLASSPATH=$APP_HOME/cartridges/*:$APP_HOME/lib')
         scriptFile.text = scriptFile.text.replace("DEFAULT_JVM_OPTS=\"\"\n", "DEFAULT_JVM_OPTS=\"-Dapp.path=\$app_path\"\n")
+
+        def dosFile = file "${outputDir}/${applicationName}.bat"
+        dosFile.text = dosFile.text.replace('CLASSPATH=%APP_HOME%\\lib', 'CLASSPATH=%APP_HOME%\\cartridges\\*:%APP_HOME%/lib')
+        dosFile.text = dosFile.text.replace("DEFAULT_JVM_OPTS=", "DEFAULT_JVM_OPTS=-Dapp.path=%DIRNAME%")
     }
 }
 
