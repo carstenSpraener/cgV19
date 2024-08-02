@@ -52,14 +52,14 @@ public class MetaCartridgeGeneratorMappingTests extends AbstractOOModelTest {
 
     public static void assertDefaultMappings(Cartridge uut) {
         // FIXME: Annotated generators are mapped twice.
-        assertDefaultMapping(uut, "cgV19CartridgeBase", 2);
-        assertDefaultMapping(uut, "GroovyScript", 2);
-        assertDefaultMapping(uut, "Transformation", 2);
-        assertDefaultMapping(uut, "cgV19Cartridge", 2);
+        assertDefaultMapping(uut, "cgV19CartridgeBase", 1);
+        assertDefaultMapping(uut, "GroovyScript", 1);
+        assertDefaultMapping(uut, "Transformation", 1);
+        assertDefaultMapping(uut, "cgV19Cartridge", 1);
         assertDefaultMapping(uut, "cgV19CartridgeServiceDefinition", 2);
-        assertDefaultMapping(uut, "StereotypeEnum", 2);
-        assertDefaultMapping(uut, "Stereotype", 2);
-        assertDefaultMapping(uut, "CodeGenerator", 2);
+        assertDefaultMapping(uut, "StereotypeEnum", 1);
+        assertDefaultMapping(uut, "Stereotype", 1);
+        assertDefaultMapping(uut, "CodeGenerator", 1);
     }
 
     public static void assertDefaultMapping(Cartridge uut, String stereotype, int nofMappingsExpected) {
