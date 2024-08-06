@@ -30,4 +30,18 @@ public class RESTJavaHelper extends de.spraener.nxtgen.oom.model.JavaHelper {
         }
         return name.substring(0, name.length()-postFix.length());
     }
+
+    public static String toEntityName(MClass mc) {
+        String dataType = mc.getTaggedValue(RESTStereotypes.LOGIC.name(), "dataType");
+        if( dataType != null && !"".equals(dataType)) {
+            return dataType;
+        }
+        return mc.getName().replace("Logic", "").replace("Base", "");
+    }
+
+    public static String toFQEntityName(MClass mc) {
+        String entityClassName = toEntityName(mc);
+        String pkgName = mc.getPackage().getFQName()+".model";
+        return pkgName+"."+entityClassName;
+    }
 }
