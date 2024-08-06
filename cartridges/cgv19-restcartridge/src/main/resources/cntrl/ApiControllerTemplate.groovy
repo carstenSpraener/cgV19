@@ -9,13 +9,14 @@ OOModel model = mClass.getModel();
 package ${mClass.getPackage().getFQName()};
 
 import org.springframework.web.bind.annotation.*;
+import ${mClass.getPackage().getFQName()}.logic.*;
 
 @RestController()
 @RequestMapping("/${mClass.getName().toLowerCase()}")
 public class ${mClass.getName()} extends ${mClass.getName()}Base {
 
-    public ${mClass.getName()}() {
-        super();
+    public ${mClass.getName()}(${mClass.getName()}Logic logic) {
+        super(logic);
     }
 
     // TODO: Remove Generated marker line an implement methods.

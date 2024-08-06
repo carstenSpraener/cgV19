@@ -12,6 +12,7 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 import de.spraener.nxtgen.oom.cartridge.GeneratorGapTransformation;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MDependency;
+import de.spraener.nxtgen.oom.model.OOModel;
 
 @CGV19Component
 public class ApiControllerComponent {
@@ -21,21 +22,30 @@ public class ApiControllerComponent {
             operatesOn = MClass.class
     )
     public void apiControllerGeneratorGapTransformation(ModelElement me) {
-        MClass mc = (MClass)me;
+        MClass mc = (MClass) me;
         new GeneratorGapTransformation().doTransformation(mc);
-        MClass logicClass = new ResourceToLogic().create(mc);
-        ((StereotypeImpl)StereotypeHelper.getStereotype(logicClass, RESTStereotypes.LOGIC.getName()))
-                .removeTaggedValue("dataType");
+        MClass logicClassBase = new ResourceToLogic().create(mc, this::removeConstructorArgsFromImpl);
+    }
+
+    private void removeConstructorArgsFromImpl(MClass mClass) {
+        if (StereotypeHelper.hasStereotype(mClass, RESTStereotypes.LOGIC.getName())) {
+            ((StereotypeImpl) StereotypeHelper.getStereotype(mClass, RESTStereotypes.LOGIC.getName()))
+                    .removeTaggedValue("dataType");
+        }
+        if (StereotypeHelper.hasStereotype(mClass, RESTStereotypes.IMPL.getName())) {
+            mClass.setProperty("constructorArgs", "Gson gson");
+            mClass.setProperty("superCallArgs","gson");
+        }
     }
 
     public static String getDataType(MClass controllerClass) {
         String dataType = controllerClass.getTaggedValue(RESTStereotypes.RESTCONTROLLER.getName(), "dataType");
-        if( dataType == null ) {
+        if (dataType == null) {
             MDependency dep = controllerClass.getDependencies().stream()
                     .filter(d -> StereotypeHelper.hasStereotype(d, RESTStereotypes.CONTROLLEDENTITY.getName()))
                     .findFirst()
                     .orElse(null);
-            if( dep!=null ) {
+            if (dep != null) {
                 return dep.getTarget();
             }
         }

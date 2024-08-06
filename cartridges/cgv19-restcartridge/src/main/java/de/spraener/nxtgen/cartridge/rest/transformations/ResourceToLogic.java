@@ -7,6 +7,8 @@ import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.model.*;
 
+import java.util.function.Consumer;
+
 public class ResourceToLogic implements Transformation {
 
     @Override
@@ -20,7 +22,7 @@ public class ResourceToLogic implements Transformation {
         create((MClass)element);
     }
 
-    public MClass create(MClass mClass) {
+    public MClass create(MClass mClass, Consumer<MClass>...clazzModifier) {
         MPackage pkgLogic = mClass.getPackage().findOrCreatePackage("logic");
         MClass logicBase = pkgLogic.createMClass(mClass.getName()+"LogicBase");
         logicBase.setModel(mClass.getModel());
@@ -32,6 +34,11 @@ public class ResourceToLogic implements Transformation {
             MOperation opClone = op.cloneTo(logicBase);
             String type = toLogicReturnType(opClone.getType());
             opClone.setType(type);
+        }
+        if( clazzModifier!=null ) {
+            for( Consumer<MClass> m : clazzModifier ) {
+                m.accept(logicBase);
+            }
         }
 
         MClass logicImpl = pkgLogic.createMClass(mClass.getName()+"Logic");
@@ -48,6 +55,11 @@ public class ResourceToLogic implements Transformation {
             String type = toLogicReturnType(opClone.getType());
             opClone.setType(type);
             op.setProperty("returnStatement", "return null;");
+        }
+        if( clazzModifier!=null ) {
+            for( Consumer<MClass> m : clazzModifier ) {
+                m.accept(logicImpl);
+            }
         }
 
         return logicBase;

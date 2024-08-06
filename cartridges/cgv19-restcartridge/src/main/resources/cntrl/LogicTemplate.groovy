@@ -17,14 +17,6 @@ def toRepoName(me) {
     return me.name.replace("Logic", "Repository").replace("Base", "");
 }
 
-def toEntityName(MClass mc) {
-    String dataType = mc.getTaggedValue(RESTStereotypes.LOGIC.name, "dataType");
-    if( dataType != null && !"".equals(dataType)) {
-        return dataType;
-    }
-    return mc.name.replace("Logic", "").replace("Base", "");
-}
-
 def toRequestMethod(MOperation op) {
     def type = op.getType();
     def name = op.getName();
@@ -76,6 +68,17 @@ def activityMethods(MClass c, String entityName) {
     return sb.toString();
 }
 
+def createToJsonMethods(entityName) {
+    return """
+    public ${entityName} fromJson(String valueJson) {
+        return this.gson.fromJson(valueJson, ${entityName}.class);
+    } 
+
+    public String toJson(${entityName} value) {
+        return this.gson.toJson(value);
+    } 
+"""
+}
 def createCRUDMethods(entityName) {
     return """    public ${entityName} save( ${entityName} value ) {
         return this.repository.save(value);
@@ -107,7 +110,7 @@ MClass mClass = (MClass)modelElement;
 def pkgName = ((MClass)modelElement).getPackage().getFQName();
 def cName = modelElement.name;
 def repoName = toRepoName(modelElement);
-def entityName = toEntityName(modelElement);
+def entityName = RESTJavaHelper.toEntityName(modelElement);
 def basePkgName = pkgName.substring(0, pkgName.lastIndexOf('.'));
 
 def dataType = mClass.getTaggedValue(RESTStereotypes.LOGIC.name, "dataType");
@@ -132,15 +135,7 @@ public abstract class ${cName} {
     public ${cName}(${dataType!=null ? "${repoName} reppository, " : ""}Gson gson){
         ${dataType!=null ? "this.repository = reppository;" : ""}
         this.gson = gson;
-    }
-       
-    public ${entityName} fromJson(String valueJson) {
-        return this.gson.fromJson(valueJson, ${entityName}.class);
-    } 
-
-    public String toJson(${entityName} value) {
-        return this.gson.toJson(value);
-    } 
+    }${dataType!=null ? createToJsonMethods(entityName) : ""}
 ${dataType!=null ? createCRUDMethods(entityName) : ""}
 ${requestMethods(modelElement)}
 ${activityMethods(modelElement, entityName)}

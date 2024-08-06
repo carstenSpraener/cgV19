@@ -13,12 +13,14 @@ import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MPackage;
+import de.spraener.nxtgen.oom.model.OOModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RESTCartridge extends  RESTCartridgeBase {
+public class RESTCartridge extends RESTCartridgeBase {
     @Override
     public String getName() {
         return "REST-Cartridge";
@@ -27,30 +29,30 @@ public class RESTCartridge extends  RESTCartridgeBase {
     @Override
     public List<CodeGeneratorMapping> mapGenerators(Model model) {
         List<CodeGeneratorMapping> result = new ArrayList<>();
-        for( ModelElement me : model.getModelElements() ) {
-            NextGen.LOGGER.finer("handling model element "+me.getName());
-            if( isEntity(me) ) {
+        for (ModelElement me : model.getModelElements()) {
+            NextGen.LOGGER.finer("handling model element " + me.getName());
+            if (isEntity(me)) {
                 result.add(CodeGeneratorMapping.create(me, new EntityGenerator()));
-            } else if( isDDL(me) ) {
+            } else if (isDDL(me)) {
                 result.add(CodeGeneratorMapping.create(me, new DDLGenerator()));
-            } else if( isTSType(me) ) {
+            } else if (isTSType(me)) {
                 result.add(CodeGeneratorMapping.create(me, new TSTypeGenerator()));
-            } else if( isRepository(me) ) {
+            } else if (isRepository(me)) {
                 result.add(CodeGeneratorMapping.create(me, new RepositoryGenerator()));
-            } else if( hasStereotype(RESTStereotypes.RESTCONTROLLER.getName(), me) ) {
+            } else if (hasStereotype(RESTStereotypes.RESTCONTROLLER.getName(), me)) {
                 result.add(CodeGeneratorMapping.create(me, new ControllerGenerator()));
-            } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName(), me) ) {
+            } else if (hasStereotype(RESTStereotypes.APIRESSOURCE.getName(), me)) {
                 result.add(CodeGeneratorMapping.create(me, new ApiControllerGenerator()));
-            } else if( hasStereotype(RESTStereotypes.APIRESSOURCE.getName()+"Base", me) ) {
+            } else if (hasStereotype(RESTStereotypes.APIRESSOURCE.getName() + "Base", me)) {
                 result.add(CodeGeneratorMapping.create(me, new ApiControllerBaseGenerator()));
-            } else if( hasStereotype(RESTStereotypes.IMPL.getName(), me) ) {
+            } else if (hasStereotype(RESTStereotypes.IMPL.getName(), me)) {
                 result.add(CodeGeneratorMapping.create(me, new PoJoGenerator()));
-            } else if( hasStereotype(RESTStereotypes.ACTIVITYIMPL.getName(), me) ) {
+            } else if (hasStereotype(RESTStereotypes.ACTIVITYIMPL.getName(), me)) {
                 result.add(CodeGeneratorMapping.create(me, new ActivityImplGenerator()));
-            } else if( isLogic(me) ) {
+            } else if (isLogic(me)) {
                 result.add(CodeGeneratorMapping.create(me, new LogicGenerator()));
-            } else if( isSprintBootApplication(me) ) {
-                NextGen.LOGGER.info(()->"Creating SpringBoot-Application");
+            } else if (isSprintBootApplication(me)) {
+                NextGen.LOGGER.info(() -> "Creating SpringBoot-Application");
                 result.add(CodeGeneratorMapping.create(me, new SpringBootAppGenerator()));
                 result.add(CodeGeneratorMapping.create(me, new MustacheGenerator(
                         "mustache/springBootApp/build.gradle.mustache",
@@ -68,7 +70,7 @@ public class RESTCartridge extends  RESTCartridgeBase {
     }
 
     protected CodeGeneratorMapping createMapping(ModelElement me, String stereotypeName, String aspect) {
-        if( me instanceof MPackage && "CloudModule".equals(stereotypeName) && aspect.equals("docker-compose")) {
+        if (me instanceof MPackage && "CloudModule".equals(stereotypeName) && aspect.equals("docker-compose")) {
             return CodeGeneratorMapping.create(me,
                     new MustacheGenerator(
                             "/mustache/springBootApp/docker-compose-serviceblock.mustache",
@@ -83,7 +85,7 @@ public class RESTCartridge extends  RESTCartridgeBase {
     @Override
     public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
         CodeGeneratorMapping mapping = this.createMapping(me, sType.getName(), aspect);
-        if( mapping == null ) {
+        if (mapping == null) {
             return "Unsupported evaluation request for ModelElement '" + me.getName() + " with aspect: '" + aspect + "'";
         }
         return mapping.getCodeGen().resolve(me, "").toCode();
@@ -116,5 +118,4 @@ public class RESTCartridge extends  RESTCartridgeBase {
     private boolean hasStereotype(String sTypeName, ModelElement me) {
         return StereotypeHelper.hasStereotype(me, sTypeName);
     }
-
 }
