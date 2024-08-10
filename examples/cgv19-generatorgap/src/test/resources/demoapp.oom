@@ -1,0 +1,18 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'demoapp'
+        documentation ''
+        metaType 'Package'
+        stereotype 'GeneratorGapApp'
+        mClass {
+            name 'DemoApp'
+            documentation ''
+            metaType 'Class'
+            stereotype 'GeneratorGapMain'
+        }
+    }
+}
+
+
