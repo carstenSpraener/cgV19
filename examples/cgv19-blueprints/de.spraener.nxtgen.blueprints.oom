@@ -1,0 +1,12 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.nxtgen.blueprints'
+        mClass {
+            name 'Blueprints'
+            stereotype 'cgV19Cartridge'
+        }
+    }
+}
+

@@ -1,4 +1,4 @@
-# Example project for CGV19
+# Example projects for CGV19
 
 This directory contains a collection of examples to demonstrate
 the usage of cgv19 in small and easy to understand pieces.
