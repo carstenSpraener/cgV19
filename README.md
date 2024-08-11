@@ -5,34 +5,13 @@
 
 Last Update on: August the 19th 2023
 
-### Quick start: See [Getting-Started](docs/GettingStarted.md), [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
-## [Upcoming Release 23.1.1](docs/Release-23.1.md)
-__cgV19 Release 23.1.1 is in the pipeline. It has its focus on cartridges__
+### Quick start: See [Getting-Started](docs/GettingStarted.md), [Checkout the exmaples](examples/Readme.md),
+### [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
 
-The 23.1.1 release makes massive use of the enhancements, that came with 23.1.0 
-especially __mustache__ and __blueprints__ are used to generate basic cloud nodes
-and docker-compose files.
+## New Release 24.1.0 providing new examples
 
-This release will include:
-* Introducing [__ICE__: Inter Cartridge Evaluation](cartridges%2Fdoc%2FInter-Cartridge-Evaluation.md) making it possible to trigger 
-  one cartridge from another or requesting code snippets from another cartridge
-* splitting the REST-Cartridge in several smaler cartridges making it:
-    * abstract rest-Cartridge
-    * spring-boot cartridge
-    * php-symfony cartridge
-    * NestJS cartridge
-* a new basic JavaLin cartridge used for worker tasks in a cloud
-* a new basic Angular cartridge
-* a Cloud cartridge supporting docker-compose and K8S and in addition
-  * Database-Nodes for MariaDB (PostgreSQL and other will follow)
-  * KeyCloak as an IDP
-* of course further enhancements/bug-fixes of cgv19-core as they are needed
-
-## A code abstraction framework to
-* Implement rules that make your ideas real code
-* Automate boring coding tasks
-* keep your documentation and Code in sync
-* generate your own Code and use it where and when you want
+The 24.1.0 release is a maintanance release with [some exmaples](examples/Readme.md) to 
+demonstrate the usage of cgv19. 
 
 ![cgv19-overview.png](docs/images/cgv19-overview.png)
 
