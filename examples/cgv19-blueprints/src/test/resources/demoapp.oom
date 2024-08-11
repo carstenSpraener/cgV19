@@ -5,12 +5,11 @@ ModelDSL.make {
         name 'demoapp'
         documentation ''
         metaType 'Package'
-        stereotype 'BlueprintsApp'
         mClass {
             name 'DemoApp'
             documentation ''
             metaType 'Class'
-            stereotype 'BlueprintsMain'
+            stereotype 'SpringCloudApp'
         }
     }
 }

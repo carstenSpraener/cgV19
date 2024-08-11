@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  database:
+    container_name: "app-database"
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_DATABASE: {{appname}}
+      MYSQL_USER:  {{appname}}
+      MYSQL_PASSWORD:  {{appname}}
+    restart: on-failure
+    volumes:
+      - "./database:/var/lib/mysql"
+
+  backend:
+    container_name: "{{appname}}"
+    build:
+      context: ./{{appname}}-backend
+      dockerfile: Dockerfile
+    restart: on-failure
+    environment:
+      - spring_profiles_active=docker
+
+  frontend:
+    container_name: "ng-{{appname}}"
+    build:
+      context: ./{{appname}}-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4201:4201"
+    restart: always
