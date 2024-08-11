@@ -1,4 +1,5 @@
 rootProject.name='examples'
 
 include ':cgv19-annotationcartridge'
+include ':cgv19-codetarget'
 include ':cgv19-generatorgap'

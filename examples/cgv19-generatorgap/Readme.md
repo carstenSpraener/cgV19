@@ -8,6 +8,7 @@ pattern with cgv19.
 The pattern is a good method to separate generated code from 
 templated code in a model driven project. The pattern generates
 two classes A and ABase from a single model Class << Stereotype>> A.
+![generatorGapUML.png](images/generatorGapUML.png)
 
 The class << Stereotype>> A is transformed to two new classes
 << Stereotype>> A extends ABase and << StereotypeBase>> ABase.
