@@ -17,5 +17,4 @@ work step by step.
 * ### [Using CodeTarget for reusable generator logic](cgv19-codetarget/Readme.md)
 * ### [Implementing the __Generator Gap__](cgv19-generatorgap/Readme.md)
 * ### [Using Mustache for logic free generation](cgv19-mustache/Readme.md)
-* ### TODO [Using Blueprints for project frame creation](cgv19-blueprints/Readme.md)
-* ### TODO [Complex Projects with InterContextEvaluation](cgv19-ice/Readme.md)
+* ### [Using Blueprints for project frame creation](cgv19-blueprints/Readme.md)
