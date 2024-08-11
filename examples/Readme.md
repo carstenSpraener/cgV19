@@ -18,4 +18,3 @@ work step by step.
 * ### [Implementing the __Generator Gap__](cgv19-generatorgap/Readme.md)
 * ### [Using Mustache for logic free generation](cgv19-mustache/Readme.md)
 * ### [Using Blueprints for project frame creation](cgv19-blueprints/Readme.md)
-* ### TODO [Complex Projects with InterContextEvaluation](cgv19-ice/Readme.md)
