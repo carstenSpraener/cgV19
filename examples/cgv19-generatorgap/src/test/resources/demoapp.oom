@@ -5,14 +5,15 @@ ModelDSL.make {
         name 'demoapp'
         documentation ''
         metaType 'Package'
-        stereotype 'GeneratorGapApp'
         mClass {
             name 'DemoApp'
             documentation ''
             metaType 'Class'
-            stereotype 'GeneratorGapMain'
+            stereotype 'PoJo'
+            mAttribute {
+                name 'name'
+                type 'String'
+            }
         }
     }
 }
-
-

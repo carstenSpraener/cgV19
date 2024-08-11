@@ -6,8 +6,6 @@ import de.spraener.nxtgen.annotations.CGV19Cartridge;
 public class GeneratorGap extends GeneratorGapBase{
     public static final String NAME = "GeneratorGap";
 
-
-
     public GeneratorGap() {
         super();
     }
@@ -16,5 +14,4 @@ public class GeneratorGap extends GeneratorGapBase{
     public String getName() {
         return NAME;
     }
-
 }
