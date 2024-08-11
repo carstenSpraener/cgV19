@@ -1,0 +1,15 @@
+FROM node:lts-alpine as stage-env
+WORKDIR /frontend
+RUN npm install -g @angular/cli;
+
+FROM stage-env as stage-frontend
+WORKDIR /frontend
+COPY . /frontend
+RUN  ng build --configuration docker --base-href=/{{appname}}/
+
+FROM nginx:mainline-alpine-slim
+
+RUN mkdir -p /var/www/html/{{appname}}
+
+COPY --from=stage-frontend /frontend/dist/{{appname}}-frontend/* /var/www/html/{{appname}}/
+COPY ./etc/nginx/* /etc/nginx/

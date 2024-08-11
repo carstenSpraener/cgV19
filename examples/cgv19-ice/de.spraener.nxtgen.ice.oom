@@ -1,0 +1,12 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.nxtgen.ice'
+        mClass {
+            name 'InterCartridgeEvaluation'
+            stereotype 'cgV19Cartridge'
+        }
+    }
+}
+
