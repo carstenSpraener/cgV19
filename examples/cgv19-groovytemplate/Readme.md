@@ -96,7 +96,7 @@ ${accessors(mClass)}
 
 The __in string__ evaluation of groovy together with its multi line 
 strings makes it easy readable. Also the handy property access like
-```mc.name``` instet of ```mc.getName()``` is an advantage.
+```mc.name``` instead of ```mc.getName()``` is an advantage.
 
 It is also very easy to call java methods from within the template.
 
