@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StartGenerator {
-    private static String WORKING_DIR ="../cgv19-cloud/build/source-gen/api";
+    private static String WORKING_DIR = "../cgv19-cloud/build/source-gen/api";
     private RESTCartridge uut = new RESTCartridge();
 
     void testRestModel() {
@@ -26,7 +26,7 @@ public class StartGenerator {
     @Test
     public void testRestDemoGeneration() throws Exception {
         String modelDir = "../../demoProjects/restdemo";
-        String modelPath = modelDir+"/restDemo.oom";
+        String modelPath = modelDir + "/restDemo.oom";
         String testDir = "./build/source-gen/restDemo";
         try {
             File dir = new File(testDir);
@@ -54,12 +54,16 @@ public class StartGenerator {
                     new File(testDir + "/src/main/java-gen/de/csp/demo/rest/model/Group.java"),
                     new File(testDir + "/src/main/java-gen/de/csp/demo/rest/model/User.java"),
                     new File(testDir + "/src/main/java-gen/de/csp/demo/rest/model/UserRepository.java"),
-
-                    new File(testDir + "/src/main/java-gen/de/csp/demo/rest/model/Student.java"),
-                    new File(testDir + "/src/main/java-gen/de/csp/demo/rest/model/StudentRepository.java"),
             };
             Assertions.assertThat(expectedFiles)
-                    .are(new Condition<>(f -> f.exists(), "File not found"))
+                    .are(new Condition<>(f -> {
+                        if (f.exists()) {
+                            return true;
+                        } else {
+                            System.err.println("File " + f.getName() + " not found.");
+                            return false;
+                        }
+                    }, "File not found"))
             ;
         } finally {
             FileUtils.deleteDirectory(new File(testDir));

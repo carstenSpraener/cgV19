@@ -1,0 +1,12 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.nxtgen.annotationcartridge'
+        mClass {
+            name 'AnnontationCartridgeDemo'
+            stereotype 'cgV19Cartridge'
+        }
+    }
+}
+

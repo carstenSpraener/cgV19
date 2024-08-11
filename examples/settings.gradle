@@ -1,0 +1,9 @@
+rootProject.name='examples'
+
+include ':cgv19-annotationcartridge'
+include ':cgv19-groovytemplate'
+include ':cgv19-codetarget'
+include ':cgv19-mustache'
+include ':cgv19-generatorgap'
+include ':cgv19-blueprints'
+include ':cgv19-ice'
