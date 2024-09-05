@@ -1,0 +1,12 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.cgv19.webtest'
+        mClass {
+            name 'WebTest'
+            stereotype 'cgV19Cartridge'
+        }
+    }
+}
+
