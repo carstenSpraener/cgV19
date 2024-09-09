@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 
 public class JavaCodeBlock extends CodeBlockImpl {
     String srcDir;
@@ -41,7 +42,7 @@ public class JavaCodeBlock extends CodeBlockImpl {
     protected PrintWriter getPrintWriter(String workingDir) throws IOException {
         File outFile = getOutputFile(workingDir);
         if (outFile == null) return null;
-        return  new PrintWriter(new FileWriter(outFile));
+        return  new PrintWriter(new FileWriter(outFile, StandardCharsets.UTF_8));
     }
 
     protected File getOutputFile(String workingDir) {

@@ -8,6 +8,7 @@ import de.spraener.nxtgen.NxtGenRuntimeException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 public class PhpCodeBlock extends CodeBlockImpl {
@@ -32,7 +33,7 @@ public class PhpCodeBlock extends CodeBlockImpl {
                 return;
             }
             outFile.getParentFile().mkdirs();
-            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            PrintWriter pw = new PrintWriter(new FileWriter(outFile, StandardCharsets.UTF_8));
             pw.print( this.toCode() );
             pw.flush();
             pw.close();
