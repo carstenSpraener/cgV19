@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +122,7 @@ public class CodeBlockImpl implements CodeBlock {
                 return;
             }
             outFile.getParentFile().mkdirs();
-            PrintWriter pw = new PrintWriter(new FileWriter(outFile));
+            PrintWriter pw = new PrintWriter(new FileWriter(outFile, StandardCharsets.UTF_8));
             pw.print(this.toCode());
             pw.flush();
             pw.close();
