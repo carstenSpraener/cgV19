@@ -24,6 +24,9 @@ public class AttributeExporter extends AttributeExporterBase {
     }
 
     public static String formatType(String typeAsString) {
+        if( typeAsString == null ) {
+            return "null";
+        }
         if( typeAsString.equalsIgnoreCase("date")) {
             // FIXME: No Java-Knowledge inside the plugin
             return "java.util.Date";
