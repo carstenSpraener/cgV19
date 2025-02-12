@@ -2,843 +2,144 @@ import de.spraener.nxtgen.groovy.ModelDSL
 
 ModelDSL.make {
   mPackage {
-    stereotype 'ModelRoot'
     name 'DSL'
-    documentation """<<ModelRoot>>"""
-    id 'C0ieOuGGAqACRAma'
-    metaType 'Profile'
+    documentation """"""
+    id 'yQ7RcUmD.AAAAQwk'
+    metaType 'Package'
+    stereotype 'ModelRoot'
     mClass {
       stereotype 'Stereotype'
       baseClass 'Package'
-      name 'cgV19Project'
+      name 'ModelRoot'
       documentation """"""
-      id 'C0ieOuGGAqACRAma:i0ieOuGGAqACRAmb'
+      id 'yQ7RcUmD.AAAAQwk:9u.xcUmD.AAAAQw0'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       baseClass 'Class'
-      name 'SpringBootApp'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:S0ieOuGGAqACRAmc'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'Resource'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:y0ieOuGGAqACRAmd'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 0
-        type 'String'
-        name 'dbTable'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:y0ieOuGGAqACRAmd$tLB3JeGD.AAAAQ0E$tLB3JeGD.AAAAQ0F'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'Entity'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:K0ieOuGGAqACRAmf'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 0
-        type 'String'
-        name 'dbTableName'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:K0ieOuGGAqACRAmf$bqeEpeGD.AAAAQpG$HqeEpeGD.AAAAQpH'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Action'
-      name 'Interactive'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:q0ieOuGGAqACRAmh'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Activity'
-      name 'Flow'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:60ieOuGGAqACRAmj'
+      name 'BasstardComponent'
+      documentation """Marks a class as a component of basstard. It can contain SynthParameter, SignalInput and SignalOutput attributes."""
+      id 'yQ7RcUmD.AAAAQwk:pW.JcUmD.AAAAQzJ'
       metaType 'Stereotype'
     }
     mClass {
       stereotype 'Stereotype'
       baseClass 'Attribute'
-      name 'PersistentField'
+      name 'SignalInput'
       documentation """"""
-      id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk'
+      id 'yQ7RcUmD.AAAAQwk:vh8pcUmD.AAAAQ1N'
       metaType 'Stereotype'
       mAttribute {
-        defaultValue """True"""
-        typeID 7
-        type 'boolean'
-        name 'nullable'
+        defaultValue """-1.0"""
+        typeID 6
+        type 'float'
+        name 'rangeMin'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$lhYPJeGD.AAAAQ0e'
+        id 'yQ7RcUmD.AAAAQwk:vh8pcUmD.AAAAQ1N$R7XZcUmD.AAAAQ2L$R7XZcUmD.AAAAQ2M'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
-        defaultValue """False"""
-        typeID 7
-        type 'boolean'
-        name 'unique'
+        defaultValue """1.0"""
+        typeID 6
+        type 'float'
+        name 'rangeMax'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$bhYPJeGD.AAAAQ0z'
+        id 'yQ7RcUmD.AAAAQwk:vh8pcUmD.AAAAQ1N$R7XZcUmD.AAAAQ2L$iWg5cUmD.AAAAQ2R'
+        metaType 'TaggedValueDefinition'
+      }
+    }
+    mClass {
+      stereotype 'Stereotype'
+      baseClass 'Attribute'
+      name 'SignalOutput'
+      documentation """"""
+      id 'yQ7RcUmD.AAAAQwk:x_qpcUmD.AAAAQ1d'
+      metaType 'Stereotype'
+      mAttribute {
+        defaultValue """-1.0"""
+        typeID 6
+        type 'float'
+        name 'rangeMin'
+        documentation """"""
+        id 'yQ7RcUmD.AAAAQwk:x_qpcUmD.AAAAQ1d$C905cUmD.AAAAQ2l$C905cUmD.AAAAQ2m'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
-        typeID 2
-        type 'adhoc-enum'
+        defaultValue """1.0"""
+        typeID 6
+        type 'float'
+        name 'rangeMax'
+        documentation """"""
+        id 'yQ7RcUmD.AAAAQwk:x_qpcUmD.AAAAQ1d$C905cUmD.AAAAQ2l$i905cUmD.AAAAQ2p'
+        metaType 'TaggedValueDefinition'
+      }
+    }
+    mClass {
+      stereotype 'Stereotype'
+      baseClass 'Attribute'
+      name 'SynthParameter'
+      documentation """"""
+      id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07'
+      metaType 'Stereotype'
+      mAttribute {
+        defaultValue """FLOAT"""
+        typeID 0
+        type 'String'
         enumValues """
-          string
-          integer
-          boolean
-          decimal
-          blob
-          date
+          FLOAT
+          SWITCH
+          SELECT
+          OBJECT
 """
         name 'type'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$IRYPJeGD.AAAAQ0.'
+        id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07$oDTZcUmD.AAAAQ14$YDTZcUmD.AAAAQ15'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
-        typeID 5
-        type 'integer'
-        name 'length'
+        defaultValue """0.0"""
+        typeID 6
+        type 'float'
+        name 'rangeMin'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$lJCPJeGD.AAAAQ1Y'
+        id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07$oDTZcUmD.AAAAQ14$0DTZcUmD.AAAAQ1.'
         metaType 'TaggedValueDefinition'
       }
       mAttribute {
-        typeID 0
-        type 'String'
-        name 'label'
+        defaultValue """1.0"""
+        typeID 6
+        type 'float'
+        name 'rangeMax'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$rJCPJeGD.AAAAQ1j'
+        id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07$oDTZcUmD.AAAAQ14$sDTZcUmD.AAAAQ2A'
         metaType 'TaggedValueDefinition'
       }
-      mAttribute {
-        defaultValue """Unspecified"""
-        typeID 7
-        type 'boolean'
-        name 'detailOnly'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:G0ieOuGGAqACRAmk$FhYPJeGD.AAAAQ0d$J7WvJeGD.AAAAQ3H'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {  //Exported by ClassExporterBase
-      name 'PersistentFieldType'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv'
-      metaType 'Class'
-      stereotype 'enumeration'
-      mDependency {  //Exported by DependencyExporterBase
-        name ''
-        documentation """"""
-        id '9yieOuGGAqACRAsj:DyieOuGGAqACRAsl:D0ieOuGGAqACRAm8'
-        metaType 'Dependency'
-        target 'DSL.PersistentFieldType'
-      }
-      mElement {
-        name 'string'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$J0ieOuGGAqACRAmx'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'text'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$p0ieOuGGAqACRAmy'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'integer'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$Z0ieOuGGAqACRAmz'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'decimal'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$Z0ieOuGGAqACRAm0'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'boolean'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$Z0ieOuGGAqACRAm1'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'date'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$50ieOuGGAqACRAm2'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'time'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$50ieOuGGAqACRAm3'
-        metaType 'EnumerationLiteral'
-      }
-      mElement {
-        name 'datetime'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:B0ieOuGGAqACRAmv$F0ieOuGGAqACRAm4'
-        metaType 'EnumerationLiteral'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'PhpSymfonyApplication'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:j0ieOuGGAqACRAm9'
-      metaType 'Stereotype'
-    }
-    mPackage {  //Exported by PackageExporterBase
-      name 'de'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB'
-      metaType 'Package'
-      mPackage {  //Exported by PackageExporterBase
-        name 'spraener'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC'
-        metaType 'Package'
-        mPackage {  //Exported by PackageExporterBase
-          name 'nxtgen'
-          documentation """"""
-          id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD'
-          metaType 'Package'
-          mPackage {  //Exported by PackageExporterBase
-            name 'cartridge'
-            documentation """"""
-            id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE'
-            metaType 'Package'
-            mPackage {  //Exported by PackageExporterBase
-              name 'rest'
-              documentation """"""
-              id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF'
-              metaType 'Package'
-              mClass {  //Exported by ClassExporterBase
-                name 'RESTStereotypes'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnG'
-                metaType 'Class'
-                stereotype 'StereotypeEnum'
-              }
-              mPackage {  //Exported by PackageExporterBase
-                name 'transformations'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH'
-                metaType 'Package'
-                mClass {  //Exported by ClassExporterBase
-                  name 'ResourceToEntity'
-                  documentation """Creates an Entity for each resource so that it
-can be stored in the database"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:70ieOuGGAqACRAnI'
-                  metaType 'Class'
-                  stereotype 'Transformation', {
-                    taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Ressource'
-                    taggedValue 'priority', '4'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ResourceToContoller'
-                  documentation """Creates an Controller-Class for each resource. The Controller has CRUD-Operations in POST, PUT, GET and DELETE requests and a META-INF resource to request informations about the underlying data class. That is needed for an generic frontend."""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:70ieOuGGAqACRAnJ'
-                  metaType 'Class'
-                  stereotype 'Transformation', {
-                    taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Ressource'
-                    taggedValue 'priority', '4'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ControlledOperationToFSM'
-                  documentation """Creates an FSM (Final State Machine) for each
-Activity with "ControlledOperation" Stereotype.
-
-The FSM is needed to implement the Activity-Diagram"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:H0ieOuGGAqACRAnK'
-                  metaType 'Class'
-                  stereotype 'Transformation', {
-                    taggedValue 'transformedMetaType', 'MActivity'
-                    taggedValue 'requiredStereotype', 'ControlledOperation'
-                    taggedValue 'priority', '2'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ResourceToLogic'
-                  documentation """Creates a __logic__ class for each resource. The logic implements code conversion or other stuff that
-should not be placed in the controller.
-
-The controller will get an instance of logic injected on creation."""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:n0ieOuGGAqACRAnL'
-                  metaType 'Class'
-                  stereotype 'Transformation', {
-                    taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'RESTController'
-                    taggedValue 'priority', '10'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ResourceToTSType'
-                  documentation """Creates a TypeSctipt Type for every Resource so
-it can be handled in an angualr frontend."""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:X0ieOuGGAqACRAnM'
-                  metaType 'Class'
-                  stereotype 'Transformation', {
-                    taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Ressource'
-                    taggedValue 'priority', '5'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'EnsureEntityDefinitionsTransformation'
-                  documentation """This transformation should run at the very last and ensures that all entities in the model will
-have all necessary definitions."""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:b0ieOuGGAqACRAnH:X0ieOuGGAqACRAnN'
-                  metaType 'Class'
-                  stereotype 'Transformation', {
-                    taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Entity'
-                    taggedValue 'priority', '0'
-                  }
-                }
-              }
-              mPackage {  //Exported by PackageExporterBase
-                name 'entity'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO'
-                metaType 'Package'
-                mClass {  //Exported by ClassExporterBase
-                  name 'EntityGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:30ieOuGGAqACRAnP'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'Entity'
-                    taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'RepositoryGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:30ieOuGGAqACRAnO:v0ieOuGGAqACRAnS'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'Repository'
-                    taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'RESTCartridge'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:f0ieOuGGAqACRAnT'
-                metaType 'Class'
-                stereotype 'cgV19Cartridge'
-              }
-              mPackage {  //Exported by PackageExporterBase
-                name 'cntrl'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU'
-                metaType 'Package'
-                mClass {  //Exported by ClassExporterBase
-                  name 'LogicGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:AMieOuGGAqACRAnV'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'Logic'
-                    taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ControllerGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:AMieOuGGAqACRAnW'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'RESTController'
-                    taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ApiControllerGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:Slv9UhGGAqAAAyDx'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'ApiRessource'
-                    taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src'
-                  }
-                }
-                mClass {  //Exported by ClassExporterBase
-                  name 'ApiControllerBaseGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:_0ieOuGGAqACRAnU:brKDUhGGAqAAAyEP'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'ApiRessource'
-                    taggedValue 'outputType', 'Java'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'src-gen'
-                  }
-                }
-              }
-              mPackage {  //Exported by PackageExporterBase
-                name 'angular'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:gMieOuGGAqACRAnY'
-                metaType 'Package'
-                mClass {  //Exported by ClassExporterBase
-                  name 'TSTypeGenerator'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:gMieOuGGAqACRAnY:QMieOuGGAqACRAnZ'
-                  metaType 'Class'
-                  stereotype 'CodeGenerator', {
-                    taggedValue 'requiredStereotype', 'TSType'
-                    taggedValue 'outputType', 'TypeScript'
-                    taggedValue 'generatesOn', 'MClass'
-                    taggedValue 'outputTo', 'other'
-                    taggedValue 'templateScript', '/ts/TSType.groovy'
-                  }
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'PoJoGenerator'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:QMieOuGGAqACRAna'
-                metaType 'Class'
-                stereotype 'CodeGenerator', {
-                  taggedValue 'requiredStereotype', 'Impl'
-                  taggedValue 'outputType', 'Java'
-                  taggedValue 'generatesOn', 'MClass'
-                  taggedValue 'outputTo', 'src'
-                  taggedValue 'templateScript', '/PoJoTemplate.groovy'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'SpringBootAppGenerator'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:wMieOuGGAqACRAnb'
-                metaType 'Class'
-                stereotype 'CodeGenerator', {
-                  taggedValue 'requiredStereotype', 'SpringBootApp'
-                  taggedValue 'outputType', 'Java'
-                  taggedValue 'generatesOn', 'MClass'
-                  taggedValue 'outputTo', 'src'
-                  taggedValue 'templateScript', '/SpringBootApp.groovy'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'Class'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:w2zbOuGGAqACRAj6'
-                metaType 'Class'
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'SingletonClass'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD'
-                metaType 'Class'
-                mOperation {  //Exported by OperationExporterBase
-                  name 'SingletonClass'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD$N2zbOuGGAqACRAkF'
-                  metaType 'Operation'
-                }
-                mAttribute {  //Exported by AttributeExporterBase
-                  name '_instance'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD$oOzbOuGGAqACRAkI'
-                  metaType 'Attribute'
-                  type 'SingletonClass'
-                  visibility 'private'
-                  multiplicity 'Unspecified'
-                  typeModifier ''
-                }
-                mOperation {  //Exported by OperationExporterBase
-                  name 'instance'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:r0ieOuGGAqACRAnF:x2zbOuGGAqACRAkD$SOzbOuGGAqACRAkL'
-                  metaType 'Operation'
-                }
-              }
-            }
-            mPackage {  //Exported by PackageExporterBase
-              name 'springBootComponents'
-              documentation """"""
-              id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h'
-              metaType 'Package'
-              mClass {  //Exported by ClassExporterBase
-                name 'OAuth2ResourceServer'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:yz8EtxGGAqAAAw1B'
-                metaType 'Class'
-                stereotype 'ExternalLibrary', {
-                  taggedValue 'group', 'org.springframework.boot'
-                  taggedValue 'artifact', 'spring-boot-starter-oauth2-resource-server'
-                  taggedValue 'scope', 'implementation'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'OAuth2Client'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:kAfEtxGGAqAAAw16'
-                metaType 'Class'
-                stereotype 'ExternalLibrary', {
-                  taggedValue 'group', 'org.springframework.boot'
-                  taggedValue 'artifact', 'spring-boot-starter-oauth2-client'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'StarterTest'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:kX30txGGAqAAAw24'
-                metaType 'Class'
-                stereotype 'ExternalLibrary', {
-                  taggedValue 'group', 'org.springframework.boot'
-                  taggedValue 'artifact', 'spring-boot-starter-test'
-                  taggedValue 'scope', 'testImplementation'
-                }
-              }
-              mClass {
-                stereotype 'Stereotype'
-                baseClass 'Class'
-                name 'ExternalLibrary'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S'
-                metaType 'Stereotype'
-                mAttribute {
-                  typeID 0
-                  type 'String'
-                  name 'group'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$pFZEtxGGAqAAAw1U'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  typeID 0
-                  type 'String'
-                  name 'version'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$ZFZEtxGGAqAAAw1V'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  typeID 0
-                  type 'String'
-                  name 'artifact'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$ZFZEtxGGAqAAAw1W'
-                  metaType 'TaggedValueDefinition'
-                }
-                mAttribute {
-                  defaultValue """implementation"""
-                  typeID 2
-                  type 'adhoc-enum'
-                  enumValues """
-                    implementation
-                    testImplementation
-                    testRuntimeOnly
-                    annotationProcessor
-                    developmentOnly
-"""
-                  name 'scope'
-                  documentation """"""
-                  id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:hFZEtxGGAqAAAw1S$pFZEtxGGAqAAAw1T$YE_MtxGGAqAAAw3m'
-                  metaType 'TaggedValueDefinition'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'DataJPA'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:jHTstxGGAqAAAw4V'
-                metaType 'Class'
-                stereotype 'ExternalLibrary', {
-                  taggedValue 'group', '<dependency>     <groupId>org.springframework.boot</groupId>     <artifactId>spring-boot-starter-data-jpa</artifactId>     <version>3.1.1</version> </dependency> '
-                  taggedValue 'artifact', 'spring-boot-starter-data-jpa'
-                  taggedValue 'scope', 'implementation'
-                }
-              }
-              mClass {  //Exported by ClassExporterBase
-                name 'DataRest'
-                documentation """"""
-                id 'C0ieOuGGAqACRAma:z0ieOuGGAqACRAnB:L0ieOuGGAqACRAnC:L0ieOuGGAqACRAnD:r0ieOuGGAqACRAnE:DQv4txGGAqAAAw0h:DAwctxGGAqAAAw40'
-                metaType 'Class'
-                stereotype 'ExternalLibrary', {
-                  taggedValue 'group', 'org.springframework.boot'
-                  taggedValue 'artifact', 'spring-boot-starter-data-rest'
-                  taggedValue 'scope', 'implementation'
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Element'
-      name 'Link'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:IMieOuGGAqACRAnc'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Classifier'
-      name 'Repository'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:IMieOuGGAqACRAnd'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'RESTController'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:oMieOuGGAqACRAne'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Element'
-      name 'Logic'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:YMieOuGGAqACRAnf'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'AngularService'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:YMieOuGGAqACRAng'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Activity'
-      name 'ControlledOperation'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:WCieOuGGAqACRAsT'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'ActivityImpl'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:KXWJveGGAqACRBUt'
-      metaType 'Stereotype'
       mAttribute {
         typeID 0
         type 'String'
-        name 'dbTableName'
+        name 'selection'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:KXWJveGGAqACRBUt$2XWJveGGAqACRBUu$2XWJveGGAqACRBUv'
+        id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07$oDTZcUmD.AAAAQ14$cDTZcUmD.AAAAQ2C'
         metaType 'TaggedValueDefinition'
       }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'Impl'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:5bdVy.GGAqACRAqb'
-      metaType 'Stereotype'
       mAttribute {
+        typeID 1
+        type 'modelElement'
+        name 'valueProvider'
+        documentation """"""
+        id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07$oDTZcUmD.AAAAQ14$CDTZcUmD.AAAAQ2E'
+        metaType 'TaggedValueDefinition'
+      }
+      mAttribute {
+        defaultValue """1.0"""
         typeID 0
         type 'String'
-        name 'dbTableName'
+        name 'default'
         documentation """"""
-        id 'C0ieOuGGAqACRAma:5bdVy.GGAqACRAqb$wHdVy.GGAqACRAqc$IHdVy.GGAqACRAqd'
+        id 'yQ7RcUmD.AAAAQwk:704pcUmD.AAAAQ07$oDTZcUmD.AAAAQ14$t0SdcUmD.AAAAROw'
         metaType 'TaggedValueDefinition'
       }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'DDL'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:wSfVy.GGAqACRArE'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 0
-        type 'String'
-        name 'dbTableName'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:wSfVy.GGAqACRArE$4SfVy.GGAqACRArF$4SfVy.GGAqACRArG'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'TSType'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:wFA1y.GGAqACRArQ'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 0
-        type 'String'
-        name 'dbTableName'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:wFA1y.GGAqACRArQ$EFA1y.GGAqACRArR$EFA1y.GGAqACRArS'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'DbField'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:lwY1y.GGAqACRArd'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 0
-        type 'String'
-        name 'dbTableName'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:lwY1y.GGAqACRArd$dwY1y.GGAqACRAre$dwY1y.GGAqACRArf'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'RsrcLink'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:o4y1y.GGAqACRArx'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 0
-        type 'String'
-        name 'dbTableName'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:o4y1y.GGAqACRArx$U4y1y.GGAqACRAry$04y1y.GGAqACRArz'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'ApiRessource'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:CX69UhGGAqAAAyDO'
-      metaType 'Stereotype'
-      mAttribute {
-        defaultValue """/"""
-        typeID 0
-        type 'String'
-        name 'path'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:CX69UhGGAqAAAyDO$UwhCC5GD.AAAARPM$UwhCC5GD.AAAARPN'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Element'
-      name 'RequestHandler'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym'
-      metaType 'Stereotype'
-      mAttribute {
-        typeID 2
-        type 'adhoc-enum'
-        enumValues """
-          GET
-          POST
-          PUT
-          DELETE
-          OPTIONS
-          PATCH
-          TRACE
-          HEAD
-          CONNECT
-"""
-        name 'Method'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:JclGVxGGAqAAAwym$uhRmVxGGAqAAAwy1$uhRmVxGGAqAAAwy2'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Operation'
-      name 'RestCall'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB'
-      metaType 'Stereotype'
-      mAttribute {
-        defaultValue """GET"""
-        typeID 0
-        type 'String'
-        enumValues """
-          GET
-          POST
-          PUT
-          DELETE
-"""
-        name 'RESTMethod'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB$OWSCC5GD.AAAAROY$uWSCC5GD.AAAAROZ'
-        metaType 'TaggedValueDefinition'
-      }
-      mAttribute {
-        defaultValue """/"""
-        typeID 0
-        type 'String'
-        name 'path'
-        documentation """"""
-        id 'C0ieOuGGAqACRAma:U1t8C5GD.AAAARNB$OWSCC5GD.AAAAROY$qx2CC5GD.AAAARO2'
-        metaType 'TaggedValueDefinition'
-      }
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Dependency'
-      name 'ControlledEntity'
-      documentation """A denpendcy between a << RESTController >> and a << Entity >> makes the Controller a CRUD-Controller for the target entity"""
-      id 'C0ieOuGGAqACRAma:_GW.eFGGAqAACjsx'
-      metaType 'Stereotype'
-    }
-    mClass {
-      stereotype 'Stereotype'
-      baseClass 'Class'
-      name 'RESTControllerBase'
-      documentation """"""
-      id 'C0ieOuGGAqACRAma:omXReFGGAqAACjvl'
-      metaType 'Stereotype'
     }
   }
 }

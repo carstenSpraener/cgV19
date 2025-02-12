@@ -232,8 +232,12 @@ public class NextGen implements Runnable {
         List<CodeBlock> result = new ArrayList<>();
         List<CodeGeneratorMapping> mappings = cartridge.mapGenerators(model);
         if (mappings != null) {
-            mappings.forEach(m ->
-                    result.add(m.getCodeGen().resolve(m.getGeneratorBaseELement(), ""))
+            mappings.forEach(m -> {
+                        CodeBlock cb = m.getCodeGen().resolve(m.getGeneratorBaseELement(), "");
+                        if (cb != null) {
+                            result.add(cb);
+                        }
+                    }
             );
         }
         return result;

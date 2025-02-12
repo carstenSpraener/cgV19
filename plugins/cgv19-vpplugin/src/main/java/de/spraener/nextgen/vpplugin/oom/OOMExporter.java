@@ -119,6 +119,19 @@ public class OOMExporter implements Runnable {
         return childs;
     }
 
+    static void exportType(PrintWriter pw, String indentation, String typeName, IModelElement attrTypeElement, String typeModifier) {
+        pw.printf("%stype '%s'\n", indentation, AttributeExporter.formatType(typeName) );
+        pw.printf("%srawType '%s'\n", indentation, typeName);
+        if( attrTypeElement !=null ) {
+            pw.printf("%stypeOwner '%s'\n", indentation, getFQName(attrTypeElement.getParent()));
+        } else {
+            pw.printf("%stypeOwner ''\n", indentation);
+        }
+        if( typeModifier!=null ) {
+            pw.printf("%stypeModifier '%s'\n", indentation, typeModifier);
+        }
+    }
+
     public void run() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintWriter pw = new PrintWriter(baos);
@@ -179,6 +192,9 @@ public class OOMExporter implements Runnable {
     }
 
     public static String getFQName(IModelElement modelElement) {
+        if( modelElement==null ) {
+            return "";
+        }
         if (modelElement.getParent() != null) {
             return getFQName(modelElement.getParent()) + "." + modelElement.getName();
         } else {

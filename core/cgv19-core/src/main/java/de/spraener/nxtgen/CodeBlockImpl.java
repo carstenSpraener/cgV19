@@ -99,7 +99,7 @@ public class CodeBlockImpl implements CodeBlock {
     }
 
     /**
-     * Do the output wrtiing into the given working directory. The output file
+     * Do the output wrting into the given working directory. The output file
      * is determined with an changeable ToFileStrategy.
      *
      * @see ToFileStrategy

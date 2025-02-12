@@ -14,10 +14,9 @@ public class AttributeExporter extends AttributeExporterBase {
     protected void exportBody(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
         super.exportBody(exporter, pw, indentation, element);
         IAttribute attr = (IAttribute)element;
-        pw.printf("%stype '%s'\n", indentation, formatType(attr.getTypeAsString()) );
+        OOMExporter.exportType(pw, indentation,  attr.getTypeAsString(), attr.getTypeAsElement(), attr.getTypeModifier());
         pw.printf("%svisibility '%s'\n", indentation, attr.getVisibility());
         pw.printf("%smultiplicity '%s'\n", indentation, attr.getMultiplicity());
-        pw.printf("%stypeModifier '%s'\n", indentation, attr.getTypeModifier());
         if( "1".equals(attr.getMultiplicity()) ) {
             pw.printf("%srequired 'true'\n", indentation);
         }

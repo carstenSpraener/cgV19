@@ -57,7 +57,6 @@ cgV19 {
 dependencies {
     cartridge "${group}:cgv19-core:${version}"
     cartridge "${group}:cgv19-oom:${version}"
-    cartridge project(":cgv19-vpplugin-cartridge")
 
 
     implementation group: 'io.javalin', name: 'javalin', version: '5.0.0'

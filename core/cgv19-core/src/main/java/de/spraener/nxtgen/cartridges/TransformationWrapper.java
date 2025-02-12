@@ -26,7 +26,7 @@ public class TransformationWrapper implements Transformation {
         this.txMethod = txMethod;
     }
 
-    public TransformationWrapper(Class<?> t) {
+    public  TransformationWrapper(Class<?> t) {
             this(t, getTXMethod(t));
     }
 
@@ -56,6 +56,10 @@ public class TransformationWrapper implements Transformation {
     }
 
     private boolean hasStereotype(ModelElement element, String s) {
+        //  if no stereotype is given, apply the transformation to all elements
+        if( "".equals(s) ) {
+            return true;
+        }
         for(Stereotype sType : element.getStereotypes() ) {
             if( sType.getName().equals(s) ) {
                 return true;

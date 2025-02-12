@@ -9,6 +9,6 @@ public class ParameterExporter extends ParameterExporterBase {
 
     protected void exportBody(OOMExporter exporter, PrintWriter pw, String indentation, IModelElement element) {
         IParameter param = (IParameter) element;
-        pw.printf("%stype '%s'\n", indentation, AttributeExporter.formatType(param.getTypeAsString()) );
+        OOMExporter.exportType(pw, indentation,  param.getTypeAsString(), param.getTypeAsElement(), param.getTypeModifier());
     }
 }
