@@ -7,8 +7,6 @@ import de.spraener.nxtgen.annotations.CGV19Cartridge;
 public class InterCartridgeEvaluation extends InterCartridgeEvaluationBase{
     public static final String NAME = "InterCartridgeEvaluation";
 
-
-
     public InterCartridgeEvaluation() {
         super();
     }

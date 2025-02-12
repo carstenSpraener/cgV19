@@ -16,6 +16,7 @@ public class MParameter extends MAbstractModelElement {
        this.setParent(parent);
        this.setName(name);
        this.setType(type);
+       setModel(parent.getModel());
     }
 
     protected MParameter() {}
@@ -29,7 +30,7 @@ public class MParameter extends MAbstractModelElement {
     }
 
     public MParameter cloneTo(MOperation op) {
-        MParameter clone = new MParameter();
+        MParameter clone = new MParameter(op, getName(), getType());
         StereotypeHelper.cloneStereotypes(this, clone);
         ModelHelper.cloneProperties(this, clone);
         clone.type = this.type;
