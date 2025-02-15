@@ -20,4 +20,10 @@ COPY --from=install /cgv19/cgv19-cli/build/install/cgv19-cli/ /opt
 VOLUME ["/opt/cartridges"]
 VOLUME ["/out"]
 
-CMD ["/opt/bin/cgv19", "-l"]
+# Start by:
+#
+# docker run --rm -v $(pwd):/out casigoreng/cgv19:24.1.1 /opt/bin/cgv19 -m <model> -c <cartridge>
+# If you have your own cartridge:
+# add -v <YOUR_CARTRIDGE_DIR>:/opt/cgv19/cartridges to work with your cartridges
+
+CMD ["/opt/bin/cgv19", "--help"]
