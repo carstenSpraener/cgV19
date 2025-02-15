@@ -76,6 +76,7 @@ public class MPackage extends MAbstractModelElement {
         MClass child = new MClass();
         child.setName(s);
         child.setParent(this);
+        child.setModel(getModel());
         getChilds().add(child);
         return child;
     }

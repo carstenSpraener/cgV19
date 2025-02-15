@@ -85,17 +85,32 @@ public class MClass extends MAbstractModelElement {
     public MAttribute createAttribute(String name, String type) {
         MAttribute attr = new MAttribute(name, type);
         attr.setParent(this);
+        attr.setModel(getModel());
         addAttribute(attr);
+        getChilds().add(attr);
 
         return attr;
     }
 
     public MOperation createOperation(String name) {
+        // Parent and Model is set in the constructor
         MOperation op = new MOperation(this, name);
         getOperations().add(op);
+        getChilds().add(op);
+
         return op;
     }
 
+    public MReference createReference(String name) {
+        MReference ref = new MReference();
+        ref.setName(name);
+        ref.setModel(getModel());
+        ref.setParent(this);
+        getReferences().add(ref);
+        getChilds().add(ref);
+
+        return ref;
+    }
     public MClass cloneTo(MPackage targetPkg, String className) {
         MClass target = targetPkg.createMClass(className);
         List<MAttribute> attrList = target.getAttributes();

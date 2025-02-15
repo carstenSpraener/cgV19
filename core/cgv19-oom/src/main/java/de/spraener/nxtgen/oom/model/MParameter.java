@@ -16,7 +16,7 @@ public class MParameter extends MAbstractModelElement {
        this.setParent(parent);
        this.setName(name);
        this.setType(type);
-       setModel(parent.getModel());
+       this.setModel(parent.getModel());
     }
 
     protected MParameter() {}

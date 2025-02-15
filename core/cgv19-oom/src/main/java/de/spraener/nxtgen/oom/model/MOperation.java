@@ -25,6 +25,7 @@ public class MOperation extends MAbstractModelElement {
     protected MOperation(MClass parent, String name) {
         this.setParent(parent);
         this.setName(name);
+        this.setModel(parent.getModel());
         setModel(parent.getModel());
     }
 
@@ -62,8 +63,11 @@ public class MOperation extends MAbstractModelElement {
     }
 
     public MParameter createParameter(String name, String type) {
+        // Model and Parent is set in the constructor
         MParameter p = new MParameter(this, name, type);
         getParameters().add(p);
+        getChilds().add(p);
+
         return p;
     }
 }

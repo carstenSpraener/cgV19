@@ -62,4 +62,24 @@ public class MActivity extends MAbstractModelElement {
     public List<MActivityDecision> getDecisions() {
         return decisions;
     }
+
+    public MActivityAction createAction(String name) {
+        MActivityAction action = new MActivityAction();
+        action.setName(name);
+        action.setModel(getModel());
+        action.setParent(this);
+        getChilds().add(action);
+
+        return action;
+    }
+
+    public MActivityDecision createDecision(String name) {
+        MActivityDecision decision = new MActivityDecision();
+        decision.setName(name);
+        decision.setModel(getModel());
+        decision.setParent(this);
+        getChilds().add(decision);
+
+        return decision;
+    }
 }
