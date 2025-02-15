@@ -8,6 +8,9 @@ import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MAttribute extends MAbstractModelElement {
     private String type;
 
