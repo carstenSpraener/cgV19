@@ -63,4 +63,13 @@ public class OOModel extends ModelImpl {
         }
         return resultPkg;
     }
+
+    public MPackage createPackage(String name) {
+        MPackage p = new MPackage();
+        p.setName(name);
+        p.setModel(this);
+        p.setParent(null);
+
+        return p;
+    }
 }

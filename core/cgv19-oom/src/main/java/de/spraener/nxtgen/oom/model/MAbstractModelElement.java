@@ -29,4 +29,14 @@ public class MAbstractModelElement extends ModelElementImpl {
     public Object getObject(String key) {
         return getObjectMap().get(key);
     }
+
+    public MDependency createDependency(String targetFQName) {
+        MDependency dep = new MDependency();
+        dep.setParent(this);
+        dep.setModel(this.getModel());
+        dep.setTarget(targetFQName);
+        getChilds().add(dep);
+
+        return dep;
+    }
 }

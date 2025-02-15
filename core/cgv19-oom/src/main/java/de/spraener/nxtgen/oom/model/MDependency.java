@@ -15,6 +15,11 @@ public class MDependency extends MAbstractModelElement {
         this.target = getProperty("target");
     }
 
+    public MDependency setTarget(String target) {
+        this.target = target;
+        return this;
+    }
+
     public String getTarget() {
         return target;
     }
