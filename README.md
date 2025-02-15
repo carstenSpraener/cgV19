@@ -6,11 +6,21 @@
 Last Update on: August the 7th 2024
 
 ### Quick start: See [Getting-Started](docs/GettingStarted.md), [Checkout the exmaples](examples/Readme.md),
+
+### Easy start with docker
+```bash
+docker run --rm \
+  -v $(pwd):/out \
+  casigoreng/cgv19:24.1.1 \
+  /opt/bin/cgv19 --help
+```
+
 ### [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
 
 ## New Release 24.1.0 providing new examples
 
-The 24.1.0 release is a maintanance release with [some exmaples](examples/Readme.md) to 
+The 24.1.0 release is a maintenance release with [some exmaples]
+(examples/Readme.md) to 
 demonstrate the usage of cgv19. 
 
 ![cgv19-overview.png](docs/images/cgv19-overview.png)
