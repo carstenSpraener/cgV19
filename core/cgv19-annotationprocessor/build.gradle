@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation project(":cgv19-core")
+    implementation project(":cgv19-oom")
+    implementation project(":cgv19-restcartridge")
+
+    testAnnotationProcessor project(":cgv19-annotationprocessor")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
+    testImplementation project(':cgv19-restcartridge')
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'com.google.testing.compile:compile-testing:0.21.0'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += "-Acgv19.AP.config=${project.rootDir}/cgv19-annotationprocessor/cgv19-ap.properties"
+}
+
+test {
+    useJUnitPlatform()
+}

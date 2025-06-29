@@ -17,7 +17,7 @@ public class LaravelFactoryToFileStrategy implements ToFileStrategy {
     @Override
     public File open() {
         String phpPath = LaravelHelper.createPhpPath(factory).replace("App/Models/", "");
-        String path = NextGen.getWorkingDir()+"/database/factories/"+phpPath+"/"+factory.getName()+".php";
+        String path = NextGen.getActiveInstance().getWorkingDir()+"/database/factories/"+phpPath+"/"+factory.getName()+".php";
         return new File(path);
     }
 }

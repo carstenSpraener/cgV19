@@ -59,7 +59,7 @@ public class MustacheGenerator implements CodeGenerator {
     }
 
     private void ensurePathExists(String outputFile) {
-        String fileToCheck = NextGen.getWorkingDir()+"/"+outputFile;
+        String fileToCheck = NextGen.getActiveInstance().getWorkingDir()+"/"+outputFile;
         File of = new File(fileToCheck);
         of.getParentFile().mkdirs();
     }

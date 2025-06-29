@@ -63,7 +63,7 @@ public class MetaCartridge extends MetaCartridgeBase {
         if (me instanceof MClass && ((MClass) me).hasStereotype(STYPE_CGV19CARTRIDGE_SERVICE_DEFINITION)) {
             return CodeGeneratorMapping.create(me,new CartridgeServiceLocaterGenerator(
                     c -> c.setToFileStrategy(
-                            () -> new File(NextGen.getWorkingDir()+"/src/main/resources/META-INF/services/de.spraener.nxtgen.Cartridge")
+                            () -> new File(NextGen.getActiveInstance().getWorkingDir()+"/src/main/resources/META-INF/services/de.spraener.nxtgen.Cartridge")
                     )
             ));
         }
@@ -79,7 +79,7 @@ public class MetaCartridge extends MetaCartridgeBase {
         if( me instanceof MClass && stereotypeName.equals(MetaStereotypes.STEREOTYPEDESCRIPTOR.getName())) {
             return CodeGeneratorMapping.create(me, new StereotypeDescriptorJsonGenerator(
                     (c)->c.setToFileStrategy(
-                            () -> new File(NextGen.getWorkingDir()+"/doc/stereotypes.json")
+                            () -> new File(NextGen.getActiveInstance().getWorkingDir()+"/doc/stereotypes.json")
                     )
             ));
         }

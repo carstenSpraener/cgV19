@@ -14,6 +14,6 @@ public class K8SConfigFileSpec implements ToFileStrategy {
 
     @Override
     public File open() {
-        return new File(NextGen.getWorkingDir()+"/k8s/"+fileName);
+        return new File(NextGen.getActiveInstance().getWorkingDir()+"/k8s/"+fileName);
     }
 }

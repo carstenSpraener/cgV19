@@ -1,5 +1,6 @@
 package de.spraener.nxtgen.invocation;
 
+import de.spraener.nxtgen.CGV19RuntimeDefaultImpl;
 import de.spraener.nxtgen.ModelLoader;
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.model.Model;
@@ -55,9 +56,11 @@ public class NextGenInvocation implements Runnable, ModelLoader {
     }
 
     public void run() {
+        NextGen nxtGen = NextGen.getInstance(this.modelURI);
         if( this.workDir != null ) {
             new File(this.workDir).mkdirs();
-            NextGen.setWorkingDir(this.workDir);
+            CGV19RuntimeDefaultImpl runtime = new CGV19RuntimeDefaultImpl(this.workDir);
+            nxtGen.setCgv19Runtime(runtime);
         }
         if( this.cartridgeName != null ) {
             NextGen.runCartridgeWithName(this.cartridgeName);
@@ -69,10 +72,10 @@ public class NextGenInvocation implements Runnable, ModelLoader {
             activeModelLoader = this.modelLoader;
         }
         if( activeModelLoader != null ) {
-            NextGen.addModelLoader(activeModelLoader);
-            NextGen.setActiveLoader(activeModelLoader);
+            nxtGen.addModelLoader(activeModelLoader);
+            nxtGen.setActiveLoader(activeModelLoader);
         }
-        NextGen.main(new String[]{this.modelURI});
+        nxtGen.run();
     }
 
     @Override

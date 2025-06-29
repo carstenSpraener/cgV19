@@ -4,6 +4,7 @@ import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -60,5 +61,13 @@ public interface Cartridge {
      */
     default String evaluate(Model m, ModelElement me, Stereotype sType, String aspect ) {
         return "The cartridge '"+getName()+"' does not support evaluation.";
+    }
+
+    /**
+     * Optional Method that delivers a list of known annotation types of the cartridge.
+     * @return
+     */
+    default List<String> getAnnotationTypes() {
+        return Collections.emptyList();
     }
 }

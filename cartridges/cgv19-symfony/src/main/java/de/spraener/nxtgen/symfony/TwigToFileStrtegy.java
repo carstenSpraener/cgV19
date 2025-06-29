@@ -20,7 +20,7 @@ public class TwigToFileStrtegy implements ToFileStrategy {
     public File open() {
 
         MClass orgClass = GeneratorGapTransformation.getOriginalClass(mc);
-        String folder = NextGen.getWorkingDir()+"/templates/";
+        String folder = NextGen.getActiveInstance().getWorkingDir()+"/templates/";
         if( subFolders!=null) {
             for( String subFolder : this.subFolders ) {
                 folder += subFolder+"/";

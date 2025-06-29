@@ -18,7 +18,9 @@ import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.oom.model.OOModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RESTCartridge extends RESTCartridgeBase {
     @Override
@@ -89,6 +91,13 @@ public class RESTCartridge extends RESTCartridgeBase {
             return "Unsupported evaluation request for ModelElement '" + me.getName() + " with aspect: '" + aspect + "'";
         }
         return mapping.getCodeGen().resolve(me, "").toCode();
+    }
+
+    @Override
+    public List<String> getAnnotationTypes() {
+        return Arrays.stream(RESTStereotypes.values())
+                .map(st -> st.getName() )
+                .collect(Collectors.toList());
     }
 
     private boolean isSprintBootApplication(ModelElement me) {

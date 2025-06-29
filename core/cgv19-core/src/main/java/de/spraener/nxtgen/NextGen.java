@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,33 +40,56 @@ import java.util.logging.Logger;
 public class NextGen implements Runnable {
     public static final Logger LOGGER = Logger.getLogger("NextGen");
     private static ProtectionStrategie protectionStrategie = null;
-    private String modelURI;
-    private static String workingDir;
-    private static ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
+    private final String modelURI;
+    private String workingDir;
+    private static final ThreadLocal<ModelLoader> activeLoader = new ThreadLocal<>();
+    private static final ThreadLocal<Stack<NextGen>> activeNextGenStack = new ThreadLocal<>();
     private static Set<String> cartridgeNames = new HashSet<>();
-    private static List<Cartridge> cartridgeList = new ArrayList<>();
-    private static List<ModelLoader> modelLoaderList = new ArrayList<>();
 
     private static List<NextGenInvocation> scheduledSubRuns = new ArrayList<>();
-    private static boolean inSubRun = false;
+    private boolean inSubRun = false;
+
+    private List<Cartridge> cartridgeList = new ArrayList<>();
+    private List<ModelLoader> modelLoaderList = new ArrayList<>();
+
+    private Supplier<List<Cartridge>> cartridgeSupllier = this::loadCartridges;
+    private Supplier<List<ModelLoader>> modelloaderSupplier = this::locateModelLoader;
+    private CGV19Runtime cgv19Runtime = new CGV19RuntimeDefaultImpl();
 
     private NextGen(String modelURI) {
         this.modelURI = modelURI;
-        if (this.workingDir == null) {
-            this.workingDir = new File(".").getAbsolutePath();
-        }
     }
 
-    public static synchronized void scheduleInvocation(NextGenInvocation invocation) {
-        scheduledSubRuns.add(invocation);
+    // FIXME: Workaraound for removing static methods
+    public static NextGen getActiveInstance() {
+        if( activeNextGenStack.get()==null || activeNextGenStack.get().isEmpty()) {
+            return null;
+        }
+        return activeNextGenStack.get().peek();
+
     }
 
-    public static void setWorkingDir(String workingDir) {
-        File f = new File(workingDir);
-        if (!f.exists() || !f.isDirectory()) {
-            throw new IllegalArgumentException("assigned working directory '" + workingDir + "' does not exists or is not a directory");
-        }
-        NextGen.workingDir = workingDir;
+    public NextGen setCartridgeSupllier(Supplier<List<Cartridge>> cartridgeSupllier ) {
+        this.cartridgeSupllier = cartridgeSupllier;
+        return this;
+    }
+
+    public NextGen setModelloaderSupplier(Supplier<List<ModelLoader>> modelloaderSupplier) {
+        this.modelloaderSupplier = modelloaderSupplier;
+        return this;
+    }
+
+    public NextGen setCgv19Runtime(CGV19Runtime cgv19Runtime) {
+        this.cgv19Runtime = cgv19Runtime;
+        return this;
+    }
+
+    public static NextGen getInstance(String modelURI) {
+        return new NextGen(modelURI);
+    }
+
+    public void init() {
+        loadCartridges();
     }
 
     public static ProtectionStrategie getProtectionStrategie() {
@@ -82,15 +106,19 @@ public class NextGen implements Runnable {
         return protectionStrategie;
     }
 
+    public static synchronized void scheduleInvocation(NextGenInvocation invocation) {
+        scheduledSubRuns.add(invocation);
+    }
+
     public static void runCartridgeWithName(String cartridgeName) {
         cartridgeNames.add(cartridgeName);
     }
 
-    public static void addCartridge(Cartridge c) {
+    public void addCartridge(Cartridge c) {
         cartridgeList.add(c);
     }
 
-    public static void addModelLoader(ModelLoader ml) {
+    public void addModelLoader(ModelLoader ml) {
         modelLoaderList.add(ml);
     }
 
@@ -118,7 +146,7 @@ public class NextGen implements Runnable {
         return result;
     }
 
-    public static List<Cartridge> loadCartridges() {
+    public List<Cartridge> loadCartridges() {
         final List<Cartridge> result = new ArrayList<>();
         result.addAll(cartridgeList);
         ServiceLoader<Cartridge> loaderServices = ServiceLoader.load(Cartridge.class);
@@ -135,12 +163,16 @@ public class NextGen implements Runnable {
     }
 
     public void run() {
+        if( activeNextGenStack.get()==null ) {
+            activeNextGenStack.set(new Stack<>());
+        }
+        activeNextGenStack.get().push(this);
         try {
-            File rootDir = new File(getWorkingDir());
+            File rootDir = new File(this.cgv19Runtime.getWorkingDir());
             boolean rootDirIsEmpty = rootDir.list().length==0;
             String fqWorkingDir = rootDir.getAbsolutePath();
             LOGGER.info(() -> "starting codegen in working dir " + fqWorkingDir + " on model file " + modelURI);
-            for (Cartridge c : loadCartridges()) {
+            for (Cartridge c : this.cartridgeSupllier.get()) {
                 if (cartridgeNames.isEmpty() || cartridgeNames.contains(c.getName())) {
                     if( rootDirIsEmpty && c instanceof OnEmptyRootDir oed ) {
                         oed.onEmptyRootDir(this, rootDir);
@@ -149,7 +181,7 @@ public class NextGen implements Runnable {
                     for (Model m : models) {
                         runTransformations(m, c);
                         for (CodeBlock cb : runCodeGenerators(c, m)) {
-                            cb.writeOutput(getWorkingDir());
+                            this.cgv19Runtime.writeCodeBlock( this.cgv19Runtime.getWorkingDir(), cb);
                         }
                         if( rootDirIsEmpty && c instanceof AfterEmptyDir aed ) {
                             aed.afterEmptyRootDir(this, rootDir, m);
@@ -159,6 +191,8 @@ public class NextGen implements Runnable {
             }
         } catch (Exception e) {
             throw new NxtGenRuntimeException(e);
+        } finally {
+            activeNextGenStack.get().pop();
         }
 
         if (!inSubRun) {
@@ -188,13 +222,13 @@ public class NextGen implements Runnable {
             }
     }
 
-    public static String getWorkingDir() {
-        return workingDir;
+    public String getWorkingDir() {
+        return this.cgv19Runtime.getWorkingDir();
     }
 
     private List<Model> loadModels(String modelURI) {
         List<Model> models = new ArrayList();
-        for (ModelLoader loader : locateModelLoader()) {
+        for (ModelLoader loader : this.modelloaderSupplier.get() ) {
             if (loader.canHandle(modelURI)) {
                 LOGGER.fine(() -> "loading model with loader " + loader.getClass().getName());
                 try {
@@ -233,12 +267,11 @@ public class NextGen implements Runnable {
         List<CodeGeneratorMapping> mappings = cartridge.mapGenerators(model);
         if (mappings != null) {
             mappings.forEach(m -> {
-                        CodeBlock cb = m.getCodeGen().resolve(m.getGeneratorBaseELement(), "");
-                        if (cb != null) {
-                            result.add(cb);
-                        }
-                    }
-            );
+                 CodeBlock cb = m.getCodeGen().resolve(m.getGeneratorBaseELement(), "");
+                if (cb != null) {
+                    result.add(cb);
+                }
+            });
         }
         return result;
     }
@@ -280,7 +313,7 @@ public class NextGen implements Runnable {
      *
      * @return a String with the output of the evaluation.
      */
-    public static String evaluate(String cartridgeName, Model model, ModelElement me, Stereotype sType, String aspect) {
+    public String evaluate(String cartridgeName, Model model, ModelElement me, Stereotype sType, String aspect) {
         Cartridge cartridge = loadCartridges().stream().filter(c->c.getName().equals(cartridgeName)).findFirst().orElse(null);
         if( cartridge == null ) {
             return "EVALUATION_ERROR: There is no cartridge with name '"+cartridgeName+"' on the classpath\n";

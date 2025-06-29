@@ -38,7 +38,7 @@ public class OOMModelLoader implements ModelLoader {
 
     private void updateLocalCopy(String url, String outputFileName) throws IOException {
         NextGen.LOGGER.fine(String.format("updating local copy of URL '%s' to file '%s'", url, outputFileName));
-        Files.copy(new URL(url).openStream(), Path.of(NextGen.getWorkingDir()+"/"+outputFileName), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(new URL(url).openStream(), Path.of(NextGen.getActiveInstance().getWorkingDir()+"/"+outputFileName), StandardCopyOption.REPLACE_EXISTING);
     }
 
     @Override

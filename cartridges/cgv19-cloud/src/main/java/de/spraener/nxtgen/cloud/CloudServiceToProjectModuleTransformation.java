@@ -43,7 +43,7 @@ public class CloudServiceToProjectModuleTransformation extends CloudServiceToPro
             NextGen.scheduleInvocation(
                     NextGenInvocation
                             .builder()
-                            .withWorkdir(NextGen.getWorkingDir() + "/" + toDirName(pkg))
+                            .withWorkdir(NextGen.getActiveInstance().getWorkingDir() + "/" + toDirName(pkg))
                             .withModel(toSubModel(pkg))
                             .withCartridge(cartridgeName)
                             .build()

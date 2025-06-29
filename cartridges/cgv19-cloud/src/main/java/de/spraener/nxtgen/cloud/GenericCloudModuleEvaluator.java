@@ -44,7 +44,7 @@ public class GenericCloudModuleEvaluator {
         String dockerImage = pkg.getTaggedValue("CloudModule", "dockerImage");
         String blueprintSelector = toBlueprintSelector(dockerImage);
 
-        Blueprint.copyTo(NextGen.getWorkingDir(), "/blueprint/cloudmodules/" + blueprintSelector, buildScope(pkg));
+        Blueprint.copyTo(NextGen.getActiveInstance().getWorkingDir(), "/blueprint/cloudmodules/" + blueprintSelector, buildScope(pkg));
 
         return CodeGeneratorMapping.create(pkg,
                 new MustacheGenerator(

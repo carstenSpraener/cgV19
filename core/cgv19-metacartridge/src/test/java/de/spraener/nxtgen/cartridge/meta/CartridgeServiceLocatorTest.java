@@ -77,7 +77,7 @@ public class CartridgeServiceLocatorTest {
 
     private void runCartridge(Cartridge uut, Model m) {
         runCartridge(uut, m, cb -> {
-            cb.writeOutput(NextGen.getWorkingDir());
+            cb.writeOutput(NextGen.getActiveInstance().getWorkingDir());
         });
     }
 

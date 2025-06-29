@@ -1,13 +1,12 @@
 package de.spraener.nxtgen.cli;
 
-import de.spraener.nxtgen.Cartridge;
-import de.spraener.nxtgen.ModelLoader;
-import de.spraener.nxtgen.NextGen;
+import de.spraener.nxtgen.*;
 import de.spraener.nxtgen.blueprint.BluePrintCartridgeCreator;
 import de.spraener.nxtgen.blueprint.BlueprintDirectoryBasedCartridge;
 import org.apache.commons.cli.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -51,7 +50,8 @@ public class CGV19 {
 
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
-
+        List<Cartridge> cartridgeList = new ArrayList<>();
+        List<ModelLoader> modelLoaderList = new ArrayList<>();
         try {
             CommandLine cmd = parser.parse(options, args);
             Level l = Level.SEVERE;
@@ -67,9 +67,10 @@ public class CGV19 {
             }
 
             LOGGER.info("Running in " + new File(".").getAbsolutePath());
+            CGV19RuntimeDefaultImpl cgv19Runtime = new CGV19RuntimeDefaultImpl();
             String workDir = cmd.getOptionValue("work-directory");
             if (workDir != null) {
-                NextGen.setWorkingDir(workDir);
+                cgv19Runtime = new CGV19RuntimeDefaultImpl(workDir);
             }
 
             if (cmd.hasOption(optDelete)) {
@@ -90,9 +91,9 @@ public class CGV19 {
             }
 
             for (BlueprintDirectoryBasedCartridge c : BluePrintCartridgeCreator.createBlueprintCartridges(blueprintDir)) {
-                NextGen.addCartridge(c);
+                cartridgeList.add(c);
                 if (cartridgeName == null || c.getName().equals(cartridgeName)) {
-                    NextGen.addModelLoader(c);
+                    modelLoaderList.add(c);
                 }
             }
 
@@ -106,8 +107,11 @@ public class CGV19 {
             }
 
             String model = cmd.getOptionValue("model");
-            String[] ngArgs = new String[]{model};
-            NextGen.main(ngArgs);
+            NextGen ng = NextGen.getInstance(model);
+            ng.setCartridgeSupllier(()->cartridgeList);
+            ng.setModelloaderSupplier(()->modelLoaderList);
+            ng.setCgv19Runtime(cgv19Runtime);
+            ng.run();
         } catch (ParseException e) {
             System.err.println(e.getMessage());
             formatter.printHelp("utility-name", options);
@@ -117,7 +121,7 @@ public class CGV19 {
     }
 
     private static void listCartridges() {
-        List<Cartridge> cartridgeList = NextGen.loadCartridges();
+        List<Cartridge> cartridgeList = NextGen.getInstance("").loadCartridges();
         System.out.println("The current cgv19 installation contains the following cartridges:\n");
         for (Cartridge l : cartridgeList) {
             String isModelLoader = l instanceof ModelLoader ? " (ModelLoader)" : "";

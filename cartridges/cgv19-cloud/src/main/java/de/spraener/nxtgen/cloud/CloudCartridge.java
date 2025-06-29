@@ -83,12 +83,12 @@ public class CloudCartridge extends CloudCartridgeBase{
         }
         if( me instanceof MClass mc && stereotypeName.equals("GradleSettings")) {
             return CodeGeneratorMapping.create(mc, new GradleSettingsGenerator(
-                    cb -> cb.setToFileStrategy(new GeneralFileStrategy(NextGen.getWorkingDir(),"settings","gradle"))
+                    cb -> cb.setToFileStrategy(new GeneralFileStrategy(NextGen.getActiveInstance().getWorkingDir(),"settings","gradle"))
             ));
         }
         if( me instanceof MClass mc && stereotypeName.equals(CloudStereotypes.DOCKERCOMPOSEFILE.getName())) {
             return CodeGeneratorMapping.create(mc, new DockerComposeGenerator(
-                    cb -> cb.setToFileStrategy(new GeneralFileStrategy(NextGen.getWorkingDir(),"docker-compose","yml"))
+                    cb -> cb.setToFileStrategy(new GeneralFileStrategy(NextGen.getActiveInstance().getWorkingDir(),"docker-compose","yml"))
             ));
         }
         if( me instanceof MComponent mc && stereotypeName.equals(CloudStereotypes.CLOUDINGRESSSERVICE.getName())) {
