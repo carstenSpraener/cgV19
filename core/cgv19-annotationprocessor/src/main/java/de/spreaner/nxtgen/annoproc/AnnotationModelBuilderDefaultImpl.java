@@ -98,5 +98,8 @@ public class AnnotationModelBuilderDefaultImpl implements AnnotationModelBuilder
         }
     }
 
-
+    public String toJSON() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(model);
+    }
 }

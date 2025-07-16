@@ -4,6 +4,7 @@ import de.spraener.nxtgen.ModelLoader;
 import de.spraener.nxtgen.model.Model;
 
 public class AnnotationModelLoader implements ModelLoader {
+    public static final String CGV_19_AP_MODELNAME = "cgv19:AnnotationProcessor";
     private final Model actualModel;
 
     public AnnotationModelLoader(Model actualModel) {
@@ -12,7 +13,7 @@ public class AnnotationModelLoader implements ModelLoader {
 
     @Override
     public boolean canHandle(String modelURI) {
-        return "cgv19:AnnotationProcessor".equals(modelURI);
+        return CGV_19_AP_MODELNAME.equals(modelURI);
     }
 
     @Override

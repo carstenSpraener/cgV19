@@ -6,6 +6,7 @@ dependencies {
     implementation project(":cgv19-core")
     implementation project(":cgv19-oom")
     implementation project(":cgv19-restcartridge")
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     testAnnotationProcessor project(":cgv19-annotationprocessor")
 
