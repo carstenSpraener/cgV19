@@ -23,6 +23,10 @@ public class JavaHelper {
         return name.substring(0,1).toUpperCase()+name.substring(1);
     }
 
+    public static String firstToLowerCase(String name) {
+        return name.substring(0,1).toLowerCase()+name.substring(1);
+    }
+
     public static String relationList( ModelElement me, String relType ) {
         String relStr = "";
         for(Relation r  :me.getRelations() ) {

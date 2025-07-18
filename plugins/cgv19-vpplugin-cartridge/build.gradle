@@ -1,22 +1,3 @@
-buildscript {
-    def version = '23.1.0'
-    def group = 'de.spraener.nxtgen'
-
-    repositories {
-        mavenCentral();
-        maven {
-            url = "${project.rootDir}/../repo"
-        }
-        maven {
-            url = "${project.rootDir}/../../repo"
-        }
-    }
-    dependencies {
-        classpath "${group}:cgv19-core:${version}"
-        classpath "${group}:cgv19-gradle:${version}"
-    }
-}
-
 plugins {
     id 'java-library'
 }
@@ -54,5 +35,4 @@ dependencies {
 
     implementation "${group}:cgv19-core:${version}"
     implementation "${group}:cgv19-oom:${version}"
-    testImplementation 'junit:junit:4.13.1'
 }

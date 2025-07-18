@@ -2,11 +2,22 @@ package de.spraener.nxtgen.oom.model;
 
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
+import java.security.Provider;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class MAbstractModelElement extends ModelElementImpl {
     private Map<String, Object> objectMap = null;
+
+    public static <T extends MAbstractModelElement> T createMElement(MAbstractModelElement parent, Supplier<T> instanceCreator, Consumer<T>... modifiers) {
+        T result = instanceCreator.get();
+        result.setModel(parent.getModel());
+        parent.addChilds(result);
+        result.setParent(parent);
+        return applyModifiers(result, modifiers);
+    }
 
     @Override
     public void postDefinition() {
@@ -38,5 +49,15 @@ public class MAbstractModelElement extends ModelElementImpl {
         getChilds().add(dep);
 
         return dep;
+    }
+
+    public static <T> T applyModifiers(T obj, Consumer<T>... modifiers) {
+        if( modifiers==null || modifiers.length==0 ) {
+            return obj;
+        }
+        for( Consumer<T> modifier : modifiers ) {
+            modifier.accept(obj);
+        }
+        return obj;
     }
 }

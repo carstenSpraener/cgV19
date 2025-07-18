@@ -1,0 +1,50 @@
+buildscript {
+    def cgv19Version = '24.1.0'
+    def cgv19Group = 'de.spraener.nxtgen'
+
+    repositories {
+        mavenCentral();
+        maven {
+            url = "${project.rootDir}/../repo"
+        }
+    }
+    dependencies {
+        classpath "${cgv19Group}:cgv19-core:${cgv19Version}"
+        classpath "${cgv19Group}:cgv19-gradle:${cgv19Version}"
+    }
+}
+
+ext {
+    // Hier definierst du deine globalen Versionsnummern
+    junitJupiterVersion = "5.12.2"
+    mockitoVersion = "5.17.0"
+    assertjVersion = "3.27.3"
+    cgv19Version = "24.1.0"
+    // ... weitere Versionen oder andere globale Eigenschaften
+}
+
+subprojects {
+    // Hier werden Konfigurationen angewendet, die für ALLE Subprojekte gelten
+
+    // Wende das Java-Plugin an, da Test-Dependencies Java-Projekte voraussetzen
+    apply plugin: 'java'
+    apply plugin: 'de.spraener.nxtgen.cgV19'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.2'
+        testImplementation 'org.mockito:mockito-core:5.17.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:5.17.0'
+        testImplementation 'org.assertj:assertj-core:3.27.3'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.12.2'
+
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.12.2'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

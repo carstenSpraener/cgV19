@@ -7,6 +7,7 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MOperation extends MAbstractModelElement {
@@ -69,5 +70,9 @@ public class MOperation extends MAbstractModelElement {
         getChilds().add(p);
 
         return p;
+    }
+
+    public MParameter createParameter(String name, String type, Consumer<MParameter>... modifiers) {
+        return MParameter.createInstance(this, name, type, modifiers);
     }
 }

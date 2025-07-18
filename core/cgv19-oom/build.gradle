@@ -1,8 +1,29 @@
+buildscript {
+    repositories {
+        mavenCentral();
+    }
+    dependencies {
+        classpath "de.spraener.nxtgen:cgv19-core:24.1.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:24.1.0"
+    }
+}
+
 plugins {
     id 'java-library'
 }
 
+apply plugin: 'de.spraener.nxtgen.cgV19'
+
+cgV19 {
+    model = 'http://localhost:7001/de.spraener.nxtgen.oom'
+}
+
 dependencies {
+    cartridge "de.spraener.nxtgen:cgv19-core:24.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-oom:24.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-metacartridge:24.1.0"
+    cartridge files("./oom-cartridge/build/libs/oom-cartridge.jar")
+
     implementation project(":cgv19-core")
     implementation 'org.apache.groovy:groovy:4.0.12'
 

@@ -5,6 +5,8 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.oom.ModelHelper;
 import de.spraener.nxtgen.oom.StereotypeHelper;
 
+import java.util.function.Consumer;
+
 public class MParameter extends MAbstractModelElement {
     String type;
 
@@ -20,6 +22,13 @@ public class MParameter extends MAbstractModelElement {
     }
 
     protected MParameter() {}
+
+    public static MParameter createInstance(MAbstractModelElement parent, String name, String type, Consumer<MParameter>[] modifiers) {
+        return MAbstractModelElement.createMElement(parent, MParameter::new,
+                p->p.setName(name),
+                p->p.setType(type)
+        );
+    }
 
     public String getType() {
         return type;

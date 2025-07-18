@@ -3,24 +3,26 @@ import de.spraener.nxtgen.groovy.ModelDSL
 ModelDSL.make {
   mPackage {
     name 'de.spraener.nextgen.vpplugin'
-    documentation ''
+    documentation """"""
     id 'rI1vjuGGAqACRBw8'
     metaType 'Package'
     stereotype 'cgV19Project'
     mClass {
+      stereotype 'Stereotype'
+      baseClass 'Package'
       name 'cgV19Project'
-      documentation ''
+      documentation """"""
       id 'rI1vjuGGAqACRBw8:GazvjuGGAqACRBxE'
       metaType 'Stereotype'
     }
     mPackage {  //Exported by PackageExporterBase
       name 'oom'
-      documentation ''
+      documentation """"""
       id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW'
       metaType 'Package'
       mClass {  //Exported by ClassExporterBase
         name 'ActivityExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:WFpi0eGGAqACRAoV'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -30,7 +32,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'ActionExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:K535KeGGAqACRAm0'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -40,7 +42,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'ControlFlowExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:jdflKeGGAqACRAjI'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -50,7 +52,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'InitialNodeExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:QVYVKeGGAqACRAkk'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -60,7 +62,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'ActivityFinalNodeExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:NuiVKeGGAqACRAk6'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -70,7 +72,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'DecisionNodeExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:tNjvKeGGAqACRAqS'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -80,7 +82,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'OperationExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:Z97yqeGGAqACRAoV'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -90,7 +92,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'ParameterExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:mVXKqeGGAqACRAv9'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -100,7 +102,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'PackageExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:sB96qeGGAqACRAw.'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -110,7 +112,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'ClassExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:WuoGqeGGAqACRAxy'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -120,7 +122,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'AttributeExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:coaGqeGGAqACRAyV'
         metaType 'Class'
         stereotype 'Exporter', {
@@ -130,7 +132,7 @@ ModelDSL.make {
       }
       mClass {  //Exported by ClassExporterBase
         name 'DependencyExporter'
-        documentation ''
+        documentation """"""
         id 'rI1vjuGGAqACRBw8:ud3vjuGGAqACRBxW:4gjf2BGGAqACRCRZ'
         metaType 'Class'
         stereotype 'Exporter', {

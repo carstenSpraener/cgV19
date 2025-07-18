@@ -3,12 +3,12 @@ import de.spraener.nxtgen.groovy.ModelDSL
 ModelDSL.make {
   mPackage {
     name 'de.spraener.nextgen.vpplugin.cartridge'
-    documentation ''
+    documentation """"""
     id 'II0IAeGGAqACRCCo'
     metaType 'Package'
     mClass {  //Exported by ClassExporterBase
       name 'ExporterBaseGenerator'
-      documentation ''
+      documentation """"""
       id 'II0IAeGGAqACRCCo:x.twAeGGAqACRCBb'
       metaType 'Class'
       stereotype 'CodeGenerator', {
@@ -19,25 +19,16 @@ ModelDSL.make {
       }
     }
     mClass {  //Exported by ClassExporterBase
-      name 'GeneratorGapTransformation'
-      documentation 'Copies a Class with Steretype <S> to another Class with Stereotype <S>Base. All Attributes, Relations, Operations and Activities are also copied.'
-      id 'II0IAeGGAqACRCCo:x3HwAeGGAqACRCB7'
+      name 'VPPluginCartridge'
+      documentation """"""
+      id 'II0IAeGGAqACRCCo:vwJwAeGGAqACRCA1'
       metaType 'Class'
-      stereotype 'Transformation', {
-        taggedValue 'transformedMetaType', 'MClass'
-        taggedValue 'priority', '1'
+      stereotype 'cgV19Cartridge', {
       }
     }
     mClass {  //Exported by ClassExporterBase
-      name 'VPPluginCartridge'
-      documentation ''
-      id 'II0IAeGGAqACRCCo:vwJwAeGGAqACRCA1'
-      metaType 'Class'
-      stereotype 'cgV19Cartridge'
-    }
-    mClass {  //Exported by ClassExporterBase
       name 'ExporterGenerator'
-      documentation ''
+      documentation """"""
       id 'II0IAeGGAqACRCCo:FCRYAeGGAqACRCGK'
       metaType 'Class'
       stereotype 'CodeGenerator', {
@@ -49,7 +40,11 @@ ModelDSL.make {
     }
     mClass {  //Exported by ClassExporterBase
       name 'CreateExporterRegistryFillerTransformation'
-      documentation 'Erzeugt eine neue Klasse "ExporterRegistryFiller" und pflegt\neine Liste mit alle <<Exporter>> Klassen im Modell.\n\nDamit kann eine Registry gefüllt werden, in der alle generierten Exporter\nenthalten sind.'
+      documentation """Erzeugt eine neue Klasse "ExporterRegistryFiller" und pflegt
+eine Liste mit alle <<Exporter>> Klassen im Modell.
+
+Damit kann eine Registry gefüllt werden, in der alle generierten Exporter
+enthalten sind."""
       id 'II0IAeGGAqACRCCo:v0A20eGGAqACRAqC'
       metaType 'Class'
       stereotype 'Transformation', {
@@ -60,7 +55,7 @@ ModelDSL.make {
     }
     mClass {  //Exported by ClassExporterBase
       name 'RegistryFillerGenerator'
-      documentation ''
+      documentation """"""
       id 'II0IAeGGAqACRCCo:IrG.0eGGAqACRAtV'
       metaType 'Class'
       stereotype 'CodeGenerator', {

@@ -1,6 +1,6 @@
 # Generator Gap pattern
 
-This example shows the implementation of the__Generator Gap__
+This example shows the implementation of the __Generator Gap__
 pattern with cgv19.
 
 ## What is the _Generator Gap_ pattern?
