@@ -18,7 +18,7 @@ String generateDockerService(MPackage cloudModule) {
         cartridge = CloudCartridge.NAME;
     }
     Stereotype sType = StereotypeHelper.getStereotype(cloudModule, CloudStereotypes.CLOUDMODULE.name);
-    return NextGen.evaluate(cartridge, cloudModule.getModel(), cloudModule, sType, "docker-compose");
+    return NextGen.evaluateByGiven(cartridge, cloudModule.getModel(), cloudModule, sType, "docker-compose");
 }
 
 String generateServiceList(List<MPackage> pkgList) {

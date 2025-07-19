@@ -6,10 +6,12 @@ import de.spraener.nxtgen.annotations.CGV19Blueprint;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
 import de.spraener.nxtgen.annotations.CGV19Component;
 import de.spraener.nxtgen.annotations.CGV19MustacheGenerator;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
 import de.spraener.nxtgen.oom.model.MPackage;
+import de.spraener.nxtgen.oom.model.OOModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +55,10 @@ public class Cgv19Angular extends Cgv19AngularBase{
     }
 
     @Override
-    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
+    public String evaluate(EvaluationRequest request) {
+        ModelElement me = request.getMe();
+        Stereotype sType = request.getStereotype();
+        String aspect = request.getAspect();
         if( me instanceof MPackage && sType.getName().equals("CloudModule") && aspect.equals("docker-compose")) {
             return CodeGeneratorMapping.create(me, new MustacheGenerator(
                     "/mustache/docker-compose-angular-serviceblock.mustache",
@@ -61,7 +66,7 @@ public class Cgv19Angular extends Cgv19AngularBase{
                     this::dockerComposeServiceBlock
             )).getCodeGen().resolve(me, "").toCode();
         }
-        return super.evaluate(m, me, sType, aspect);
+        return super.evaluate(request);
     }
 
     private void dockerComposeServiceBlock(ModelElement me, Map<String, Object> scope) {

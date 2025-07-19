@@ -25,7 +25,7 @@ public class StartGenerator {
 
     @Test
     public void testRestDemoGeneration() throws Exception {
-        String modelDir = "../../demoProjects/restdemo";
+        String modelDir = "../../demoProje cts/restdemo";
         String modelPath = modelDir + "/restDemo.oom";
         String testDir = "./build/source-gen/restDemo";
         try {

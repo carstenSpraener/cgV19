@@ -9,6 +9,7 @@ import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.cartridge.rest.angular.TSTypeGenerator;
 import de.spraener.nxtgen.cartridge.rest.cntrl.*;
 import de.spraener.nxtgen.cartridge.rest.entity.*;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
@@ -83,12 +84,13 @@ public class RESTCartridge extends RESTCartridgeBase {
     }
 
     @Override
-    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
-        CodeGeneratorMapping mapping = this.createMapping(me, sType.getName(), aspect);
+    public String evaluate(EvaluationRequest req) {
+
+        CodeGeneratorMapping mapping = this.createMapping(req.getMe(), req.getStereotype().getName(), req.getAspect());
         if (mapping == null) {
-            return "Unsupported evaluation request for ModelElement '" + me.getName() + " with aspect: '" + aspect + "'";
+            return "Unsupported evaluation request for ModelElement '" + req.getMe().getName() + " with aspect: '" + req.getAspect() + "'";
         }
-        return mapping.getCodeGen().resolve(me, "").toCode();
+        return mapping.getCodeGen().resolve(req.getMe(), "").toCode();
     }
 
     private boolean isSprintBootApplication(ModelElement me) {
