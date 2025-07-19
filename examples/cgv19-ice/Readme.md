@@ -15,7 +15,7 @@ would be much better if the subproject knows about it. An angular frontend may n
 
 With ICE, the calling cartridge (like pac-man) calls the called cartridges 
 (like galaga) for help with the generation of the overall docker-compose.yml. 
-It does it by calling ```NextGen.evaluate()```.
+It does it by calling ```NextGen.evaluate...()```.
 
 It can also start generating the subprojects by scheduling cgV19-runs on each included subproject with ```NextGen.scheduleInvocation()```.
 
@@ -72,7 +72,7 @@ and sends a EvaluationRequest to NextGen for each located MPackage:
             String cartridge = cloudModule.getTaggedValue(CloudStereoTypes.DOCKERSERVICE.getName(), "cgv19Cartridge");
             Stereotype sType = StereotypeHelper.getStereotype(cloudModule, CloudStereoTypes.DOCKERSERVICE.getName());
             sb.append(
-                    NextGen.evaluate(cartridge, cloudModule.getModel(), cloudModule, sType, "docker-compose")
+                    NextGen.evaluateByGiven(cartridge, new EvaluationRequest(cloudModule, sType, "docker-compose", ""))
             );
         }
         return sb.toString();
@@ -81,7 +81,7 @@ and sends a EvaluationRequest to NextGen for each located MPackage:
 
 The method lists all matching MPackages, reads the target cartridge from the 
 tagged value _cgv19Cartridge_ and calls NextGen to evaluate via that cartridge.
-It ther adds the result to a StringBuffer. 
+It then adds the result to a StringBuffer. 
 
 __Note:__ The calling cartridge defines the model structure (MPackage with 
 stereotype ```<<DockerService>>``` and target cartridge name in the 
@@ -92,20 +92,19 @@ _cgv19Cartridge_ tagged value). The called cartridge has to react on this.
 The ICECalledCartridge on the other side implements the method evaluate:
 
 ```java
-    @Override
-    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
-        CodeGeneratorMapping mapping = this.createMapping(me, sType.getName(), aspect);
-        if (mapping == null) {
-            return "Unsupported evaluation request for ModelElement '" + me.getName() + " with aspect: '" + aspect + "'";
-        }
-        return mapping.getCodeGen().resolve(me, "").toCode();
+@Override
+public String evaluate(EvaluationRequest r) {
+    CodeGeneratorMapping mapping = this.createMapping(r.getMe(), r.getStereotype().getName(), r.getAspect());
+    if (mapping == null) {
+        return "Unsupported evaluation request for ModelElement '" + r.getMe().getName() + " with aspect: '" + r.getAspect() + "'";
     }
+    return mapping.getCodeGen().resolve(r.getMe(), "").toCode();
+}
 ```
 The ICECalledCartridge recognizes the request and generates a String that
 must be placed in the generated artifact. It makes the decision on the 
-provided information like Model m, the ModelElement (a MPackage in this case)
-, the Stereotype and an aspect describing string (__docker-compose__ in this 
-case). It than returns a String to fill into the ```docker-compose.yml```.
+information provided by the Request like Model m, the ModelElement (a 
+MPackage in this case), the Stereotype and an aspect describing string (__docker-compose__ in this case). It than returns a String to fill into the ```docker-compose.yml```.
 
 _The concrete implementation uses a GeneratorMapping and resolves the code. 
 But that is an implementation detail._
@@ -128,8 +127,13 @@ cartridge that can fulfill an activity diagramms request:
                         // if the pojo has any activities try to resolve them with another cartridge
                         // that supports activity generation.
                         for(MActivity activity : pojo.getActivities() ) {
-                            EvaluationRequest activityRequest = new EvaluationRequest(activity, PoJoCartridge.ACTIVITY_ASPECT, ct);
-                            NextGen.subEvaluate(activityRequest);
+                            EvaluationRequest activityRequest = new EvaluationRequest(
+                                activity,
+                                PoJoCartridge.POJO_STEREOTYPE,
+                                PoJoCartridge.ACTIVITY_ASPECT,
+                                ct
+                            );
+                            NextGen.evaluateByAny(activityRequest);
                         }
                     }
             );

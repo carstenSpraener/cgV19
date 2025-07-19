@@ -3,6 +3,7 @@ package de.spraener.nxtgen.ice;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.filestrategies.GeneralFileStrategy;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
@@ -27,7 +28,7 @@ public class ICECallingCartridge extends ICECallingCartridgeBase{
             String cartridge = cloudModule.getTaggedValue(CloudStereoTypes.DOCKERSERVICE.getName(), "cgv19Cartridge");
             Stereotype sType = StereotypeHelper.getStereotype(cloudModule, CloudStereoTypes.DOCKERSERVICE.getName());
             sb.append(
-                    NextGen.evaluate(cartridge, cloudModule.getModel(), cloudModule, sType, "docker-compose")
+                    NextGen.evaluateByGiven(cartridge, new EvaluationRequest(cloudModule, sType, "docker-compose", ""))
             );
         }
         return sb.toString();
