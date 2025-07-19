@@ -4,6 +4,7 @@ package de.spraener.nxtgen.javalin;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.MustacheGenerator;
 import de.spraener.nxtgen.Transformation;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
@@ -58,15 +59,16 @@ public class JavaLinCartridge extends JavaLinCartridgeBase {
     }
 
     @Override
-    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
-        if( me instanceof MPackage && sType.getName().equals("CloudModule") && "docker-compose".equals(aspect)) {
-            return CodeGeneratorMapping.create(me, new MustacheGenerator(
+    public String evaluate(EvaluationRequest req) {
+
+        if( req.getMe() instanceof MPackage && req.getStereotype().getName().equals("CloudModule") && "docker-compose".equals(req.getAspect())) {
+            return CodeGeneratorMapping.create(req.getMe(), new MustacheGenerator(
                     "/mustache/javalinApp/docker-compose-serviceblock.mustache",
                     "docker-compose-service-block",
                     this::dockerComposeServiceBlock
-            )).getCodeGen().resolve(me, "").toCode();
+            )).getCodeGen().resolve(req.getMe(), "").toCode();
         }
-        return super.evaluate(m, me, sType, aspect);
+        return super.evaluate(req);
     }
 
     private void dockerComposeServiceBlock(ModelElement me, Map<String, Object> scope) {

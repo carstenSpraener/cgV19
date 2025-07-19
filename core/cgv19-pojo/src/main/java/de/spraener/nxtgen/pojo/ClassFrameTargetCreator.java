@@ -1,7 +1,10 @@
 package de.spraener.nxtgen.pojo;
 
+import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.ProtectionStrategieDefaultImpl;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.oom.StereotypeHelper;
+import de.spraener.nxtgen.oom.model.MActivity;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.oom.model.MDependency;
 import de.spraener.nxtgen.oom.model.OOModel;

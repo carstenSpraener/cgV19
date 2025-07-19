@@ -1,5 +1,8 @@
 package de.spraener.nxtgen.pojo;
 
+import de.spraener.nxtgen.NextGen;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
+import de.spraener.nxtgen.oom.model.MActivity;
 import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.target.CodeTarget;
 
@@ -23,7 +26,19 @@ public class PoJoCodeTargetCreator {
             final MClass pojo = orgClass;
             target.inContext(POJO_ASPECT, pojo,
                     ct -> new PoJoAttributesCreator().accept(ct, pojo),
-                    ct -> new PoJoAssociationCreator().accept(ct, pojo)
+                    ct -> new PoJoAssociationCreator().accept(ct, pojo),
+                    ct -> {
+                        // if the pojo has any activities try to resolve them with another cartridge
+                        // that supports activity generation.
+                        for(MActivity activity : pojo.getActivities() ) {
+                            EvaluationRequest activityRequest = new EvaluationRequest(
+                                    activity,
+                                    PoJoCartridge.POJO_STEREOTYPE,
+                                    PoJoCartridge.ACTIVITY_ASPECT,
+                                    ct);
+                            NextGen.evaluateByAny(activityRequest);
+                        }
+                    }
             );
         }
         return target;

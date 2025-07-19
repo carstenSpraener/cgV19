@@ -2,6 +2,7 @@ package de.spraener.nxtgen.cloud;
 
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.cloud.util.FileLister;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -70,6 +71,7 @@ public class TestRun {
     private CloudCartridge uut = new CloudCartridge();
 
     @Test
+    @Disabled("This test requires VisualParadigm up an running and loaded with cgv19-cartdiges model")
     public void testWholeGeneration() throws Exception {
         File dir = new File("./build/source-gen");
         dir.mkdirs();
