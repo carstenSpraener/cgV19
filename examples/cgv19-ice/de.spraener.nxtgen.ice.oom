@@ -2,11 +2,46 @@ import de.spraener.nxtgen.groovy.ModelDSL
 
 ModelDSL.make {
     mPackage {
-        name 'de.spraener.nxtgen.ice'
-        mClass {
-            name 'InterCartridgeEvaluation'
-            stereotype 'cgV19Cartridge'
+        name 'de.spraener.nxtgen'
+        mPackage {
+            name 'ice'
+            mClass {
+                name 'ICECallingCartridge'
+                stereotype 'cgV19Cartridge'
+            }
+            mClass {
+                name 'DockerComposeYmlGenerator'
+                metaType 'Class'
+                stereotype 'CodeGenerator', {
+                    taggedValue 'requiredStereotype', 'DockerApplication'
+                    taggedValue 'outputType', 'other'
+                    taggedValue 'generatesOn', 'MClass'
+                    taggedValue 'outputTo', 'src-gen'
+                }
+            }
+            mClass {
+                name 'CloudStereoTypes'
+                stereotype 'StereotypeEnum'
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'DockerService'
+                mAttribute {
+                    type 'String'
+                    name 'cgv19Cartridge'
+                }
+            }
+            mClass {
+                stereotype 'Stereotype'
+                name 'DockerApplication'
+            }
+        }
+        mPackage {
+            name 'ice2'
+            mClass {
+                name 'ICECalledCartridge'
+                stereotype 'cgV19Cartridge'
+            }
         }
     }
 }
-

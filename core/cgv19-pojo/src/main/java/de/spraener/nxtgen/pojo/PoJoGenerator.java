@@ -15,11 +15,11 @@ public class PoJoGenerator {
     public static final String ORIGINAL_CLASS="originalClass";
 
     public static MClass getOriginalClass(MClass mClass) {
-        return (MClass)mClass.getObject(ORIGINAL_CLASS);
+        return GeneratorGapTransformation.getOriginalClass(mClass);
     }
 
     public static void setOriginalClass(MClass pojo, MClass originalClass) {
-        pojo.putObject(ORIGINAL_CLASS, originalClass);
+        GeneratorGapTransformation.setOriginalClass(pojo, originalClass);
     }
 
     @CGV19Transformation(

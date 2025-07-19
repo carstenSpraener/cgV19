@@ -1,5 +1,6 @@
 package de.spraener.nxtgen;
 
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
@@ -51,14 +52,24 @@ public interface Cartridge {
     /**
      * Optional Method that enables other cartridges to evaluate a specific code block
      * from this cartridge.
-     * @param m the Model to be used for evaluation
-     * @param me the ModelElement to be evaluated
-     * @param sType One of the ModelElements stereotype to be used for evaluation
-     * @param aspect an optional (maybe null) aspect to narrowing the desired evaluation
+     * @param request The data needed to fulfill the request
      *
      * @return A String containing block of code as the result of the evaluation.
      */
-    default String evaluate(Model m, ModelElement me, Stereotype sType, String aspect ) {
+    default String evaluate(EvaluationRequest request) {
         return "The cartridge '"+getName()+"' does not support evaluation.";
+    }
+
+    default CodeBlock subEvaluate(EvaluationRequest request) {
+        return null;
+    }
+
+    /**
+     * Question: Is this cartridge able to resolve a requested evaluation.
+     * @param request an evaluation request describing the needs.
+     * @return
+     */
+    default boolean canHandle(EvaluationRequest request) {
+        return false;
     }
 }
