@@ -31,7 +31,7 @@ mkdir -p ./build/${PLUGIN}/lib
 mkdir -p ./build/${PLUGIN}/classes
 
 cp ./build/install/cgv19-VPPlugin/lib/*.jar ./build/${PLUGIN}/lib
-rm ./build/${PLUGIN}/lib/cgv19-VPPlugin*.jar
+rm ./build/${PLUGIN}/lib/cgv19-vpplugin*.jar
 rm ./build/${PLUGIN}/lib/openapi.jar
 rm ./build/${PLUGIN}/lib/slf4j*.jar
 
