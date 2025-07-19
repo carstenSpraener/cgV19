@@ -3,6 +3,7 @@ package de.spraener.nxtgen.ice2;
 import de.spraener.nxtgen.CodeGeneratorMapping;
 import de.spraener.nxtgen.MustacheGenerator;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.ice.CloudStereoTypes;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
@@ -26,12 +27,12 @@ public class ICECalledCartridge extends ICECalledCartridgeBase{
     }
 
     @Override
-    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
-        CodeGeneratorMapping mapping = this.createMapping(me, sType.getName(), aspect);
+    public String evaluate(EvaluationRequest r) {
+        CodeGeneratorMapping mapping = this.createMapping(r.getMe(), r.getStereotype().getName(), r.getAspect());
         if (mapping == null) {
-            return "Unsupported evaluation request for ModelElement '" + me.getName() + " with aspect: '" + aspect + "'";
+            return "Unsupported evaluation request for ModelElement '" + r.getMe().getName() + " with aspect: '" + r.getAspect() + "'";
         }
-        return mapping.getCodeGen().resolve(me, "").toCode();
+        return mapping.getCodeGen().resolve(r.getMe(), "").toCode();
     }
 
     protected CodeGeneratorMapping createMapping(ModelElement me, String stereotypeName, String aspect) {

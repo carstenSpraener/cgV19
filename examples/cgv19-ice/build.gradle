@@ -1,10 +1,13 @@
 buildscript {
     repositories {
         mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
     }
     dependencies {
-        classpath "de.spraener.nxtgen:cgv19-core:24.1.0"
-        classpath "de.spraener.nxtgen:cgv19-gradle:24.1.0"
+        classpath "de.spraener.nxtgen:cgv19-core:25.0.0"
+        classpath "de.spraener.nxtgen:cgv19-gradle:25.0.0"
     }
 }
 
@@ -17,6 +20,9 @@ apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     mavenCentral();
+    maven {
+        url="${project.rootDir}/../repo"
+    }
 }
 
 cgV19 {
@@ -32,15 +38,15 @@ sourceSets {
 }
 
 dependencies {
-    cartridge "de.spraener.nxtgen:cgv19-core:24.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-oom:24.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-metacartridge:24.1.0"
-    cartridge "de.spraener.nxtgen:cgv19-pojo:24.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-core:25.0.0"
+    cartridge "de.spraener.nxtgen:cgv19-oom:25.0.0"
+    cartridge "de.spraener.nxtgen:cgv19-metacartridge:25.0.0"
+    cartridge "de.spraener.nxtgen:cgv19-pojo:25.0.0"
     // Add additional cartridges here
 
-    implementation "de.spraener.nxtgen:cgv19-core:24.1.0"
-    implementation "de.spraener.nxtgen:cgv19-oom:24.1.0"
-    implementation "de.spraener.nxtgen:cgv19-pojo:24.1.0"
+    implementation "de.spraener.nxtgen:cgv19-core:25.0.0"
+    implementation "de.spraener.nxtgen:cgv19-oom:25.0.0"
+    implementation "de.spraener.nxtgen:cgv19-pojo:25.0.0"
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testImplementation 'org.mockito:mockito-core:5.3.1'
