@@ -1,2 +1,4 @@
 lib
 cgv19-VPPlugin/libs/openapi.jar
+/cgv19-maven/.mvn/
+/cgv19-maven/target/

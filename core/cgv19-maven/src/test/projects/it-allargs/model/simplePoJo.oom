@@ -1,0 +1,47 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.spraener.nxtgen.hello'
+        documentation """"""
+        id 'pbob5uGGAqACRBTE'
+        metaType 'Package'
+        mPackage {  //Exported by PackageExporterBase
+            name 'model'
+            documentation """"""
+            id 'pbob5uGGAqACRBTE:SHkb5uGGAqACRBTM'
+            metaType 'Package'
+            mClass {  //Exported by ClassExporterBase
+                name 'Person'
+                documentation """"""
+                id 'pbob5uGGAqACRBTE:SHkb5uGGAqACRBTM:PIsb5uGGAqACRBTU'
+                metaType 'Class'
+                stereotype 'PoJo'
+                mAttribute {  //Exported by AttributeExporterBase
+                    name 'firstName'
+                    documentation """"""
+                    id 'pbob5uGGAqACRBTE:SHkb5uGGAqACRBTM:PIsb5uGGAqACRBTU$c4Hb5uGGAqACRBUr'
+                    metaType 'Attribute'
+                    type 'String'
+                    rawType 'String'
+                    typeOwner ''
+                    typeModifier ''
+                    visibility 'private'
+                    multiplicity 'Unspecified'
+                }
+                mAttribute {  //Exported by AttributeExporterBase
+                    name 'name'
+                    documentation """"""
+                    id 'pbob5uGGAqACRBTE:SHkb5uGGAqACRBTM:PIsb5uGGAqACRBTU$SRnb5uGGAqACRBUw'
+                    metaType 'Attribute'
+                    type 'String'
+                    rawType 'String'
+                    typeOwner ''
+                    typeModifier ''
+                    visibility 'private'
+                    multiplicity 'Unspecified'
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+// ========================================================================================
+// Gradle Build-Skript für cgv19-maven (Vollständige Delegation an Maven)
+//
+// Dieses Skript definiert Gradle-Tasks, die die entsprechenden Maven-Goals aufrufen.
+// Es konfiguriert die Standard-Gradle-Tasks, um sie an den Maven Wrapper zu delegieren.
+// ========================================================================================
+
+// ----------------------------------------------------------------------------------------
+// 1. Hilfsfunktion für Maven-Aufrufe
+// ----------------------------------------------------------------------------------------
+
+/**
+ * Führt einen Maven-Aufruf über den Wrapper (mvnw) aus,
+ * wobei die pom.xml dieses Moduls verwendet wird.
+ * @param goals Die Maven-Goals, z.B. 'clean install'
+ */
+def execMvn(String goals) {
+    System.err.println("ProjectDir ist: ${project.projectDir}")
+
+    def isWindows = false;
+    try {
+        project.exec {
+            commandLine 'cmd', '/c', 'exit 0' // Führt einen simplen Windows-Befehl aus
+            ignoreExitValue true
+            standardOutput = new ByteArrayOutputStream()
+        }
+        isWindows = true
+    } catch(Exception e) {}
+
+    def mvnw = isWindows ? 'mvnw.cmd' : './mvnw'
+
+    // Führt den Maven-Aufruf vom Projekt-Root aus (dort, wo mvnw liegt)
+    project.exec {
+        workingDir file("${project.projectDir}")
+        // Ruft mvnw mit den gewünschten Goals und der spezifischen pom.xml dieses Moduls auf
+        commandLine mvnw, *goals.split(' ')
+        // Leitet die Ausgabe an die Gradle-Konsole weiter
+        standardOutput = System.out
+        errorOutput = System.err
+        ignoreExitValue = true
+    }
+}
+
+// ----------------------------------------------------------------------------------------
+// 2. Task-Definitionen (Delegation der Lifecycle-Phasen)
+//    Wir verwenden tasks.named(), um die existierenden Standard-Tasks zu überschreiben.
+// ----------------------------------------------------------------------------------------
+
+// Konfiguriert den existierenden 'clean'-Task
+tasks.named('clean') {
+    description = 'Delegiert den clean-Task an Maven (mvn clean).'
+    // Überschreibt alle vorherigen Aktionen des Tasks
+    doLast {
+        execMvn('clean')
+    }
+}
+
+// Konfiguriert den existierenden 'build'-Task
+tasks.named('build') {
+    description = 'Delegiert den build-Task an Maven (mvn package).'
+    // Überschreibt alle vorherigen Aktionen des Tasks
+    doLast {
+        // Maven "package" stellt sicher, dass das JAR und der Plugin Descriptor gebaut werden
+        execMvn('package')
+    }
+}
+
+// 'install' ist in neueren Gradle-Versionen kein Standard-Task mehr, wir registrieren ihn.
+// Falls ein Plugin ihn doch registriert, müssten wir hier auf tasks.named() wechseln.
+tasks.register('install') {
+    description = 'Delegiert den install-Task an Maven (mvn install). Löst die ursprüngliche Logik der pom.xml aus (Installation in ../../repo).'
+    group = 'build'
+    dependsOn tasks.named('build') // Abhängigkeit zum konfigurierten 'build'-Task
+    doLast {
+        // Dies führt den install-Goal aus, der in Ihrer pom.xml so konfiguriert ist,
+        // dass er in das custom repo installiert (installDirectory).
+        execMvn('install')
+    }
+}
+
+// 'publish' ist in Gradle kein Standard-Task und kann registriert werden.
+tasks.named('publish') {
+    description = 'Delegiert den deploy-Task an Maven (mvn deploy) für die Veröffentlichung auf Remote-Repositorys (z.B. GitHub Packages).'
+    group = 'publishing'
+    dependsOn tasks.named('build') // Abhängigkeit zum konfigurierten 'build'-Task
+    doLast {
+        // Ruft den deploy-Goal auf. Die Konfiguration des Ziel-Repositories (GitHub) muss in der pom.xml oder settings.xml erfolgen.
+        execMvn('deploy')
+    }
+}
+
+// ----------------------------------------------------------------------------------------
+// 3. Konventionen
+// ----------------------------------------------------------------------------------------
+
+// Stellt sicher, dass der Standard-Gradle-Task 'assemble' den delegierten 'build' Task verwendet
+tasks.named('assemble') { dependsOn tasks.named('build') }

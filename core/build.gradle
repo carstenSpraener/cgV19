@@ -1,11 +1,35 @@
-// Refactoring the build especially the upload according to
-// this article: https://central.sonatype.org/pages/gradle.html
-plugins {
+buildscript {
+    repositories {
+        mavenCentral() // Oder jcenter(), google(), etc., je nachdem wo das Plugin liegt
+        gradlePluginPortal() // Auch hier ist das Plugin Portal wichtig
+    }
+    dependencies {
+        // Hier musst du die JAR des Plugins als Klassenvahhängigkeit hinzufügen
+        // Dies ist die ALTERNATIVE zu pluginManagement in settings.gradle
+        classpath 'io.github.gradle-nexus:publish-plugin:2.0.0'
+    }
+}
+
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+
+nexusPublishing {
+    repositories {
+        // see https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/#configuration
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+            username = project.properties['sonatypeUsername']
+            password = project.properties['sonatypePassword']
+        }
+    }
 }
 
 allprojects {
     project.ext.group = 'de.spraener.nxtgen'
-    project.ext.version = '25.0.0'
+    project.ext.version = '25.0.0-SNAPSHOT'
+
+    version = "${project.ext.version}"
+    group = "${project.ext.group}"
 
     repositories {
         mavenCentral()
@@ -13,33 +37,44 @@ allprojects {
             url="${project.rootDir}/../repo"
         }
     }
+
 }
 
 subprojects {
-    buildscript {
-        apply plugin: 'maven-publish'
-        apply plugin: 'java'
-
-        repositories {
-            mavenCentral()
-        }
-    }
-
-    apply plugin: "maven-publish"
-
-    version = "${project.ext.version}"
-    group = "${project.ext.group}"
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
 
     publishing {
         publications {
-            gpr(MavenPublication) {
-                from(components.java)
-            }
-        }
-        repositories {
-            maven {
-                url="${project.rootDir}/../repo"
+            sonatype(MavenPublication) {
+                from components.java
+                pom {
+                    name = project.name
+                    packaging 'jar'
+                    description = 'cgV19 is an easy to use, production proofed code generation framework.'
+                    url = 'https://github.com/carstenSpraener/cgV19'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'cspraener'
+                            name = 'Carsten Spräner'
+                            email = 'carsten@spraener.de'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/carstenSpraener/cgV19.git'
+                        developerConnection = 'scm:git:git@github.com:carstenSpraener/cgV19.git'
+                        url = 'https://github.com/carstenSpraener/cgV19'
+                    }
+                }
             }
         }
     }
+
 }

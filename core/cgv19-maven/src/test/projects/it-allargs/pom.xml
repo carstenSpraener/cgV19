@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.spraener.nxtgen</groupId>
+    <artifactId>cgv19-maven-test-basic</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>cgV19 Maven Plugin Basic Test Project</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>de.spraener.nxtgen</groupId>
+                <artifactId>cgv19-maven</artifactId>
+                <version>25.0.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>cgv19-generate</id>
+                        <goals>
+                            <goal>cgv19</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>cgv19-clean</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>de.spraener.nxtgen</groupId>
+                        <artifactId>cgv19-pojo</artifactId>
+                        <version>25.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <model>${project.basedir}/model/simplePoJo.oom</model>
+                    <cartridges>PoJo-Cartridge</cartridges>
+                    <workDirectory>${project.basedir}/work</workDirectory>
+                    <list>true</list>
+                    <blueprintsDir>${project.basedir}/blueprints</blueprintsDir>
+                    <logLevel>INFO</logLevel>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

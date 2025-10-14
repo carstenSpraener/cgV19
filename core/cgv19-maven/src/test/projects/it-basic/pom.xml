@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.spraener.nxtgen</groupId>
+    <artifactId>cgv19-maven-test</artifactId>
+    <version>25.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>cgV19 Maven Plugin Test Project</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>de.spraener.nxtgen</groupId>
+                <artifactId>cgv19-maven</artifactId>
+                <version>25.0.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>cgv19</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <model>${project.basedir}/src/test/resources/model.oom</model>
+                    <outputDir>${project.build.directory}/generated-sources/cgv19</outputDir>
+                    <cartridges>pojo</cartridges>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

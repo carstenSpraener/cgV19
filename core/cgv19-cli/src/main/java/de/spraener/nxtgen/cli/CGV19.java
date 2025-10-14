@@ -77,6 +77,7 @@ public class CGV19 {
                     workDir = ".";
                 }
                 new DirectoryTreeDeletion(workDir).run();
+                return;
             }
 
             String cartridgeName = cmd.getOptionValue("cartridge");
@@ -102,7 +103,7 @@ public class CGV19 {
 
             if (!cmd.hasOption(optModel)) {
                 NextGen.LOGGER.severe("No model was defined. Nothing to be done.");
-                System.exit(0);
+                return;
             }
 
             String model = cmd.getOptionValue("model");
@@ -128,6 +129,9 @@ public class CGV19 {
 
     public static String getInstallationDir() {
         String fqAppPath = System.getProperty("app.path");
+        if( fqAppPath == null ) {
+            return ".";
+        }
         String binDir = fqAppPath.substring(0, fqAppPath.lastIndexOf('/') - 1);
         return binDir.substring(0, binDir.lastIndexOf('/'));
     }

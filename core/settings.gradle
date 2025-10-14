@@ -1,3 +1,17 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'io.github.gradle-nexus.publish-plugin') {
+                useVersion '2.0.0'
+            }
+        }
+    }
+}
+
 def includeCartridge(String name) {
     include(":cgv19-${name}")
     project(":cgv19-${name}").projectDir = file("../cartridges/cgv19-${name}")
@@ -13,6 +27,7 @@ include(":cgv19-metacartridge")
 include(":cgv19-pojo")
 include(":cgv19-annotationprocessor")
 include(":cgv19-cli")
+include(":cgv19-maven")
 
 includeCartridge("restcartridge")
 includeCartridge("angular")
@@ -20,3 +35,10 @@ includeCartridge("javalin")
 includeCartridge("cloud")
 includeCartridge("symfony")
 includeCartridge("laravel")
+
+/*
+include(":cgv19-vpplugin-cartridge")
+project(":cgv19-vpplugin-cartridge").projectDir = file("../plugins/cgv19-vpplugin-cartridge")
+include(":cgv19-vpplugin")
+project(":cgv19-vpplugin").projectDir = file("../plugins/cgv19-vpplugin")
+*/
