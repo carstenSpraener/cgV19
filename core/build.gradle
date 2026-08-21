@@ -21,12 +21,19 @@ subprojects {
 
     apply plugin: "maven-publish"
 
-    publishing {
-        publications {
-            gpr(MavenPublication) {
-                from(components.java)
+    afterEvaluate {
+        if (!plugins.hasPlugin("java-gradle-plugin")) {
+            publishing {
+                publications {
+                    gpr(MavenPublication) {
+                        from(components.java)
+                    }
+                }
             }
         }
+    }
+
+    publishing {
         repositories {
             maven {
                 name = "GitHubPackages"
