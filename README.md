@@ -3,7 +3,7 @@
 # Welcome to cgV19
 [Come to the Slack Group](https://join.slack.com/t/cgv19/shared_invite/zt-1zxm6hc9e-~~a9QFtk4yXy2COrX1TnAQ)
 
-Last Update on: August the 7th 2024
+Last Update on: August the 21st 2026
 
 ### Quick start: See [Getting-Started](docs/GettingStarted.md), [Checkout the exmaples](examples/Readme.md),
 
@@ -14,14 +14,35 @@ docker run --rm \
   casigoreng/cgv19:24.1.1 \
   /opt/bin/cgv19 --help
 ```
+See [Running cgV19 with Docker](docs/Docker.md) for building the image and using your own cartridges.
 
 ### [Use Visual Paradigm](docs%2Fbuilding-VisualParadigm-Plugin.md) & [Cartridge Development](docs%2FCartridgeDevelopment.md)
 
-## New Release 24.1.0 providing new examples
+### [cgV19 MCP Server](docs/McpServer.md)
+Let an AI assistant inspect models, run code generation and build new cartridges
+through the [Model Context Protocol](https://modelcontextprotocol.io).
 
-The 24.1.0 release is a maintenance release with [some exmaples]
-(examples/Readme.md) to 
-demonstrate the usage of cgv19. 
+## New Release 24.1.1
+
+The 24.1.1 release brings an MCP server, a Docker image and a set of examples.
+
+### What's new in 24.1.1
+
+* **MCP server** — a new [cgv19-mcp](docs/McpServer.md) module exposes model
+  inspection, code generation and metacartridge tools to AI assistants via the
+  Model Context Protocol.
+* **Docker image** — run cgV19 without installing a JDK or Gradle, see
+  [Running cgV19 with Docker](docs/Docker.md).
+* **OOM exporter** — write models back as Groovy DSL scripts.
+* **Visual Paradigm plugin** — generated OOM exporters.
+* **UTF-8 output** — generated files are now written as UTF-8.
+* **Release tooling** — version centralized in `core/gradle.properties`,
+  publishing to GitHub Packages and an automated release workflow.
+* **Cartridge tests & docs** — cartridge tests and generated stereotype
+  documentation.
+
+The 24.1.0 line added [some examples](examples/Readme.md) to demonstrate the
+usage of cgv19 (blueprints, Groovy templates, CodeTargets, Generator Gap).
 
 ![cgv19-overview.png](docs/images/cgv19-overview.png)
 
@@ -104,6 +125,12 @@ This module adds some primary object-oriented mode features to cgV19. It impleme
 ### core/cgV19-gradle
 
 This module implements a gradle plugin to enable gradle projects to use cgV19.
+
+### core/cgV19-mcp
+
+This module exposes cgV19 as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io)
+server so that AI assistants can inspect models, run code generation and build
+new cartridges. See [cgV19 MCP Server](docs/McpServer.md).
 
 ### core/cgV19-pojo
 

@@ -45,3 +45,19 @@ I got time to improve cgV19. Features are:
 * added Support for VisualParadigm
 
 This release is again available at maven central. 
+
+# 24.1.0
+A maintenance release focused on examples and the template story:
+* new examples for blueprints, Groovy templates, CodeTargets and the Generator Gap
+* [Groovy as a template language](GroovyAsTemplateLanguage.md)
+* showcase for using cgV19 to test big web applications
+
+# 24.1.1
+The current release. Headline features:
+* new [MCP server](McpServer.md) exposing model inspection, code generation and metacartridge tools to AI assistants
+* [Docker image](Docker.md) to run cgV19 without installing a JDK or Gradle
+* OOM exporter that writes models back as Groovy DSL scripts
+* generated OOM exporters in the Visual Paradigm plugin
+* generated files are now written as UTF-8
+* version centralized in `core/gradle.properties`, publishing to GitHub Packages and an automated release workflow
+* cartridge tests and generated stereotype documentation
