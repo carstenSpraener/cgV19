@@ -1,0 +1,171 @@
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "CloudCartridge",
+  "stereotypes": [
+  {
+    "name": "CloudClusterIPService",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "CloudDeployable",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "CloudIngressService",
+    "baseClass": "Component",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "CloudModule",
+    "baseClass": "Package",
+    "taggedValues": [        {
+          "name": "dockerRegistry",
+          "type": "String",
+          "defaultValue": "localhost:5080",
+          "typeID": "String"
+        },
+        {
+          "name": "cgv19Cartridge",
+          "type": "String",
+          "defaultValue": "REST-Cartridge",
+          "typeID": "String"
+        },
+        {
+          "name": "dockerImage",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "port",
+          "type": "integer",
+          "defaultValue": "8080",
+          "typeID": "integer"
+        },
+        {
+          "name": "requiredDatabase",
+          "type": "adhoc-enum",
+          "defaultValue": "none",
+          "allowedValues": [
+            "none",
+            "PostgreSQL",
+            "MariaDB",
+            "MySQL",
+            "DB/2",
+            "HSQL",
+            "Other"        ],
+          "typeID": "adhoc-enum"
+        }
+    ]
+  }
+,
+  {
+    "name": "CloudService",
+    "baseClass": "Component",
+    "taggedValues": [        {
+          "name": "replicas",
+          "type": "integer",
+          "defaultValue": "1",
+          "typeID": "integer"
+        }
+    ]
+  }
+,
+  {
+    "name": "Deployment",
+    "baseClass": "Package",
+    "taggedValues": [        {
+          "name": "dockerRegistry",
+          "type": "String",
+          "defaultValue": "localhost:5080",
+          "typeID": "String"
+        },
+        {
+          "name": "deploymentName",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        }
+    ]
+  }
+,
+  {
+    "name": "IngressService",
+    "baseClass": "Component",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "Routes",
+    "baseClass": "Dependency",
+    "taggedValues": [        {
+          "name": "path",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        }
+    ]
+  }
+,
+  {
+    "name": "DockerComposeFile",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "CloudShare",
+    "baseClass": "Package",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "Mounts",
+    "baseClass": "Dependency",
+    "taggedValues": [        {
+          "name": "mountPath",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "subPath",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        }
+    ]
+  }
+,
+  {
+    "name": "PermanentVolume",
+    "baseClass": "InstanceSpecification",
+    "taggedValues": [        {
+          "name": "size",
+          "type": "String",
+          "defaultValue": "2Gi",
+          "typeID": "String"
+        }
+    ]
+  }
+,
+  {
+    "name": "Provides",
+    "baseClass": "Dependency",
+    "taggedValues": [
+    ]
+  }
+  
+  ]
+}
