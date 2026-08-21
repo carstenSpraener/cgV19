@@ -1,0 +1,11 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name '{{package}}'
+        mClass {
+            name '{{name}}'
+            stereotype 'cgV19Cartridge'
+        }
+    }
+}

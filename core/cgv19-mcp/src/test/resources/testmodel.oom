@@ -1,0 +1,27 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.test'
+        mClass {
+            name 'Person'
+            stereotype 'Ressource'
+            mAttribute {
+                name 'name'
+                type 'String'
+            }
+            mOperation {
+                name 'getName'
+                type 'String'
+            }
+        }
+        mClass {
+            name 'Address'
+            stereotype 'Entity'
+            mAttribute {
+                name 'street'
+                type 'String'
+            }
+        }
+    }
+}
