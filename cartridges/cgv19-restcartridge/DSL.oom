@@ -253,7 +253,7 @@ can be stored in the database"""
                   metaType 'Class'
                   stereotype 'Transformation', {
                     taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Ressource'
+                    taggedValue 'requiredStereotype', 'Resource'
                     taggedValue 'priority', '4'
                   }
                 }
@@ -264,7 +264,7 @@ can be stored in the database"""
                   metaType 'Class'
                   stereotype 'Transformation', {
                     taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Ressource'
+                    taggedValue 'requiredStereotype', 'Resource'
                     taggedValue 'priority', '4'
                   }
                 }
@@ -304,7 +304,7 @@ it can be handled in an angualr frontend."""
                   metaType 'Class'
                   stereotype 'Transformation', {
                     taggedValue 'transformedMetaType', 'MClass'
-                    taggedValue 'requiredStereotype', 'Ressource'
+                    taggedValue 'requiredStereotype', 'Resource'
                     taggedValue 'priority', '5'
                   }
                 }

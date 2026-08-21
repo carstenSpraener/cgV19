@@ -12,3 +12,4 @@ core/cgv19-metacartridge/src/main/resources/meta/**
 **/*-gen
 /docs/Tasks/
 !core/gradle.properties
+cartridges/cgv19-cloud/de.spraener.tinyapp.oom

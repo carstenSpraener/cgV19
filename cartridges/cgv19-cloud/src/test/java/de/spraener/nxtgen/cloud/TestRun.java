@@ -5,6 +5,10 @@ import de.spraener.nxtgen.cloud.util.FileLister;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class TestRun {
     public static final String[] EXPEXCTED_FILES = new String[]{
@@ -60,9 +64,10 @@ public class TestRun {
             "settings.gradle",
             "appdb/mariadb-appdb.cnf",
             "appdb/Dockerfile",
-            "sql/keycloakdb/init.sh",
-            "sql/keycloakdb/init.sql",
-            "sql/appdb/init.sql",
+            "appdb/sql/init.sh",
+            "appdb/sql/init.sql",
+            "keycloakdb/sql/init.sh",
+            "keycloakdb/sql/init.sql",
             "k8s/keycloakdb-persistent-volume-claim.yaml",
             "keycloakdb/Dockerfile",
             "keycloakdb/mariadb-keycloakdb.cnf"
@@ -76,6 +81,9 @@ public class TestRun {
         NextGen.setWorkingDir("./build/source-gen");
         System.setProperty("cgv19_globalHostURL", "http://192.168.0.201");
         NextGen.runCartridgeWithName(uut.getName());
+        try (InputStream in = getClass().getResourceAsStream("/de.spraener.tinyapp.oom")) {
+            Files.copy(in, Path.of("de.spraener.tinyapp.oom"), StandardCopyOption.REPLACE_EXISTING);
+        }
         NextGen.main(new String[]{"http://localhost:7001/de.spraener.tinyapp"});
 
         FileLister lister = new FileLister(dir.getAbsolutePath());
