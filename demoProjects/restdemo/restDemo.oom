@@ -27,7 +27,7 @@ ModelDSL.make {
             documentation ''
             id 'VEieOuGGAqACRAkc:dEieOuGGAqACRAkd:9EieOuGGAqACRAke:DEieOuGGAqACRAkf:HEieOuGGAqACRAkh'
             metaType 'Class'
-            stereotype 'Ressource', {
+            stereotype 'Resource', {
               taggedValue 'dbTable', 'USR_TAB'
             }
             mAssociation {

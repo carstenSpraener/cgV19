@@ -2,6 +2,7 @@ package de.spraener.nxtgen.laravel.tools;
 
 import javax.naming.LinkRef;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -108,7 +109,7 @@ public class FilePatcher implements AutoCloseable {
 
     @Override
     public void close() throws IOException{
-        try(PrintWriter pw = new PrintWriter(new FileWriter(this.filePath))) {
+        try(PrintWriter pw = new PrintWriter(new FileWriter(this.filePath, StandardCharsets.UTF_8))) {
             for( String line: this.lines) {
                 pw.println(line);
             }

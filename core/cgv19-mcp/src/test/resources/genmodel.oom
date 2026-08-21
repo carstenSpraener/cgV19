@@ -1,0 +1,15 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'de.test'
+        mClass {
+            name 'MyMetaClass'
+            stereotype 'OOMMetaClass'
+            mAttribute {
+                name 'foo'
+                type 'String'
+            }
+        }
+    }
+}

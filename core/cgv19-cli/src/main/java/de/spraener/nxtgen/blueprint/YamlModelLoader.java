@@ -7,6 +7,7 @@ import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +51,7 @@ public class YamlModelLoader extends AbstractBlueprintModelLoader {
     }
 
     private void propsToYaml(String modelURI, Properties modelProperties) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(modelURI))){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(modelURI, StandardCharsets.UTF_8))){
             Map<String, Object> yamlMap = new PropertiesToYamlConverter(modelProperties).convert();
             DumperOptions options = new DumperOptions();
             options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);

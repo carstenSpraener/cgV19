@@ -1,0 +1,114 @@
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "Laravel",
+  "stereotypes": [
+  {
+    "name": "LaravelApplication",
+    "baseClass": "Package",
+    "taggedValues": [        {
+          "name": "dbName",
+          "type": "String",
+          "defaultValue": "laravel-db",
+          "typeID": "String"
+        },
+        {
+          "name": "dbUser",
+          "type": "String",
+          "defaultValue": "root",
+          "typeID": "String"
+        },
+        {
+          "name": "dbPassword",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        },
+        {
+          "name": "dbHost",
+          "type": "String",
+          "defaultValue": "localhost",
+          "typeID": "String"
+        },
+        {
+          "name": "dbPort",
+          "type": "integer",
+          "defaultValue": "3306",
+          "typeID": "integer"
+        },
+        {
+          "name": "dbConnection",
+          "type": "adhoc-enum",
+          "defaultValue": "mysql",
+          "allowedValues": [
+            "mysql",
+            "postgresql"        ],
+          "typeID": "adhoc-enum"
+        }
+    ]
+  }
+,
+  {
+    "name": "LaravelController",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "ManagedRelation",
+    "baseClass": "Association",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "LaravelFactory",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "LaravelMigration",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "LaravelModel",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "LaravelSeeder",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "FilamentResource",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "FilamentPage",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "FilamentRelationManager",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+  
+  ]
+}

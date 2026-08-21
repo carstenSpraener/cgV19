@@ -49,7 +49,7 @@ public class NextGen implements Runnable {
     private static List<NextGenInvocation> scheduledSubRuns = new ArrayList<>();
     private static boolean inSubRun = false;
 
-    private NextGen(String modelURI) {
+    public NextGen(String modelURI) {
         this.modelURI = modelURI;
         if (this.workingDir == null) {
             this.workingDir = new File(".").getAbsolutePath();
@@ -84,6 +84,13 @@ public class NextGen implements Runnable {
 
     public static void runCartridgeWithName(String cartridgeName) {
         cartridgeNames.add(cartridgeName);
+    }
+
+    /**
+     * Clears the cartridge name filter so that the next run executes all cartridges.
+     */
+    public static void clearCartridgeNames() {
+        cartridgeNames.clear();
     }
 
     public static void addCartridge(Cartridge c) {

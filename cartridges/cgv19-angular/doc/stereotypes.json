@@ -1,0 +1,13 @@
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "Cgv19Angular",
+  "stereotypes": [
+  {
+    "name": "Cgv19AngularApp",
+    "baseClass": "Package",
+    "taggedValues": [
+    ]
+  }
+  
+  ]
+}

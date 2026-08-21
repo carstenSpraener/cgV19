@@ -1,0 +1,37 @@
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "JavaLinCartridge",
+  "stereotypes": [
+  {
+    "name": "JavaLinApp",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "RequestHandler",
+    "baseClass": "Operation",
+    "taggedValues": [        {
+          "name": "Metod",
+          "type": "adhoc-enum",
+          "defaultValue": "GET",
+          "allowedValues": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE",
+            "PATCH"        ],
+          "typeID": "adhoc-enum"
+        },
+        {
+          "name": "path",
+          "type": "String",
+          "defaultValue": "/",
+          "typeID": "String"
+        }
+    ]
+  }
+  
+  ]
+}

@@ -12,6 +12,7 @@ dependencies {
     implementation 'org.yaml:snakeyaml:2.0'
 
     implementation project(":cgv19-core")
+    implementation project(":cgv19-mcp")
 
     compileOnly project(":cgv19-oom")
     compileOnly project(":cgv19-javapoet")
@@ -53,6 +54,35 @@ startScripts {
     }
 }
 
+tasks.register('createMcpStartScripts', CreateStartScripts) {
+    mainClass = 'de.spraener.nxtgen.mcp.CGV19McpServer'
+    applicationName = 'cgv19-mcp'
+    outputDir = tasks.named('startScripts').get().outputDir
+    classpath = tasks.named('startScripts').get().classpath
+
+    doLast {
+        def scriptFile = file "${outputDir}/${applicationName}"
+        scriptFile.text = scriptFile.text.replace('CLASSPATH=$APP_HOME/lib', 'CLASSPATH=$APP_HOME/cartridges/*:$APP_HOME/lib')
+        scriptFile.text = scriptFile.text.replace("DEFAULT_JVM_OPTS=\"\"\n", "DEFAULT_JVM_OPTS=\"-Dapp.path=\$app_path\"\n")
+
+        def dosFile = file "${outputDir}/${applicationName}.bat"
+        dosFile.text = dosFile.text.replace('CLASSPATH=%APP_HOME%\\lib', 'CLASSPATH=%APP_HOME%\\cartridges\\*:%APP_HOME%/lib')
+        dosFile.text = dosFile.text.replace("DEFAULT_JVM_OPTS=", "DEFAULT_JVM_OPTS=-Dapp.path=%DIRNAME%")
+    }
+}
+
+distributions {
+    main {
+        contents {
+            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+            from(createMcpStartScripts) {
+                into("bin")
+                fileMode = 0755
+            }
+        }
+    }
+}
+
 application {
 
     applicationDistribution.from(project(":cgv19-oom").buildDir.absolutePath+"/libs") {
@@ -80,6 +110,11 @@ application {
     applicationDistribution.from(project(":cgv19-cli").projectDir.absolutePath+"/src/main/blueprints") {
         include "**/*"
     }.into("cartridges/blueprints")
+
+    applicationDistribution.from(createMcpStartScripts) {
+        into("bin")
+        fileMode = 0755
+    }
 }
 
 def listCartridges() {

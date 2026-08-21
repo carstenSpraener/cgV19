@@ -1,5 +1,6 @@
 import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.symfony.SymfonyCartridge;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -17,6 +18,7 @@ public class TestRun {
     }
 
     @Test
+    @Disabled("local-only test: requires Visual Paradigm on localhost:7001 and a local symfony project directory")
     public void testSymfonyApp() {
         NextGen.setWorkingDir("/Users/casi/PhpstormProjects/symfony");
         NextGen.runCartridgeWithName(uut.getName());

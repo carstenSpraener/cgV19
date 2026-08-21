@@ -295,7 +295,7 @@ ModelDSL.make {
                 documentation """"""
                 id 'mVU0C5GD.AAAARDE:zXw4a5GD.AAAAR2f:sai4a5GD.AAAAR3b'
                 metaType 'Class'
-                stereotype 'Ressource', {
+                stereotype 'Resource', {
                 }
                 mDependency {  //Exported by DependencyExporterBase
                     name 'Depends'

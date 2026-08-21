@@ -1,0 +1,72 @@
+{
+  "comment": "THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS",
+  "cartridge": "SymfonyCartridge",
+  "stereotypes": [
+  {
+    "name": "SymfonyApp",
+    "baseClass": "Package",
+    "taggedValues": [        {
+          "name": "requiresList",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        }
+    ]
+  }
+,
+  {
+    "name": "PhpPackage",
+    "baseClass": "Package",
+    "taggedValues": [        {
+          "name": "namespace",
+          "type": "String",
+          "defaultValue": "null",
+          "typeID": "String"
+        }
+    ]
+  }
+,
+  {
+    "name": "TwigComponent",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "PhpCntrlService",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "FormTypeComponent",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "FormTypeComponentBase",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "PhpComponent",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+,
+  {
+    "name": "PhpCntrlServiceTrait",
+    "baseClass": "Class",
+    "taggedValues": [
+    ]
+  }
+  
+  ]
+}

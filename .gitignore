@@ -10,3 +10,6 @@ core/cgv19-metacartridge/src/main/resources/meta/**
 **/*.vpp.bak_*
 **/*.vpp.lck
 **/*-gen
+/docs/Tasks/
+!core/gradle.properties
+cartridges/cgv19-cloud/de.spraener.tinyapp.oom

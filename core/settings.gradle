@@ -13,6 +13,7 @@ include(":cgv19-metacartridge")
 include(":cgv19-pojo")
 include(":cgv19-annotationprocessor")
 include(":cgv19-cli")
+include(":cgv19-mcp")
 
 includeCartridge("restcartridge")
 includeCartridge("angular")

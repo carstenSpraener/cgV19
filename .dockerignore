@@ -1,0 +1,12 @@
+.git
+.gradle
+repo
+build
+core/build
+cartridges/*/build
+plugins
+demoProjects
+docs
+examples
+*.md
+.DS_Store

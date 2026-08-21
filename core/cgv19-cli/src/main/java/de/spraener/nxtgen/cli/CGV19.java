@@ -49,6 +49,10 @@ public class CGV19 {
         logLevel.setRequired(false);
         options.addOption(logLevel);
 
+        Option mcpServer = new Option(null, "mcp", false, "start cgv19 as a mcp server to integrate in you favorite harness. All other options are skipped.");
+        logLevel.setRequired(false);
+        options.addOption(mcpServer);
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
 
@@ -70,6 +74,11 @@ public class CGV19 {
             String workDir = cmd.getOptionValue("work-directory");
             if (workDir != null) {
                 NextGen.setWorkingDir(workDir);
+            }
+
+            if( cmd.hasOption("mcp") ) {
+                de.spraener.nxtgen.mcp.CGV19McpServer.main(args);
+                return;
             }
 
             if (cmd.hasOption(optDelete)) {
