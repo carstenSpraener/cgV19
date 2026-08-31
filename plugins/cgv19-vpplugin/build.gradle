@@ -1,31 +1,12 @@
-buildscript {
-    def version = '24.1.0'
-    def group = 'de.spraener.nxtgen'
-
-    repositories {
-        mavenCentral();
-        maven {
-            url = "${project.rootDir}/../repo"
-        }
-    }
-    dependencies {
-        classpath "${group}:cgv19-core:${version}"
-        classpath "${group}:cgv19-gradle:${version}"
-    }
-}
-
 plugins {
     id 'java-library'
     id 'application'
 }
 
-
-apply plugin: 'de.spraener.nxtgen.cgV19'
-
 def home = System.getenv("HOME")
 def VP_HOME = "/Applications/Visual Paradigm.app/Contents/Resources/app";// System.getenv("VP_HOME")
 def repoDir = "${project.rootDir}/../repo"
-def version = '23.1.0'
+def version = '24.1.0'
 def group = 'de.spraener.nxtgen'
 
 targetCompatibility = JavaVersion.VERSION_11
@@ -50,20 +31,25 @@ sourceSets {
     }
 }
 
-cgV19 {
-    model = 'http://localhost:7001/de.spraener.nextgen.vpplugin'
-}
-
 dependencies {
-    cartridge "${group}:cgv19-core:${version}"
-    cartridge "${group}:cgv19-oom:${version}"
-    cartridge project(":cgv19-vpplugin-cartridge")
-
 
     implementation group: 'io.javalin', name: 'javalin', version: '5.0.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
     implementation(":openapi:")
     implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation group: 'org.apache.groovy', name: 'groovy', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-json', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-xml', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-templates', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-nio', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-sql', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-ant', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-datetime', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-dateutil', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-console', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-docgenerator', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-groovydoc', version: '4.0.15'
+    implementation group: 'org.apache.groovy', name: 'groovy-swing', version: '4.0.15'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
 }

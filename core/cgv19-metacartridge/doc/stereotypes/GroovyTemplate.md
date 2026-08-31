@@ -3,7 +3,9 @@
 
 # Stereotype "GroovyTemplate"
 
-There is no documentation yet.
+
+A property marked with this stereotype inside a CodeGenerator defines the Groovy Script, that is used by the containing CodeGenerator. 
+The meta cartridge will generate a GroovyTemplate as a template for implementation. If you specified the outputType, the generated groovy script could be enhanced. 
 
 
 ## BaseClass(es)
@@ -13,4 +15,7 @@ This stereotype is applicable to the following UML-ELements:
 
 
 ## Associated Tagged Values
-This Stereotype has no associated tagged vales.
+| Name | Type | Documentation |
+|------|-------|----------------------------------------|
+|__filePathURI__| String | There is no documentation yet. |
+

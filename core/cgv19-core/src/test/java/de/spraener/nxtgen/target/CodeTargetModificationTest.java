@@ -58,7 +58,7 @@ public class CodeTargetModificationTest {
         ModelElement attr = new ModelElementImpl();
         CodeTarget target = ObjectMother.createPoJoTarget(attr);
         // Make an existing classTarget a Serializable
-        target.inContext(JavaAspects.SERIALIZABLE, null, t -> {
+        target.forAspect(JavaAspects.SERIALIZABLE, null, t -> {
             // Add the import to the import section
             t.getSection(JavaSections.IMPORTS)
                     .add(new SingleLineSnippet("import java.io.Serializable;"));
@@ -80,7 +80,7 @@ public class CodeTargetModificationTest {
     void testFluentAPITwoInterfaces() {
         ModelElement attr = new ModelElementImpl();
         CodeTarget target = ObjectMother.createPoJoTarget(attr);
-        target.inContext(JavaAspects.SERIALIZABLE, null, t -> {
+        target.forAspect(JavaAspects.SERIALIZABLE, null, t -> {
             t.getSection(JavaSections.IMPLEMENTS)
                     .add(new CodeBlockSnippet("Serializable"))
                     .add(new CodeBlockSnippet("Runnable"))

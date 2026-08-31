@@ -5,6 +5,9 @@ import de.spraener.nxtgen.mcp.api.McpToolDescriptor;
 import de.spraener.nxtgen.mcp.api.McpToolRegistry;
 import de.spraener.nxtgen.mcp.sdk.McpSdkServerProvider;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -20,16 +23,19 @@ public class CGV19McpServer {
     public static void main(String[] args) {
         LOGGER.info("Starting cgV19 MCP Server...");
 
-        // Discover tools via annotation scanning
         McpToolRegistry registry = new McpToolRegistry();
+
+        // All tools (core + VP — always on classpath)
+        List<McpToolDescriptor> allTools = new ArrayList<>();
         McpToolDescriptor[] tools = registry.scan("de.spraener.nxtgen.mcp.tool");
+        allTools.addAll(Arrays.asList(tools));
         LOGGER.info("Discovered " + tools.length + " MCP tools");
 
         // Create provider and start server
         McpServerProvider provider = new McpSdkServerProvider();
         LOGGER.info("Using provider: " + provider.getId());
-        provider.start(SERVER_NAME, SERVER_VERSION, tools);
+        provider.start(SERVER_NAME, SERVER_VERSION, allTools.toArray(new McpToolDescriptor[0]));
 
-        LOGGER.info("cgV19 MCP Server started");
+        LOGGER.info("cgV19 MCP Server started with " + allTools.size() + " tools (including VP model-modification tools)");
     }
 }

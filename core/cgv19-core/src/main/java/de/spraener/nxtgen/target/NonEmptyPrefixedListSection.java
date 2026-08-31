@@ -19,10 +19,24 @@ public class NonEmptyPrefixedListSection extends UniqueLineSection {
     private Object aspect;
     private String listSeparator;
 
+    public NonEmptyPrefixedListSection() {
+        this.aspect = "default";
+        this.nonEmptyPrefix = "";
+        this.listSeparator = ", ";
+    }
+
     public NonEmptyPrefixedListSection(Object aspect, String nonEmptyPrefix, String listSeparator) {
         this.aspect = aspect;
         this.nonEmptyPrefix = nonEmptyPrefix;
         this.listSeparator = listSeparator;
+    }
+
+    public void setPrefix(String prefix) {
+        this.nonEmptyPrefix = prefix;
+    }
+
+    public void setSeparator(String separator) {
+        this.listSeparator = separator;
     }
 
     @Override

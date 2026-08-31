@@ -1,10 +1,12 @@
 plugins {
     id 'java-library'
+    id 'groovy'
 }
 
 dependencies {
     implementation project(":cgv19-core")
     implementation project(":cgv19-oom")
+    implementation 'org.apache.groovy:groovy:4.0.12'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testImplementation 'org.mockito:mockito-core:5.3.1'

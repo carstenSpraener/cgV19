@@ -11,6 +11,7 @@
         <library path="lib/asm-commons-9.3.jar" relativePath="true"/>
         <library path="lib/asm-tree-9.3.jar" relativePath="true"/>
         <library path="lib/commons-lang3-3.12.0.jar" relativePath="true"/>
+        <library path="lib/groovy-4.0.15.jar" relativePath="true"/>
         <library path="lib/jakarta.annotation-api-2.1.1.jar" relativePath="true"/>
         <library path="lib/jakarta.transaction-api-2.0.0.jar" relativePath="true"/>
         <library path="lib/javalin-5.0.0.jar" relativePath="true"/>

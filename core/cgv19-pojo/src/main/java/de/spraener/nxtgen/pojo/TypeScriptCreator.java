@@ -19,7 +19,7 @@ public class TypeScriptCreator {
     public CodeTarget createPoJo() {
         CodeTarget codeTarget = TypeScriptSections.createCodeTarget("// "+ ProtectionStrategieDefaultImpl.GENERATED_LINE);
 
-        codeTarget.inContext(TS_CLASS_FRAME, mClass,
+        codeTarget.forAspect(TS_CLASS_FRAME, mClass,
                 this::classDeclaration,
                 new TypeScriptAttributes(mClass)
         );

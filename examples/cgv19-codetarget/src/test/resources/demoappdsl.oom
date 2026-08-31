@@ -1,0 +1,23 @@
+import de.spraener.nxtgen.groovy.ModelDSL
+
+ModelDSL.make {
+    mPackage {
+        name 'demoapp'
+        documentation ''
+        metaType 'Package'
+        mClass {
+            name 'DemoAppDSL'
+            documentation ''
+            metaType 'Class'
+            stereotype 'PoJo'
+            mAttribute {
+                name 'name'
+                type 'String'
+            }
+            mAttribute {
+                name 'count'
+                type 'int'
+            }
+        }
+    }
+}

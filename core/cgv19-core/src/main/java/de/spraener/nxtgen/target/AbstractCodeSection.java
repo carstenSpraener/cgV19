@@ -6,7 +6,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCodeSection implements CodeSection {
-    Map<Object, List<CodeSnippet>> mySnippets = new LinkedHashMap<>();
+    /** Global ordered list of all snippets — preserves insertion and insertBefore/After order. */
+    List<CodeSnippet> allSnippets = new ArrayList<>();
     private Object id = UUID.randomUUID();
 
     @Override
@@ -18,17 +19,8 @@ public abstract class AbstractCodeSection implements CodeSection {
         this.id = id;
     }
 
-    private List<CodeSnippet> getCodeSnippetList(Object key) {
-        List<CodeSnippet> list = mySnippets.get(key);
-        if (list == null) {
-            list = new ArrayList<>();
-            mySnippets.put(key, list);
-        }
-        return list;
-    }
-
     public AbstractCodeSection withSnippet(Object key, CodeSnippet snippet) {
-        getCodeSnippetList(key).add(snippet);
+        allSnippets.add(snippet);
         return this;
     }
 
@@ -38,7 +30,17 @@ public abstract class AbstractCodeSection implements CodeSection {
 
     @Override
     public AbstractCodeSection add(CodeSnippet snippet) {
-        getCodeSnippetList(snippet.getAspect()).add(snippet);
+        allSnippets.add(snippet);
+        return this;
+    }
+
+    @Override
+    public AbstractCodeSection addFirst(CodeSnippet snippet) {
+        if (!allSnippets.isEmpty()) {
+            allSnippets.add(0, snippet);
+        } else {
+            allSnippets.add(snippet);
+        }
         return this;
     }
 
@@ -50,26 +52,23 @@ public abstract class AbstractCodeSection implements CodeSection {
     @Override
     public AbstractCodeSection add(Object aspect, ModelElement me, String code) {
         return add(new CodeBlockSnippet(aspect, me, code));
-
     }
 
     @Override
     public List<CodeSnippetRef> getSnippetsForAspect(Object aspect) {
-        return getCodeSnippetList(aspect).stream()
+        return allSnippets.stream()
                 .filter(s -> {
-                    if( aspect==null ) {
-                        return true;
-                    }
+                    if (aspect == null) return true;
                     return aspect.equals(s.getAspect());
                 })
                 .map(s -> new CodeSnippetRef(this, s))
                 .collect(Collectors.toList());
-
     }
 
     @Override
     public CodeSnippetRef getFirstSnippetForAspect(Object aspect) {
-        return getCodeSnippetList(aspect).stream()
+        return allSnippets.stream()
+                .filter(s -> aspect == null || aspect.equals(s.getAspect()))
                 .map(s -> new CodeSnippetRef(this, s))
                 .findFirst().orElse(null);
     }
@@ -85,8 +84,7 @@ public abstract class AbstractCodeSection implements CodeSection {
 
     @Override
     public List<CodeSnippetRef> getSnippetsForAspectAndModelElement(Object aspect, ModelElement me) {
-        return this.mySnippets.values().stream()
-                .flatMap(l -> l.stream())
+        return allSnippets.stream()
                 .filter(s -> s.matches(aspect, me))
                 .map(s -> new CodeSnippetRef(this, s))
                 .collect(Collectors.toList());
@@ -94,13 +92,11 @@ public abstract class AbstractCodeSection implements CodeSection {
 
     @Override
     public CodeSnippetRef getFirstSnippetForAspectAndModelElement(Object aspect, ModelElement me) {
-        return this.mySnippets.values().stream()
-                .flatMap(l -> l.stream())
+        return allSnippets.stream()
                 .filter(s -> s.matches(aspect, me))
                 .map(s -> new CodeSnippetRef(this, s))
                 .findFirst().orElse(null);
     }
-
 
     @Override
     public CodeSnippetRef getLastSnippetForAspectAndModelElement(Object aspect, ModelElement me) {
@@ -113,49 +109,37 @@ public abstract class AbstractCodeSection implements CodeSection {
 
     @Override
     public CodeSection insertBefore(CodeSnippet snippet, CodeSnippet snippetToInsert) {
-        for (List<CodeSnippet> snippetList : this.mySnippets.values()) {
-            int idx = snippetList.indexOf(snippet);
-            if (idx >= 0) {
-                snippetList.add(idx, snippetToInsert);
-                return this;
-            }
+        int idx = allSnippets.indexOf(snippet);
+        if (idx >= 0) {
+            allSnippets.add(idx, snippetToInsert);
+            return this;
         }
         throw new IllegalArgumentException("Snippet " + snippet + " not part of CodeSection " + this);
     }
 
     @Override
     public CodeSection insertAfter(CodeSnippet snippet, CodeSnippet snippetToInsert) {
-        for (List<CodeSnippet> snippetList : this.mySnippets.values()) {
-            int idx = snippetList.indexOf(snippet);
-            if (idx >= 0) {
-                snippetList.add(idx + 1, snippetToInsert);
-                return this;
-            }
+        int idx = allSnippets.indexOf(snippet);
+        if (idx >= 0) {
+            allSnippets.add(idx + 1, snippetToInsert);
+            return this;
         }
         throw new IllegalArgumentException("Snippet " + snippet + " not part of CodeSection " + this);
     }
 
     @Override
     public CodeSection replace(CodeSnippet snippet, CodeSnippet snippetToInsert) {
-        for (List<CodeSnippet> snippetList : this.mySnippets.values()) {
-            int idx = snippetList.indexOf(snippet);
-            if (idx >= 0) {
-                snippetList.add(idx + 1, snippetToInsert);
-                snippetToInsert.updateAspect(snippet);
-                snippetList.remove(idx);
-            }
+        int idx = allSnippets.indexOf(snippet);
+        if (idx >= 0) {
+            allSnippets.add(idx, snippetToInsert);
+            snippetToInsert.updateAspect(snippet);
+            allSnippets.remove(idx + 1);
         }
         return this;
     }
 
     @Override
     public Collection<CodeSnippet> getSnippetsOrdered() {
-        List<CodeSnippet> snippetList = new ArrayList<>();
-        for (List<CodeSnippet> aSnippetList : this.mySnippets.values()) {
-            snippetList.addAll(aSnippetList);
-        }
-        return snippetList;
+        return new ArrayList<>(allSnippets);
     }
 }
-
-

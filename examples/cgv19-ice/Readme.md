@@ -28,6 +28,10 @@ associations. But it doesn't know how your project wants to deal with lets
 say activity diagramms. These diagrams can be used to describe complex 
 methods in a readable diagram. But there are several ways to implement it.
 
+⚠️ **Note: Activity & FSM support is ALPHA / EXPERIMENTAL.** The API, 
+generated code quality, and model support are all subject to significant 
+change. This example demonstrates the concept but is not production-ready.
+
 The PoJoCartridge does not deal with activity diagrams, but it calls 
 ```NextGen.subEvaluate``` during the generation process of a class. The 
 _subEvaluate_ method takes a EvaluationRequest parameter, and cgV19 will 

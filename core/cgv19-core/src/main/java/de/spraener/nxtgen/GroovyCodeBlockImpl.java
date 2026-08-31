@@ -1,6 +1,9 @@
 package de.spraener.nxtgen;
 
 import de.spraener.nxtgen.model.ModelElement;
+import de.spraener.nxtgen.target.CodeTarget;
+import de.spraener.nxtgen.target.CodeTargetRenderer;
+import de.spraener.nxtgen.target.CodeTargetToCodeConverter;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
@@ -54,12 +57,23 @@ public class GroovyCodeBlockImpl extends CodeBlockImpl {
         Binding b = new Binding();
         b.setVariable("modelElement", this.me);
         b.setVariable("codeBlock", this);
+        b.setVariable("mClass", this.me);  // Alias for modelElement
         b.setProperty("modelElement", this.me);
         b.setProperty("codeBlock", this);
+        b.setProperty("mClass", this.me);   // Alias for modelElement
         GroovyShell shell = new GroovyShell(b);
         Script scr = shell.parse(templateScript,templateScriptURL);
         try {
             Object value = scr.run();
+
+            if (value instanceof CodeTarget ct) {
+                CodeTargetRenderer renderer = ct.getRenderer();
+                if (renderer != null) {
+                    return renderer.render(ct);
+                }
+                return new CodeTargetToCodeConverter(ct).toString();
+            }
+
             return value.toString();
         } catch (Exception e) {
             NextGen.LOGGER.severe(() -> "Error while executing script " + this.templateScriptURL + ": "+e.getMessage());

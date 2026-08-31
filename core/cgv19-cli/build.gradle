@@ -18,9 +18,7 @@ dependencies {
     compileOnly project(":cgv19-javapoet")
     compileOnly project(":cgv19-metacartridge")
     compileOnly project(":cgv19-pojo")
-    for( String cName in listCartridges() ) {
-        compileOnly project(":${cName}")
-    }
+
     implementation 'org.slf4j:slf4j-jdk14:1.7.36'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
@@ -100,13 +98,13 @@ application {
     applicationDistribution.from(project(":cgv19-pojo").buildDir.absolutePath+"/libs") {
                 include "cgv19*.jar"
     }.into("cartridges")
-
+/*
     for( String cName in listCartridges() ) {
         applicationDistribution.from(project(":${cName}").buildDir.absolutePath+"/libs") {
             include "*.jar"
         }.into("cartridges")
     }
-
+*/
     applicationDistribution.from(project(":cgv19-cli").projectDir.absolutePath+"/src/main/blueprints") {
         include "**/*"
     }.into("cartridges/blueprints")

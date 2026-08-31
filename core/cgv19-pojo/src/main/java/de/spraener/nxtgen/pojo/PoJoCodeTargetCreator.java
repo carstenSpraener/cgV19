@@ -24,7 +24,7 @@ public class PoJoCodeTargetCreator {
         }
         if( orgClass!=null ) {
             final MClass pojo = orgClass;
-            target.inContext(POJO_ASPECT, pojo,
+            target.forAspect(POJO_ASPECT, pojo,
                     ct -> new PoJoAttributesCreator().accept(ct, pojo),
                     ct -> new PoJoAssociationCreator().accept(ct, pojo),
                     ct -> {

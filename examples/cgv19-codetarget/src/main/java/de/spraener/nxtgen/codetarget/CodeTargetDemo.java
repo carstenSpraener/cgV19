@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.codetarget;
 
 import de.spraener.nxtgen.CodeBlock;
+import de.spraener.nxtgen.GroovyCodeBlockImpl;
 import de.spraener.nxtgen.annotations.CGV19Component;
 import de.spraener.nxtgen.annotations.CGV19Generator;
 import de.spraener.nxtgen.annotations.OutputTo;
@@ -34,12 +35,28 @@ public class CodeTargetDemo {
 
         // apply your enhancements to the code target
         JavaLoggerAdding.addJavaLogging(clazzTarget, mc);
+        EntityEnhancement.addEntityEnhancement(clazzTarget, mc);
 
         // wrap the target into a CodeBlock and add it to a JavaCodeBlock to write
         // it as a java class.
         JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", mc.getPackage().getFQName(), mc.getName());
         jCB.addCodeBlock(
-                new CodeTargetCodeBlockAdapter(clazzTarget)
+                new CodeTargetCodeBlockAdapter(clazzTarget).withMarkers()
+        );
+        return jCB;
+    }
+
+    @CGV19Generator(
+            requiredStereotype = "PoJo",
+            operatesOn = MClass.class,
+            outputTo = OutputTo.SRC_GEN,
+            outputType = OutputType.JAVA
+    )
+    public CodeBlock generateViaCodeTargetScript(ModelElement me, String templateName) {
+        MClass mc = (MClass) me;
+        JavaCodeBlock jCB = new JavaCodeBlock("src/main/java-gen", mc.getPackage().getFQName(), mc.getName()+"Script");
+        jCB.addCodeBlock(
+                new GroovyCodeBlockImpl("dsl-script", mc, "/DemoApp.groovy")
         );
         return jCB;
     }

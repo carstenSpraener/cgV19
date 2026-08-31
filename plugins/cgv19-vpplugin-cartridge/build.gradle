@@ -24,9 +24,6 @@ plugins {
 apply plugin: 'de.spraener.nxtgen.cgV19'
 apply plugin: "maven-publish"
 
-def version = project.properties['prj.version']
-def group = project.properties['prj.group']
-
 repositories {
     mavenCentral();
     maven {
@@ -48,11 +45,11 @@ sourceSets {
 }
 
 dependencies {
-    cartridge "${group}:cgv19-core:${version}"
-    cartridge "${group}:cgv19-oom:${version}"
-    cartridge "${group}:cgv19-metacartridge:${version}"
+    cartridge "de.spraener.nxtgen:cgv19-core:24.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-oom:24.1.0"
+    cartridge "de.spraener.nxtgen:cgv19-metacartridge:24.1.0"
 
-    implementation "${group}:cgv19-core:${version}"
-    implementation "${group}:cgv19-oom:${version}"
+    implementation "de.spraener.nxtgen:cgv19-core:24.1.0"
+    implementation "de.spraener.nxtgen:cgv19-oom:24.1.0"
     testImplementation 'junit:junit:4.13.1'
 }

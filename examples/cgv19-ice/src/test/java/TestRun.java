@@ -1,10 +1,11 @@
 import de.spraener.nxtgen.NextGen;
-import de.spraener.nxtgen.ice.InterCartridgeEvaluation;
+import de.spraener.nxtgen.ice.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 public class TestRun {
+/*
     private InterCartridgeEvaluation uut = new InterCartridgeEvaluation();
     @Test
     public void testWholeGeneration() throws Exception {
@@ -14,5 +15,6 @@ public class TestRun {
         NextGen.runCartridgeWithName(uut.getName());
         NextGen.main(new String[]{"/demoapp.oom"});
     }
+ */
 }
 

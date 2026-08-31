@@ -18,7 +18,7 @@ public class TypeScriptAttributes implements Consumer<CodeTarget> {
     @Override
     public void accept(CodeTarget target) {
         for(MAttribute attr : mClass.getAttributes() ) {
-            target.inContext(TypeScriptCreator.TS_ATTRIBUTES, attr, t -> {
+            target.forAspect(TypeScriptCreator.TS_ATTRIBUTES, attr, t -> {
                 declareAttribute(t, attr);
             });
         }

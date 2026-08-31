@@ -1,5 +1,15 @@
 rootProject.name='examples'
 
+includeBuild('../core') {
+    dependencySubstitution {
+        substitute module('de.spraener.nxtgen:cgv19-core') using project(':cgv19-core')
+        substitute module('de.spraener.nxtgen:cgv19-oom') using project(':cgv19-oom')
+        substitute module('de.spraener.nxtgen:cgv19-pojo') using project(':cgv19-pojo')
+        substitute module('de.spraener.nxtgen:cgv19-metacartridge') using project(':cgv19-metacartridge')
+        substitute module('de.spraener.nxtgen:cgv19-gradle') using project(':cgv19-gradle')
+    }
+}
+
 include ':cgv19-annotationcartridge'
 include ':cgv19-groovytemplate'
 include ':cgv19-codetarget'
