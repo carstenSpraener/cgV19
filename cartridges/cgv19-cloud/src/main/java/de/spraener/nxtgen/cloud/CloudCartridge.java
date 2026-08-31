@@ -6,6 +6,7 @@ import de.spraener.nxtgen.NextGen;
 import de.spraener.nxtgen.Transformation;
 import de.spraener.nxtgen.annotations.CGV19Cartridge;
 import de.spraener.nxtgen.cartridges.AnnotatedCartridgeImpl;
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.cloud.model.MComponent;
 import de.spraener.nxtgen.filestrategies.GeneralFileStrategy;
 import de.spraener.nxtgen.model.Model;
@@ -105,11 +106,11 @@ public class CloudCartridge extends CloudCartridgeBase{
     }
 
     @Override
-    public String evaluate(Model m, ModelElement me, Stereotype sType, String aspect) {
-        if( me instanceof MPackage pkg && sType.getName().equals(CloudStereotypes.CLOUDMODULE.getName()) && aspect.equals("docker-compose") ) {
+    public String evaluate(EvaluationRequest r) {
+        if( r.getMe() instanceof MPackage pkg && r.getStereotype().getName().equals(CloudStereotypes.CLOUDMODULE.getName()) && r.getAspect().equals("docker-compose") ) {
             return new GenericCloudModuleEvaluator(pkg).evaluate();
         }
-        return super.evaluate(m, me, sType, aspect);
+        return super.evaluate(r);
     }
 
     public static MPackage getDeploymentPackage(Model m) {

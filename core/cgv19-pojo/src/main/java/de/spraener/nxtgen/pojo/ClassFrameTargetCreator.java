@@ -22,7 +22,7 @@ public class ClassFrameTargetCreator {
 
     public CodeTarget createPoJoTarget() {
         CodeTarget target = JavaSections.createJavaCodeTarget("//" + ProtectionStrategieDefaultImpl.GENERATED_LINE);
-        target.inContext(CLAZZ_FRAME, mClass,
+        target.forAspect(CLAZZ_FRAME, mClass,
                 this::declarePackage,
                 this::declareClazz,
                 this::declareExtends,
@@ -66,13 +66,16 @@ public class ClassFrameTargetCreator {
     }
 
     protected void createConstructor(CodeTarget target) {
-        target.inContext(DEFAULT_CONSTRUCTOR, mClass, t -> {
+        target.forAspect(DEFAULT_CONSTRUCTOR, mClass, t -> {
             StringBuilder sb = new StringBuilder();
             sb.append("    public " + mClass.getName() + "() {\n");
             sb.append("        super();\n");
-            sb.append("    }");
             t.getSection(JavaSections.CONSTRUCTORS)
                     .add(new CodeBlockSnippet(sb.toString()));
+        });
+        target.forAspect(DEFAULT_CONSTRUCTOR+".close", mClass, t->{
+            t.getSection(JavaSections.CONSTRUCTORS)
+                    .add(new SingleLineSnippet("    }"));
         });
     }
 

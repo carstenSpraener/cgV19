@@ -4,7 +4,6 @@ import de.spraener.nxtgen.oom.model.MClass;
 import de.spraener.nxtgen.target.CodeBlockSnippet;
 import de.spraener.nxtgen.target.CodeTarget;
 import de.spraener.nxtgen.target.SingleLineSnippet;
-import de.spraener.nxtgen.target.java.JavaAspects;
 import de.spraener.nxtgen.target.java.JavaSections;
 
 import java.util.function.Consumer;
@@ -19,7 +18,7 @@ public class SerializableEnhancer implements Consumer<CodeTarget> {
 
     @Override
     public void accept(CodeTarget target) {
-        target.inContext(SERIALIZABLE, this.mClass, t -> {
+        target.forAspect(SERIALIZABLE, this.mClass, t -> {
             // Add the import to the import section
             t.getSection(JavaSections.IMPORTS)
                     .add(new SingleLineSnippet("import java.io.Serializable;"));

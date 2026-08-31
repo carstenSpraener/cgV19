@@ -9,7 +9,7 @@ public class ProtectionStrategieDefaultImpl implements ProtectionStrategie {
     @Override
     public boolean isProtected(File f) {
         try {
-            if( f.length()==0 ) {
+            if( !f.exists() || f.length()==0 ) {
                 return false;
             }
             BufferedReader br = new BufferedReader( new FileReader(f));

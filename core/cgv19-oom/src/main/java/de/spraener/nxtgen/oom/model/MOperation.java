@@ -25,6 +25,8 @@ public class MOperation extends MAbstractModelElement {
     protected MOperation(MClass parent, String name) {
         this.setParent(parent);
         this.setName(name);
+        this.setModel(parent.getModel());
+        setModel(parent.getModel());
     }
 
     public String getType() {
@@ -47,13 +49,13 @@ public class MOperation extends MAbstractModelElement {
     }
 
     public MOperation cloneTo(MClass mc ) {
-        MOperation clone = new MOperation();
+        MOperation clone = new MOperation(mc, getName());
         clone.setName(this.getName());
         StereotypeHelper.cloneStereotypes(this, clone);
         ModelHelper.cloneProperties(this,clone);
         clone.type = this.type;
         clone.parameters = new ArrayList<>();
-        for( MParameter p : this.parameters) {
+        for( MParameter p : this.getParameters()) {
             p.cloneTo(clone);
         }
         mc.getOperations().add(clone);
@@ -61,8 +63,11 @@ public class MOperation extends MAbstractModelElement {
     }
 
     public MParameter createParameter(String name, String type) {
+        // Model and Parent is set in the constructor
         MParameter p = new MParameter(this, name, type);
         getParameters().add(p);
+        getChilds().add(p);
+
         return p;
     }
 }

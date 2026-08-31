@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         mavenCentral();
+        maven {
+            url="${project.rootDir}/../repo"
+        }
     }
     dependencies {
         classpath "de.spraener.nxtgen:cgv19-core:24.1.0"
@@ -17,6 +20,9 @@ apply plugin: 'de.spraener.nxtgen.cgV19'
 
 repositories {
     mavenCentral();
+    maven {
+        url="${project.rootDir}/../repo"
+    }
 }
 
 cgV19 {

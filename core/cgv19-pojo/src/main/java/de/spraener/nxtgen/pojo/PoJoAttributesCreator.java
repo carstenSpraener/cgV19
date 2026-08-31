@@ -16,7 +16,7 @@ import java.util.function.BiConsumer;
 public class PoJoAttributesCreator implements BiConsumer<CodeTarget, MClass> {
     public void accept(CodeTarget target, MClass pojo) {
         for (var attr : pojo.getAttributes()) {
-            target.inContext(PoJoCodeTargetCreator.ATTRIBUTE_ASPECT, attr, t -> addAttribute(t, attr));
+            target.forAspect(PoJoCodeTargetCreator.ATTRIBUTE_ASPECT, attr, t -> addAttribute(t, attr));
         }
     }
 

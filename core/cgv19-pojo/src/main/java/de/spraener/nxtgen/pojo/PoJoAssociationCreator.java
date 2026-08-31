@@ -18,7 +18,7 @@ public class PoJoAssociationCreator implements BiConsumer<CodeTarget, MClass> {
 
     public void accept(CodeTarget target, MClass pojo) {
         for (MAssociation assoc : pojo.getAssociations()) {
-            target.inContext(PoJoCodeTargetCreator.ASSOCIATION, assoc,
+            target.forAspect(PoJoCodeTargetCreator.ASSOCIATION, assoc,
                     (t) -> {
                         if (isToNAssociation(assoc)) {
                             createToNAssociation(t, pojo, assoc);

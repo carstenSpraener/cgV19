@@ -1,6 +1,7 @@
 package de.spraener.nxtgen.mcp.api;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.URI;
@@ -43,13 +44,13 @@ public class McpToolRegistry {
                 Object instance = clazz.getDeclaredConstructor().newInstance();
 
                 for (Method method : clazz.getDeclaredMethods()) {
-                    McpTool annotation = method.getAnnotation(McpTool.class);
-                    if (annotation != null) {
+                    Annotation mcptAnnotation = findMcpToolAnnotation(method);
+                    if (mcptAnnotation != null) {
                         method.setAccessible(true);
                         descriptors.add(new McpToolDescriptor(
-                                annotation.name(),
-                                annotation.description(),
-                                annotation.schema(),
+                                getAnnotationValue(mcptAnnotation, "name", String.class),
+                                getAnnotationValue(mcptAnnotation, "description", String.class),
+                                getAnnotationValue(mcptAnnotation, "schema", String.class),
                                 ctx -> invokeMethod(instance, method, ctx)
                         ));
                     }
@@ -133,6 +134,32 @@ public class McpToolRegistry {
             return McpToolResult.ok(result != null ? result.toString() : "");
         } catch (Exception e) {
             return McpToolResult.error("Tool execution failed: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Finds an annotation named @McpTool on a method, regardless of which classloader loaded it.
+     * This handles the case where McpTool exists in multiple JARs (e.g. cgv19-mcp and a plugin).
+     */
+    private Annotation findMcpToolAnnotation(Method method) {
+        for (Annotation a : method.getAnnotations()) {
+            if ("McpTool".equals(a.annotationType().getSimpleName())) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets the value of an annotation attribute by name using reflection.
+     */
+    @SuppressWarnings("unchecked")
+    private <T> T getAnnotationValue(Annotation annotation, String attributeName, Class<T> type) {
+        try {
+            Method method = annotation.annotationType().getMethod(attributeName);
+            return (T) method.invoke(annotation);
+        } catch (Exception e) {
+            return type.cast(null);
         }
     }
 }

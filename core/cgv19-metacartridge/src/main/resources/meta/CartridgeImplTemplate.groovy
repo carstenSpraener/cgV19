@@ -10,7 +10,7 @@ import de.spraener.nxtgen.target.java.JavaSections
 MClass mClass = this.getProperty("modelElement");
 
 CodeTarget pojoTarget = new PoJoCodeTargetCreator(mClass).createPoJoTarget();
-pojoTarget.inContext("cartridgeImpl", mClass, t -> {
+pojoTarget.forAspect("cartridgeImpl", mClass, t -> {
     t.getSection(JavaSections.METHODS)
     .add(new CodeBlockSnippet(
 """

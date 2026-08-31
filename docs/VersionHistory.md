@@ -45,3 +45,28 @@ I got time to improve cgV19. Features are:
 * added Support for VisualParadigm
 
 This release is again available at maven central. 
+
+# 24.1.0
+A maintenance release focused on examples and the template story:
+* new examples for blueprints, Groovy templates, CodeTargets and the Generator Gap
+* [Groovy as a template language](GroovyAsTemplateLanguage.md)
+* showcase for using cgV19 to test big web applications
+
+# 24.1.1
+Headline features:
+* new [MCP server](McpServer.md) exposing model inspection, code generation and metacartridge tools to AI assistants
+* [Docker image](Docker.md) to run cgV19 without installing a JDK or Gradle
+* OOM exporter that writes models back as Groovy DSL scripts
+* generated OOM exporters in the Visual Paradigm plugin
+* generated files are now written as UTF-8
+* version centralized in `core/gradle.properties`, publishing to GitHub Packages and an automated release workflow
+* cartridge tests and generated stereotype documentation
+
+# 26.0.0
+The current release. Major improvements focused on AI-assisted development and fluent DSL:
+* **Chainable Groovy DSL** for CodeTargets — `ct.setDefaultModelElement(mc).forAspect('name') { to ... }`
+* **Inter-Cartridge Evaluation (ICE)** — cartridges can delegate to other cartridges at runtime via `EvaluationRequest`
+* **Activity & FSM support (ALPHA)** — `MActivity`, `MActivityDecision`, and `PoJoFSMMethodCreator` (experimental, subject to breaking changes)
+* **MCP server VP tools** — model modification, diff, and baseline saving via HTTP to Visual Paradigm plugin
+* **Enhanced examples** — `cgv19-codetarget` with chainable DSL demo, `cgv19-ice` with inter-cartridge evaluation
+* See [Release Notes 26.0.0](ReleaseNotes-26.0.0.md) for full details

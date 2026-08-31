@@ -17,6 +17,7 @@ public interface CodeSection {
     CodeSnippetRef getLastSnippetForAspectAndModelElement(Object key, ModelElement me);
 
     CodeSection add(CodeSnippet snippet);
+    CodeSection addFirst(CodeSnippet snippet);
     CodeSection add(Object aspect, String code);
     CodeSection add(Object aspect, ModelElement me, String code);
     CodeSection insertBefore(CodeSnippet snippet, CodeSnippet snippetToInsert);

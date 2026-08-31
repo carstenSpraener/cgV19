@@ -1,0 +1,10 @@
+  {{serviceName}}:
+    container_name: "{{containerName}}"
+    build:
+        context: ./{{moduleName}}
+        dockerfile: Dockerfile
+    restart: always
+    environment:
+        - spring_profiles_active=docker
+    ports:
+        - "{{modulePort}}:{{applPort}}"

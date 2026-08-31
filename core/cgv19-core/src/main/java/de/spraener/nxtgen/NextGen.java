@@ -1,9 +1,9 @@
 package de.spraener.nxtgen;
 
+import de.spraener.nxtgen.cartridges.EvaluationRequest;
 import de.spraener.nxtgen.invocation.NextGenInvocation;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
-import de.spraener.nxtgen.model.Stereotype;
 
 import java.io.File;
 import java.io.IOException;
@@ -239,8 +239,12 @@ public class NextGen implements Runnable {
         List<CodeBlock> result = new ArrayList<>();
         List<CodeGeneratorMapping> mappings = cartridge.mapGenerators(model);
         if (mappings != null) {
-            mappings.forEach(m ->
-                    result.add(m.getCodeGen().resolve(m.getGeneratorBaseELement(), ""))
+            mappings.forEach(m -> {
+                        CodeBlock cb = m.getCodeGen().resolve(m.getGeneratorBaseELement(), "");
+                        if (cb != null) {
+                            result.add(cb);
+                        }
+                    }
             );
         }
         return result;
@@ -266,9 +270,9 @@ public class NextGen implements Runnable {
      * desired cartridge and let it evaluate the given aspect.
      * </p>
      * <p>
-     * The first usecas of this method wath to generate a docker-compose file from the cloud cartridge.
-     * The cloud cartridge generates sub models for each cloud module and let another cartridge generate
-     * the code inside this module. Later the cloud cartridge needs to generate a docker-compose file which
+     * The first usecas of this method was to generate a docker-compose file from the cloud cartridge.
+     * The cloud cartridge generates submodels for each cloud module and lets another cartridge generate
+     * the code inside this module. Later, the cloud cartridge needs to generate a docker-compose file which
      * contains a service block for each cloud module. The generation of this service block is delegated
      * back to the module cartridge via this method.
      * </p>
@@ -277,18 +281,35 @@ public class NextGen implements Runnable {
      *     for each included cartridge. This method avoids this dependency.
      * </p>
      * @param cartridgeName the name of a cartridge. Should be on the classpath
-     * @param model The model to be used for evaluation
-     * @param me the model element that should be used for evaluation
-     * @param aspect an optional (can be null) parameter to narrow the needed evaluation. For example "docker-compose"
+     * @param request the data needed to fulfill the request
      *
      * @return a String with the output of the evaluation.
      */
-    public static String evaluate(String cartridgeName, Model model, ModelElement me, Stereotype sType, String aspect) {
+    public static String evaluateByGiven(String cartridgeName, EvaluationRequest request) {
         Cartridge cartridge = loadCartridges().stream().filter(c->c.getName().equals(cartridgeName)).findFirst().orElse(null);
         if( cartridge == null ) {
             return "EVALUATION_ERROR: There is no cartridge with name '"+cartridgeName+"' on the classpath\n";
         }
-        return cartridge.evaluate(model, me, sType, aspect);
+        return cartridge.evaluate(request);
+    }
+
+    public static CodeBlock evaluateByAny(EvaluationRequest request) {
+        CodeBlock evaluation = null;
+
+        for( Cartridge cartridge : loadCartridges() ) {
+            if( cartridge.canHandle(request) ) {
+                if( evaluation == null ) {
+                    evaluation = cartridge.subEvaluate(request);
+                } else {
+                    LOGGER.warning(String.format("Multiple cartridges for request '%s'. Skipping cartridge %s. Pleas check your cartridge configuration.", request, cartridge.getName()));
+                }
+            }
+        }
+        if( evaluation == null ) {
+            LOGGER.warning(String.format("No cartridge found for aspect '%s'. Leaving evaluation empty.",request));
+            return new SimpleStringCodeBlock("");
+        }
+        return evaluation;
     }
 
     public static void main(String[] args) {

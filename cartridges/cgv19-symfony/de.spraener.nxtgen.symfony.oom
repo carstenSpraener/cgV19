@@ -210,6 +210,13 @@ ModelDSL.make {
         documentation """"""
         id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p$8a3RvFGD.AAAAQ1q'
         metaType 'Operation'
+        type 'null'
+        rawType 'null'
+        typeOwner ''
+        visibility 'private'
+        typeModifier ''
+        scope 'instance'
+        isAbstract 'false'
       }
       mAttribute {  //Exported by AttributeExporterBase
         name '_instance'
@@ -217,15 +224,24 @@ ModelDSL.make {
         id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p$pG3RvFGD.AAAAQ1s'
         metaType 'Attribute'
         type 'SingletonClass'
+        rawType 'SingletonClass'
+        typeOwner 'de.spraener.nxtgen.symfony'
+        typeModifier ''
         visibility 'private'
         multiplicity 'Unspecified'
-        typeModifier ''
       }
       mOperation {  //Exported by OperationExporterBase
         name 'instance'
         documentation """"""
         id 'Sd6zmFGGAqAACjXl:Uq3RvFGD.AAAAQ1p$Em3RvFGD.AAAAQ1u'
         metaType 'Operation'
+        type 'SingletonClass'
+        rawType 'SingletonClass'
+        typeOwner 'de.spraener.nxtgen.symfony'
+        visibility 'public'
+        typeModifier ''
+        scope 'classifier'
+        isAbstract 'false'
       }
     }
     mClass {  //Exported by ClassExporterBase
