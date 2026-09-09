@@ -266,4 +266,11 @@ public class CodeTarget {
             section.insertBefore(snippet, new SingleLineSnippet(code));
         }
     }
+
+    /**
+     * Add a snippet to the named section. Used by ForAspectDSL.
+     */
+    public void addSnippetToSection(Object sectionKey, String content) {
+        append(sectionKey, content);
+    }
 }

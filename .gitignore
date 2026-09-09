@@ -14,3 +14,4 @@ core/cgv19-metacartridge/src/main/resources/meta/**
 !core/gradle.properties
 cartridges/cgv19-cloud/de.spraener.tinyapp.oom
 **/.agentbridge
+/core/doc/Tasks/

@@ -30,6 +30,12 @@ public class MAbstractModelElement extends ModelElementImpl {
         return getObjectMap().get(key);
     }
 
+    public void removeObject(String key) {
+        if (this.objectMap != null) {
+            this.objectMap.remove(key);
+        }
+    }
+
     public MDependency createDependency(String targetFQName) {
         MDependency dep = new MDependency();
         dep.setParent(this);
