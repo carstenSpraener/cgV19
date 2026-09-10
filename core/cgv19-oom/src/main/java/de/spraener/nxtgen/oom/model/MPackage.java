@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class MPackage extends MAbstractModelElement {
 
     public MPackage() {
+        setMetaType("mPackage");
     }
 
     public List<MClass> getClasses() {

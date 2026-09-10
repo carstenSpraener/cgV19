@@ -8,6 +8,7 @@ includeBuild('../core') {
         substitute module('de.spraener.nxtgen:cgv19-metacartridge') using project(':cgv19-metacartridge')
         substitute module('de.spraener.nxtgen:cgv19-gradle') using project(':cgv19-gradle')
         substitute module('de.spraener.nxtgen:cgv19-aicb') using project(':cgv19-aicb')
+        substitute module('de.spraener.nxtgen:cgv19-annotationprocessor') using project(':cgv19-annotationprocessor')
     }
 }
 
@@ -20,3 +21,4 @@ include ':cgv19-blueprints'
 include ':cgv19-ice'
 include ':cgv19-webtest'
 include ':cgv19-aicb'
+include ':cgv19-annotationprocessor'

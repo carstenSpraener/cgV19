@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        mavenCentral();
+        maven {
+            url="${project.projectDir}/../../repo"
+        }
+    }
+    dependencies {
+        classpath "de.spraener.nxtgen:cgv19-core:24.1.1"
+        classpath "de.spraener.nxtgen:cgv19-gradle:24.1.1"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+apply plugin: 'de.spraener.nxtgen.cgV19'
+
+repositories {
+    mavenCentral();
+    maven {
+        url="${project.projectDir}/../../repo"
+    }
+}
+
+cgV19 {
+    model = 'java-ap://src/main/java-model'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir('src/main/java-gen')
+        }
+    }
+}
+
+dependencies {
+    cartridge "de.spraener.nxtgen:cgv19-core:24.1.1"
+    cartridge "de.spraener.nxtgen:cgv19-oom:24.1.1"
+    cartridge "de.spraener.nxtgen:cgv19-pojo:24.1.1"
+    cartridge "de.spraener.nxtgen:cgv19-annotationprocessor:24.1.1"
+    // Add additional cartridges here
+
+    implementation "de.spraener.nxtgen:cgv19-core:24.1.1"
+    implementation "de.spraener.nxtgen:cgv19-oom:24.1.1"
+    implementation "de.spraener.nxtgen:cgv19-pojo:24.1.1"
+    implementation "de.spraener.nxtgen:cgv19-annotationprocessor:24.1.1"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+}
+
+test {
+    useJUnitPlatform()
+}

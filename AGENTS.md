@@ -1,118 +1,56 @@
-# cgV19 — Agent Instructions
+# AGENTS – cgV19 Repository Guide
 
-## Project at a Glance
+- **Core installation**
+  - Build the CLI distribution from the core root:
+    ```bash
+    cd cgV19/core
+    ./gradlew :cgv19-cli:installDist
+    ```
+  - The built CLI lives in `cgv19-cli/build/install/cgv19-cli/bin/cgV19`.
 
-cgV19 is a model-driven code generation framework. It reads UML-style models (from Visual Paradigm via port 7001, or `.oom` files) and runs **cartridges** (generation plugins) to produce code, docs, and config artifacts.
+- **Running a generation**
+  - Basic command syntax: `cgV19 -m <model‑path-or‑url> -c <cartridgeName>`
+  - Cartridges are discovered via the Java ServiceLoader in `$APP_HOME/cartridges/*`.
+  - Use `-d <CartridgeName>` to select a specific cartridge (e.g., `cgv19Gradle`).
 
-- **Language**: Java 17+ (Temurin), Groovy templates, Mustache templates. Code uses pattern matching for `instanceof` (Java 16+) — Java 11 will fail to compile.
-- **Build**: Gradle wrapper — core uses 8.10, cartridges use 8.0
-- **Group/version**: `de.spraener.nxtgen` / `24.1.1` (core), `23.1.1` (cartridges)
+- **Model loading**
+  - The framework uses the `ModelLoader` SPI (`canHandle(String)` / `loadModel(String)`) to read OOM files, URLs, or Visual‑Paradigm HTTP endpoints (port 7001).
+  - The `cgv19-annotationprocessor` module adds a loader for the `java-ap://<dir>` protocol: it compiles Java sources in‑process (JDK required) and builds the OOM from `@Stereotype`‑marked annotations. See `core/cgv19-annotationprocessor/README.md` and the example in `examples/cgv19-annotationprocessor`.
+  - Generated source files contain the marker line `THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS`; treat those as generated and avoid manual edits.
 
-## Repo Structure — Two Gradle Roots + Standalone Plugins Dir
+- **Build workflow**
+  - Each core module is an independent Gradle sub‑project (see `core/settings.gradle`).
+  - Build a single module: `./gradlew :cgv19-<module>:build`.
+  - Run its tests: `./gradlew :cgv19-<module>:test`.
+  - The repository’s top‑level `buildCompleteDist.sh` is **broken** (misses a trailing “t”). Use the manual CLI install steps above instead.
 
-| Root | Purpose | Build independently? |
-|---|---|---|
-| `core/` | Framework: core engine, OOM model loader, CLI, Gradle plugin, JavaPoet support, metacartridge, pojo example, MCP server | Yes — `./gradlew` inside `core/` |
-| `cartridges/` | Generation cartridges (restcartridge, angular, javalin, cloud, symfony, laravel) | Yes — `./gradlew` inside `cartridges/` |
-| `plugins/` | Visual Paradigm plugin + its cartridge — **not a Gradle root** (no gradlew, no root build.gradle/settings.gradle) | No — build individual subprojects only |
+- **Version mismatch**
+  - Core version is `24.1.1`; cartridges still reference core `23.1.x`. When developing a cartridge, ensure the classpath uses the current core version to avoid `NoSuchMethodError`s.
 
-**`core/settings.gradle` does NOT cross-include cartridges.** Each Gradle root is independent.
+- **Generated code conventions**
+  - All generated files start with the protection comment `THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS`.
+  - The `-d` option deletes generated files before a fresh generation run.
 
-## Core Modules (inside `core/`)
+- **Important scripts & docs**
+  - Quick‑start guide: `docs/GettingStarted.md`.
+  - Core architecture overview: `core/cgv19-core/doc/CoreArchitecture.md`.
+  - Cartridge documentation: `cartridges/doc/Cartridges.md`.
 
-| Module | Role |
-|---|---|
-| `cgv19-core` | Base framework, main class `de.spraener.nxtgen.NextGen`. Uses Java ServiceLoader for ModelLoaders and cartridges. |
-| `cgv19-oom` | Object-oriented model implementation (packages, classes, attributes, relations). Reads `.oom` files or VP REST API. |
-| `cgv19-cli` | Standalone CLI tool. Main class `de.spraener.nxtgen.cli.CGV19`. startScripts patches CLASSPATH to include `$APP_HOME/cartridges/*` and sets `-Dapp.path`. Also bundles cartridge JARs (oom, javapoet, metacartridge, pojo) into the dist. |
-| `cgv19-gradle` | Gradle plugin (`de.spraener.nxtgen.gradle.CGV19`). Uses `java-gradle-plugin`. |
-| `cgv19-javapoet` | JavaPoet code generator integration (squareup/javapoet 1.13.0). |
-| `cgv19-metacartridge` | Meta-cartridge for model-driven cartridge development. **Has generated source**: `src/main/java-gen` is a `srcDir`. |
-| `cgv19-pojo` | Simple example cartridge. |
-| `cgv19-annotationprocessor` | ALPHA — incomplete, has **no** `build.gradle`. |
-| `cgv19-mcp` | MCP server (`de.spraener.nxtgen.mcp.CGV19McpServer`). Uses MCP SDK 2.0.1. Also bundled into CLI dist via `createMcpStartScripts`. Includes VP model-modification tools (`de.spraener.nxtgen.mcp.tool.vp`) that communicate with the VP plugin via HTTP on port 7001 — no classpath dependency on `cgv19-vpplugin.jar`. If VP is not running, tools return a clear error message. |
+- **Common pitfalls**
+  - Forgetting to add the `cartridges/` folder to `$APP_HOME` when running the CLI → cartridges not found.
+  - Running `gradle :cgv19-cli:installDist` from the repository root instead of `core/` → build fails because the CLI project lives under `core/cgv19-cli`.
+  - Assuming `buildCompleteDist.sh` works; it does not.
 
-## Key Build Commands
+- **Typical one‑off commands**
+  - Install CLI and add to PATH (once):
+    ```bash
+    cp -r core/cgv19-cli/build/install/cgv19-cli ~/tools/
+    echo 'export PATH=$PATH:~/tools/cgv19-cli/bin' >> ~/.zshrc
+    ```
+  - Generate a PoJo project:
+    ```bash
+    cgV19 -m my-app.oom -c cgv19PoJo
+    ```
 
-All Gradle commands run from the respective root directory. Use `./gradlew`, not bare `gradle`.
-
-```bash
-# Build core (all modules)
-cd core && ./gradlew build
-
-# Build a single module
-cd core && ./gradlew :cgv19-core:build
-
-# Run tests for a module
-cd core && ./gradlew :cgv19-core:test
-
-# Build cartridges (auto-discovers all cgv19-* dirs)
-cd cartridges && ./gradlew build
-
-# Build the standalone CLI distribution
-cd core && ./gradlew :cgv19-cli:installDist
-# Output: core/cgv19-cli/build/install/cgv19-cli/
-
-# Build plugins subproject (not a Gradle root)
-cd plugins/cgv19-vpplugin && ../../gradlew build  # or use core's gradlew
-```
-
-**`buildCompleteDist.sh` is broken** — it calls `gradle :cgv19-cli:installDis` (missing trailing `t`). Use the manual commands above instead.
-
-## Docker Build
-
-```bash
-docker build -t cgv19 .
-# Uses eclipse-temurin:17, builds CLI dist, entrypoint is /opt/cgv19/bin/cgv19
-```
-
-## CLI Usage
-
-After building the dist:
-```bash
-core/cgv19-cli/build/install/cgv19-cli/bin/cgv19 -m <model> -c <cartridge>
-```
-
-Required flag: `-m` (model path, URL, or directory). Optional: `-c` (cartridge name, colon-separated), `-b` (blueprints dir), `-w` (work directory).
-
-Cartridges are discovered via JARs in the `cartridges/` subfolder of the install directory. The startScripts task patches CLASSPATH at build time to include `$APP_HOME/cartridges/*`.
-
-## Cartridge Development
-
-Cartridges can be implemented three ways:
-1. **Classic Java** — implement the cartridge interfaces directly
-2. **Model-driven** — use `cgv19-metacartridge` with UML models (`.vpp` files), apply `de.spraener.nxtgen.cgV19` Gradle plugin
-3. **Annotation-based** — use `@CGV19Cartridge`, `@CGV19Transformation`, `@CGV19Generator` annotations
-
-Model-driven cartridges have generated code in `src/main/java-gen`. The `cgv19-restcartridge` and `cgv19-metacartridge` both use this pattern. Cartridge `build.gradle` files reference core version `23.1.0` on the classpath (mismatch with current core `24.1.1`).
-
-Cartridge settings.gradle auto-discovers modules by listing directories starting with `cgv19-`.
-
-## Testing
-
-- Most modules use **JUnit 5** (`useJUnitPlatform()`) with Mockito + AssertJ
-- `cgv19-oom` uses **JUnit 4** (`junit:junit:4.13.1`) — an outlier
-- Run single-module tests: `./gradlew :<module>:test` (from the appropriate root)
-
-## CI / Release
-
-- **No build/test CI** on main branch. Only Jekyll docs deploy on master push.
-- **Release workflow**: pushes to `release-*` branches trigger `core/./gradlew build` then `publish` to GitHub Packages, plus git tag + GitHub release creation. Requires `GITHUB_USERNAME` and `GITHUB_TOKEN` env vars.
-
-## Publishing
-
-- **Core**: publishes to GitHub Packages (`maven.pkg.github.com/carstenSpraener/cgV19`). Publication name: `gpr`.
-- **Cartridges**: publish to local Maven repo at `../repo` (relative to cartridges root). Publication name: `maven`.
-
-## Model Files
-
-`.vpp` = Visual Paradigm project files. `.oom` = cgV19's text-based model format. The VP plugin serves models over HTTP at `http://localhost:7001/<package>`.
-
-## Gotchas
-
-- **No linter/formatter config**: No Checkstyle, Spotless, or similar tooling is configured.
-- **`cgv19-annotationprocessor`** has no `build.gradle` — it's an incomplete alpha module.
-- **Version mismatch**: core is `24.1.1`, cartridges are `23.1.1`. Cartridge buildscripts reference `23.1.0` core on the classpath.
-- **`.gitignore`** excludes `repo/`, `build/`, `.gradle/`, and `**/*-gen` (all generated source dirs, not just metacartridge).
-- **VP plugin** (`plugins/cgv19-vpplugin`) targets Java 11 and depends on Visual Paradigm's internal libs via `flatDir`. It has no MCP dependencies — VP tools live in `cgv19-mcp` and communicate via HTTP.
-- **Gradle version mismatch**: core uses Gradle 8.10, cartridges use Gradle 8.0.
+- **Service‑loader locations**
+  - Core SPI files are under `src/main/resources/META-INF/services/` (e.g., `de.spraener.nxtgen.ModelLoader`). Adding a new cartridge only requires placing its JAR in the `cartridges/` directory and providing the appropriate service‑loader entry.

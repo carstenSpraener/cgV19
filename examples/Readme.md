@@ -18,6 +18,7 @@ work step by step.
 * ### [Implementing the __Generator Gap__](cgv19-generatorgap/Readme.md)
 * ### [Using Mustache for logic free generation](cgv19-mustache/Readme.md)
 * ### [Using Blueprints for cration of project frames](cgv19-blueprints/Readme.md)
+* ### [Using Java sources as model via the annotation processor](cgv19-annotationprocessor/Readme.md)
 
 ## Show Cases
 

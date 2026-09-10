@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':cgv19-core')
+    implementation project(':cgv19-oom')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
