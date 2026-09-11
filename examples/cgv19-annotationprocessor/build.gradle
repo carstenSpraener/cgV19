@@ -26,7 +26,7 @@ repositories {
 }
 
 cgV19 {
-    model = 'java-ap://src/main/java-model'
+    model = 'java-ap://model/src/main/java'
 }
 
 sourceSets {

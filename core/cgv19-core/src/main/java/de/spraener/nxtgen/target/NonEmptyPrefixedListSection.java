@@ -39,6 +39,15 @@ public class NonEmptyPrefixedListSection extends UniqueLineSection {
         this.listSeparator = separator;
     }
 
+    /**
+     * Child scopes are pure logical groupings: no own indentation or line breaks.
+     * The prefix and separator apply to the full recursive snippet list.
+     */
+    @Override
+    public boolean rendersChildrenInline() {
+        return true;
+    }
+
     @Override
     public Collection<CodeSnippet> getSnippetsOrdered() {
         List<CodeSnippet> codeSnippetList = new ArrayList<>();

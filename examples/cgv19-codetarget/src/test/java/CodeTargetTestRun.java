@@ -18,7 +18,9 @@ public class CodeTargetTestRun {
         Assertions.assertThat(new File("./build/demo-app/src/main/java-gen/demoapp/DemoApp.java"))
                 .content().contains(
                         "public class DemoApp ",
-                        "    private static final Logger LOGGER = Logger.getLogger(DemoApp.class.getName());");
+                        "    private static final Logger LOGGER = Logger.getLogger(DemoApp.class.getName());",
+                        // hierarchical scope demo: the scoped method is indented by the renderer
+                        "    public void logDebug(String message) {");
     }
 }
 

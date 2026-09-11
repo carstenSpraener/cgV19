@@ -14,15 +14,25 @@ that module into your own project and start cgV19 with the PoJo cartridge.
 
 ## 1. Define your model as Java sources
 
-The model lives in `src/main/java-model` (a plain directory of `.java` files,
-**not** a Gradle source set):
+The model lives in `model/src/main/java` — a **separate Gradle module** of this
+example:
 
 ```text
-src/main/java-model/de/spraener/nxtgen/apdemo/model/
-├── PoJo.java      ← the marker annotation, meta-annotated with @Stereotype
-├── Person.java    ← @PoJo, fields name/age + association to Address
-└── Address.java   ← @PoJo, fields street/zipCode
+model/src/main/java/de/spraener/nxtgen/apdemo/
+├── meta/PoJo.java   ← the marker annotation, meta-annotated with @Stereotype
+└── model/
+    ├── Person.java  ← @PoJo, fields name/age + association to Address
+    └── Address.java ← @PoJo, fields street/zipCode
 ```
+
+Why a separate module? The PoJo cartridge generates `Person` and `Address` into
+the *same package* as the model classes (generator gap: a generated `PersonBase`
+plus a thin `Person` that extends it). Model and generated code therefore share
+FQNs, so they must live in different modules — otherwise the IDE reports
+"duplicate class" as soon as both directories are source roots. The model module
+is a plain Java project that only needs `cgv19-annotationprocessor` on its
+classpath (for the `@PoJo`/`@Stereotype` annotations); the app module does
+**not** depend on it.
 
 The only convention is the marker annotation. An annotation that is
 meta-annotated with `de.spraener.nxtgen.ap.metameta.Stereotype` becomes a
@@ -62,7 +72,7 @@ dependencies {
 The loader handles model URIs with the protocol `java-ap://`:
 
 ```text
-cgV19 -m java-ap://src/main/java-model -c PoJo-Cartridge
+cgV19 -m java-ap://model/src/main/java -c PoJo-Cartridge
 ```
 
 It walks the given directory for `.java` files and compiles them **in-process**
@@ -77,7 +87,7 @@ configured with that model URI:
 
 ```gradle
 cgV19 {
-    model = 'java-ap://src/main/java-model'
+    model = 'java-ap://model/src/main/java'
 }
 ```
 
@@ -88,7 +98,7 @@ Run it:
 ```
 
 NextGen locates the `AnnotationProcessorModelLoader` via ServiceLoader, asks it
-to load `java-ap://src/main/java-model`, and runs every cartridge on the
+to load `java-ap://model/src/main/java`, and runs every cartridge on the
 classpath — here the PoJo cartridge. For each class with stereotype `PoJo` it
 
 * creates a `<Name>Base` class (stereotype `PoJoBase`) holding all attributes

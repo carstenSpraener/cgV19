@@ -16,7 +16,7 @@ public class TestRun {
 
         NextGen.setWorkingDir("./build/demo-app");
         NextGen.runCartridgeWithName("PoJo-Cartridge");
-        NextGen.main(new String[]{"java-ap://src/main/java-model"});
+        NextGen.main(new String[]{"java-ap://model/src/main/java"});
 
         File genDir = new File(dir, "src/main/java/de/spraener/nxtgen/apdemo/model");
         File genBaseDir = new File(dir, "src/main/java-gen/de/spraener/nxtgen/apdemo/model");

@@ -3,12 +3,47 @@ package de.spraener.nxtgen.target;
 import de.spraener.nxtgen.model.ModelElement;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCodeSection implements CodeSection {
     /** Global ordered list of all snippets — preserves insertion and insertBefore/After order. */
     List<CodeSnippet> allSnippets = new ArrayList<>();
     private Object id = UUID.randomUUID();
+    /** Child scopes in deterministic insertion order. All access is synchronized on this map. */
+    private final Map<String, CodeSection> children = new LinkedHashMap<>();
+    private CodeSection parent;
+
+    public void setParent(CodeSection parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public CodeSection getParent() {
+        return this.parent;
+    }
+
+    @Override
+    public synchronized CodeSection getOrCreateScope(String scopeName, Supplier<CodeSection> scopeSupplier) {
+        return children.computeIfAbsent(scopeName, name -> {
+            CodeSection child = scopeSupplier.get();
+            child.setId(name);
+            if (child instanceof AbstractCodeSection abs) {
+                abs.setParent(this);
+            }
+            return child;
+        });
+    }
+
+    @Override
+    public synchronized CodeSection getScope(String scopeName) {
+        return children.get(scopeName);
+    }
+
+    @Override
+    public synchronized Collection<CodeSection> getChildren() {
+        return new ArrayList<>(children.values());
+    }
 
     @Override
     public String getId() {
@@ -114,6 +149,10 @@ public abstract class AbstractCodeSection implements CodeSection {
             allSnippets.add(idx, snippetToInsert);
             return this;
         }
+        CodeSection owner = findOwnerOf(snippet);
+        if (owner != null) {
+            return owner.insertBefore(snippet, snippetToInsert);
+        }
         throw new IllegalArgumentException("Snippet " + snippet + " not part of CodeSection " + this);
     }
 
@@ -123,6 +162,10 @@ public abstract class AbstractCodeSection implements CodeSection {
         if (idx >= 0) {
             allSnippets.add(idx + 1, snippetToInsert);
             return this;
+        }
+        CodeSection owner = findOwnerOf(snippet);
+        if (owner != null) {
+            return owner.insertAfter(snippet, snippetToInsert);
         }
         throw new IllegalArgumentException("Snippet " + snippet + " not part of CodeSection " + this);
     }
@@ -134,12 +177,51 @@ public abstract class AbstractCodeSection implements CodeSection {
             allSnippets.add(idx, snippetToInsert);
             snippetToInsert.updateAspect(snippet);
             allSnippets.remove(idx + 1);
+            return this;
+        }
+        CodeSection owner = findOwnerOf(snippet);
+        if (owner != null) {
+            return owner.replace(snippet, snippetToInsert);
         }
         return this;
     }
 
+    /**
+     * Finds the section in this subtree that directly contains the given snippet,
+     * searching own snippets first and then all child scopes recursively.
+     */
+    private CodeSection findOwnerOf(CodeSnippet snippet) {
+        if (allSnippets.contains(snippet)) {
+            return this;
+        }
+        for (CodeSection child : getChildren()) {
+            if (child instanceof AbstractCodeSection abs) {
+                CodeSection owner = abs.findOwnerOf(snippet);
+                if (owner != null) {
+                    return owner;
+                }
+            } else if (child.getOwnSnippets().contains(snippet)) {
+                return child;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Depth-first, pre-order aggregation: own snippets first, then the snippets of each
+     * child scope in insertion order (recursively).
+     */
     @Override
     public Collection<CodeSnippet> getSnippetsOrdered() {
+        List<CodeSnippet> result = new ArrayList<>(allSnippets);
+        for (CodeSection child : getChildren()) {
+            result.addAll(child.getSnippetsOrdered());
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<CodeSnippet> getOwnSnippets() {
         return new ArrayList<>(allSnippets);
     }
 }

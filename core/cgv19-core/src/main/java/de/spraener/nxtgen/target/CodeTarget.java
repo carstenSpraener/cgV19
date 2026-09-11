@@ -94,11 +94,34 @@ public class CodeTarget {
 
     /**
      * Retrieve the CodeSection that was added with the specified key or null.
+     * <p>
+     * String keys may use a Unix-style path syntax separated by '/': the first segment
+     * is the top-level section key, each following segment addresses a child scope via
+     * {@link CodeSection#getScope(String)} (e.g. "METHODS/IN_OPERATION"). If the first
+     * segment does not match a key exactly, it is matched against the section ids — so
+     * sections added under enum keys (e.g. {@code JavaSections.METHODS}) are reachable
+     * via their name ("METHODS/..."). If any segment is missing, null is returned.
      *
      * @param key The key for the CodeSection requested
      * @return an Optional of the CodeSection. This can be empty if no CodeSection with that key is present.
      */
     public CodeSection getSection(Object key) {
+        if (key instanceof String path && path.contains("/")) {
+            String[] segments = path.split("/", -1);
+            CodeSection section = mySectionMap.get(segments[0]);
+            if (section == null) {
+                for (CodeSection candidate : mySectionMap.values()) {
+                    if (segments[0].equals(candidate.getId())) {
+                        section = candidate;
+                        break;
+                    }
+                }
+            }
+            for (int i = 1; section != null && i < segments.length; i++) {
+                section = section.getScope(segments[i]);
+            }
+            return section;
+        }
         return mySectionMap.get(key);
     }
 

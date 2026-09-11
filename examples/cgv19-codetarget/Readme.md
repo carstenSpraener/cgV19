@@ -165,7 +165,7 @@ return ct
 |---|---|
 | `ct.setDefaultModelElement(mClass)` | Sets the default model element for 2-arg `forAspect`. Chainable. |
 | `ct.forAspect('name') { }` | 2-arg version using defaultModelElement. Chainable. |
-| `to Section, "code"` | Adds a snippet at the end of the section. Accepts enum (JavaSections) or String. |
+| `to Section, "code"` | Adds a snippet at the end of the section. Accepts enum (JavaSections), String, or path `"SECTION/SCOPE"`. |
 | `first Section, "code"` | Adds a snippet at the beginning of the section. |
 | `beforeSnippet Section, [aspect: '...'], "code"` | Inserts before the first snippet matching the criteria. |
 | `afterSnippet Section, [aspect: '...'], "code"` | Inserts after the first snippet matching the criteria. |
@@ -178,17 +178,21 @@ External scripts loaded via `evaluate()` have access to:
 - `mClass` - the default model element
 - `modelElement` - alias for mClass
 
-Example (`Logging.groovy`):
+Example (`Logging.groovy`) — using a hierarchical scope:
 ```groovy
+import de.spraener.nxtgen.target.SimpleCodeSection
 import de.spraener.nxtgen.target.java.JavaSections
 
 ct.forAspect('external-logging') {
     to JavaSections.IMPORTS, "import java.util.logging.Level;"
-    
-    to JavaSections.METHODS, """
-        public void logDebug(String message) {
-            LOGGER.log(Level.FINE, "DEBUG: " + message);
-        }
+
+    // The methods live in a nested scope inside METHODS.
+    // The renderer indents scope content — no manual indentation needed.
+    ct.getSection(JavaSections.METHODS).getOrCreateScope('logging', { new SimpleCodeSection() })
+    to 'METHODS/logging', """
+public void logDebug(String message) {
+LOGGER.log(Level.FINE, "DEBUG: " + message);
+}
 """
 }
 ```
@@ -223,6 +227,63 @@ When using a CodeTarget created with `JavaSections.createJavaCodeTarget()`, thes
 | `JavaSections.CLASS_BLOCK_ENDS` | Closing brace |
 
 You can use these as enum values (`JavaSections.IMPORTS`) or their string representation in the DSL.
+
+## Hierarchical Sections (Scopes)
+
+CodeSections form a tree: a section can contain named **scopes** — sub-sections
+created via suppliers and addressed by name. The renderer walks the tree depth-first
+and inherits indentation from parent to child (+1 level per scope), so snippets in
+scopes need **no manual indentation**.
+
+### Java API
+
+```java
+import de.spraener.nxtgen.target.StandardSections;
+
+// A new top-level section with the standard operation scopes
+// (BEFORE_OPERATION / IN_OPERATION / AFTER_OPERATION), inserted before the class close:
+ct.addCodeSectionAt("LOGGING_METHODS", StandardSections.operation().get(), index);
+
+// Address the nested scopes via Unix-style path syntax:
+ct.append("LOGGING_METHODS/BEFORE_OPERATION", "// --- debug logging support ---\n");
+ct.append("LOGGING_METHODS/IN_OPERATION", "public void logDebug(String message) {\n...");
+```
+
+### Groovy DSL
+
+```groovy
+// Create a scope inside an existing section (the supplier runs only once)
+ct.getSection(JavaSections.METHODS).getOrCreateScope('logging', { new SimpleCodeSection() })
+
+// Address it via Unix-style path syntax — 'METHODS' resolves by section id
+to 'METHODS/logging', "public void logDebug(String message) {\n...}"
+```
+
+### Path Syntax
+
+`getSection()` — and everything built on it (`append`, `to`, …) — accepts Unix-style
+paths: the first segment is a top-level section key (or its id, so enum keys like
+`JavaSections.METHODS` are reachable as `"METHODS"`), each following segment is a
+scope name. Missing segments yield `null`.
+
+### Standard Sections & Factories
+
+| API | Description |
+|---|---|
+| `SectionName` | Enum of generic scope names: `PREAMBLE`, `BEFORE_OPERATION`, `IN_OPERATION`, `AFTER_OPERATION`, `EPILOGUE` |
+| `StandardSections.plain()` | Supplier for a plain section without children |
+| `StandardSections.operation()` | Section with BEFORE/IN/AFTER_OPERATION sub-scopes (e.g. a method body) |
+| `StandardSections.preamble()` | Section with PREAMBLE/EPILOGUE sub-scopes (e.g. a class body) |
+
+### Navigation & Rendering Rules
+
+| API / Rule | Description |
+|---|---|
+| `section.getOrCreateScope(name, supplier)` | Creates (exactly once) and returns the named child scope. Thread-safe. |
+| `section.getScope(name)` | Returns an existing child scope or null |
+| `section.getParent()` / `getChildren()` | Tree navigation (children in insertion order) |
+| Indentation | Each scope level adds one indent level; snippets carry no manual indentation |
+| `NonEmptyPrefixedListSection` (e.g. IMPLEMENTS) | Children render inline — pure logical groupings; prefix/separator apply to the full list |
 
 ## Creating a Custom Table of Contents
 

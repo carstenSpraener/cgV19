@@ -19,7 +19,7 @@ work step by step.
 * ### [Using Mustache for logic free generation](cgv19-mustache/Readme.md)
 * ### [Using Blueprints for cration of project frames](cgv19-blueprints/Readme.md)
 * ### [Using Java sources as model via the annotation processor](cgv19-annotationprocessor/Readme.md)
-
+* ### [Integrating generative AI in your Templates](cgv19-aicb/Readme.md)
 ## Show Cases
 
 * ### [Selenium Web Testing with cgV19](cgv19-webtest/Readme.md)

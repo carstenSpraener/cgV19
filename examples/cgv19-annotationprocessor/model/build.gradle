@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral();
+    maven {
+        url="${project.projectDir}/../../../repo"
+    }
+}
+
+dependencies {
+    implementation "de.spraener.nxtgen:cgv19-annotationprocessor:24.1.1"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add('-proc:none')
+}

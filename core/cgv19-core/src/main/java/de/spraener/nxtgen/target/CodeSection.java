@@ -3,8 +3,10 @@ package de.spraener.nxtgen.target;
 import de.spraener.nxtgen.model.ModelElement;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 public interface CodeSection {
     String getId();
@@ -35,5 +37,51 @@ public interface CodeSection {
     CodeSection replace(CodeSnippet snippet, CodeSnippet snippetToInsert);
 
     Collection<CodeSnippet> getSnippetsOrdered();
+
+    /**
+     * Returns the snippets contained directly in this section, without any child scopes.
+     * The default implementation returns {@link #getSnippetsOrdered()}, which is correct
+     * for flat sections without children.
+     */
+    default Collection<CodeSnippet> getOwnSnippets() {
+        return getSnippetsOrdered();
+    }
+
+    /**
+     * Returns the child scope with the given name, creating it via the supplier on first
+     * access. The supplier is invoked at most once (deterministic caching).
+     */
+    default CodeSection getOrCreateScope(String scopeName, Supplier<CodeSection> scopeSupplier) {
+        throw new UnsupportedOperationException("Scopes are not supported by " + getClass().getSimpleName());
+    }
+
+    /**
+     * Returns the child scope with the given name or null if it does not exist.
+     */
+    default CodeSection getScope(String scopeName) {
+        return null;
+    }
+
+    /**
+     * Returns the parent section or null if this is a root section.
+     */
+    default CodeSection getParent() {
+        return null;
+    }
+
+    /**
+     * Returns the child scopes in insertion order.
+     */
+    default Collection<CodeSection> getChildren() {
+        return Collections.emptyList();
+    }
+
+    /**
+     * If true, child scopes are rendered as pure logical groupings: no own indentation,
+     * no line breaks — the section renders its full recursive snippet list as one flat block.
+     */
+    default boolean rendersChildrenInline() {
+        return false;
+    }
 
 }

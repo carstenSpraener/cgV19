@@ -1,4 +1,4 @@
-package de.spraener.nxtgen.apdemo.model;
+package de.spraener.nxtgen.apdemo.meta;
 
 import de.spraener.nxtgen.ap.metameta.Stereotype;
 import java.lang.annotation.ElementType;

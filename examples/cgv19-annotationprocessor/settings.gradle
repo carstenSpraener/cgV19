@@ -1,1 +1,3 @@
 rootProject.setName('cgv19-annotationprocessor')
+
+include 'model'

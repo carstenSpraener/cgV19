@@ -2,6 +2,6 @@
 out
 gradle
 build
-target
+/target/
 *.bak
 /doc/arc42-template-EN.md
