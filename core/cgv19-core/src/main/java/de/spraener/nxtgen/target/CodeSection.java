@@ -36,6 +36,23 @@ public interface CodeSection {
      */
     CodeSection replace(CodeSnippet snippet, CodeSnippet snippetToInsert);
 
+    /**
+     * Inserts the given snippet at the end of the child scope addressed by the given path.
+     * The path is '/'-separated and resolved relative to this section via
+     * {@link #getScope(String)}; a leading '/' is tolerated. Every path segment must name
+     * an existing child scope — missing scopes are not created (use
+     * {@link #getOrCreateScope(String, java.util.function.Supplier)} for that).
+     * The default implementation throws {@link UnsupportedOperationException}; composite
+     * sections (see AbstractCodeSection) support it.
+     *
+     * @param path the '/'-separated scope path, e.g. "IN_OPERATION" or "/IN_OPERATION/DETAILS"
+     * @param snippet the snippet to insert at the end of the addressed scope
+     * @return the section that received the snippet (for chaining)
+     */
+    default CodeSection insert(String path, CodeSnippet snippet) {
+        throw new UnsupportedOperationException("Path-based insertion is not supported by " + getClass().getSimpleName());
+    }
+
     Collection<CodeSnippet> getSnippetsOrdered();
 
     /**

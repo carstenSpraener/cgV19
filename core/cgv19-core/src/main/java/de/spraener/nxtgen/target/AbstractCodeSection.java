@@ -186,6 +186,35 @@ public abstract class AbstractCodeSection implements CodeSection {
         return this;
     }
 
+    @Override
+    public CodeSection insert(String path, CodeSnippet snippet) {
+        CodeSection target = resolveScopePath(path);
+        target.add(snippet);
+        return target;
+    }
+
+    /**
+     * Resolves a '/'-separated scope path relative to this section. A leading '/' is
+     * tolerated. Every segment must name an existing child scope; otherwise an
+     * IllegalArgumentException is thrown (missing scopes are not created).
+     */
+    private CodeSection resolveScopePath(String path) {
+        String normalized = normalizePath(path);
+        CodeSection current = this;
+        for (String segment : normalized.split("/", -1)) {
+            CodeSection next = current.getScope(segment);
+            if (next == null) {
+                throw new IllegalArgumentException("Cannot resolve scope path '" + path + "': segment '" + segment + "' not found in section with id " + current.getId());
+            }
+            current = next;
+        }
+        return current;
+    }
+
+    private static String normalizePath(String path) {
+        return path.startsWith("/") ? path.substring(1) : path;
+    }
+
     /**
      * Finds the section in this subtree that directly contains the given snippet,
      * searching own snippets first and then all child scopes recursively.

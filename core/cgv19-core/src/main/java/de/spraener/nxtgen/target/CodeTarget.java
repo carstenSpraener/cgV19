@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * <strong>Responsibility</strong>
@@ -107,7 +108,7 @@ public class CodeTarget {
      */
     public CodeSection getSection(Object key) {
         if (key instanceof String path && path.contains("/")) {
-            String[] segments = path.split("/", -1);
+            String[] segments = normalizePath(path).split("/", -1);
             CodeSection section = mySectionMap.get(segments[0]);
             if (section == null) {
                 for (CodeSection candidate : mySectionMap.values()) {
@@ -123,6 +124,55 @@ public class CodeTarget {
             return section;
         }
         return mySectionMap.get(key);
+    }
+
+    /**
+     * Returns the section at the given path, creating it via the supplier if it does not exist yet.
+     * <p>
+     * The path is '/'-separated; a leading '/' is tolerated. For a single segment the section
+     * is looked up top-level (exact key first, then section id) and created at the end of the
+     * table of contents if absent. For multi-segment paths all segments except the last must
+     * resolve via {@link #getSection(Object)}; only the last segment is created, via
+     * {@link CodeSection#getOrCreateScope(String, java.util.function.Supplier)} on the resolved
+     * parent. The supplier is invoked at most once (deterministic caching).
+     * </p>
+     *
+     * @param path the '/'-separated section path, e.g. "OPERATIONS/myOperation"
+     * @param supplier creates the section if it does not exist yet; invoked at most once
+     * @return the section at the given path (existing or newly created)
+     * @throws IllegalArgumentException if a multi-segment parent path does not resolve to a section
+     */
+    public synchronized CodeSection getOrCreate(String path, Supplier<CodeSection> supplier) {
+        String normalized = normalizePath(path);
+        int slash = normalized.lastIndexOf('/');
+        if (slash < 0) {
+            CodeSection existing = mySectionMap.get(normalized);
+            if (existing == null) {
+                for (CodeSection candidate : mySectionMap.values()) {
+                    if (normalized.equals(candidate.getId())) {
+                        existing = candidate;
+                        break;
+                    }
+                }
+            }
+            if (existing != null) {
+                return existing;
+            }
+            CodeSection section = supplier.get();
+            addCodeSection(normalized, section);
+            return section;
+        }
+        String parentPath = normalized.substring(0, slash);
+        CodeSection parent = getSection(parentPath);
+        if (parent == null) {
+            throw new IllegalArgumentException("Cannot create section at path '" + path + "': parent path '" + parentPath + "' does not resolve to a section");
+        }
+        String name = normalized.substring(slash + 1);
+        return parent.getOrCreateScope(name, supplier);
+    }
+
+    private static String normalizePath(String path) {
+        return path.startsWith("/") ? path.substring(1) : path;
     }
 
     /**

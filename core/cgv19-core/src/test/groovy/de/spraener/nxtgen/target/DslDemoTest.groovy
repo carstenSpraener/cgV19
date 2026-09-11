@@ -144,6 +144,8 @@ public class DslDemoTest {
         target.addCodeSection('header', SectionType.SIMPLE.create('header'))
         target.addCodeSection('classDeclaration', SectionType.SIMPLE.create('classDeclaration'))
         target.addCodeSection('bodyStart', SectionType.SIMPLE.create('bodyStart'))
+        target.addCodeSection('attributes', SectionType.SIMPLE.create('attributes'))
+        target.addCodeSection('constructors', SectionType.SIMPLE.create('constructors'))
         target.addCodeSection('methods', SectionType.SIMPLE.create('methods'))
         target.addCodeSection('bodyEnd', SectionType.SIMPLE.create('bodyEnd'))
 

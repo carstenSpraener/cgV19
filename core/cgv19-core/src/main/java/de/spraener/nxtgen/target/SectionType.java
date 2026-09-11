@@ -11,12 +11,16 @@ public enum SectionType {
     SIMPLE {
         @Override
         public CodeSection create(String id) {
-            return new SimpleCodeSection();
+            SimpleCodeSection section = new SimpleCodeSection();
+            section.setId(id);
+            return section;
         }
 
         @Override
         public CodeSection create(String id, Map<String, Object> config) {
-            return new SimpleCodeSection();
+            SimpleCodeSection section = new SimpleCodeSection();
+            section.setId(id);
+            return section;
         }
     },
 
@@ -24,12 +28,16 @@ public enum SectionType {
     UNIQUE_LINES {
         @Override
         public CodeSection create(String id) {
-            return new UniqueLineSection();
+            UniqueLineSection section = new UniqueLineSection();
+            section.setId(id);
+            return section;
         }
 
         @Override
         public CodeSection create(String id, Map<String, Object> config) {
-            return new UniqueLineSection();
+            UniqueLineSection section = new UniqueLineSection();
+            section.setId(id);
+            return section;
         }
     },
 
@@ -37,12 +45,15 @@ public enum SectionType {
     PREFIXED_LIST {
         @Override
         public CodeSection create(String id) {
-            return new NonEmptyPrefixedListSection();
+            NonEmptyPrefixedListSection section = new NonEmptyPrefixedListSection();
+            section.setId(id);
+            return section;
         }
 
         @Override
         public CodeSection create(String id, Map<String, Object> config) {
             NonEmptyPrefixedListSection section = new NonEmptyPrefixedListSection();
+            section.setId(id);
             if (config != null) {
                 String prefix = (String) config.get("prefix");
                 String sep = (String) config.get("sep");
