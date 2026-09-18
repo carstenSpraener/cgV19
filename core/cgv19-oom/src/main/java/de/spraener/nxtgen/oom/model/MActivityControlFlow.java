@@ -23,41 +23,33 @@ public class MActivityControlFlow extends MAbstractModelElement {
         return source;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
+    public MActivityControlFlow setSource(String source) { this.source = source; return this; }
 
     public String getSourceID() {
         return sourceID;
     }
 
-    public void setSourceID(String sourceID) {
-        this.sourceID = sourceID;
-    }
+    public MActivityControlFlow setSourceID(String sourceID) { this.sourceID = sourceID; return this; }
 
     public String getTarget() {
         return target;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
-    }
+    public MActivityControlFlow setTarget(String target) { this.target = target; return this; }
 
     public String getTargetID() {
         return targetID;
     }
 
-    public void setTargetID(String targetID) {
-        this.targetID = targetID;
-    }
+    public MActivityControlFlow setTargetID(String targetID) { this.targetID = targetID; return this; }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public MActivityControlFlow setId(String id) { this.id = id; return this; }
+
+    public MActivityControlFlow setGuard(String guard) { this.guard = guard; return this; }
 
     public MActivityAction getAction() {
         return (MActivityAction) OOModelRepository.getInstance().get(this.sourceID);

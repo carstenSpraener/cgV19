@@ -6,6 +6,7 @@ import de.spraener.nxtgen.oom.ModelHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MActivityDecision extends MAbstractModelElement {
@@ -71,5 +72,32 @@ public class MActivityDecision extends MAbstractModelElement {
         getChilds().add(incoming);
 
         return incoming;
+    }
+
+    public String getId() { return id; }
+    public MActivityDecision setId(String id) { this.id = id; return this; }
+
+    public List<MActivityControlFlow> getIncoming() { return incoming; }
+    public MActivityDecision setIncoming(List<MActivityControlFlow> v) { this.incoming = v; return this; }
+
+    public List<MActivityControlFlow> getOutgoing() { return outgoing; }
+    public MActivityDecision setOutgoing(List<MActivityControlFlow> v) { this.outgoing = v; return this; }
+
+    @Override
+    public MActivity getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MActivity) ? (MActivity) p : null;   // defensive, never a hard cast
+    }
+
+    public MActivityDecision createOutgoingControlFlow(MAbstractModelElement target, Consumer<MActivityControlFlow>... modifiers) {
+        MActivityControlFlow cf = createOutgoingControlFlow(target);   // reuse existing wiring
+        if (modifiers != null) { for (Consumer<MActivityControlFlow> m : modifiers) { m.accept(cf); } }
+        return this;                                                   // parent → chaining on the decision
+    }
+
+    public MActivityDecision createIncomingControlFlow(MAbstractModelElement source, Consumer<MActivityControlFlow>... modifiers) {
+        MActivityControlFlow cf = createIncomingControlFlow(source);   // reuse existing wiring
+        if (modifiers != null) { for (Consumer<MActivityControlFlow> m : modifiers) { m.accept(cf); } }
+        return this;                                                   // parent → chaining on the decision
     }
 }
