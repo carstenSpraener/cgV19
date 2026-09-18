@@ -80,4 +80,10 @@ public class MAssociation extends MAbstractModelElement {
         this.composite = composite;
         return this;
     }
+
+    @Override
+    public MClass getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MClass) ? (MClass) p : null;   // defensive, never a hard cast
+    }
 }

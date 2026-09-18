@@ -130,6 +130,31 @@ public class MClass extends MAbstractModelElement {
 
         return ref;
     }
+
+    public MClass createReference(String name, Consumer<MReference>... modifiers) {
+        MReference ref = new MReference();
+        ref.setName(name);
+        ref.setModel(getModel());
+        ref.setParent(this);
+        getReferences().add(ref);
+        getChilds().add(ref);
+        if (modifiers != null) { for (Consumer<MReference> m : modifiers) { m.accept(ref); } }
+        return this;                                         // parent → sibling chaining on the class
+    }
+
+    public MClass createAssociation(String name, String targetFQName, String multiplicity, Consumer<MAssociation>... modifiers) {
+        MAssociation a = new MAssociation();
+        a.setName(name);
+        a.setModel(getModel());
+        a.setParent(this);
+        a.setType(targetFQName);
+        a.setMultiplicity(multiplicity);
+        getAssociations().add(a);
+        getChilds().add(a);
+        if (modifiers != null) { for (Consumer<MAssociation> m : modifiers) { m.accept(a); } }
+        return this;                                         // parent → sibling chaining on the class
+    }
+
     public MClass cloneTo(MPackage targetPkg, String className) {
         MClass target = targetPkg.createMClass(className);
         List<MAttribute> attrList = target.getAttributes();
