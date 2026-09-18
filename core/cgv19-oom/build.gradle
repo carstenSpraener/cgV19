@@ -23,7 +23,9 @@ jacocoTestCoverageVerification {
             element = 'CLASS'
             includes = [
                 'de.spraener.nxtgen.oom.model.MPackage',
-                'de.spraener.nxtgen.oom.model.OOModel'
+                'de.spraener.nxtgen.oom.model.OOModel',
+                'de.spraener.nxtgen.oom.model.MAttribute',
+                'de.spraener.nxtgen.oom.model.MClass'
             ]
             limit {
                 counter = 'LINE'

@@ -48,6 +48,17 @@ public class MAttribute extends MAbstractModelElement {
         return multiplicity!=null && multiplicity.endsWith("*");
     }
 
+    public MAttribute setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    @Override
+    public MClass getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MClass) ? (MClass) p : null;   // defensive, never a hard cast
+    }
+
     public MAttribute cloneTo(MClass target) {
         MAttribute attr = target.createAttribute(getName(),getType());
         StereotypeHelper.cloneStereotypes(this, attr);

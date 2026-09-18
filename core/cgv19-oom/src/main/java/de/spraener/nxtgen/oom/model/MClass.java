@@ -9,6 +9,7 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MClass extends MAbstractModelElement {
@@ -90,6 +91,16 @@ public class MClass extends MAbstractModelElement {
         getChilds().add(attr);
 
         return attr;
+    }
+
+    public MClass createAttribute(String name, Consumer<MAttribute>... modifiers) {
+        MAttribute attr = new MAttribute(name, null);   // type is set inside the consumer: a -> a.setType("String")
+        attr.setParent(this);
+        attr.setModel(getModel());
+        addAttribute(attr);
+        getChilds().add(attr);
+        if (modifiers != null) { for (Consumer<MAttribute> m : modifiers) { m.accept(attr); } }
+        return this;                                     // parent → sibling chaining on the class
     }
 
     public MOperation createOperation(String name) {
