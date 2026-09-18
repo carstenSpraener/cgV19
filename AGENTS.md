@@ -1,56 +1,52 @@
 # AGENTS – cgV19 Repository Guide
 
-- **Core installation**
-  - Build the CLI distribution from the core root:
-    ```bash
-    cd cgV19/core
-    ./gradlew :cgv19-cli:installDist
-    ```
-  - The built CLI lives in `cgv19-cli/build/install/cgv19-cli/bin/cgV19`.
+Model-driven code generation: models (Groovy `.oom`, Visual Paradigm via port 7001, or URLs) are interpreted by pluggable *cartridges* that generate code. Java 17, Gradle 8.
 
-- **Running a generation**
-  - Basic command syntax: `cgV19 -m <model‑path-or‑url> -c <cartridgeName>`
-  - Cartridges are discovered via the Java ServiceLoader in `$APP_HOME/cartridges/*`.
-  - Use `-d <CartridgeName>` to select a specific cartridge (e.g., `cgv19Gradle`).
+## Build layout — five separate Gradle builds (no root build)
 
-- **Model loading**
-  - The framework uses the `ModelLoader` SPI (`canHandle(String)` / `loadModel(String)`) to read OOM files, URLs, or Visual‑Paradigm HTTP endpoints (port 7001).
-  - The `cgv19-annotationprocessor` module adds a loader for the `java-ap://<dir>` protocol: it compiles Java sources in‑process (JDK required) and builds the OOM from `@Stereotype`‑marked annotations. See `core/cgv19-annotationprocessor/README.md` and the example in `examples/cgv19-annotationprocessor`.
-  - Generated source files contain the marker line `THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS`; treat those as generated and avoid manual edits.
+- `core/` — the only healthy build; wrapper works. Modules: cgv19-core, -oom, -gradle (Gradle plugin), -javapoet, -metacartridge, -pojo, -annotationprocessor, -cli, -mcp, -aicb. Version: `core/gradle.properties` (26.x).
+- `examples/` — works; composite build (`includeBuild('../core')` + substitution) compiles against **local core source**. No wrapper — use system `gradle`.
+- `cartridges/`, `demoProjects/` — **broken**: non-executable gradlew, wrapper jar committed empty, buildscripts reference `project(':cgv19-core')` which isn't in that build (removed from `core/settings.gradle` in 26.0.0). Last jars: 24.1.1.
+- `plugins/` — not a Gradle root (settings.gradle removed in 26.0.0); build subprojects individually (`cgv19-vpplugin` has `buildPlugin.sh`).
 
-- **Build workflow**
-  - Each core module is an independent Gradle sub‑project (see `core/settings.gradle`).
-  - Build a single module: `./gradlew :cgv19-<module>:build`.
-  - Run its tests: `./gradlew :cgv19-<module>:test`.
-  - The repository’s top‑level `buildCompleteDist.sh` is **broken** (misses a trailing “t”). Use the manual CLI install steps above instead.
+## CLI
 
-- **Version mismatch**
-  - Core version is `24.1.1`; cartridges still reference core `23.1.x`. When developing a cartridge, ensure the classpath uses the current core version to avoid `NoSuchMethodError`s.
+```bash
+cd core && ./gradlew :cgv19-cli:installDist   # → bin/cgv19 (lowercase) + bin/cgv19-mcp
+```
 
-- **Generated code conventions**
-  - All generated files start with the protection comment `THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS`.
-  - The `-d` option deletes generated files before a fresh generation run.
+- Dist bundles core cartridges + blueprints into `cartridges/` (on classpath via `$APP_HOME/cartridges/*`) — drop new cartridge jars there, verify with `cgv19 -l`.
+- Root `buildCompleteDist.sh` is **broken** (`installDis`) — don't use.
+- `./gradlew build` in core **fails** at `:cgv19-aicb:test` unless LM-Studio runs (tests throw, don't assume) → use `-x :cgv19-aicb:test`.
+- Options: `-m <model>` (file/dir/URL) · `-c <name[:...]>` colon-separated cartridges, omit → all · `-d` **flag** deletes generated files · `-l` list · `-w <dir>` · `--log-level` · `--mcp`. Docs claiming `-d <name>` selects a cartridge are wrong — that's `-c`.
 
-- **Important scripts & docs**
-  - Quick‑start guide: `docs/GettingStarted.md`.
-  - Core architecture overview: `core/cgv19-core/doc/CoreArchitecture.md`.
-  - Cartridge documentation: `cartridges/doc/Cartridges.md`.
+## Model loading (`OOMModelLoader`)
 
-- **Common pitfalls**
-  - Forgetting to add the `cartridges/` folder to `$APP_HOME` when running the CLI → cartridges not found.
-  - Running `gradle :cgv19-cli:installDist` from the repository root instead of `core/` → build fails because the CLI project lives under `core/cgv19-cli`.
-  - Assuming `buildCompleteDist.sh` works; it does not.
+Handles `.oom` files and `http*` URLs; chain: local file → classpath resource → URL (saves a copy) → **on URL failure, silently falls back to `<last-segment>.oom` in the working dir**. So `http://localhost:7001/<pkg>` builds fine without Visual Paradigm — examples ship a minimal `.oom` stub; check you got the real model.
 
-- **Typical one‑off commands**
-  - Install CLI and add to PATH (once):
-    ```bash
-    cp -r core/cgv19-cli/build/install/cgv19-cli ~/tools/
-    echo 'export PATH=$PATH:~/tools/cgv19-cli/bin' >> ~/.zshrc
-    ```
-  - Generate a PoJo project:
-    ```bash
-    cgV19 -m my-app.oom -c cgv19PoJo
-    ```
+## Generated code
 
-- **Service‑loader locations**
-  - Core SPI files are under `src/main/resources/META-INF/services/` (e.g., `de.spraener.nxtgen.ModelLoader`). Adding a new cartridge only requires placing its JAR in the `cartridges/` directory and providing the appropriate service‑loader entry.
+- Marker `THIS FILE IS GENERATED AS LONG AS THIS LINE EXISTS` (top of file) → overwritten each run; `-d` deletes.
+- `**/*-gen` is gitignored — never check in generated sources, **except** `core/cgv19-metacartridge/src/main/java-gen/**` (tracked on purpose: bootstrap).
+- Editing a Groovy template in `resources/`: remove the protection line first or your edits are wiped.
+
+## Version skew (expect `NoSuchMethodError`)
+
+core = 26.x; local maven repo `repo/` holds **24.1.1** (tracked despite .gitignore); cartridge buildscripts pin **23.1.0** from Central; examples use 24.1.0 (substituted with local core). Resolve cartridge classpaths to local/26.x core when developing against current core.
+
+## Cartridge development
+
+1. Scaffold: `cgv19 -m my-cartridge.yml -c cgv19Cartridge` (blueprint; prompts for name/version/package) → Gradle project.
+2. Implement MDD-style (VP model + metacartridge stereotypes) or annotation-based (`@CGV19Cartridge` + `AnnotatedCartridgeImpl`); cartridge class = generated Base + hand-written derived (GeneratorGap).
+3. `gradle jar` → copy to `<install>/cartridges/`; verify with `cgv19 -l`.
+4. Tests build models via `OOModelBuilder` (missing from the 23.1.x maven artifact — copy it into test sources if on that version).
+- The `de.spraener.nxtgen.cgV19` Gradle plugin registers a `cgV19` task (NextGen on the configured model, `cartridge` config as classpath); `compileJava` depends on it.
+
+## Releases & CI
+
+Push to a `release-*` branch → Actions (JDK 17, in `core/`): build → publish to GitHub Packages (`maven.pkg.github.com/carstenSpraener/cgV19`) → tag `v<version>` from `core/gradle.properties` (bump it on the release branch) → GitHub release.
+
+## 26.x modules & docs
+
+- `cgv19-mcp` — MCP server (`cgv19 --mcp`): model inspection, generation, metacartridge tools; VP-modification tools via HTTP :7001. `cgv19-aicb` — LLM code blocks (langchain4j). Activity/FSM support is **ALPHA**.
+- Docs: `docs/GettingStarted.md` · `core/cgv19-core/doc/CoreArchitecture.md` · `cartridges/doc/Cartridges.md` · `docs/CartridgeDevelopment.md` (tutorial) · `core/cgv19-annotationprocessor/README.md` (`java-ap://<dir>` loader, JDK required) · `docs/ReleaseNotes-26.0.0.md`

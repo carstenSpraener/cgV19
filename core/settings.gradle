@@ -1,4 +1,4 @@
-rootProject.name = 'cgv19-core'
+rootProject.name = 'cgv19'
 
 include(":cgv19-core")
 include(":cgv19-gradle")

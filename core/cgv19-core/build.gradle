@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'jacoco'
 }
 
 repositories {
@@ -23,11 +24,26 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 
 jar {
     manifest {
         attributes 'Main-Class': "de.spraener.nxtgen.NextGen"
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'CLASS'
+            includes = ['de.spraener.nxtgen.model.impl.ModelElementImpl']
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+        }
     }
 }

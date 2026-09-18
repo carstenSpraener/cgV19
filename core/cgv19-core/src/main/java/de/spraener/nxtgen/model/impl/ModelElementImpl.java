@@ -3,6 +3,7 @@ package de.spraener.nxtgen.model.impl;
 import de.spraener.nxtgen.model.Model;
 import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.Stereotype;
+import de.spraener.nxtgen.model.TaggedValue;
 
 import java.beans.Transient;
 import java.util.HashMap;
@@ -40,6 +41,22 @@ public class ModelElementImpl extends ModelElementImplBase {
             return null;
         }
         return sType.getTaggedValue(valueName);
+    }
+
+    public ModelElement addStereotype(String name, TaggedValue... values) {
+        Stereotype existing = getStereotypes().stream()
+                .filter(st -> st.getName().equals(name))
+                .findFirst().orElse(null);
+        if (existing == null) {
+            existing = new StereotypeImpl(name);
+            getStereotypes().add(existing);
+        }
+        if (values != null) {
+            for (TaggedValue tv : values) {
+                existing.setTaggedValue(tv.getName(), tv.getValue());
+            }
+        }
+        return this;
     }
 
     @Override
