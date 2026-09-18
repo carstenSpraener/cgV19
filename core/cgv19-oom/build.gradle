@@ -33,7 +33,9 @@ jacocoTestCoverageVerification {
                 'de.spraener.nxtgen.oom.model.MActivity',
                 'de.spraener.nxtgen.oom.model.MActivityAction',
                 'de.spraener.nxtgen.oom.model.MActivityDecision',
-                'de.spraener.nxtgen.oom.model.MActivityControlFlow'
+                'de.spraener.nxtgen.oom.model.MActivityControlFlow',
+                'de.spraener.nxtgen.oom.model.MAbstractModelElement',
+                'de.spraener.nxtgen.oom.model.MDependency'
             ]
             limit {
                 counter = 'LINE'

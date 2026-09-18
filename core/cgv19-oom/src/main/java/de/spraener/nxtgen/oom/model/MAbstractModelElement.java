@@ -4,6 +4,7 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class MAbstractModelElement extends ModelElementImpl {
     private Map<String, Object> objectMap = null;
@@ -30,10 +31,15 @@ public class MAbstractModelElement extends ModelElementImpl {
         return getObjectMap().get(key);
     }
 
-    public void removeObject(String key) {
-        if (this.objectMap != null) {
-            this.objectMap.remove(key);
-        }
+    public MAbstractModelElement removeObject(String key) {
+        if (this.objectMap != null) { this.objectMap.remove(key); }
+        return this;
+    }
+
+    public MAbstractModelElement createDependency(String targetFQName, Consumer<MDependency>... modifiers) {
+        MDependency dep = createDependency(targetFQName);
+        if (modifiers != null) { for (Consumer<MDependency> m : modifiers) { m.accept(dep); } }
+        return this;
     }
 
     public MDependency createDependency(String targetFQName) {
