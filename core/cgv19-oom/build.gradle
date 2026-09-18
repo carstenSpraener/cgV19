@@ -25,7 +25,9 @@ jacocoTestCoverageVerification {
                 'de.spraener.nxtgen.oom.model.MPackage',
                 'de.spraener.nxtgen.oom.model.OOModel',
                 'de.spraener.nxtgen.oom.model.MAttribute',
-                'de.spraener.nxtgen.oom.model.MClass'
+                'de.spraener.nxtgen.oom.model.MClass',
+                'de.spraener.nxtgen.oom.model.MOperation',
+                'de.spraener.nxtgen.oom.model.MParameter'
             ]
             limit {
                 counter = 'LINE'

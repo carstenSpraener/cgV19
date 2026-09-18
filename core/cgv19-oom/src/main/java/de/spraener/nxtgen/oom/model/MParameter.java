@@ -25,8 +25,15 @@ public class MParameter extends MAbstractModelElement {
         return type;
     }
 
-    public void setType(String type) {
+    public MParameter setType(String type) {
         this.type = type;
+        return this;
+    }
+
+    @Override
+    public MOperation getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MOperation) ? (MOperation) p : null;   // defensive
     }
 
     public MParameter cloneTo(MOperation op) {

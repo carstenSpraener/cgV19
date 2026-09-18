@@ -7,6 +7,7 @@ import de.spraener.nxtgen.oom.StereotypeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MOperation extends MAbstractModelElement {
@@ -26,19 +27,20 @@ public class MOperation extends MAbstractModelElement {
         this.setParent(parent);
         this.setName(name);
         this.setModel(parent.getModel());
-        setModel(parent.getModel());
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public MOperation setType(String type) {
         this.type = type;
+        return this;
     }
 
-    public void setParameters(List<MParameter> parameters) {
+    public MOperation setParameters(List<MParameter> parameters) {
         this.parameters = parameters;
+        return this;
     }
 
     public List<MParameter> getParameters() {
@@ -46,6 +48,12 @@ public class MOperation extends MAbstractModelElement {
             parameters = new ArrayList<>();
         }
         return parameters;
+    }
+
+    @Override
+    public MClass getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MClass) ? (MClass) p : null;   // defensive, never a hard cast
     }
 
     public MOperation cloneTo(MClass mc ) {
@@ -69,5 +77,13 @@ public class MOperation extends MAbstractModelElement {
         getChilds().add(p);
 
         return p;
+    }
+
+    public MOperation createParameter(String name, Consumer<MParameter>... modifiers) {
+        MParameter p = new MParameter(this, name, null);   // protected ctor (same package); type via consumer
+        getParameters().add(p);
+        getChilds().add(p);
+        if (modifiers != null) { for (Consumer<MParameter> m : modifiers) { m.accept(p); } }
+        return this;                                       // parent → parameter chaining on the operation
     }
 }

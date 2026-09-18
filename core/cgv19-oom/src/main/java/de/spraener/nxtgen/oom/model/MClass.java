@@ -112,6 +112,14 @@ public class MClass extends MAbstractModelElement {
         return op;
     }
 
+    public MClass createOperation(String name, Consumer<MOperation>... modifiers) {
+        MOperation op = new MOperation(this, name);   // protected ctor (same package) sets parent/name/model
+        getOperations().add(op);
+        getChilds().add(op);
+        if (modifiers != null) { for (Consumer<MOperation> m : modifiers) { m.accept(op); } }
+        return this;                                  // parent → sibling chaining on the class
+    }
+
     public MReference createReference(String name) {
         MReference ref = new MReference();
         ref.setName(name);
