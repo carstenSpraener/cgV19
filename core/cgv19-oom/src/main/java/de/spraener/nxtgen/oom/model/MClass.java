@@ -204,6 +204,17 @@ public class MClass extends MAbstractModelElement {
         return activities;
     }
 
+    public MClass createActivity(String name, Consumer<MActivity>... modifiers) {
+        MActivity a = new MActivity();
+        a.setName(name);
+        a.setModel(getModel());
+        a.setParent(this);
+        getActivities().add(a);
+        getChilds().add(a);
+        if (modifiers != null) { for (Consumer<MActivity> m : modifiers) { m.accept(a); } }
+        return this;                                       // parent → sibling chaining on the class
+    }
+
     public List<MAssociation> getAssociations() {
         if( this.associations == null ) {
             this.associations = filterChilds(child -> child instanceof MAssociation)

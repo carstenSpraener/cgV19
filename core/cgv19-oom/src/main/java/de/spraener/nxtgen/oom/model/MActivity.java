@@ -4,6 +4,7 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MActivity extends MAbstractModelElement {
@@ -63,6 +64,18 @@ public class MActivity extends MAbstractModelElement {
         return decisions;
     }
 
+    public MActivity setControlFlows(List<MActivityControlFlow> v) { this.controlFlows = v; return this; }
+    public MActivity setInitNode(MActivityNode v) { this.initNode = v; return this; }
+    public MActivity setFinalNodes(List<MActivityNode> v) { this.finalNodes = v; return this; }
+    public MActivity setActions(List<MActivityAction> v) { this.actions = v; return this; }
+    public MActivity setDecisions(List<MActivityDecision> v) { this.decisions = v; return this; }
+
+    @Override
+    public MClass getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MClass) ? (MClass) p : null;   // defensive, never a hard cast
+    }
+
     public MActivityAction createAction(String name) {
         MActivityAction action = new MActivityAction();
         action.setName(name);
@@ -81,5 +94,17 @@ public class MActivity extends MAbstractModelElement {
         getChilds().add(decision);
 
         return decision;
+    }
+
+    public MActivity createAction(String name, Consumer<MActivityAction>... modifiers) {
+        MActivityAction a = createAction(name);            // reuse existing wiring (parent/model/childs)
+        if (modifiers != null) { for (Consumer<MActivityAction> m : modifiers) { m.accept(a); } }
+        return this;                                       // parent → chaining on the activity
+    }
+
+    public MActivity createDecision(String name, Consumer<MActivityDecision>... modifiers) {
+        MActivityDecision d = createDecision(name);        // reuse existing wiring
+        if (modifiers != null) { for (Consumer<MActivityDecision> m : modifiers) { m.accept(d); } }
+        return this;                                       // parent → chaining on the activity
     }
 }
