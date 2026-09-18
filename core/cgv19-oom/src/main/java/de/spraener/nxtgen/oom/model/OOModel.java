@@ -6,6 +6,7 @@ import de.spraener.nxtgen.model.impl.ModelImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class OOModel extends ModelImpl {
@@ -67,9 +68,16 @@ public class OOModel extends ModelImpl {
     public MPackage createPackage(String name) {
         MPackage p = new MPackage();
         p.setName(name);
-        p.setModel(this);
-        p.setParent(null);
+        addModelElement(p);      // registers in model AND sets the model (replaces p.setModel(this))
+        p.setParent(null);       // top-level package: parent stays null (Model is not a ModelElement)
+        return p;                // no-consumer variant still returns the child (unchanged contract)
+    }
 
-        return p;
+    public OOModel createPackage(String name, Consumer<MPackage>... modifiers) {
+        MPackage p = createPackage(name);
+        if (modifiers != null) {
+            for (Consumer<MPackage> m : modifiers) { m.accept(p); }
+        }
+        return this;             // parent (the model) → chainable: model.createPackage("a", ...).createPackage("b", ...)
     }
 }

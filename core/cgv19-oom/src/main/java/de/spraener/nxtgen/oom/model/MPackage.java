@@ -5,6 +5,7 @@ import de.spraener.nxtgen.model.ModelElement;
 import de.spraener.nxtgen.model.impl.ModelElementImpl;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MPackage extends MAbstractModelElement {
@@ -80,5 +81,27 @@ public class MPackage extends MAbstractModelElement {
         child.setModel(getModel());
         getChilds().add(child);
         return child;
+    }
+
+    public MPackage createMClass(String name, Consumer<MClass>... modifiers) {
+        MClass c = createMClass(name);
+        if (modifiers != null) { for (Consumer<MClass> m : modifiers) { m.accept(c); } }
+        return this;             // parent → sibling chaining on the package
+    }
+
+    public MPackage createPackage(String name, Consumer<MPackage>... modifiers) {
+        MPackage p = new MPackage();
+        p.setName(name);
+        p.setModel(getModel());
+        getChilds().add(p);
+        p.setParent(this);
+        if (modifiers != null) { for (Consumer<MPackage> m : modifiers) { m.accept(p); } }
+        return this;             // parent → nested package chaining
+    }
+
+    @Override
+    public MPackage getParent() {
+        ModelElement p = super.getParent();
+        return (p instanceof MPackage) ? (MPackage) p : null;   // defensive: .oom-DSL top-level packages have a GroovyElement parent
     }
 }

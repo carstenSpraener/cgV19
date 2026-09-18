@@ -139,7 +139,6 @@ class LlmIntegrationTest {
 
         MOperation op = mc.createOperation("greetings");
         op.setType("String");
-        model.getChilds().add(pkg);
         return model;
     }
 }
