@@ -49,4 +49,4 @@ Push to a `release-*` branch → Actions (JDK 17, in `core/`): build → publish
 ## 26.x modules & docs
 
 - `cgv19-mcp` — MCP server (`cgv19 --mcp`): model inspection, generation, metacartridge tools; VP-modification tools via HTTP :7001. `cgv19-aicb` — LLM code blocks (langchain4j). Activity/FSM support is **ALPHA**.
-- Docs: `docs/GettingStarted.md` · `core/cgv19-core/doc/CoreArchitecture.md` · `cartridges/doc/Cartridges.md` · `docs/CartridgeDevelopment.md` (tutorial) · `core/cgv19-annotationprocessor/README.md` (`java-ap://<dir>` loader, JDK required) · `docs/ReleaseNotes-26.0.0.md`
+- Docs: `docs/LLM-QuickReference.md` (**start here for LLMs**: transformations/generators on core+oom+pojo, recipes + pitfalls) · `docs/GettingStarted.md` · `core/cgv19-core/doc/CoreArchitecture.md` · `cartridges/doc/Cartridges.md` · `docs/CartridgeDevelopment.md` (tutorial) · `core/cgv19-annotationprocessor/README.md` (`java-ap://<dir>` loader, JDK required) · `docs/ReleaseNotes-26.0.0.md`
