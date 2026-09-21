@@ -28,9 +28,10 @@ public class SimpleCodeSectionTest {
     void testInsertBefore() {
         uut.withSnippet("A", snippetA)
                 .insertBefore(snippetA, snippetB);
-        ;
+
+        // Exact order: B was inserted before A
         assertThat(uut.getSnippetsOrdered())
-                .contains(snippetB, snippetA);
+                .containsExactly(snippetB, snippetA);
     }
 
     @Test
@@ -40,10 +41,10 @@ public class SimpleCodeSectionTest {
                 .withSnippet("B", snippetB)
                 // When: Inserting snippet C after A
                 .insertAfter(snippetA, snippetC);
-        ;
-        // Then: the order should be A, C, B
+
+        // Then: the order should be exactly A, C, B
         assertThat(uut.getSnippetsOrdered())
-                .contains(snippetA, snippetC, snippetB);
+                .containsExactly(snippetA, snippetC, snippetB);
     }
 
     @Test

@@ -7,6 +7,7 @@ import de.spraener.nxtgen.oom.model.MOperation;
 import de.spraener.nxtgen.oom.model.MPackage;
 import de.spraener.nxtgen.oom.model.OOModel;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LlmIntegrationTest {
 
     private static final String LM_STUDIO_URL = "http://localhost:1234/v1";
-    private static final String LM_STUDIO_MODEL = "gemma-4-12b-coder-fable5-composer2.5";
+    private static final String LM_STUDIO_MODEL = "qwen3.6-35b-a3b";
 
     private static boolean isLmStudioAvailable = false;
 
@@ -121,9 +122,7 @@ class LlmIntegrationTest {
     }
 
     private static void assumeLmStudioAvailable() {
-        if (!isLmStudioAvailable) {
-            throw new AssertionError("LM-Studio not available — integration test skipped");
-        }
+        Assumptions.assumeTrue(isLmStudioAvailable, "LM-Studio not available — integration test skipped");
     }
 
     private static OOModel createPoJoModel() {

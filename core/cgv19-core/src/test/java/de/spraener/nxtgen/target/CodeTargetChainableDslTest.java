@@ -13,8 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the new chainable DSL API: setDefaultModelElement, 2-arg forAspect, evaluate.
+ * <p>
+ * Renamed from CodeTargetDSLTest to free the name for the Groovy test class
+ * {@code de.spraener.nxtgen.target.CodeTargetDSLTest} (src/test/groovy), which tests
+ * the production Groovy build DSL ({@code de.spraener.nxtgen.target.dsl.CodeTargetDSL}).
  */
-public class CodeTargetDSLTest {
+public class CodeTargetChainableDslTest {
 
     // === setDefaultModelElement Tests ===
 
@@ -53,9 +57,9 @@ public class CodeTargetDSLTest {
         SimpleCodeSection section = new SimpleCodeSection();
         ct.addCodeSection("test", section);
 
-        // Use 3-arg forAspect to verify the mechanism works
+        // 2-arg forAspect: the model element is taken from defaultModelElement
         ct.setDefaultModelElement(me)
-           .forAspect("logging", me, (Closure) createToTestClosure());
+           .forAspect("logging", (Closure) createToTestClosure());
 
         // Verify snippet was added with correct aspect and model element
         Collection<CodeSnippet> snippets = section.getSnippetsOrdered();
@@ -75,7 +79,7 @@ public class CodeTargetDSLTest {
         ct.addCodeSection("test", section);
 
         CodeTarget result = ct.setDefaultModelElement(me)
-                              .forAspect("logging", me, (Closure) createToTestClosure());
+                              .forAspect("logging", (Closure) createToTestClosure());
 
         assertSame(ct, result);
     }
@@ -89,8 +93,8 @@ public class CodeTargetDSLTest {
         ct.addCodeSection("test", section);
 
         ct.setDefaultModelElement(me)
-           .forAspect("logging", me, (Closure) createToTestClosure())
-           .forAspect("entity", me, (Closure) createToTestClosure());
+           .forAspect("logging", (Closure) createToTestClosure())
+           .forAspect("entity", (Closure) createToTestClosure());
 
         // Verify both aspects added snippets
         Collection<CodeSnippet> snippets = section.getSnippetsOrdered();
@@ -108,8 +112,8 @@ public class CodeTargetDSLTest {
         SimpleCodeSection section = new SimpleCodeSection();
         ct.addCodeSection("test", section);
 
-        // Should work even without defaultModelElement (model element will be null)
-        ct.forAspect("test", null, (Closure) createToTestClosure());
+        // No defaultModelElement set: the 2-arg forAspect must work with a null model element
+        ct.forAspect("test", (Closure) createToTestClosure());
 
         Collection<CodeSnippet> snippets = section.getSnippetsOrdered();
         assertEquals(1, snippets.size());
@@ -122,17 +126,25 @@ public class CodeTargetDSLTest {
     void testEvaluateReturnsThis() {
         CodeTarget ct = new CodeTarget();
         ModelElement me = createMockModelElement("test");
-        ct.setDefaultModelElement(me);
 
-        // Create a simple test script file
-        String scriptPath = "/test-scripts/simple-test.groovy";
-        
-        // This will fail if script doesn't exist, but we're testing the return type
+        SimpleCodeSection section = new SimpleCodeSection();
+        ct.addCodeSection("test", section);
+
+        // Real script that adds a snippet (same pattern as testEvaluateChaining)
+        String scriptContent = "ct.forAspect('eval-return', mClass) { to 'test', 'from script' }";
+        String scriptPath = createTempScript("evaluate-returns-this.groovy", scriptContent);
+
         try {
-            CodeTarget result = ct.evaluate(scriptPath);
+            CodeTarget result = ct.setDefaultModelElement(me).evaluate(scriptPath);
+
+            // evaluate() must return the same instance for fluent chaining
             assertSame(ct, result);
-        } catch (RuntimeException e) {
-            // Expected if script doesn't exist - but verify chaining works in success case
+
+            // and it must have actually executed the script (evaluate() silently
+            // returns 'this' when the script cannot be found)
+            assertEquals(1, section.getSnippetsOrdered().size());
+        } finally {
+            cleanupTempScript(scriptPath);
         }
     }
 
@@ -309,25 +321,6 @@ public class CodeTargetDSLTest {
                 return null;
             }
         };
-    }
-
-    private void writeTestScript(String path, String content) {
-        try {
-            java.io.File f = new java.io.File("src/test/resources" + path);
-            f.getParentFile().mkdirs();
-            java.nio.file.Files.writeString(f.toPath(), content);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to write test script", e);
-        }
-    }
-
-    private void cleanupTestScript(String path) {
-        try {
-            java.io.File f = new java.io.File("src/test/resources" + path);
-            if (f.exists()) f.delete();
-        } catch (Exception e) {
-            // Ignore cleanup errors
-        }
     }
 
     /**

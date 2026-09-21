@@ -8,6 +8,7 @@ import de.spraener.nxtgen.model.impl.ModelElementImpl;
 import de.spraener.nxtgen.model.impl.ModelImpl;
 import de.spraener.nxtgen.model.impl.StereotypeImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,10 +29,12 @@ public class ICETests {
     private ModelImpl testModel = new ModelImpl();
     private ModelElementImpl me = new ModelElementImpl();
 
+    // Snapshot/restore of NextGen's global static state (NextGen has no reset API).
+    private NextGenStateGuard stateGuard;
+
     @BeforeEach
     public void setup() {
-        ModelImpl testModel = new ModelImpl();
-        ModelElementImpl me = new ModelElementImpl();
+        // No shadowing: configure the instance fields so they are actually used below.
         me.setModel(testModel);
         me.setMetaType("class");
         me.setProperty("name", "AClass");
@@ -40,6 +43,17 @@ public class ICETests {
                 testModel
         );
         when(modelLoader.canHandle(any())).thenReturn(true);
+
+        // Snapshot the global NextGen state so tearDown can restore it.
+        stateGuard = new NextGenStateGuard();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Restore the global NextGen state so this test cannot pollute other tests.
+        if (stateGuard != null) {
+            stateGuard.close();
+        }
     }
 
     @Test

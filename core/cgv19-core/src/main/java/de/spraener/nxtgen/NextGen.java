@@ -142,6 +142,27 @@ public class NextGen implements Runnable {
     }
 
     public void run() {
+        boolean topLevel = !inSubRun;
+        if (topLevel) {
+            inSubRun = true;
+        }
+        try {
+            runMainLoop();
+
+            if (topLevel) {
+                while(!scheduledSubRuns.isEmpty()) {
+                    cartridgeNames.clear();
+                    scheduledSubRuns.remove(0).run();
+                }
+            }
+        } finally {
+            if (topLevel) {
+                inSubRun = false;
+            }
+        }
+    }
+
+    private void runMainLoop() {
         try {
             File rootDir = new File(getWorkingDir());
             boolean rootDirIsEmpty = rootDir.list().length==0;
@@ -166,14 +187,6 @@ public class NextGen implements Runnable {
             }
         } catch (Exception e) {
             throw new NxtGenRuntimeException(e);
-        }
-
-        if (!inSubRun) {
-            inSubRun = true;
-            while(!scheduledSubRuns.isEmpty()) {
-                cartridgeNames.clear();
-                scheduledSubRuns.remove(0).run();
-            }
         }
     }
 

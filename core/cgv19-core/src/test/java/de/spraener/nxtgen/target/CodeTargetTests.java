@@ -39,8 +39,10 @@ public class CodeTargetTests {
         assertNotNull(uut.getSection("D"));
         assertEquals(cbSectionB, uut.getSection("D"));
 
+        // Exact insertion order. Note: the same section instances are reused for keys C/D, so
+        // addCodeSection() overwrote their ids — assert on the instances in exact order.
         Assertions.assertThat(uut.getSectionsOrdered())
-                .contains(
+                .containsExactly(
                         cbSectionA, cbSectionB, cbSectionA, cbSectionB
                 );
     }

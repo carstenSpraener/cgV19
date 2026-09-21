@@ -25,6 +25,32 @@ demonstrate the usage of cgv19.
 
 ![cgv19-overview.png](docs/images/cgv19-overview.png)
 
+## New in 26.x — Fluent Transformations & TreeWalker
+
+Two new APIs make model transformations and nested code generation much more readable:
+
+**Fluent transformation language** (cgv19-oom) — build and enrich models with chainable expressions:
+
+```java
+model.createPackage("com.example", pkg -> {
+    pkg.createMClass("Person", c -> {
+        c.addStereotype("Entity", TaggedValue.of("tableName", "person"));
+        c.createAttribute("name", a -> a.setType("String"))
+         .createOperation("getName", op -> op.setType("String"));
+    });
+});
+```
+
+**TreeWalker visitor engine** (cgv19-core) — walk model trees with annotated visitors, like ANTLR's `ParseTreeWalker`:
+
+```java
+CodeTarget ct = TreeWalker.on(mClass)
+        .order(o -> o.then(MAttribute.class).then(MOperation.class))
+        .walk();
+```
+
+See the [Release Notes 26.0.2](docs/ReleaseNotes-26.0.2.md) for the full API reference.
+
 ### [Quick start: See doc/GettingStarted.md](docs/GettingStarted.md)
 
 If you are looking for a Low Code platform development environment, you may consider trying

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
@@ -99,24 +100,29 @@ public class CompositeCodeSectionTest {
         int threads = 8;
         AtomicInteger invocations = new AtomicInteger();
         CountDownLatch start = new CountDownLatch(1);
+        CountDownLatch done = new CountDownLatch(threads);
         List<CodeSection> results = java.util.Collections.synchronizedList(new ArrayList<>());
 
         for (int i = 0; i < threads; i++) {
             new Thread(() -> {
                 try {
                     start.await();
+                    results.add(uut.getOrCreateScope("shared", () -> {
+                        invocations.incrementAndGet();
+                        return new SimpleCodeSection();
+                    }));
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
+                } finally {
+                    done.countDown();
                 }
-                results.add(uut.getOrCreateScope("shared", () -> {
-                    invocations.incrementAndGet();
-                    return new SimpleCodeSection();
-                }));
             }).start();
         }
-        start.countDown();
-        Thread.sleep(500);
 
+        start.countDown();
+        assertTrue(done.await(10, TimeUnit.SECONDS), "all threads should finish");
+
+        assertEquals(threads, results.size());
         assertEquals(1, invocations.get());
         for (CodeSection result : results) {
             assertSame(results.get(0), result);
